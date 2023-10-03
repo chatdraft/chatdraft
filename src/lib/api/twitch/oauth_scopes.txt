@@ -1,0 +1,4 @@
+channel:read:redemptions
+channel:manage:redemptions
+chat:read
+chat:edit

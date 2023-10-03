@@ -1,0 +1,16 @@
+# Top-level configuration
+name = "chatdraft"
+main = ".svelte-kit/cloudflare/_worker.js"
+compatibility_date = "2023-09-22"
+
+[build]
+watch_dir=".svelte-kit/cloudflare"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "chatdraft"
+database_id = "1a041d6f-1b7b-4e18-88ab-c4e95ef7498b"
+
+kv_namespaces = [
+    { KV = "chatdraft", id = "cebf6113f3c4431caac77def387f84ac" }
+]
