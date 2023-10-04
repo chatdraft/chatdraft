@@ -2,7 +2,8 @@
 	import { invalidateAll } from '$app/navigation';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import type { Draft } from '$lib/snap/draft.js';
+	import { GetDeckCode, type Draft } from '$lib/snap/draft.js';
+	import { CodeBlock } from '@skeletonlabs/skeleton';
 	// import { onMount } from 'svelte';
 
 	export let data;
@@ -40,10 +41,10 @@
 	{#if choice1 && choice2 && choice3}
 		Please select from:
 
-		<section class="grid grid-cols-3 p-4 justify-items-center">
-			<SnapCard card={choice1} />
-			<SnapCard card={choice2} />
-			<SnapCard card={choice3} />
+		<section class="grid grid-cols-3 justify-items-center">
+			<div class="p-4"><SnapCard card={choice1} /></div>
+			<div class="p-4"><SnapCard card={choice2} /></div>
+			<div class="p-4"><SnapCard card={choice3} /></div>
 			<button
 				type="button"
 				class="btn btn-md variant-outline-primary p-4 w-1/2"
@@ -63,7 +64,7 @@
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
 		<SnapDeck cards={current_draft?.cards} />
-		*insert draft code here once*
+		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
 	{:else}
 		Please start a new draft.
 	{/if}

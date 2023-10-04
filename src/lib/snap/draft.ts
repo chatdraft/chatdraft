@@ -1,6 +1,7 @@
 import * as cards from '$lib/data/cards.json';
 import { shuffle } from './utils';
 import type { NewDraft } from '$lib/schema.js';
+import { Buffer } from 'buffer';
 
 export function StartDraft(player: string) {
 	const newDraft: Draft = {
@@ -91,6 +92,13 @@ export function DeserializeDraft(draft: NewDraft): Draft {
 	};
 
 	return deserializedDraft;
+}
+
+export function GetDeckCode(deck: Deck): string {
+	type cardCode = { CardDefId: string }
+	const obj = {Cards: Array<cardCode>()}
+	deck.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
+	return Buffer.from(JSON.stringify(obj)).toString('base64')
 }
 
 export type Card = {
