@@ -13,14 +13,14 @@
 	$: choice3 = data.choice?.card3!;
 
 	// onMount(() => {
-		
+
 	// });
 
 	async function NewDraft() {
-        const ret = await fetch('/api/v1/draft/Player', { method: 'PUT' });
+		const ret = await fetch('/api/v1/draft/Player', { method: 'PUT' });
 		invalidateAll();
 	}
-	
+
 	async function DraftCard(cardNumber: number) {
 		const ret = await fetch(`/api/v1/draft/Player/choice/${cardNumber}`, { method: 'PUT' });
 		invalidateAll();
@@ -34,22 +34,35 @@
 
 <div class="space-y-4 p-4">
 	<h1>Mock Draft</h1>
-    <button type="button" class="btn btn-lg variant-filled" on:click={NewDraft}>New Draft</button><br />
+	<button type="button" class="btn btn-lg variant-filled" on:click={NewDraft}>New Draft</button><br
+	/>
 	{@debug choice1, choice2, choice3}
 	{#if choice1 && choice2 && choice3}
 		Please select from:
 
 		<section class="grid grid-cols-3 p-4 justify-items-center">
-			<SnapCard card={choice1}/>
-			<SnapCard card={choice2}/>
-			<SnapCard card={choice3}/>
-			<button type="button" class="btn btn-md variant-outline-primary p-4 w-1/2" on:click={() => DraftCard(1)}>Select</button>
-			<button type="button" class="btn btn-md variant-outline-primary p-4 w-1/2" on:click={() => DraftCard(2)}>Select</button>
-			<button type="button" class="btn btn-md variant-outline-primary p-4 w-1/2" on:click={() => DraftCard(3)}>Select</button>
+			<SnapCard card={choice1} />
+			<SnapCard card={choice2} />
+			<SnapCard card={choice3} />
+			<button
+				type="button"
+				class="btn btn-md variant-outline-primary p-4 w-1/2"
+				on:click={() => DraftCard(1)}>Select</button
+			>
+			<button
+				type="button"
+				class="btn btn-md variant-outline-primary p-4 w-1/2"
+				on:click={() => DraftCard(2)}>Select</button
+			>
+			<button
+				type="button"
+				class="btn btn-md variant-outline-primary p-4 w-1/2"
+				on:click={() => DraftCard(3)}>Select</button
+			>
 		</section>
-		<SnapDeck cards={current_draft?.cards || []}/>
+		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
-		<SnapDeck cards={current_draft?.cards}/>
+		<SnapDeck cards={current_draft?.cards} />
 		*insert draft code here once*
 	{:else}
 		Please start a new draft.

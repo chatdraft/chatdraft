@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Card } from "$lib/snap/draft";
+	import type { Card } from '$lib/snap/draft';
 
-	export let card: Card
+	export let card: Card;
 </script>
 
 <div class="card p-4 m-4">

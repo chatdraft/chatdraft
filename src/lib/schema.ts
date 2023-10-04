@@ -5,7 +5,7 @@ export const drafts = sqliteTable(
 	{
 		id: integer('id').primaryKey(),
 		cards: text('cards'),
-		playerKey: text('playerKey'),
+		playerKey: text('playerKey')
 	},
 	(drafts) => ({
 		playerIdx: uniqueIndex('playerKey').on(drafts.playerKey)
