@@ -33,5 +33,5 @@ export const PUT: RequestHandler = async ({ params, locals }) => {
 
 	await locals.KV.set(params.player + '/draft', JSON.stringify(draft));
 
-	return new Response();
+	return new Response(null, { status: 204 } );
 };

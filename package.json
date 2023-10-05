@@ -46,6 +46,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@floating-ui/dom": "1.5.3"
+		"@floating-ui/dom": "1.5.3",
+		"@twurple/api": "^7.0.3",
+		"@twurple/auth": "^7.0.3",
+		"@twurple/chat": "^7.0.3",
+		"@twurple/eventsub-ws": "^7.0.3"
 	}
 }

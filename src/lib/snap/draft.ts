@@ -97,7 +97,7 @@ export function GetDeckCode(deck: Deck): string {
 	type cardCode = { CardDefId: string }
 	const obj = {Cards: Array<cardCode>()}
 	deck.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
-	return Buffer.from(JSON.stringify(obj)).toString('base64')
+	return btoa(JSON.stringify(obj))
 }
 
 export type Card = {

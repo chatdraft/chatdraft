@@ -26,6 +26,11 @@
 		const ret = await fetch(`/api/v1/draft/Player/choice/${cardNumber}`, { method: 'PUT' });
 		invalidateAll();
 	}
+
+	async function CancelDraft() {
+		const ret = await fetch('/api/v1/draft/Player', { method: 'DELETE' });
+		invalidateAll();
+	}
 </script>
 
 <svelte:head>
@@ -35,8 +40,17 @@
 
 <div class="space-y-4 p-4">
 	<h1>Mock Draft</h1>
-	<button type="button" class="btn btn-lg variant-filled" on:click={NewDraft}>New Draft</button><br
-	/>
+	<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button>
+	{#if (current_draft)}
+		<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
+			{#if current_draft.total < 12}
+				Cancel Draft
+			{:else}
+				Finish Draft
+			{/if}
+		</button>
+	{/if}
+	<br/>
 
 	{#if choice1 && choice2 && choice3}
 		Please select from:
@@ -63,7 +77,6 @@
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
-		{@debug current_draft}
 		<SnapDeck cards={current_draft?.cards} />
 		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
 	{:else}

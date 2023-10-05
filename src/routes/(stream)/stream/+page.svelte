@@ -21,34 +21,32 @@
 	<meta name="Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 
-{#if !current_draft}
-	Loading
-{:else if current_draft?.total < 12}
-	<div class="min-h-screen flex flex-col">
-		<div class="flex flex-grow flex-wrap">
-			{#if choice1 && choice2 && choice3}
-				<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
-				<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
-				<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>
-				<div class="basis-1/3 text-center text-6xl">1</div>
-				<div class="basis-1/3 text-center text-6xl">2</div>
-				<div class="basis-1/3 text-center text-6xl">3</div>
-			{:else if !current_draft?.cards}
-				Loading...
-			{/if}
+{#if current_draft}
+	{#if current_draft?.total < 12 }
+		<div class="min-h-screen flex flex-col">
+			<div class="flex flex-grow flex-wrap">
+				{#if choice1 && choice2 && choice3}
+					<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
+					<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
+					<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>
+					<div class="basis-1/3 text-center text-6xl">1</div>
+					<div class="basis-1/3 text-center text-6xl">2</div>
+					<div class="basis-1/3 text-center text-6xl">3</div>
+				{/if}
+			</div>
+			<div class="flex flex-shrink">
+				<div class="shrink basis-1/2"></div>
+				<SnapDeck cards={current_draft?.cards || []} />
+				<div class="shrink basis-1/2"></div>
+			</div>
 		</div>
-		<div class="flex flex-shrink">
-			<div class="shrink basis-1/2"></div>
-			<SnapDeck cards={current_draft?.cards || []} />
-			<div class="shrink basis-1/2"></div>
+	{:else}
+		<div class="min-h-screen flex flex-row">
+			<div class="flex flex-shrink flex-col">
+				<span class="h1 my-20 text-center shrink basis-1/2"><br/>Draft Complete</span>
+				<SnapDeck cards={current_draft?.cards || []} />
+				<div class="shrink basis-1/2"></div>
+			</div>
 		</div>
-	</div>
-{:else}
-	<div class="min-h-screen flex flex-row">
-		<div class="flex flex-shrink flex-col">
-			<span class="h1 my-20 text-center shrink basis-1/2"><br/>Draft Complete</span>
-			<SnapDeck cards={current_draft?.cards || []} />
-			<div class="shrink basis-1/2"></div>
-		</div>
-	</div>
+	{/if}
 {/if}

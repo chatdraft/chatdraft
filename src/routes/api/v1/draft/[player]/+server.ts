@@ -26,8 +26,24 @@ export const PUT: RequestHandler = async ({ params, locals }) => {
 	}
 
 	const draft = StartDraft(params.player);
-	await KV.set(params.player + '/draft', JSON.stringify(draft));
-	await KV.set(params.player + '/choices', JSON.stringify(draft.currentChoice));
+	await KV.set(`${params.player}/draft`, JSON.stringify(draft));
+	await KV.set(`${params.player}/choices`, JSON.stringify(draft.currentChoice));
 
-	return json(draft);
+	return new Response(null, { status: 204 } );
 };
+
+export const DELETE: RequestHandler = async ({ params, locals }) => {
+	if (!locals.KV) {
+		throw error(503);
+	}
+	const KV = locals.KV;
+
+	if (!params.player) {
+		throw error(400);
+	}
+
+	await KV.delete(`${params.player}/draft`);
+	await KV.delete(`${params.player}/choices`);
+
+	return new Response(null, { status: 204 } );
+}
