@@ -1,5 +1,7 @@
 import type { Draft } from '$lib/snap/draft';
 
+export const ssr = false;
+
 export async function load({ fetch }) {
 	const ret = await fetch('api/v1/draft/Player');
 	if (ret.ok) {

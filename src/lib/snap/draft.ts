@@ -1,7 +1,6 @@
 import * as cards from '$lib/data/cards.json';
 import { shuffle } from './utils';
 import type { NewDraft } from '$lib/schema.js';
-import { Buffer } from 'buffer';
 
 export function StartDraft(player: string) {
 	const newDraft: Draft = {
@@ -86,7 +85,7 @@ export function SerializeDraft(draft: Draft): NewDraft {
 export function DeserializeDraft(draft: NewDraft): Draft {
 	const deserializedDraft: Draft = {
 		playerKey: draft.playerKey!,
-		cards: draft.cards?.split(',').map((card) => LookupCard(card)!) || [],
+		cards: draft.cards?.split(',').map((card: string | null | undefined) => LookupCard(card)!) || [],
 		total: 12,
 		currentChoice: undefined
 	};

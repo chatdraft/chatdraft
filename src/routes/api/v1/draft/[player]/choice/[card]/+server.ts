@@ -1,12 +1,12 @@
 import { error, type RequestHandler } from '@sveltejs/kit';
 import { Choose } from '$lib/snap/draft';
 
-export const PUT: RequestHandler = async ({ params, platform }) => {
-	if (!platform?.env.KV) {
+export const PUT: RequestHandler = async ({ params, locals }) => {
+	if (!locals.KV) {
 		throw error(503);
 	}
 
-	const value = await platform.env.KV.get(params.player + '/draft');
+	const value = await locals.KV.get(params.player + '/draft');
 	if (!value) {
 		throw error(404);
 	}
@@ -31,7 +31,7 @@ export const PUT: RequestHandler = async ({ params, platform }) => {
 
 	Choose(draft, choice.cardDefKey);
 
-	await platform.env.KV.put(params.player + '/draft', JSON.stringify(draft));
+	await locals.KV.set(params.player + '/draft', JSON.stringify(draft));
 
 	return new Response();
 };

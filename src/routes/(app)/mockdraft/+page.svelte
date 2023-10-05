@@ -2,7 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { GetDeckCode, type Draft } from '$lib/snap/draft.js';
+	import { GetDeckCode } from '$lib/snap/draft.js';
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 	// import { onMount } from 'svelte';
 
@@ -37,7 +37,7 @@
 	<h1>Mock Draft</h1>
 	<button type="button" class="btn btn-lg variant-filled" on:click={NewDraft}>New Draft</button><br
 	/>
-	{@debug choice1, choice2, choice3}
+
 	{#if choice1 && choice2 && choice3}
 		Please select from:
 
@@ -63,6 +63,7 @@
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
+		{@debug current_draft}
 		<SnapDeck cards={current_draft?.cards} />
 		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
 	{:else}
