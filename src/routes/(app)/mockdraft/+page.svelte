@@ -2,7 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { GetDeckCode } from '$lib/snap/draft.js';
+	import  Draft from '$lib/snap/draft.js';
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 	// import { onMount } from 'svelte';
 
@@ -84,7 +84,7 @@
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
 		<SnapDeck cards={current_draft?.cards} />
-		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
+		<CodeBlock language="Deck Code" class="break-words" code={Draft.GetDeckCode(current_draft?.cards)}></CodeBlock>
 	{:else}
 		Please start a new draft.
 	{/if}

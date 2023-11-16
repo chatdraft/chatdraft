@@ -1,17 +1,13 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
-import { Vote, IsActive, type Choice, type Card, type Deck } from '$lib/snap/draft';
-import type DraftListener from '$lib/snap/draftListener';
+import { type Choice, type Card, type Deck, GetDraft } from '$lib/snap/draft';
 
 export default class TwitchBot {
 
     private static instance: TwitchBot;
     private chat: ChatClient;
-    private listener;
 
-    private constructor(authProvider: RefreshingAuthProvider, listener: DraftListener) {
-        this.listener = listener;
-
+    private constructor(authProvider: RefreshingAuthProvider) {
         this.chat = new ChatClient({
             authProvider,
             channels: ['ssbmOro'],
@@ -22,25 +18,23 @@ export default class TwitchBot {
         this.chat.onMessage((channel, user, text) => {
             console.log(`#${channel} - <${user}>: ${text}`);
 
-            if (['1','2','3'].includes(text) && IsActive(channel)) {
-                Vote(channel, user, text);
+            const draft = GetDraft(channel);
+
+            if (!draft) return;
+
+            if (['1','2','3'].includes(text) && draft.IsActive()) {
+                draft.Vote(user, text);
             }
         });
-
-        this.listener.onDraftStarted(TwitchBot.DraftStarted);
-        this.listener.onNewChoice(TwitchBot.NewChoice);
-        this.listener.onChoiceSelected(TwitchBot.ChoiceSelected);
-        this.listener.onDraftComplete(TwitchBot.DraftComplete);
-        this.listener.onDraftCanceled(TwitchBot.DraftCanceled)
     }
 
     public static Say(player_channel: string, text: string) {
         TwitchBot.instance.chat.say(player_channel, text);
     }
 
-    public static getInstance(authProvider: RefreshingAuthProvider, listener: DraftListener): TwitchBot {
+    public static getInstance(authProvider: RefreshingAuthProvider): TwitchBot {
         if (!TwitchBot.instance) {
-            TwitchBot.instance = new TwitchBot(authProvider, listener);
+            TwitchBot.instance = new TwitchBot(authProvider);
         }
 
         return TwitchBot.instance;

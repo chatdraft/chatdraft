@@ -1,4 +1,4 @@
-import type { Draft } from '$lib/snap/draft';
+import type Draft from '$lib/snap/draft';
 import type { PageLoad } from '../$types';
 
 export const load: PageLoad = async ({ fetch, params }) => {

@@ -1,5 +1,5 @@
 import { error, type RequestHandler } from '@sveltejs/kit';
-import { Choose, GetDraft } from '$lib/snap/draft';
+import { GetDraft } from '$lib/snap/draft';
 import { fetchSession } from '$lib/server/sessionHandler';
 
 export const POST: RequestHandler = async ({ cookies, locals, params }) => {
@@ -39,7 +39,7 @@ export const POST: RequestHandler = async ({ cookies, locals, params }) => {
 		throw(400)
 	}
 
-	Choose(draft, choice.cardDefKey);
+	draft.Choose(choice.cardDefKey);
 
 	return new Response(null, { status: 204 } );
 };

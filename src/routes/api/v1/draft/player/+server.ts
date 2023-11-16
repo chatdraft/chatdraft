@@ -1,6 +1,7 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GetDraft, StartDraft, CancelDraft } from '$lib/snap/draft';
+import Draft, { GetDraft } from '$lib/snap/draft';
 import { fetchSession } from '$lib/server/sessionHandler';
+import TwitchBot from '$lib/server/twitchBot';
 
 export const GET: RequestHandler = async ({ locals, cookies }) => {
 	const session_id = cookies.get('session_id');
@@ -30,7 +31,13 @@ export const POST: RequestHandler = async ({ locals, cookies }) => {
 		throw error(403);
 	}
 
-	StartDraft(locals.user?.name);
+	const draft = new Draft();
+	draft.onDraftStarted(TwitchBot.DraftStarted);
+	draft.onDraftCanceled(TwitchBot.DraftCanceled);
+	draft.onNewChoice(TwitchBot.NewChoice);
+	draft.onChoiceSelected(TwitchBot.ChoiceSelected);
+	draft.onDraftComplete(TwitchBot.DraftComplete);
+	draft.StartDraft(locals.user.name);
 
 	return new Response(null, { status: 204 } );
 };
@@ -46,7 +53,8 @@ export const DELETE: RequestHandler = async ({ cookies, locals }) => {
 		throw error(403);
 	}
 
-	CancelDraft(locals.user.name);
+	const draft = GetDraft(locals.user.name);
+	draft?.CancelDraft();
 
 	return new Response(null, { status: 204 } );
 }

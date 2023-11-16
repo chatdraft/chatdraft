@@ -7,7 +7,6 @@ import { PUBLIC_TWITCH_OAUTH_CLIENT_ID } from '$env/static/public';
 import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import TwitchBot from '$lib/server/twitchBot';
-import { Listener } from '$lib/snap/draft';
 
 const KV = new Map();
 
@@ -23,7 +22,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (!auth_provider.hasUser(env.TWITCH_USER_ID) && existsSync(`./tokens.${env.TWITCH_USER_ID}.json`)) {
 		const tokenData = JSON.parse(await readFile(`./tokens.${env.TWITCH_USER_ID}.json`, { encoding: 'utf-8' }));
 		auth_provider.addUser(env.TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
-		TwitchBot.getInstance(auth_provider, Listener)
+		TwitchBot.getInstance(auth_provider)
 	}
 
 	const session_id = event.cookies.get('session_id');
