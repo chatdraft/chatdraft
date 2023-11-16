@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import '../../../app.postcss';
+	import '../../../../app.postcss';
 
 	// removes theming from the body so that obs transparency works
 	onMount(() => {

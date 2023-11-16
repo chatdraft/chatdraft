@@ -28,6 +28,7 @@
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"autoprefixer": "10.4.16",
+		"dotenv": "^16.3.1",
 		"esbuild": "^0.19.4",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
@@ -50,6 +51,7 @@
 		"@twurple/api": "^7.0.3",
 		"@twurple/auth": "^7.0.3",
 		"@twurple/chat": "^7.0.3",
+		"@twurple/easy-bot": "^7.0.5",
 		"@twurple/eventsub-ws": "^7.0.3"
 	}
 }

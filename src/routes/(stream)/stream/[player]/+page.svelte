@@ -10,9 +10,14 @@
 	$: choice1 = data.choice?.card1;
 	$: choice2 = data.choice?.card2;
 	$: choice3 = data.choice?.card3;
+	$: votes1 = data.choice?.votes1!;
+	$: votes2 = data.choice?.votes2!;
+	$: votes3 = data.choice?.votes3!;
 
 	onMount(() => {
-		setInterval(() => invalidateAll(), 5000);
+		setInterval(() => {
+			invalidateAll();
+		}, 5000);
 	});
 </script>
 
@@ -26,6 +31,9 @@
 		<div class="min-h-screen flex flex-col">
 			<div class="flex flex-grow flex-wrap">
 				{#if choice1 && choice2 && choice3}
+					<div class="basis-1/3 text-center text-lg">{votes1} votes</div>
+					<div class="basis-1/3 text-center text-lg">{votes2} votes</div>
+					<div class="basis-1/3 text-center text-lg">{votes3} votes</div>
 					<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
 					<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
 					<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>

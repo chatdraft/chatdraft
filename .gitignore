@@ -220,3 +220,6 @@ $RECYCLE.BIN/
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
+
+# token files containing twitch chat token data
+tokens.*.json

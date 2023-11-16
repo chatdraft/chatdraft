@@ -12,23 +12,26 @@
 	$: choice1 = data.choice?.card1!;
 	$: choice2 = data.choice?.card2!;
 	$: choice3 = data.choice?.card3!;
+	$: votes1 = data.choice?.votes1!;
+	$: votes2 = data.choice?.votes2!;
+	$: votes3 = data.choice?.votes3!;
 
 	// onMount(() => {
 
 	// });
 
 	async function NewDraft() {
-		const ret = await fetch('/api/v1/draft/Player', { method: 'PUT' });
+		const ret = await fetch('/api/v1/draft/player', { method: 'POST' });
 		invalidateAll();
 	}
 
 	async function DraftCard(cardNumber: number) {
-		const ret = await fetch(`/api/v1/draft/Player/choice/${cardNumber}`, { method: 'PUT' });
+		const ret = await fetch(`/api/v1/draft/player/choice/${cardNumber}`, { method: 'POST' });
 		invalidateAll();
 	}
 
 	async function CancelDraft() {
-		const ret = await fetch('/api/v1/draft/Player', { method: 'DELETE' });
+		const ret = await fetch('/api/v1/draft/player', { method: 'DELETE' });
 		invalidateAll();
 	}
 </script>
@@ -59,6 +62,9 @@
 			<div class="p-4"><SnapCard card={choice1} /></div>
 			<div class="p-4"><SnapCard card={choice2} /></div>
 			<div class="p-4"><SnapCard card={choice3} /></div>
+			<div>{votes1}</div>
+			<div>{votes2}</div>
+			<div>{votes3}</div>
 			<button
 				type="button"
 				class="btn btn-md variant-outline-primary p-4 w-1/2"
