@@ -4,8 +4,6 @@ import { shuffle } from './utils';
 
 const drafts = new Map<string, Draft>();
 
-const voting_period_s = 20;
-
 export function GetDraft(player: string) {
 	return drafts.get(player);
 }
@@ -27,14 +25,17 @@ export default class Draft extends EventEmitter {
 	public currentChoice: Choice | undefined;
 	private voteTimer: NodeJS.Timeout | undefined;
 
-	public constructor(draftEvents: DraftEvents) {
+	private voting_period_s = 20;
+
+	public constructor(draftEvents: DraftEvents, duration: number) {
 		super();
+		this.voting_period_s = duration;
 		this.onDraftStarted(draftEvents.DraftStarted);
 		this.onDraftCanceled(draftEvents.DraftCanceled);
 		this.onNewChoice(async (player_channel, choice) => {
 			// delay 5 seconds before announcing a new choice for the stream to update
 			await new Promise(f => setTimeout(f, 5000));
-			draftEvents.NewChoice(player_channel, choice, voting_period_s);
+			draftEvents.NewChoice(player_channel, choice, this.voting_period_s);
 		});
 		this.onChoiceSelected(draftEvents.ChoiceSelected);
 		this.onDraftComplete(draftEvents.DraftComplete);
@@ -91,7 +92,7 @@ export default class Draft extends EventEmitter {
 			throw new Error('Not enough selectable cards to continue draft');
 		}
 
-		const voting_period_ms = (voting_period_s + 5) * 1000;
+		const voting_period_ms = (this.voting_period_s + 5) * 1000;
 	
 		const deck = shuffle(available);
 		const newChoice = {

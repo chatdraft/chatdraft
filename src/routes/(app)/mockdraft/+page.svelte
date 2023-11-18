@@ -3,12 +3,13 @@
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import  Draft from '$lib/snap/draft.js';
-	import { CodeBlock } from '@skeletonlabs/skeleton';
+	import { CodeBlock, RangeSlider } from '@skeletonlabs/skeleton';
 	import { onMount } from 'svelte';
 	// import { onMount } from 'svelte';
 
 	export let data;
 	let now = Date.now();
+	let duration = 120;
 
 	$: current_draft = data.draft;
 	$: choice1 = data.choice?.card1!;
@@ -29,7 +30,7 @@
 	});
 
 	async function NewDraft() {
-		const ret = await fetch('/api/v1/draft/player', { method: 'POST' });
+		const ret = await fetch(`/api/v1/draft/player?duration=${duration}`, { method: 'POST' });
 		invalidateAll();
 	}
 
@@ -51,7 +52,6 @@
 
 <div class="space-y-4 p-4">
 	<h1>Mock Draft</h1>
-	<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button>
 	{#if (current_draft)}
 		<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 			{#if current_draft.total < 12}
@@ -60,6 +60,17 @@
 				Finish Draft
 			{/if}
 		</button>
+	{:else}
+		<div class="grid grid-cols-2">
+			<RangeSlider name="duration-range" bind:value={duration} min={20} max={360} ticked step={10}>
+				<div class="flex justify-between items-center">
+					<div class="font-bold">Voting period</div>
+					<div class="text-xs">{duration} seconds</div>
+				</div>
+			</RangeSlider>
+			<div/>
+		</div>
+		<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
 	{/if}
 	<br/>
 	{#if current_draft?.currentChoice?.votes_closed}

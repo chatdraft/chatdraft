@@ -12,8 +12,12 @@ export const GET: RequestHandler = async ({ locals, cookies }) => {
 	return json({cards: draft.cards, total: draft.total, player: draft.player, currentChoice: draft.currentChoice });
 };
 
-export const POST: RequestHandler = async ({ locals, cookies }) => {
+export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
+
+	let duration = 120;
+
+	if (url.searchParams.has('duration')) duration = +url.searchParams.get('duration')!
 
 	const draft = new Draft({
 		DraftStarted: TwitchBot.DraftStarted,
@@ -23,7 +27,8 @@ export const POST: RequestHandler = async ({ locals, cookies }) => {
 		DraftComplete: TwitchBot.DraftComplete,
 		VotingClosed: TwitchBot.VotingClosed,
 		ChoiceOverride: TwitchBot.ChoiceOverride,
-	});
+	}, duration);
+
 	draft.StartDraft(locals.user!.name);
 
 	return new Response(null, { status: 204 } );
