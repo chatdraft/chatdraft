@@ -44,9 +44,9 @@
 			</section>
 			<div class="flex flex-grow flex-wrap">
 				{#if choice1 && choice2 && choice3}
-					<div class="basis-1/3 text-center text-lg">{votes1} votes</div>
-					<div class="basis-1/3 text-center text-lg">{votes2} votes</div>
-					<div class="basis-1/3 text-center text-lg">{votes3} votes</div>
+					<div class="basis-1/3 text-center text-3xl">{votes1} votes</div>
+					<div class="basis-1/3 text-center text-3xl">{votes2} votes</div>
+					<div class="basis-1/3 text-center text-3xl">{votes3} votes</div>
 					<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
 					<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
 					<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>
