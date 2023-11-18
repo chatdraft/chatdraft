@@ -10,7 +10,7 @@ export default class TwitchBot {
     private constructor(authProvider: RefreshingAuthProvider) {
         this.chat = new ChatClient({
             authProvider,
-            channels: ['ssbmOro'],
+            channels: [],
             authIntents: ['chat:read', 'chat:edit']
         });
         this.chat.connect();
@@ -71,5 +71,13 @@ export default class TwitchBot {
 
     public static async ChoiceOverride(player_channel: string, result: string) {
         TwitchBot.Say(player_channel, `${player_channel} overrode the vote and selected ${result}!`)
+    }
+
+    public static async IsBotInChannel(player_channel: string) {
+        return TwitchBot.instance.chat.currentChannels.includes(`#${player_channel}`);
+    }
+
+    public static async JoinChannel(player_channel: string) {
+        return TwitchBot.instance.chat.join(player_channel)
     }
 }

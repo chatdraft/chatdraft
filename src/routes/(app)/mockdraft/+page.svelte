@@ -43,6 +43,11 @@
 		const ret = await fetch('/api/v1/draft/player', { method: 'DELETE' });
 		invalidateAll();
 	}
+
+	async function InviteBot() {
+		const ret = await fetch(`/api/v1/bot/invite`, {method: 'POST'});
+		invalidateAll();
+	}
 </script>
 
 <svelte:head>
@@ -61,16 +66,21 @@
 			{/if}
 		</button>
 	{:else}
-		<div class="grid grid-cols-2">
-			<RangeSlider name="duration-range" bind:value={duration} min={20} max={360} ticked step={10}>
-				<div class="flex justify-between items-center">
-					<div class="font-bold">Voting period</div>
-					<div class="text-xs">{duration} seconds</div>
-				</div>
-			</RangeSlider>
-			<div/>
-		</div>
-		<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
+		{#if data.botstatus}
+			<div class="grid grid-cols-2">
+				<RangeSlider name="duration-range" bind:value={duration} min={20} max={360} ticked step={10}>
+					<div class="flex justify-between items-center">
+						<div class="font-bold">Voting period</div>
+						<div class="text-xs">{duration} seconds</div>
+					</div>
+				</RangeSlider>
+				<div/>
+			</div>
+			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
+			Please start a new draft.
+		{:else}
+		<button type="button" class="btn btn-lg variant-filled-primary" on:click={InviteBot}>Invite Bot</button>
+		{/if}
 	{/if}
 	<br/>
 	{#if current_draft?.currentChoice?.votes_closed}
@@ -113,7 +123,5 @@
 	{:else if current_draft?.cards}
 		<SnapDeck cards={current_draft?.cards} />
 		<CodeBlock language="Deck Code" class="break-words" code={Draft.GetDeckCode(current_draft?.cards)}></CodeBlock>
-	{:else}
-		Please start a new draft.
 	{/if}
 </div>

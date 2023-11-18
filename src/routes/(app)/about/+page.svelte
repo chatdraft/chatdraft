@@ -5,5 +5,5 @@
 
 <div class="space-y-4 p-4">
 	<h1>about oro's chat draft</h1>
-	<p>oro's chat draft is an app for letting Twitch Chat draft a Marvel Snap Deck.</p>
+	<p>oro's chat draft is an proof of concept for letting Twitch Chat draft a Marvel Snap Deck.</p>
 </div>
