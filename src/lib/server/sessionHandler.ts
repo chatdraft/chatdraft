@@ -1,6 +1,8 @@
 
 import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
+import { type Cookies, error } from '@sveltejs/kit';
+import type { HelixUser } from '@twurple/api';
 
 type TSessionID = string;
 
@@ -29,13 +31,16 @@ export function fetchSession(sessionId: TSessionID) {
     return sessionUsers.get(sessionId);
 }
 
-export function fetchClientSession(sessionId: TSessionID) {
-    refreshTimeout(sessionId);
-
-    const session = sessionUsers.get(sessionId);
-    if (!session) return null;
-
-    return session;
+export function ValidateSession(cookies: Cookies, user: HelixUser | null | undefined, session_key: string) {
+	const session_id = cookies.get(session_key);
+	if (!session_id || !user) {
+		throw error(401, 'Not logged in.');
+	}
+	
+	const session = fetchSession(session_id);
+	if (session?.user_id != user?.id) {
+		throw error(403, 'Not authorized.');
+	}
 }
 
 function refreshTimeout(sessionId: string) {

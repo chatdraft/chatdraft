@@ -4,9 +4,11 @@
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import  Draft from '$lib/snap/draft.js';
 	import { CodeBlock } from '@skeletonlabs/skeleton';
+	import { onMount } from 'svelte';
 	// import { onMount } from 'svelte';
 
 	export let data;
+	let now = Date.now();
 
 	$: current_draft = data.draft;
 	$: choice1 = data.choice?.card1!;
@@ -15,10 +17,13 @@
 	$: votes1 = data.choice?.votes1!;
 	$: votes2 = data.choice?.votes2!;
 	$: votes3 = data.choice?.votes3!;
+	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 
-	// onMount(() => {
-
-	// });
+	onMount(() => {
+		setInterval(() => {
+			now = Date.now();
+		}, 100)
+	});
 
 	async function NewDraft() {
 		const ret = await fetch('/api/v1/draft/player', { method: 'POST' });
@@ -54,6 +59,15 @@
 		</button>
 	{/if}
 	<br/>
+	{#if current_draft?.currentChoice?.votes_closed}
+		<section class="text-center text-2xl">
+			{#if time_remaining > 0}
+					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
+				{:else}
+					Tallying Final Votes...
+				{/if}
+		</section>
+	{/if}
 
 	{#if choice1 && choice2 && choice3}
 		Please select from:
@@ -62,9 +76,9 @@
 			<div class="p-4"><SnapCard card={choice1} /></div>
 			<div class="p-4"><SnapCard card={choice2} /></div>
 			<div class="p-4"><SnapCard card={choice3} /></div>
-			<div>{votes1}</div>
-			<div>{votes2}</div>
-			<div>{votes3}</div>
+			<div>{votes1} votes</div>
+			<div>{votes2} votes</div>
+			<div>{votes3} votes</div>
 			<button
 				type="button"
 				class="btn btn-md variant-outline-primary p-4 w-1/2"

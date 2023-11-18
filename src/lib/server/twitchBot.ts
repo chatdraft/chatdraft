@@ -44,9 +44,8 @@ export default class TwitchBot {
         TwitchBot.Say(player_channel, "A new draft has started!");
     }
 
-    public static async NewChoice(player_channel: string, choice: Choice) {
-        await new Promise(f => setTimeout(f, 5000));
-        TwitchBot.Say(player_channel, `The new choice is up! Select from ${choice.card1.name}, ${choice.card2.name}, or ${choice.card3.name}!`)
+    public static async NewChoice(player_channel: string, choice: Choice, vote_duration: number) {
+        TwitchBot.Say(player_channel, `The new choice is up! You have ${vote_duration} seconds! Select from ${choice.card1.name}, ${choice.card2.name}, or ${choice.card3.name}!`)
     }
 
     public static async ChoiceSelected(player_channel: string, card: Card) {
@@ -59,5 +58,14 @@ export default class TwitchBot {
 
     public static async DraftCanceled(player_channel: string) {
         TwitchBot.Say(player_channel, 'The draft has been canceled.')
+    }
+
+    public static async VotingClosed(player_channel: string, result: string, ties: string[]) {
+        if (ties.length > 0) {
+            TwitchBot.Say(player_channel, `Voting closed! There was a tie between ${ties.join(', ')}. We randomly chose ${result}.`)
+        }
+        else {
+            TwitchBot.Say(player_channel, `Voting closed! The winning card is ${result}.`)
+        }
     }
 }

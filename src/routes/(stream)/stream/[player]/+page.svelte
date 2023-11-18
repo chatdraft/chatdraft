@@ -6,6 +6,8 @@
 
 	export let data;
 
+	let now = Date.now();
+
 	$: current_draft = data.draft;
 	$: choice1 = data.choice?.card1;
 	$: choice2 = data.choice?.card2;
@@ -13,11 +15,15 @@
 	$: votes1 = data.choice?.votes1!;
 	$: votes2 = data.choice?.votes2!;
 	$: votes3 = data.choice?.votes3!;
+	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 
 	onMount(() => {
 		setInterval(() => {
 			invalidateAll();
 		}, 5000);
+		setInterval(() => {
+			now = Date.now();
+		}, 100)
 	});
 </script>
 
@@ -29,6 +35,13 @@
 {#if current_draft}
 	{#if current_draft?.total < 12 }
 		<div class="min-h-screen flex flex-col">
+			<section class="text-center text-5xl">
+				{#if time_remaining > 0}
+					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
+				{:else}
+					Tallying Final Votes...
+				{/if}
+			</section>
 			<div class="flex flex-grow flex-wrap">
 				{#if choice1 && choice2 && choice3}
 					<div class="basis-1/3 text-center text-lg">{votes1} votes</div>

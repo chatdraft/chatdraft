@@ -6,8 +6,8 @@
 			"url": "/cards/Abomination/",
 			"name": "Abomination",
 			"description": "<i>Foolish rabble! You are beneath me!</i>",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Abomination-414e764e216b2649f4411e7bb0673a5d2b6ba4429cf28442aebc8f1c05e42c67.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Abomination-414e764e216b2649f4411e7bb0673a5d2b6ba4429cf28442aebc8f1c05e42c67.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "AbsorbingMan",
@@ -15,17 +15,17 @@
 			"url": "/cards/AbsorbingMan/",
 			"name": "Absorbing Man",
 			"description": "<b>On Reveal:</b> If the last card you played has an <b>On Reveal</b>, copy its text. <i>(if it's in play)</i>",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AbsorbingMan-b9b21d1151e1024d603899596520282057d63daaf1e996247c8dc72e78b35626.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AbsorbingMan-5f4bde9126a3271ead256f597071d7f5a1f863fb4eca815208603ba991f67067.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "AdamWarlock",
 			"variantKey": null,
 			"url": "/cards/AdamWarlock/",
 			"name": "Adam Warlock",
-			"description": "At the end of each turn, if you are winning this location, draw a card.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-71e7e9e2e484407ab691c263ab903417963581bf9d1ad6ac843100dabc848c94.webp"
+			"description": "After each turn, draw a card if you're winning here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-5c713c72282b10f8e56a44c01e98a3d16b937f9414cea0fcda06f51249ff9ea7.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Aero",
@@ -33,8 +33,8 @@
 			"url": "/cards/Aero/",
 			"name": "Aero",
 			"description": "<b>On Reveal:</b> Move the last enemy card played this turn to this location.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-8102c63930e1f6144877304936d4a3ac8223c2595a970fea5fb088adf20ec5f2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-fabf231db97e6eb5ae161e52bea7dda66eacbd673f50797d3082f3d112389efc.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "AgathaHarkness",
@@ -42,8 +42,8 @@
 			"url": "/cards/AgathaHarkness/",
 			"name": "Agatha Harkness",
 			"description": "Agatha starts in your hand and plays your cards for you.",
-			"cost": 16,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgathaHarkness-b7d6a6c671ceee0f0c93896bf1270660d362877b274e36dffef6c56b8edf279a.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgathaHarkness-3ee1d10f0ea0efd8e62a54612478dc82616fa5d69993108b52068ad60f8fc354.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Agent13",
@@ -51,8 +51,8 @@
 			"url": "/cards/Agent13/",
 			"name": "Agent 13",
 			"description": "<b>On Reveal:</b> Add a random card to your hand.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Agent13-b76748af5989e77c59d54469b8df51ac516bb3c95ab4d61c49b8c0d30aeed5e5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Agent13-cdd8b6037e0472f8e63a6a99de22df5a01c7267645733b978ccc37a235b5c6a6.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "AgentCoulson",
@@ -60,8 +60,8 @@
 			"url": "/cards/AgentCoulson/",
 			"name": "Agent Coulson",
 			"description": "<b>On Reveal:</b> Add a random 4-Cost and 5-Cost card to your hand.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgentCoulson-564bd5a45d229895eee4d5e66efc920990fb69ff88d95b71aa83eed596f3d277.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgentCoulson-ddb740f686c7b6f8439dce94203845468c1d4c238f7f8ad60149e9d044823a08.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Alioth",
@@ -69,8 +69,8 @@
 			"url": "/cards/Alioth/",
 			"name": "Alioth",
 			"description": "<b>On Reveal:</b> Destroy ALL enemy cards played here this turn. <i>(including unrevealed cards)</i>",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-c66c182810784cb05f754b257a47b9934d13fc28f89faf44b0b0b626fda63828.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-7069974edfc7a86fc8fdd0f2238cf2c4eeee7f0f51ce389a63588b93306174f1.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "AmericaChavez",
@@ -78,8 +78,8 @@
 			"url": "/cards/AmericaChavez/",
 			"name": "America Chavez",
 			"description": "Starts on the bottom of your deck. Draw this on turn 6.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AmericaChavez-f274cd189ded3b73bf675a0d959510837b900746c8c6cd245392f9822f730bd5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AmericaChavez-5e032a4c71aea6bf4fc6b4c2eb35044360dbc00f9c71470a0bd177695be67477.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Angel",
@@ -87,26 +87,26 @@
 			"url": "/cards/Angel/",
 			"name": "Angel",
 			"description": "When one of your cards is destroyed, this flies out of your deck to replace it.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angel-e21430c1e42c4e0db2ee24e47adf92c317aece1155f78d784e68190219f04280.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angel-e21430c1e42c4e0db2ee24e47adf92c317aece1155f78d784e68190219f04280.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Angela",
 			"variantKey": null,
 			"url": "/cards/Angela/",
 			"name": "Angela",
-			"description": "After you play a card here,\n+2 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-e5202dee422ce864dddd8caf0478be8639152aab75d3c14d54e5535278c7613d.webp"
+			"description": "After you play a card here,\n+1 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-ed4ad440b65bebca795f0acd3680a0d7cb2caa16fe37e2524315914ed17af95e.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "AntMan",
 			"variantKey": null,
 			"url": "/cards/AntMan/",
 			"name": "Ant Man",
-			"description": "<b>Ongoing:</b> If you have 3 other cards here, +3 Power.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AntMan-deda075a577344ecdfa00ca731b92dadc21eafd79611782f84d54f566e9cd7a7.webp"
+			"description": "<b>Ongoing:</b> If your side of this location is full, +3 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AntMan-44ffd12f8d6a8db6e642a6f3c3c3da831ba711da15d7ccaf3e3fa5205b47523c.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Apocalypse",
@@ -114,8 +114,8 @@
 			"url": "/cards/Apocalypse/",
 			"name": "Apocalypse",
 			"description": "When you discard this from your hand, put it back with +4 Power.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Apocalypse-9ee94cd6c7257f4e8405dfc5cb9e16db65d2585850cd04ca394055d21d3646f7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Apocalypse-b5edc370bf1f4fbd129f6458baa90a33de44f5b4492b6a46fcdbfb41b210e0c2.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Armor",
@@ -123,8 +123,8 @@
 			"url": "/cards/Armor/",
 			"name": "Armor",
 			"description": "<b>Ongoing:</b> Cards at this location can't be destroyed.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Armor-290e32b2bdd9265280227332ccbd1c06764aa4e074ad442b03d90d79367de6f9.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Armor-95b7d1fd78b78222023ace5ddd702b7fdc2470c0c8a5cb21e796a5944b88ba01.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "ArnimZola",
@@ -132,17 +132,17 @@
 			"url": "/cards/ArnimZola/",
 			"name": "Arnim Zola",
 			"description": "<b>On Reveal:</b> Destroy a random friendly card here. Add copies of it to the other locations.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ArnimZola-141ed3f3a736d19ae8431ea76f7459394ce00b412455eb0093c70d03e6b57781.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ArnimZola-51223ea8507c08346c3d754d762e0e4ac3202b1eb1f75a5611b996c6e83a6995.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Attuma",
 			"variantKey": null,
 			"url": "/cards/Attuma/",
 			"name": "Attuma",
-			"description": "If you have another card here at the end of your turn, destroy this.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Attuma-155c37612e5f4f4b9cc9e9e975171e9022b18eb556834393d08e064eabcbb70b.webp"
+			"description": "After each turn, destroy this if you have another card here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Attuma-90970fbe4443753a92df03d6b9e196b7780d065f694dd8f5b470d0d55c593fbb.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "BaronMordo",
@@ -150,8 +150,8 @@
 			"url": "/cards/BaronMordo/",
 			"name": "Baron Mordo",
 			"description": "<b>On Reveal:</b> Your opponent draws a card. Set its Cost to 6.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BaronMordo-574d763f2414de52af519890e52a74d381417a4757d45826948500b95c9919a3.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BaronMordo-b1e091d8ab0bfe612bc37ab57dd8d1de773745d87308fc1017927c60ad7194ef.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Bast",
@@ -159,8 +159,8 @@
 			"url": "/cards/Bast/",
 			"name": "Bast",
 			"description": "<b>On Reveal:</b> Set the Power of all cards in your hand to 3.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bast-35d0359da01445a646cf7b9e252e1d228e04e46c7a39b2cfd6b6d8801cee0763.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bast-5fdc437a50438fbc026df0ad7e6786e11408dbc41450c4d6f36cb749b2914f3f.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Beast",
@@ -168,8 +168,8 @@
 			"url": "/cards/Beast/",
 			"name": "Beast",
 			"description": "<b>On Reveal:</b> Return your other cards at this location to your hand.\nThey cost 1 less.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-a60270241514c1cd2f4ae2ae774c324bd0156b1f41c03107ecfc773620994a44.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-7aa3972873116063da5c929135c690338c1682fa0205e9d9353a2a2bae5c2aa6.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Bishop",
@@ -177,8 +177,8 @@
 			"url": "/cards/Bishop/",
 			"name": "Bishop",
 			"description": "After you play a card, this gains +1 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bishop-95af24a4a05783df0030442af730afff83d0131390f7f04b0fe82b9ed2104b3b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bishop-1b2df60d92cfc7e2c440ea843a74d6d7220f3fae99cb7a1ca83aeed69b3e84f5.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "BlackBolt",
@@ -186,17 +186,26 @@
 			"url": "/cards/BlackBolt/",
 			"name": "Black Bolt",
 			"description": "<b>On Reveal:</b> Discard the lowest-cost card from your opponent's hand.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackBolt-83af56eae64d84b00fd777f86a227e3be5b6283b123acfbce8d8883a614ffa2b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackBolt-9d39defd2487b4062ca800b09631863770f3f405729da2638e903baac1bf568d.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "BlackCat",
 			"variantKey": null,
 			"url": "/cards/BlackCat/",
 			"name": "Black Cat",
-			"description": "If you end the turn with this in your hand, discard it.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-c2dc8f23d9c450da7776d4e70c3b3029d2a412bb92e58a9a03a7576b8f668bc5.webp"
+			"description": "If this is in your hand after the turn, discard it.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-c2dc8f23d9c450da7776d4e70c3b3029d2a412bb92e58a9a03a7576b8f668bc5.webp",
+			"cost": 4
+		},
+		{
+			"cardDefKey": "BlackKnight",
+			"variantKey": null,
+			"url": "/cards/BlackKnight/",
+			"name": "Black Knight",
+			"description": "After you discard a card, add the Ebony Blade to your hand with that card's Power. <i>(once per game)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackKnight-ee326cf8f8e5863c3342a2dcf874a11f6123f0a1276dc179c365b586a12972a4.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "BlackPanther",
@@ -204,8 +213,8 @@
 			"url": "/cards/BlackPanther/",
 			"name": "Black Panther",
 			"description": "<b>On Reveal:</b> Double this\ncard's Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackPanther-3962421ef2c0417ca14064f5934277cc8511f8ca1924dcd7726128bdb9e99fcf.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackPanther-76e02066c07c250a78533fde104a2706a0eefc7fcad6503873c6586363c2c06b.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "BlackWidow",
@@ -213,8 +222,8 @@
 			"url": "/cards/BlackWidow/",
 			"name": "Black Widow",
 			"description": "<b>On Reveal:</b> Add a Widow's Bite to your opponent's hand.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-427e86e0d61be55ef72999acba9e2eef65a576db628959564d7b1c8ad03fab49.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-04d01f13e7e43fde014e3b9c80df30edca0c305e62f26f85096228f420c36ef9.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Blade",
@@ -222,8 +231,8 @@
 			"url": "/cards/Blade/",
 			"name": "Blade",
 			"description": "<b>On Reveal:</b> Discard the rightmost card from your hand.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blade-cfe8033385f28c6cb4138fe5847f6c07b70d45925f051c3f59096f44ea521bb7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blade-0ba1493083ad63b5052dd1d1a12f3f19ca0c09e7049e6df9988ac133a60d865a.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "BlueMarvel",
@@ -231,8 +240,8 @@
 			"url": "/cards/BlueMarvel/",
 			"name": "Blue Marvel",
 			"description": "<b>Ongoing:</b> Your other cards have +1 Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlueMarvel-f7d511327cb6cf800fe0973f3a7bf30332f793481848fa1e29bdbcf7c8bf624f.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlueMarvel-f7d511327cb6cf800fe0973f3a7bf30332f793481848fa1e29bdbcf7c8bf624f.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Brood",
@@ -240,8 +249,8 @@
 			"url": "/cards/Brood/",
 			"name": "Brood",
 			"description": "<b>On Reveal:</b> Add 2 Broodlings to this location with the same Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Brood-5e1b90849bc02a31677cf7464f3356d84f024e26e21f886b883a42fc8faff1bc.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Brood-5e1b90849bc02a31677cf7464f3356d84f024e26e21f886b883a42fc8faff1bc.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "BuckyBarnes",
@@ -249,8 +258,8 @@
 			"url": "/cards/BuckyBarnes/",
 			"name": "Bucky Barnes",
 			"description": "When this is destroyed, replace it with the Winter Soldier.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BuckyBarnes-1f759cea745d0363c9a1c1827aafad0a627b0cc027089267453cf51985f72de8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BuckyBarnes-564aae6f2169abca8fb227921e4c3517da3f57f15d7b7a9683ec9dafb5709ebc.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Cable",
@@ -258,8 +267,8 @@
 			"url": "/cards/Cable/",
 			"name": "Cable",
 			"description": "<b>On Reveal:</b> Draw the top card of your opponent's deck.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cable-228ed2f36e593c707f7dd360a43ac17c76524a64cdd436c5f74b8fd61fafcb3c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cable-fea64c31d139448ca85d9636143922372c9c326c9875ae8991042792cb512257.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "CaptainAmerica",
@@ -267,8 +276,8 @@
 			"url": "/cards/CaptainAmerica/",
 			"name": "Captain America",
 			"description": "<b>Ongoing:</b> Your other cards at this location have +1 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainAmerica-94e08dda23fcbf26138fde0e9dba0a25bc20635f1694c6cd275ae658951ebce1.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainAmerica-242d6fdd164c127eef599cdfeeab856e3bb0ee351acbb9a7dc094f46449e1696.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "CaptainMarvel",
@@ -276,8 +285,8 @@
 			"url": "/cards/CaptainMarvel/",
 			"name": "Captain Marvel",
 			"description": "At the end of the game, move to a location that wins you the\ngame. (If possible)",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainMarvel-905a22309dbd8ffcb196e28760ae4318d34079d8cb6391262b7295a07f351361.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainMarvel-7bc692b4af5ec9f85b79113192e89e349d86e2e53d16026b623b57c834bf7055.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Carnage",
@@ -285,8 +294,8 @@
 			"url": "/cards/Carnage/",
 			"name": "Carnage",
 			"description": "<b>On Reveal:</b> Destroy your other cards here. +2 Power for each destroyed.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Carnage-59b844d335407ce9382676289a721641f2ca005ca22e30c8c8fa7415faab9d28.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Carnage-a55f3c533f794a9b76093732471be216d84c89f178805970f92bb02eb5c127db.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Cerebro",
@@ -294,8 +303,8 @@
 			"url": "/cards/Cerebro/",
 			"name": "Cerebro",
 			"description": "<b>Ongoing:</b> Your highest-Power cards have +2 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cerebro-c1ef686f3032fda4ee6f30ddace2ad48cf776b0af5bab314c35865ad366b757a.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cerebro-c1ef686f3032fda4ee6f30ddace2ad48cf776b0af5bab314c35865ad366b757a.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Cloak",
@@ -303,8 +312,8 @@
 			"url": "/cards/Cloak/",
 			"name": "Cloak",
 			"description": "<b>On Reveal:</b> Next turn, both players can move cards to this location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cloak-f76416bc9d6c481aced770e39a99e38327090d6022aef794217acd86c4f3b573.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cloak-f76416bc9d6c481aced770e39a99e38327090d6022aef794217acd86c4f3b573.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "ColleenWing",
@@ -312,8 +321,8 @@
 			"url": "/cards/ColleenWing/",
 			"name": "Colleen Wing",
 			"description": "<b>On Reveal:</b> Discard the lowest-cost card from your hand.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ColleenWing-2611f504ec501c36acb7af7c0fa56115fde36bdba2a712c90a1fb64315c62ee0.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ColleenWing-05c9af0b10e4f43b577238743f0004c62ada7311b99cf752bd44aa737e520c9f.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Colossus",
@@ -321,8 +330,8 @@
 			"url": "/cards/Colossus/",
 			"name": "Colossus",
 			"description": "<b>Ongoing:</b> Can't be destroyed, moved, or have its Power reduced.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Colossus-fbbc00af662a7127e358bc1df745665c1abdf7016237802cd9534e396d102432.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Colossus-fbbc00af662a7127e358bc1df745665c1abdf7016237802cd9534e396d102432.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Cosmo",
@@ -330,8 +339,8 @@
 			"url": "/cards/Cosmo/",
 			"name": "Cosmo",
 			"description": "<b>Ongoing:</b> <b>On Reveal</b> abilities won't happen at this location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cosmo-9f724d8fb58f4cf8efa8c234ae9f791df7c0380cd5019c197527390de87ae1a8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cosmo-e5a048cba11721020f95e73303b3b7cd1470f4a139a17b6b2d7d991cd7c52503.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Crossbones",
@@ -339,8 +348,8 @@
 			"url": "/cards/Crossbones/",
 			"name": "Crossbones",
 			"description": "You can only play this at locations where you are winning.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crossbones-ae0cfa43bf56790ce2b176596a0d2c68d89db561d7ab9ba550430a721af2d816.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crossbones-b1d1b294bd57cb8865d144e2be486723b0d3ab7599a40f7945e1b47694fbc876.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Crystal",
@@ -348,8 +357,8 @@
 			"url": "/cards/Crystal/",
 			"name": "Crystal",
 			"description": "<b>On Reveal:</b> Each player\ndraws a card.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crystal-6bd6e1dc3fd5a06cdbe7d0708d895ffb86b597b0b5eb803105ffe456aa5fb6b1.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crystal-6bd6e1dc3fd5a06cdbe7d0708d895ffb86b597b0b5eb803105ffe456aa5fb6b1.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Cyclops",
@@ -357,8 +366,8 @@
 			"url": "/cards/Cyclops/",
 			"name": "Cyclops",
 			"description": "<i>Let's move, X-Men.</i>",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cyclops-ff3552864685157b88471a17081f0ae3db408110778bf52234605e045484921d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cyclops-dd5db5460d76b5cddee243667d7d8b8bef0b69c05a9630af7c67c9fb24ee9951.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Dagger",
@@ -366,8 +375,8 @@
 			"url": "/cards/Dagger/",
 			"name": "Dagger",
 			"description": "When this moves to a location,\n+2 Power for each card your\nopponent has there.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dagger-fb354ef89b25517d937a15b7454855fc78618dc58c4fa3c0cca44bf566a1079c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dagger-fb354ef89b25517d937a15b7454855fc78618dc58c4fa3c0cca44bf566a1079c.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Daken",
@@ -375,8 +384,8 @@
 			"url": "/cards/Daken/",
 			"name": "Daken",
 			"description": "<b>On Reveal:</b> Add the Muramasa Shard to your hand.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Daken-2a240f5897fde1f3b9a8fd942d8d850f1c13430ff97227e875ef6283cc1eeea2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Daken-b8adb45d109b547a9d8cebefd96c1048b5504d265ef24b0b5907493b47675e6d.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Daredevil",
@@ -384,8 +393,8 @@
 			"url": "/cards/Daredevil/",
 			"name": "Daredevil",
 			"description": "On turn 5, you get to see your opponent's plays before you\nmake your own.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Daredevil-3927b0bed806dab1c1e7c9bfaa7cfad0143afc2e6a38fd8190ac06b412d1c4b7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Daredevil-3927b0bed806dab1c1e7c9bfaa7cfad0143afc2e6a38fd8190ac06b412d1c4b7.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Darkhawk",
@@ -393,8 +402,8 @@
 			"url": "/cards/Darkhawk/",
 			"name": "Darkhawk",
 			"description": "<b>Ongoing:</b> +2 Power for each card in your opponent's deck.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Darkhawk-c30456a91b541e2b582d24686a53dee22652b4e357bb18f1248c67407dec979d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Darkhawk-e8bf2eeb8aafc5f35d217d194b946c012bfdf6efd481b2bf683cd21cfc911d46.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Dazzler",
@@ -402,8 +411,8 @@
 			"url": "/cards/Dazzler/",
 			"name": "Dazzler",
 			"description": "<b>Ongoing:</b> +2 Power for each location that's full on your side.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dazzler-378cefc07838335faf17cb0509f72680f319a611f34a613d3df29da6ad4d96ae.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dazzler-45ed355ad2f753581aa713c5a8556d63804ecc50a98aa8e8d639a922a72df5dc.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Deadpool",
@@ -411,8 +420,8 @@
 			"url": "/cards/Deadpool/",
 			"name": "Deadpool",
 			"description": "When this is destroyed, return it to your hand with double the Power.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Deadpool-f605bb0ddf4e767563eeb97e045e472b9750e3a54e7ac3e55dd8e84049677af4.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Deadpool-f605bb0ddf4e767563eeb97e045e472b9750e3a54e7ac3e55dd8e84049677af4.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Death",
@@ -420,8 +429,8 @@
 			"url": "/cards/Death/",
 			"name": "Death",
 			"description": "Costs 1 less for each card destroyed this game.",
-			"cost": 8,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Death-895efb97379d6717ad1c26987291ed6223b9d5ba625a9e50dc24a9ed259c50c0.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Death-0b21c9415b8dc8dde3a51e414fb3787e20bb2950207ee466a44c8717cebb3b42.webp",
+			"cost": 8
 		},
 		{
 			"cardDefKey": "Deathlok",
@@ -429,8 +438,8 @@
 			"url": "/cards/Deathlok/",
 			"name": "Deathlok",
 			"description": "<b>On Reveal:</b> Destroy your other cards at this location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Deathlok-b685d317f0c868d52d332af851e5a2de72727c2989c5e55d12769b568915fc92.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Deathlok-2bc844dbdaa409f7b4438f9e2c2672522dec8c41bbeeefed00dcf8fe04124c2f.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Debrii",
@@ -438,8 +447,8 @@
 			"url": "/cards/Debrii/",
 			"name": "Debrii",
 			"description": "<b>On Reveal:</b> Add a Rock to each other location, for both players.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Debrii-a4d7b4ccf1aa6e32e5ca387667f37ee8efd5127c6ef77828f8f14ed23af5bbf2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Debrii-a4d7b4ccf1aa6e32e5ca387667f37ee8efd5127c6ef77828f8f14ed23af5bbf2.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Destroyer",
@@ -447,8 +456,8 @@
 			"url": "/cards/Destroyer/",
 			"name": "Destroyer",
 			"description": "<b>On Reveal:</b> Destroy your\nother cards.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-df4b8f38f030db4c99ab513c6b190c2bab752f2a089a7fd4d3e3dbaefd5f5c2d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-b48e87c5bf31277c4d941a446e344e78e0dbe252079dde005e088bd6b632b0fa.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "DevilDinosaur",
@@ -456,8 +465,8 @@
 			"url": "/cards/DevilDinosaur/",
 			"name": "Devil Dinosaur",
 			"description": "<b>Ongoing:</b> +2 Power for each card in your hand.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DevilDinosaur-c6d2c26985f83bde005614da5d3ee659d8884a69a7daf72b3f5ea9c2f2262b96.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DevilDinosaur-c6d2c26985f83bde005614da5d3ee659d8884a69a7daf72b3f5ea9c2f2262b96.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "DrDoom",
@@ -465,8 +474,8 @@
 			"url": "/cards/DrDoom/",
 			"name": "Doctor Doom",
 			"description": "<b>On Reveal:</b> Add a 5-Power DoomBot to each other location.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DrDoom-428ad09a80b3598a2c34fd7193fd4e0ef2f929f871c4de725eb6d1d66288666d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DrDoom-428ad09a80b3598a2c34fd7193fd4e0ef2f929f871c4de725eb6d1d66288666d.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "DoctorOctopus",
@@ -474,8 +483,8 @@
 			"url": "/cards/DoctorOctopus/",
 			"name": "Doctor Octopus",
 			"description": "<b>On Reveal:</b> Pull 4 random cards from your opponent's hand to their side\nof this location.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DoctorOctopus-21afd7c6a17362416f10c174bc7ddc29e7919ab1f93c8f206c4d17d15acef0f5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DoctorOctopus-21afd7c6a17362416f10c174bc7ddc29e7919ab1f93c8f206c4d17d15acef0f5.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "DoctorStrange",
@@ -483,8 +492,8 @@
 			"url": "/cards/DoctorStrange/",
 			"name": "Doctor Strange",
 			"description": "<b>On Reveal:</b> Move your highest-Power card(s) to this location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DoctorStrange-d970000f67b1b0c066ba4344a7190599bbbc74beb281e342468cb53e6704dee8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DoctorStrange-2283965299bbc5319c011323c69382dd94218773bdeb43616a47fd8d66cbd598.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Domino",
@@ -492,8 +501,8 @@
 			"url": "/cards/Domino/",
 			"name": "Domino",
 			"description": "You always draw this card on turn 2, and not before.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Domino-1d5114bc9597d979e3e1b71bbd904669ba4767e1ddb14afe7b0a5c6b7c42581b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Domino-1d5114bc9597d979e3e1b71bbd904669ba4767e1ddb14afe7b0a5c6b7c42581b.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Dracula",
@@ -501,8 +510,8 @@
 			"url": "/cards/Dracula/",
 			"name": "Dracula",
 			"description": "At the end of the game, discard a card from your hand. This has its Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dracula-f6cc9a844e27bba7d975bd8d9363ac0400a7bbd27870f4a5e2d8cdd7649dd53b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dracula-a11c225be00a514b978ca2ef41300ed9f1ed32cb09cd1097edb76e2ee4f2e99f.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Drax",
@@ -510,8 +519,8 @@
 			"url": "/cards/Drax/",
 			"name": "Drax",
 			"description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Drax-d89c10bbc036e0d1f8ee5cbb49fe1b7825a350667e4f70d7ee61c554550314f9.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Drax-d89c10bbc036e0d1f8ee5cbb49fe1b7825a350667e4f70d7ee61c554550314f9.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "EbonyMaw",
@@ -519,8 +528,8 @@
 			"url": "/cards/EbonyMaw/",
 			"name": "Ebony Maw",
 			"description": "You can't play this after turn 3.\n<b>Ongoing:</b> You can't play cards here.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/EbonyMaw-c447b7cac50f254a8178b462c837e14868c4e2b37db4c7cf13b3d89e2efa8c12.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/EbonyMaw-153782a7e0f32254a2b8665d165b8cf8ee4bf954b9e27aba9ca9dcc6ff31f4d6.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Echo",
@@ -528,8 +537,8 @@
 			"url": "/cards/Echo/",
 			"name": "Echo",
 			"description": "After your opponent plays an <b>Ongoing</b> card here, remove its abilities.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Echo-3ebc12785994c9216fd07420dfa548d44e1588f948ecdb23b937d74cf2b885d3.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Echo-3ebc12785994c9216fd07420dfa548d44e1588f948ecdb23b937d74cf2b885d3.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Electro",
@@ -537,8 +546,8 @@
 			"url": "/cards/Electro/",
 			"name": "Electro",
 			"description": "<b>On Reveal:</b> +1 Max Energy. <b>Ongoing:</b> You can only play\n1 card a turn.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Electro-44d674eea9550f4719f2eb01989e0f4bca4f7a54e69145b8939c58fd0a2c8527.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Electro-44d674eea9550f4719f2eb01989e0f4bca4f7a54e69145b8939c58fd0a2c8527.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Elektra",
@@ -546,8 +555,17 @@
 			"url": "/cards/Elektra/",
 			"name": "Elektra",
 			"description": "<b>On Reveal:</b> Destroy a random enemy 1-Cost card at this location.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Elektra-ca19257478dbd2833b874e425bfb33ca1420f3b963690135bc50daaa2247b6c2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Elektra-ca19257478dbd2833b874e425bfb33ca1420f3b963690135bc50daaa2247b6c2.webp",
+			"cost": 1
+		},
+		{
+			"cardDefKey": "ElsaBloodstone",
+			"variantKey": null,
+			"url": "/cards/ElsaBloodstone/",
+			"name": "Elsa Bloodstone",
+			"description": "If you play another card to fill a location, give it +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ElsaBloodstone-8f0336722c9ca5768045092818c60a6eae098d174bf5e98f7553673df8d50e78.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Enchantress",
@@ -555,8 +573,8 @@
 			"url": "/cards/Enchantress/",
 			"name": "Enchantress",
 			"description": "<b>On Reveal:</b> Remove the abilities from all <b>Ongoing</b> cards at this location.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Enchantress-0fb4a5142a59df5f136c5edac097c20fefa4610fbfddd23a0a3f493c08f4b77d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Enchantress-6bd40617328dd5738734a61bd9d5b8fcb57868d7292f4f716021a2345d92e75f.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Falcon",
@@ -564,17 +582,17 @@
 			"url": "/cards/Falcon/",
 			"name": "Falcon",
 			"description": "<b>On Reveal:</b> Return your 1-Cost cards to your hand.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Falcon-2a19c80b1b51c9dc067e33b65ac015a6609820ef2bc204a6070f34ce9ecc6740.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Falcon-2a19c80b1b51c9dc067e33b65ac015a6609820ef2bc204a6070f34ce9ecc6740.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Forge",
 			"variantKey": null,
 			"url": "/cards/Forge/",
 			"name": "Forge",
-			"description": "<b>On Reveal:</b> Give the next card you play +3 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Forge-43d70d2c0709e19c08b8c30fd7e0ff628fb2e11b0ff18a999b8da0272d82bd70.webp"
+			"description": "<b>On Reveal:</b> Give the next card you play +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Forge-bb908bd0f66554692223e906c43bd78792d532d8b405e45e69e7a15c4727c680.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Galactus",
@@ -582,8 +600,8 @@
 			"url": "/cards/Galactus/",
 			"name": "Galactus",
 			"description": "<b>On Reveal:</b> If you're winning this location and this is your only card here, destroy all other locations.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galactus-c75f8a00acb53d146eabf4730775d149d552067c07012cf750099ec7050ca2fe.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galactus-c75f8a00acb53d146eabf4730775d149d552067c07012cf750099ec7050ca2fe.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Gambit",
@@ -591,8 +609,8 @@
 			"url": "/cards/Gambit/",
 			"name": "Gambit",
 			"description": "<b>On Reveal:</b> Discard a card from your hand. Destroy a random enemy card.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gambit-e66364f63abeb86e392a3e18232d500f29e1e3dbad174965802f03cdd025fd44.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gambit-d948daa38331b8be5dd22040d6211710217ece05406e15213709f7792f439e33.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Gamora",
@@ -600,8 +618,8 @@
 			"url": "/cards/Gamora/",
 			"name": "Gamora",
 			"description": "<b>On Reveal:</b> If your opponent played a card here this turn, +5 Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gamora-0bb02822dc4af476d8c410e2a16640bd203105489f727fc7447848cf18e98836.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gamora-1498c9f845cc7c614ac3981e1ae2dc54e3c02a2eb34a49ff84212a4d2dbe7df9.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Ghost",
@@ -609,8 +627,8 @@
 			"url": "/cards/Ghost/",
 			"name": "Ghost",
 			"description": "<b>Ongoing:</b> Your cards are always revealed last. <i>(Their <b>On Reveal</b> abilities happen last.)</i>",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ghost-fe90af6092e98343dfaab99ae269b873227e0e2480f3fcd9014355204667cdb8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ghost-1d2e2135128fca02cc13cbf02ab85c200c3ee46738150cd2f4b680a70a21bcb5.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "GhostRider",
@@ -618,8 +636,8 @@
 			"url": "/cards/GhostRider/",
 			"name": "Ghost Rider",
 			"description": "<b>On Reveal:</b> Bring back one of your discarded cards to this location.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostRider-b1ee28e13cc1116a41e205396a7773b02e5bb8ed9db3feda1b4439db5b456180.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostRider-f4c8bac018ef267dfd567d52331ab81e18c5440f3703207a3862d7eed80a58b0.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "GhostSpider",
@@ -627,8 +645,8 @@
 			"url": "/cards/GhostSpider/",
 			"name": "Ghost-Spider",
 			"description": "<b>On Reveal:</b> The last card you played moves here.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostSpider-862380d3005193b3bbcec12cb5bfd0099623f07de9f3da3e23e4ed29bebf2c91.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostSpider-862380d3005193b3bbcec12cb5bfd0099623f07de9f3da3e23e4ed29bebf2c91.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Giganto",
@@ -636,8 +654,17 @@
 			"url": "/cards/Giganto/",
 			"name": "Giganto",
 			"description": "You can only play this at the left location.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Giganto-3930cba291638ea2f55e926866901dbd40ce44001acf10a5c50ec1d90dc3fc3b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Giganto-dd8962b91330f9c8c0d8c3e34c7f73c2819a1aced1ee696dc12f15db7b21588c.webp",
+			"cost": 6
+		},
+		{
+			"cardDefKey": "Gladiator",
+			"variantKey": null,
+			"url": "/cards/Gladiator/",
+			"name": "Gladiator",
+			"description": "<b>On Reveal:</b> Add a card from your opponent's deck to their side of this location. If it has less Power, destroy it.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gladiator-cdebc66d67edaffa2de53f5bb41579c71e8a79d257939279b1af07907011cc6b.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Goose",
@@ -645,17 +672,17 @@
 			"url": "/cards/Goose/",
 			"name": "Goose",
 			"description": "<b>Ongoing:</b> Nobody can play cards that cost 4, 5, or 6 at this location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Goose-0be5f8e9e823d55768a5eafd184578d04ed383d7a091a322693fa8a01486b9df.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Goose-0be5f8e9e823d55768a5eafd184578d04ed383d7a091a322693fa8a01486b9df.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "GreenGoblin",
 			"variantKey": null,
 			"url": "/cards/GreenGoblin/",
 			"name": "Green Goblin",
-			"description": "<b>On Reveal:</b> Your opponent gains control of this.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GreenGoblin-422b09bab5adee5f81dc9623ce486c90e1df7c763bd3284bb10359e7ae4791da.webp"
+			"description": "<b>On Reveal:</b> Switch sides.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GreenGoblin-7b1ab6c2762b76789b100338b1e7b4f1e05e747fb6cdaa671ddcbd22152b6019.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Groot",
@@ -663,17 +690,17 @@
 			"url": "/cards/Groot/",
 			"name": "Groot",
 			"description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Groot-ea877ffceb3b24a94f2f2c29c5f18f00c355085e66413a5e9d1bb050292953f7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Groot-d37a4162a0b4b14bd988267fc13310f0ab0c895f4c9a9eaddc8f4fdcda0bb72c.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Hawkeye",
 			"variantKey": null,
 			"url": "/cards/Hawkeye/",
 			"name": "Hawkeye",
-			"description": "<b>On Reveal:</b> If you play a card here next turn, +3 Power.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hawkeye-fb6818e269810bf08dcc2a7963759124d22643898cc0ea579dae24217c84b5c6.webp"
+			"description": "<b>On Reveal:</b> If you play a card at this location next turn, +3 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hawkeye-fb6818e269810bf08dcc2a7963759124d22643898cc0ea579dae24217c84b5c6.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Hazmat",
@@ -681,8 +708,8 @@
 			"url": "/cards/Hazmat/",
 			"name": "Hazmat",
 			"description": "<b>On Reveal:</b> Afflict all other cards with -1 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hazmat-fc5c7ca5e1850acfd8bc4068d606441f706b0cf8235987dd47dc5e86e84a0f23.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hazmat-fc5c7ca5e1850acfd8bc4068d606441f706b0cf8235987dd47dc5e86e84a0f23.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Heimdall",
@@ -690,8 +717,8 @@
 			"url": "/cards/Heimdall/",
 			"name": "Heimdall",
 			"description": "<b>On Reveal:</b> Move your other cards one location to the left.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Heimdall-315c31136f5d8cff2e35da0ead0bf9ea1218d051aef8e4ca5d5d4dbe1aec53a8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Heimdall-36a55da3c310c672ecf7e071065f53f98d34fdd598f636c43c48b3da99e967ac.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Hela",
@@ -699,8 +726,8 @@
 			"url": "/cards/Hela/",
 			"name": "Hela",
 			"description": "<b>On Reveal:</b> Resurrect all cards you discarded from your hand to\nrandom locations.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-3c4baa10509441f3356a498040eb1e7fdf1111fc2a38b57a70c85e890b11f406.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-503693fd78319dafdbfb300b39a54f5234212a716669e3044cd991b719d6b1d3.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Helicarrier",
@@ -708,8 +735,8 @@
 			"url": "/cards/Helicarrier/",
 			"name": "Helicarrier",
 			"description": "When you discard this from your hand, add 3 random cards\nto your hand.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Helicarrier-fe0c1d4bc2c9a7d27b785047162ab478c2fafb081400c5b8f3544d254b6b1bb3.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Helicarrier-04d726d8bb6185dd18ebeb714c30f875fca28aa728005c9557593168504451b4.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Hellcow",
@@ -717,8 +744,8 @@
 			"url": "/cards/Hellcow/",
 			"name": "Hellcow",
 			"description": "<b>On Reveal:</b> Discard 2 cards from your hand.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-c05c670e04b13bcb6d35c86661d29255ddf8cc12066742fe10761150ce715419.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-b6b4886f5998da1c46392dc6f26fa6328ebc70f508423a27d556ee3a82b1b4a7.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "HighEvolutionary",
@@ -726,8 +753,8 @@
 			"url": "/cards/HighEvolutionary/",
 			"name": "High Evolutionary",
 			"description": "At the start of the game, unlock the potential of your cards with no abilities.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HighEvolutionary-8c186b370b0cb0f6f9331c91da1dfd542cdaa36bf6c0a09098106017d6cc1330.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HighEvolutionary-e54bd931c8b8927aed398cfa6901446f4a68b165e407f9a56fdb56fa49f8cefc.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "HitMonkey",
@@ -735,17 +762,17 @@
 			"url": "/cards/HitMonkey/",
 			"name": "Hit-Monkey",
 			"description": "<b>On Reveal:</b> Gain +2 Power for each other card you played this turn.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HitMonkey-f11f9573c69ee4cadd8a009621d9fc25d67ecf36a0eaf557b5f8f143074c94a2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HitMonkey-f11f9573c69ee4cadd8a009621d9fc25d67ecf36a0eaf557b5f8f143074c94a2.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Hobgoblin",
 			"variantKey": null,
 			"url": "/cards/Hobgoblin/",
 			"name": "Hobgoblin",
-			"description": "<b>On Reveal:</b> Your opponent gains control of this.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hobgoblin-6316c80c1239d0f318037d8f5dd4e0c214f161c9f446de1d13d4663e2a99e2a2.webp"
+			"description": "<b>On Reveal:</b> Switch sides.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hobgoblin-6316c80c1239d0f318037d8f5dd4e0c214f161c9f446de1d13d4663e2a99e2a2.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "HowardTheDuck",
@@ -753,8 +780,8 @@
 			"url": "/cards/HowardTheDuck/",
 			"name": "Howard the Duck",
 			"description": "<b>Ongoing:</b> Tap this to see the top card of your deck.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HowardTheDuck-aca2c547f6c9e9c927aa1415ca26c2a654bd7af3b0111d669585874ecac1251a.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HowardTheDuck-bb9eacd8d3e19e570b06c77e18c0600de2bb769da5336c32074d4b6e51b07221.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Hulk",
@@ -762,8 +789,8 @@
 			"url": "/cards/Hulk/",
 			"name": "Hulk",
 			"description": "<i>HULK SMASH!</i>",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulk-bae66736fe33f6147a7b1134ec8670e4b89f4fc99521689a5bd75f3adb75cdf9.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulk-bae66736fe33f6147a7b1134ec8670e4b89f4fc99521689a5bd75f3adb75cdf9.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Hulkbuster",
@@ -771,8 +798,8 @@
 			"url": "/cards/Hulkbuster/",
 			"name": "Hulkbuster",
 			"description": "<b>On Reveal:</b> Merge this card with a random friendly card at this location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkbuster-ee2b08b723f18713a41d8b95380ba78de6227be466caa2cf96169eb0843aa389.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkbuster-213c6c0e43c11e333f7609304a7cbb505ce41c232e2bd0731f66fcbf90e46715.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "HumanTorch",
@@ -780,8 +807,8 @@
 			"url": "/cards/HumanTorch/",
 			"name": "Human Torch",
 			"description": "When this moves, double\nits Power.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HumanTorch-7f68bf0e1bf3db3ed2c45b5f190462cf195821df4d6e906ab471f7b9e397c3c6.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HumanTorch-8aa84fe8272531834e7012819b4b7422ef5b54819d8ea2435344e40bddcd66e5.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Iceman",
@@ -789,8 +816,8 @@
 			"url": "/cards/Iceman/",
 			"name": "Iceman",
 			"description": "<b>On Reveal:</b> Give a random card in your opponent's hand +1 Cost. <i>(maximum 6)</i>",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Iceman-a77045a239f9e713a1532366e137774eac5957265b85f8cc14b492464e385463.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Iceman-e56970f9b0b1fff304dcdba6d4939cd957658b46e78a9e0fa8acacd04ae950bc.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "InvisibleWoman",
@@ -798,8 +825,8 @@
 			"url": "/cards/InvisibleWoman/",
 			"name": "Invisible Woman",
 			"description": "<b>Ongoing:</b> Cards you play here are not revealed until the game ends.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/InvisibleWoman-620f7874a0c12597ce21821984ab7877d7b18ab3652d2137269702a212b21d00.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/InvisibleWoman-620f7874a0c12597ce21821984ab7877d7b18ab3652d2137269702a212b21d00.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "IronFist",
@@ -807,8 +834,8 @@
 			"url": "/cards/IronFist/",
 			"name": "Iron Fist",
 			"description": "<b>On Reveal:</b> After you play your next card, move it one location to the left.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronFist-e608f06652d011eab060b4b6af814e516bd91d3969dc6998c8121b85b28069ed.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronFist-e608f06652d011eab060b4b6af814e516bd91d3969dc6998c8121b85b28069ed.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "IronLad",
@@ -816,8 +843,8 @@
 			"url": "/cards/IronLad/",
 			"name": "Iron Lad",
 			"description": "<b>On Reveal:</b> Copy the text of your deck's top card.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronLad-9ee1c1c4f0f89fc0b31cb1abfa93e5619e2040d8ed71621e53882cff15c39df8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronLad-66133c1d92cb85f3b8f1f32aa2bcbcbe677e21ada5431b92ccfd101c9a9d12f3.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "IronMan",
@@ -825,8 +852,8 @@
 			"url": "/cards/IronMan/",
 			"name": "Iron Man",
 			"description": "<b>Ongoing:</b> Your total Power is doubled at this location.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronMan-3d36804ddb400156feebaf908ee915e28340778c593a9bce885f40f5ebf44be3.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronMan-b1c080ee27dc1af796b35ba726d7455ed3ea53da9d278c1a3a36587982d3d307.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Ironheart",
@@ -834,8 +861,8 @@
 			"url": "/cards/Ironheart/",
 			"name": "Ironheart",
 			"description": "<b>On Reveal:</b> Give 3 other friendly cards +2 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ironheart-129afd115d6f565f1d485cb1e74dfa5806107ab694410eb119b6e8ec62ed2fc9.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ironheart-129afd115d6f565f1d485cb1e74dfa5806107ab694410eb119b6e8ec62ed2fc9.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "JaneFoster",
@@ -843,8 +870,8 @@
 			"url": "/cards/JaneFoster/",
 			"name": "Jane Foster Mighty Thor",
 			"description": "<b>On Reveal:</b> Draw all cards that Cost 0 from your deck.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JaneFoster-db760b52aa209ce7248ceed444fca6faf8c6cdfaba494389506d09eda9c10500.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JaneFoster-3d974f1db269d363b22d16390c3c0d2efca0df02866c648a35a99f21800c2524.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "JeanGrey",
@@ -852,8 +879,8 @@
 			"url": "/cards/JeanGrey/",
 			"name": "Jean Grey",
 			"description": "<b>Ongoing:</b> Players must play their first card here each turn. <i>(if possible)</i>",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeanGrey-00cf36d7dea1530ad53a5129c64cd05ed23b4d0631e56460269663730e4f91f8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeanGrey-00cf36d7dea1530ad53a5129c64cd05ed23b4d0631e56460269663730e4f91f8.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "JeffTheBabyLandShark",
@@ -861,17 +888,17 @@
 			"url": "/cards/JeffTheBabyLandShark/",
 			"name": "Jeff the Baby Land Shark",
 			"description": "You can move this once. Nothing can stop you from moving or playing this to any location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeffTheBabyLandShark-25f23b03d11c1d94ea0553e4707b408827672ce56c614eddd6b540583cb6adc4.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeffTheBabyLandShark-25f23b03d11c1d94ea0553e4707b408827672ce56c614eddd6b540583cb6adc4.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "JessicaJones",
 			"variantKey": null,
 			"url": "/cards/JessicaJones/",
 			"name": "Jessica Jones",
-			"description": "<b>On Reveal:</b> If you don't play a card here next turn, +4 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JessicaJones-1336e2be860634329b309fc0cad240b5191a8785f66c4bb2f72532cf8442fb84.webp"
+			"description": "<b>On Reveal:</b> If you don't play a card at this location next turn, +4 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JessicaJones-d83a5c21c1121311f770aa4f454e77776250dce1f6f1c6e7ca8fbc768166e1b5.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Jubilee",
@@ -879,8 +906,8 @@
 			"url": "/cards/Jubilee/",
 			"name": "Jubilee",
 			"description": "<b>On Reveal:</b> Add the top card of your deck to this location.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Jubilee-9a65800118ae77e7aa43e5f2c6c905bee29be137d5b4b9308974aef0ac0a07f7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Jubilee-b0d14a6801ee6a73cda1820ddd277f35b43a7147e17657705ac6cca0fa3ded59.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Juggernaut",
@@ -888,8 +915,8 @@
 			"url": "/cards/Juggernaut/",
 			"name": "Juggernaut",
 			"description": "<b>On Reveal:</b> If your opponent played cards here this turn, move\nthem randomly.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Juggernaut-0579cd199276d856287ea41ba8a5945e7c5cb821d25c5c76a5e0fc5b2d8062ce.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Juggernaut-e0b295e4f6ce3a36bca3df19aa0d519e9b224a4882ecf4a15ef5fea2e92138e7.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "KaZar",
@@ -897,8 +924,8 @@
 			"url": "/cards/KaZar/",
 			"name": "Ka-Zar",
 			"description": "<b>Ongoing:</b> Your 1-Cost cards have +1 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KaZar-9029cb52e5c13c712908e4e02ea0eb515033cf925de3c05d4acb30e548fc3650.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KaZar-9029cb52e5c13c712908e4e02ea0eb515033cf925de3c05d4acb30e548fc3650.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Kang",
@@ -906,8 +933,8 @@
 			"url": "/cards/Kang/",
 			"name": "Kang",
 			"description": "<b>On Reveal:</b> Look at what your opponent did, then restart the turn. <i>(without Kang)</i>",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kang-96f254fe8598e003ab878e78a31d85ac28cc3a47583daae21448200d576caff8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kang-afe446737a5b0f09166a903e036667e3bf2c719f5b3e7772ea1e7e5f314bd3a3.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Killmonger",
@@ -915,8 +942,8 @@
 			"url": "/cards/Killmonger/",
 			"name": "Killmonger",
 			"description": "<b>On Reveal:</b> Destroy ALL\n1-Cost cards.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Killmonger-324daf74012796be936fe8186711440ff564ce3840941502774e13e33c8e1f24.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Killmonger-c0224787de904d884f8c5c35c7b2e8c7bed751d3d3c341adba6ffdc32cc90c39.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Kingpin",
@@ -924,8 +951,8 @@
 			"url": "/cards/Kingpin/",
 			"name": "Kingpin",
 			"description": "When a card moves here on turn 6, destroy it.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kingpin-5812e23048122d4416e57aef10af75811ddaa7a28586c8e837fe70dd2e005102.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kingpin-5812e23048122d4416e57aef10af75811ddaa7a28586c8e837fe70dd2e005102.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "KittyPryde",
@@ -933,8 +960,8 @@
 			"url": "/cards/KittyPryde/",
 			"name": "Kitty Pryde",
 			"description": "When this returns to your hand,\n+1 Power. Returns at the start\nof each turn.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KittyPryde-69f66442433fa4f95a95ec894f303198c1eafd6820ca25e4a746cbe447d114d3.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KittyPryde-69f66442433fa4f95a95ec894f303198c1eafd6820ca25e4a746cbe447d114d3.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Klaw",
@@ -942,8 +969,8 @@
 			"url": "/cards/Klaw/",
 			"name": "Klaw",
 			"description": "<b>Ongoing:</b> The location to the right has +6 Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Klaw-d819b18415cfb297ad49e2eba8af0093d806c59e756faf41dc0ec977e8148748.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Klaw-dbf489893a3ded332428c68bdc851f6fa4f2a4d94d491cad128f38acdfd55427.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Knull",
@@ -951,8 +978,8 @@
 			"url": "/cards/Knull/",
 			"name": "Knull",
 			"description": "<b>Ongoing:</b> Has the combined Power of all cards destroyed this game.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Knull-c056002b2cc7e756c6db2d4bf71271f9f04375c56aee80515b5fc6a38dae4ff0.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Knull-d16e5784a3d0eb43f92b2451398aff155ffbaefb9e89727a8967f5fc9a5b57fa.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Korg",
@@ -960,8 +987,8 @@
 			"url": "/cards/Korg/",
 			"name": "Korg",
 			"description": "<b>On Reveal:</b> Shuffle a Rock into your opponent's deck.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Korg-289e13f9fdd2caeb4c2ed83d4dda2d15726ace14e7725b25a0fbe3e8f12595c4.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Korg-267caa45ffbb337a1c66f383be98fad4e3fa26e59c3a5a163a9ea40372a7835e.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Kraven",
@@ -969,8 +996,8 @@
 			"url": "/cards/Kraven/",
 			"name": "Kraven",
 			"description": "When a card moves here, this gains +2 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kraven-648efcde7ab6cf1d38558a7821199d3e7ead7bcf24249908e4d64efbf98ec39b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kraven-648efcde7ab6cf1d38558a7821199d3e7ead7bcf24249908e4d64efbf98ec39b.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "LadyDeathstrike",
@@ -978,8 +1005,8 @@
 			"url": "/cards/LadyDeathstrike/",
 			"name": "Lady Deathstrike",
 			"description": "<b>On Reveal:</b> Destroy each card here with less Power than this.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-8bbbdd174b65208605c4cef572cfa7bd828ab706d1725c9bfbeea7db59e0561b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-8bbbdd174b65208605c4cef572cfa7bd828ab706d1725c9bfbeea7db59e0561b.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "LadySif",
@@ -987,8 +1014,8 @@
 			"url": "/cards/LadySif/",
 			"name": "Lady Sif",
 			"description": "<b>On Reveal:</b> Discard the highest-cost card from your hand.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadySif-cc7f96a3bbf4f21d03fe2da057f3bc9d1bcc63bf2954be486f3baed0cbb053aa.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadySif-804c387924c9144be93d1dc3b5101dcb637d382d8699b83e452b877368479506.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Leader",
@@ -996,8 +1023,8 @@
 			"url": "/cards/Leader/",
 			"name": "Leader",
 			"description": "<b>On Reveal:</b> Copy the enemy card(s) with the highest Power played this turn, but on your side.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leader-b26780c5d835a83bb87b36939a4513b1c18b1b24cc1856896d49c4e9f56d9b53.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leader-b26780c5d835a83bb87b36939a4513b1c18b1b24cc1856896d49c4e9f56d9b53.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Leech",
@@ -1005,8 +1032,8 @@
 			"url": "/cards/Leech/",
 			"name": "Leech",
 			"description": "At the start of turn 6, remove all abilities from cards in your\nopponent's hand.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-ca46ee181eb5aa139bdba69a1b8bab0abb268c5916bd94c8f393a23909782822.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-649079ff46be73de7ae3428fc7d5d635d3f33e711bce21ab75b5220982147ad6.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Legion",
@@ -1014,8 +1041,8 @@
 			"url": "/cards/Legion/",
 			"name": "Legion",
 			"description": "<b>On Reveal:</b> Replace each other location with this one.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Legion-ae7709a3d584969dca3403f7ee156554cde4e3d78e134be11e260150588ad052.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Legion-db4ce9349aecc9baa74287f6334bd9eb9c713510689f5abbebbd3c050d4528df.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Lizard",
@@ -1023,8 +1050,8 @@
 			"url": "/cards/Lizard/",
 			"name": "Lizard",
 			"description": "<b>Ongoing:</b> -4 Power if your opponent has 4 cards here.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lizard-3b5b9b07d6bf1b5b84d83cc877cd138b47a4be5c2741940c66f01b3f27906681.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lizard-da342541b6133341451b75207d2c89039a03785e38ebf32c721f78019933af70.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Lockjaw",
@@ -1032,8 +1059,8 @@
 			"url": "/cards/Lockjaw/",
 			"name": "Lockjaw",
 			"description": "After you play a card here, swap it with a card in your deck.\n<i>(once per turn)</i>",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lockjaw-79e6652b1ece2b97cc8c03cbdab8550da65bd71660ea4e67893b066fde0e2470.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lockjaw-ad3373c42a73ce0ac0b3bf24d56bddce36e70406fb37bdeda004e663893f4158.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Loki",
@@ -1041,8 +1068,8 @@
 			"url": "/cards/Loki/",
 			"name": "Loki",
 			"description": "<b>On Reveal:</b> Replace your hand with cards from your opponent's starting deck. Give them -1 cost.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-449907206caf4b6b9931e20dba2f918af34d76d65aafd66f37150705b7b05336.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-fd0954a7248e815c49dca118f1d17208e3830c2ebdd0018c5efc0af0fe65173d.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "LukeCage",
@@ -1050,8 +1077,8 @@
 			"url": "/cards/LukeCage/",
 			"name": "Luke Cage",
 			"description": "<b>Ongoing:</b> Your cards can't have their Power reduced.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-3f00c65592abba24bde3008cda62a6ed4363cf21f8ac3c477f7d610b4dfba96e.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-3f00c65592abba24bde3008cda62a6ed4363cf21f8ac3c477f7d610b4dfba96e.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "MBaku",
@@ -1059,8 +1086,8 @@
 			"url": "/cards/MBaku/",
 			"name": "M'Baku",
 			"description": "If this is in your deck at the end of the game, it jumps to a random location.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MBaku-79f3108b07f6f3da4b057baee60d342e5975feeaaa1fbe4387462bf6520342eb.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MBaku-a837756bc4036ef26ef44a2cbf317de0b2f2268eaa4b21ce1ef3fd99cef1d7ac.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Modok",
@@ -1068,8 +1095,8 @@
 			"url": "/cards/Modok/",
 			"name": "M.O.D.O.K.",
 			"description": "<b>On Reveal:</b> Discard your hand.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Modok-7d130bf4c5c2c185c5635333fa965803550b41d533e845ba0070c52db37ad791.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Modok-9d75c26dff078791f014161bdfea77c7edcedcc11bbe1290e0ebecf24040894a.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Magik",
@@ -1077,8 +1104,8 @@
 			"url": "/cards/Magik/",
 			"name": "Magik",
 			"description": "<b>On Reveal:</b> Replace this location with 'Limbo'. Doesn't work\nafter turn 5.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Magik-1d6950e023cabae0b6f2c9c166d2fcef05c80a286f3b425395a978ea380fde3b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Magik-5ec1cbacf750823089a736dad35932f90cf202d95a4b65b5c718f544d0cea8ff.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Magneto",
@@ -1086,8 +1113,17 @@
 			"url": "/cards/Magneto/",
 			"name": "Magneto",
 			"description": "<b>On Reveal:</b> Move all opposing 3 and 4-Cost cards to this location.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Magneto-08c511b940f6d6e09a48c3265757532b7be7de348cf8b3d0f92de9ef985b88d8.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Magneto-8560f9a23e22aa32e52374599d0be71432af10baf6f2e05f02a9282c844b912c.webp",
+			"cost": 6
+		},
+		{
+			"cardDefKey": "ManThing",
+			"variantKey": null,
+			"url": "/cards/ManThing/",
+			"name": "Man-Thing",
+			"description": "<b>Ongoing:</b> 1, 2, and 3-Cost cards here have -2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ManThing-ed58ad053261a7a4dbe00bc55df24a3526312cd202e38ed9ec12a3ad8d833d74.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Mantis",
@@ -1095,17 +1131,17 @@
 			"url": "/cards/Mantis/",
 			"name": "Mantis",
 			"description": "<b>On Reveal:</b> If your opponent played a card here this turn, draw a card\nfrom <i>their</i> deck.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mantis-3d382715b635178789b2f7dfefd1e21af422e444461f4b555a53cb04d2fbdd3f.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mantis-081981969bf20509bc44aceb33090eb7281ef4c6088eb1f020605fb34d806773.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "MariaHill",
 			"variantKey": null,
 			"url": "/cards/MariaHill/",
 			"name": "Maria Hill",
-			"description": "<b>On Reveal:</b> Add a random 1 or 2-Cost card to your hand.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MariaHill-4f39ab53e6a158864580d6ceed65be122bdba53de705128f44a64c2f197f6dbe.webp"
+			"description": "<b>On Reveal:</b> Add a random 2-Cost card to your hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MariaHill-822c5a641011d90a6b94fa3822a2bde42c10f4c1268e12c44a9b465fa00e2946.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "MasterMold",
@@ -1113,8 +1149,8 @@
 			"url": "/cards/MasterMold/",
 			"name": "Master Mold",
 			"description": "<b>On Reveal:</b> Add 2 Sentinel to your opponent's hand.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MasterMold-b9d124479c7f2ed9513d317e17c1802c732a1e4c9d8463e599086e321b3ac080.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MasterMold-c35605531958577f8c3fbe382aa936a063642a9a5693f1668104e64134142d85.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Maximus",
@@ -1122,8 +1158,8 @@
 			"url": "/cards/Maximus/",
 			"name": "Maximus",
 			"description": "<b>On Reveal:</b> Your opponent\ndraws 2 cards.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Maximus-40be45ef99fc6323eb4e83e45a67b59f71b34d9b4cc2434af695653628d3eaf9.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Maximus-aab144021aaad7d22007479eea998c98c8fceedf755c3bf9cfcc64968945b284.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Medusa",
@@ -1131,8 +1167,8 @@
 			"url": "/cards/Medusa/",
 			"name": "Medusa",
 			"description": "<b>On Reveal:</b> If this is at the middle location, +3 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Medusa-00f9fe8397328d7187aad1bebb6ad16c85677d5f6bce84cfd99daab4529e619a.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Medusa-cf7455193eb2db5cad32ee120d55d2bc6eedaff50b688c7ff983b12d2beecf6e.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "MilesMorales",
@@ -1140,8 +1176,8 @@
 			"url": "/cards/MilesMorales/",
 			"name": "Miles Morales",
 			"description": "If a card moved last turn, this costs 1.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MilesMorales-b6db9dcec5f071fb01b6ea07080d1504aadec2f6f6cf8e4dcda530575c62de1f.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MilesMorales-84fff049d6b607c2f6f1c7420d8f650a6a7125622bd55d4195fb3ef13c601e90.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Mirage",
@@ -1149,8 +1185,8 @@
 			"url": "/cards/Mirage/",
 			"name": "Mirage",
 			"description": "<b>On Reveal:</b> Copy the lowest-Cost card in your opponent's hand into your hand. Give it +2 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mirage-81d000dcf229a0fbfb061592148c83b41f1b069cf73f9ac4328ac9eed3fd3d0d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mirage-81d000dcf229a0fbfb061592148c83b41f1b069cf73f9ac4328ac9eed3fd3d0d.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "MrFantastic",
@@ -1158,8 +1194,8 @@
 			"url": "/cards/MrFantastic/",
 			"name": "Mister Fantastic",
 			"description": "<b>Ongoing:</b> Adjacent locations have +2 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MrFantastic-c655669a7eae63ae5795c8449405e54b54bcb44d55a30165817bc3d5738a1ad7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MrFantastic-1d1e4302ac3ad90b8be69cc4b5002b2138c4f7249df20346e0595ac7f5312600.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "MrNegative",
@@ -1167,8 +1203,8 @@
 			"url": "/cards/MrNegative/",
 			"name": "Mister Negative",
 			"description": "<b>On Reveal:</b> Swap the Power and Cost of all cards in your deck.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MrNegative-6175c148d57eacef3816a03a643bbc477a627f4e4bcafa7f52c8b581fb904013.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MrNegative-ac13fa50ff2d0a88be8069f513a42451169e1120c36a7255de8a90306b36168e.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "MrSinister",
@@ -1176,8 +1212,8 @@
 			"url": "/cards/MrSinister/",
 			"name": "Mister Sinister",
 			"description": "<b>On Reveal:</b> Add a Sinister Clone to this location with the same Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MrSinister-1807d8a68415c6c7150cbd96820db311e6dc7f394f6879d80b978f0b0c9ef195.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MrSinister-1807d8a68415c6c7150cbd96820db311e6dc7f394f6879d80b978f0b0c9ef195.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "MistyKnight",
@@ -1185,8 +1221,8 @@
 			"url": "/cards/MistyKnight/",
 			"name": "Misty Knight",
 			"description": "<i>We've got to save this city.</i>",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MistyKnight-5e48b706376c14e3567d6b6629d5b8075ae2490e65c12bd22073e9e31d0db648.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MistyKnight-655a6fdaabb3da342a425a3a41c26235278856cd0d8e712ff35871edee75beb1.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "MobiusMMobius",
@@ -1194,17 +1230,17 @@
 			"url": "/cards/MobiusMMobius/",
 			"name": "Mobius M. Mobius",
 			"description": "<b>Ongoing:</b> Your Costs can't be increased. Your opponent's Costs can't be reduced.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MobiusMMobius-f591ff451da686f0c9e29a5770f5b4fd4db70cfbdd923c4817f642e1cac909ea.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MobiusMMobius-c9a11229825a727d11f1e23becb7154f20e50dc739d9a827c4526473607f8879.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Mojo",
 			"variantKey": null,
 			"url": "/cards/Mojo/",
 			"name": "Mojo",
-			"description": "<b>Ongoing:</b> If both players have 4 cards at this location, +6 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mojo-fc44c03cad3659c9e7bf4f426fed748d54c0b06cf16fdcaac88f33601e915e01.webp"
+			"description": "<b>Ongoing:</b> If both sides here are full, +6 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mojo-d332cf63fd641932c173b31a12a7acd5b7d27e208dfbc0f9940d043fbd039853.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "MoonGirl",
@@ -1212,8 +1248,8 @@
 			"url": "/cards/MoonGirl/",
 			"name": "Moon Girl",
 			"description": "<b>On Reveal:</b> Duplicate\nyour hand.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonGirl-c8b862a8964d805d696d422558c823f9a441e65a28c910d08c4044bbb3650076.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonGirl-d08395ab1fc538ab3d00fbe9f3596f1bd179ecf507346a091097f143647b7718.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "MoonKnight",
@@ -1221,8 +1257,8 @@
 			"url": "/cards/MoonKnight/",
 			"name": "Moon Knight",
 			"description": "<b>On Reveal:</b> Discard a card from each player's hand.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonKnight-4633a8a937842f0c75c1b35b8a8d7abcf1986f87d5b7a4605c2917ee54d95864.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonKnight-6cf0247f363f0f55f097c73f79811f896518422d20b1c611b7cb425b858f6021.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Morbius",
@@ -1230,8 +1266,8 @@
 			"url": "/cards/Morbius/",
 			"name": "Morbius",
 			"description": "<b>Ongoing:</b> +2 Power for each time you discarded a card this game.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Morbius-3be73c8197b80420f93bc887e0ceb8c2932ec52fd3e47f78372b5902de7a354b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Morbius-3be73c8197b80420f93bc887e0ceb8c2932ec52fd3e47f78372b5902de7a354b.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Morph",
@@ -1239,8 +1275,17 @@
 			"url": "/cards/Morph/",
 			"name": "Morph",
 			"description": "<b>On Reveal:</b> Become a copy of a random card in your opponent's hand.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Morph-d5db7081c14dc6ade93a6556c559b1580517cc6524853507f5326968827498a1.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Morph-30cd7c5119d1a3f137e8229fd96964a8c53d3cd1a5b5a5b9b3d400c2d7851354.webp",
+			"cost": 3
+		},
+		{
+			"cardDefKey": "MsMarvel",
+			"variantKey": null,
+			"url": "/cards/MsMarvel/",
+			"name": "Ms. Marvel",
+			"description": "<b>Ongoing:</b> Adjacent locations where your cards have unique Costs\nhave +5 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MsMarvel-dae03ed7c592426194f8c6921e7b2c504353b617f75a418651c96590d4ff8a11.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "MultipleMan",
@@ -1248,8 +1293,8 @@
 			"url": "/cards/MultipleMan/",
 			"name": "Multiple Man",
 			"description": "When this moves, add a copy to the old location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MultipleMan-be6782454f0f02eda560aaebc8bbed7f67aea123e3d5957547074b5add50455c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MultipleMan-be6782454f0f02eda560aaebc8bbed7f67aea123e3d5957547074b5add50455c.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Mysterio",
@@ -1257,8 +1302,8 @@
 			"url": "/cards/Mysterio/",
 			"name": "Mysterio",
 			"description": "As you play this, play Illusions to other locations. Disguise this as an Illusion until the game ends.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mysterio-ed226ed148c8b84e3ba05a6f33df455f623e9c682e5eb9d97e1610c576787dfa.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mysterio-ed226ed148c8b84e3ba05a6f33df455f623e9c682e5eb9d97e1610c576787dfa.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Mystique",
@@ -1266,8 +1311,8 @@
 			"url": "/cards/Mystique/",
 			"name": "Mystique",
 			"description": "<b>On Reveal:</b> If the last card you played has an <b>Ongoing</b>, copy its text. <i>(if it's in play)</i>",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mystique-3330ffad4c7e3a5fdb4b632762474cdbca43aa36ee2d6d975a3c7398ba27d043.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mystique-ccb804a999184b8058e9603788c545d99b907781691702ff9383c4a1cf7d9e0d.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Nakia",
@@ -1275,8 +1320,8 @@
 			"url": "/cards/Nakia/",
 			"name": "Nakia",
 			"description": "<b>On Reveal:</b> Give all cards in your hand +1 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nakia-a56911eb8b143caced73bd669d06bbe7ec9bd6dddfda80535fd1d28f7d6b0490.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nakia-3842686e245ef923c483c6d7e7bcee8b9c9be693dd3fcda42561e6d6d5f64258.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Namor",
@@ -1284,8 +1329,8 @@
 			"url": "/cards/Namor/",
 			"name": "Namor",
 			"description": "<b>Ongoing:</b> +5 Power if this is your only card here.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Namor-dc4297f9e30356762986e2b8942ed8e9fcef91812e561c4a489e34b7271c939e.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Namor-b6a9434aa62f8a70ace7add94bd9f5c8e1c2adce5a8b850db5eac3dec61eac65.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Nebula",
@@ -1293,17 +1338,17 @@
 			"url": "/cards/Nebula/",
 			"name": "Nebula",
 			"description": "Each turn your opponent doesn't play a card here, +2 Power. <i>(except the turn you play this)</i>",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nebula-0c3bdd6db2893f301fd208af25eaa0160b269884fdb0d04d7c5c98e31129987b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nebula-1bd5f176812974b4865e189a886000393dde58a55a33902ef5c7822c4187246b.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "NegasonicTeenageWarhead",
 			"variantKey": null,
 			"url": "/cards/NegasonicTeenageWarhead/",
 			"name": "Negasonic Teenage Warhead",
-			"description": "After ANY card is played here, destroy this card AND that card.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NegasonicTeenageWarhead-a61c22c41b5e2632be3279b82bb0eb2b924062674e55a6816a0519668157d294.webp"
+			"description": "After an enemy card is played here, destroy it. <i>(once per game)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NegasonicTeenageWarhead-fd5adef290dc504fd35445e76835592ae5d1272798969b149de7ee4a12090d6a.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "NickFury",
@@ -1311,8 +1356,17 @@
 			"url": "/cards/NickFury/",
 			"name": "Nick Fury",
 			"description": "<b>On Reveal:</b> Add 3 random\n6-Cost cards to your hand.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NickFury-b60346df92dac314d5315592b25fe9c7a97113dafaa3a3ff3badeab6d649c113.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NickFury-b60346df92dac314d5315592b25fe9c7a97113dafaa3a3ff3badeab6d649c113.webp",
+			"cost": 4
+		},
+		{
+			"cardDefKey": "NicoMinoru",
+			"variantKey": null,
+			"url": "/cards/NicoMinoru/",
+			"name": "Nico Minoru",
+			"description": "<b>On Reveal:</b> After you play your next card, cast a spell. <i>(The spell\nchanges each turn.)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NicoMinoru-5c3895d9244c0ee49398ab1c393e73630a2964f7060fff68da7ab2075602155c.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Nightcrawler",
@@ -1320,8 +1374,8 @@
 			"url": "/cards/Nightcrawler/",
 			"name": "Nightcrawler",
 			"description": "You can move this once.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nightcrawler-cd0fd0d90076890c39613232a484d81624dadeef368767f16accf593b0b7373c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nightcrawler-be414c8ec90c0d1be651bc83928b90118b949cd8aadf2a998d9656b867fddadd.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Nimrod",
@@ -1329,8 +1383,8 @@
 			"url": "/cards/Nimrod/",
 			"name": "Nimrod",
 			"description": "When this is destroyed, add a copy to each other location.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nimrod-c1118b29420475199d81a9066269f52faf4105db7c1823c52765c676cd7d6c14.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nimrod-81b6e9a9c1b0bb420134943364405550e0517eb6f48dcdca9bb7c3a3ee9fb467.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Nova",
@@ -1338,8 +1392,8 @@
 			"url": "/cards/Nova/",
 			"name": "Nova",
 			"description": "When this is destroyed, give your cards +1 Power.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nova-14edd772df9e7439704a37089d5feac78dfc3d611436ec092bfd40fcbb5f74f1.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nova-4ac25fc925fae14755c52cfaf16a33b7269a9a24ac76fc6d77768c105e8ccf1b.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Odin",
@@ -1347,8 +1401,8 @@
 			"url": "/cards/Odin/",
 			"name": "Odin",
 			"description": "<b>On Reveal:</b> Activate the <b>On Reveal</b> abilities of your other cards\nat this location.",
-			"cost": 8,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Odin-af7ba7489456e009753a87f846a80e008f40bf3891de4c3a05dd25a9e44d49db.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Odin-2ed1de13ae42be8e8f5b04c0e42a55930cc6b998f360d5e0314f464c3db072d1.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Okoye",
@@ -1356,8 +1410,8 @@
 			"url": "/cards/Okoye/",
 			"name": "Okoye",
 			"description": "<b>On Reveal:</b> Give every card in your deck +1 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Okoye-d2ce7fc3d19163f77006903cf39ccb1a0ab6c4da79c2decf8dabce3029518341.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Okoye-d2ce7fc3d19163f77006903cf39ccb1a0ab6c4da79c2decf8dabce3029518341.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "OmegaRed",
@@ -1365,8 +1419,8 @@
 			"url": "/cards/OmegaRed/",
 			"name": "Omega Red",
 			"description": "<b>Ongoing:</b> If you're ahead by\n10 Power here, +4 Power\nto other locations.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/OmegaRed-42748ad51766fcc09ef3437bf09d56a185dacd610d48dd7f0168927b17a94667.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/OmegaRed-42748ad51766fcc09ef3437bf09d56a185dacd610d48dd7f0168927b17a94667.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Onslaught",
@@ -1374,8 +1428,8 @@
 			"url": "/cards/Onslaught/",
 			"name": "Onslaught",
 			"description": "<b>Ongoing:</b> Double your other <b>Ongoing</b> effects at this location.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Onslaught-6f5cc43101944cb81149e23cc3ff9a8528b3bce88ca0cdf3167af11f69e13747.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Onslaught-845d39e6b642ab7820ff5e3e49651d754ce846fcf95f082ab718996c7a085585.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Orka",
@@ -1383,8 +1437,8 @@
 			"url": "/cards/Orka/",
 			"name": "Orka",
 			"description": "<b>Ongoing:</b> +5 Power if this is your only card here.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Orka-d35558146e54af731f4184ce48a2c534ab09cc0ee88191dd8f76d48daee3ee62.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Orka-d35558146e54af731f4184ce48a2c534ab09cc0ee88191dd8f76d48daee3ee62.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Patriot",
@@ -1392,8 +1446,8 @@
 			"url": "/cards/Patriot/",
 			"name": "Patriot",
 			"description": "<b>Ongoing:</b> Your cards with no abilities have +2 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Patriot-797914dae8a6b78bd9d97213c708e6fc737e8ede642dca29cd9e2a6f0568f837.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Patriot-797914dae8a6b78bd9d97213c708e6fc737e8ede642dca29cd9e2a6f0568f837.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "ThePhoenixForce",
@@ -1401,8 +1455,8 @@
 			"url": "/cards/ThePhoenixForce/",
 			"name": "Phoenix Force",
 			"description": "<b>On Reveal:</b> Revive one of your destroyed cards and merge with it. That card can move each turn.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ThePhoenixForce-2a3f4dcc26caebceb51bf51a31e18e338c7a84e6c02551d53ea7b55c932f0830.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ThePhoenixForce-7b39c66ee5e30b2b0eab0a4411d3becd3f73f8fdf168e5e529020483cf6a9c8a.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Polaris",
@@ -1410,8 +1464,8 @@
 			"url": "/cards/Polaris/",
 			"name": "Polaris",
 			"description": "<b>On Reveal:</b> Move an opposing 1 or 2-Cost card to this location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Polaris-a6540cfa5e2ab63378e3c00f0855cf4290eca2863e7e33141616ffe7a77729d5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Polaris-cdb40f5ac61977450e5e04be7628e5d538210a8e4dd9e99f4536e9717893e2c6.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "ProfessorX",
@@ -1419,8 +1473,8 @@
 			"url": "/cards/ProfessorX/",
 			"name": "Professor X",
 			"description": "<b>Ongoing:</b> Lock down this location. <i>(Cards can't be added, removed, etc.)</i>",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ProfessorX-78f4854299bcb6b6f46184702a20648aa2da5cf8c18b012da11227a706fd71a6.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ProfessorX-279cd68673fd1fd21fff74c3aa11b2921d4f59ebc337de413f1e67663a32d3d1.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Psylocke",
@@ -1428,8 +1482,8 @@
 			"url": "/cards/Psylocke/",
 			"name": "Psylocke",
 			"description": "<b>On Reveal:</b> Next turn, you get +1 Energy.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Psylocke-a680c427b94b2f52c19717a933e6aa61244b6e0431a54a6dd02657bbdf724eaa.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Psylocke-a680c427b94b2f52c19717a933e6aa61244b6e0431a54a6dd02657bbdf724eaa.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Punisher",
@@ -1437,8 +1491,8 @@
 			"url": "/cards/Punisher/",
 			"name": "Punisher",
 			"description": "<b>Ongoing:</b> +1 Power for each opposing card at this location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Punisher-21b7ca397308e246f6ad3e747ff905b3f0f0011cfd98258abc5875a71fc332b0.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Punisher-b22dcb0155b1d81216103576f78c00bbcdc6100bb75e1a3a95ccd2cb6cb5edda.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Quake",
@@ -1446,8 +1500,8 @@
 			"url": "/cards/Quake/",
 			"name": "Quake",
 			"description": "<b>On Reveal:</b> If this is at the middle location, swap the positions of\neach location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quake-6d7c7801d6839281560c3b2d1aec0936e9a890cccf0b0bb64b2ffc358f384f77.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quake-6d7c7801d6839281560c3b2d1aec0936e9a890cccf0b0bb64b2ffc358f384f77.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Quicksilver",
@@ -1455,8 +1509,8 @@
 			"url": "/cards/Quicksilver/",
 			"name": "Quicksilver",
 			"description": "Starts in your opening hand.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quicksilver-4bc86bd865fcbfc6e545b339e6e122845ba0967a1f7b2157ebdfd549472f1cbb.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quicksilver-a4a887821ce3536d6db01d9a908086e0a05d34b840a51e2a97692e4c8262ae12.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Quinjet",
@@ -1464,8 +1518,8 @@
 			"url": "/cards/Quinjet/",
 			"name": "Quinjet",
 			"description": "<b>Ongoing:</b> Cards that didn't start in your deck cost 1 less. <i>(minimum 1)</i>",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quinjet-061babc96e10c1f3c4d95f84d1a385687959759cb79d7a7812352c78a38d4550.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quinjet-d44e150816f3b13720f7003316c4486684ef2b001646d64f18bbbdc2b2209aa8.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "RavonnaRenslayer",
@@ -1473,8 +1527,8 @@
 			"url": "/cards/RavonnaRenslayer/",
 			"name": "Ravonna Renslayer",
 			"description": "<b>Ongoing:</b> Your cards with 1 or less Power cost 1 less. <i>(minimum 1)</i>",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RavonnaRenslayer-9c8a3431f46347969fc9060d9c05c6ff4dabae5f185fc752451013806b9fd872.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RavonnaRenslayer-7fe5ca5e4dae475fed7417b3650b6e27bdec45eb65d3455a13386e349330a5a4.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "RedSkull",
@@ -1482,17 +1536,17 @@
 			"url": "/cards/RedSkull/",
 			"name": "Red Skull",
 			"description": "<b>Ongoing:</b> Enemy cards at this location have +2 Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedSkull-e6adebd889a7c67b06418903907a51b7f2902c4ce2d47c78be1e1f90ca37073b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedSkull-e6adebd889a7c67b06418903907a51b7f2902c4ce2d47c78be1e1f90ca37073b.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Rescue",
 			"variantKey": null,
 			"url": "/cards/Rescue/",
 			"name": "Rescue",
-			"description": "<b>On Reveal:</b> If you play a card here next turn, +5 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rescue-b553cab984029dc2c1c2baa0f7677d45198b73152d4bf2e49aeda78c063c4f92.webp"
+			"description": "<b>On Reveal:</b> If you play a card at this location next turn, +5 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rescue-58ae606e4e7fab0ad0fd31a743ec0ad3a5507713f2128c6c73a5c6b4565b7f6a.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Rhino",
@@ -1500,8 +1554,8 @@
 			"url": "/cards/Rhino/",
 			"name": "Rhino",
 			"description": "<b>On Reveal:</b> Ruin this location. (remove its ability)",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rhino-70af5db33c4261fa04a955e501b2bad9de630f8449f70fc3730f1a387b273854.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rhino-70951c4d0aa24e7f42bf48c85b25cebda69b3a9cf04e764ba3765d7edc2630a1.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "RocketRaccoon",
@@ -1509,8 +1563,8 @@
 			"url": "/cards/RocketRaccoon/",
 			"name": "Rocket Raccoon",
 			"description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketRaccoon-b02eb4d191d289a4c654e084037e6513ed607e2921d052ec8471db5771b96e4f.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketRaccoon-e52d6a150c5d5acd007d736b79c00a7ce9e2a6b73fa04f5a87d668a597e6c39f.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Rockslide",
@@ -1518,17 +1572,17 @@
 			"url": "/cards/Rockslide/",
 			"name": "Rockslide",
 			"description": "<b>On Reveal:</b> Shuffle 2 Rocks into your opponent's deck.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rockslide-1657bcf736d16809083bf76acb8d68e27a436e303a818f824cbc003a69902a1e.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rockslide-d02a9b5856ac90fad5a93150bd08ebc62cdceaf306a9a081b63f0834f3b26c63.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Rogue",
 			"variantKey": null,
 			"url": "/cards/Rogue/",
 			"name": "Rogue",
-			"description": "<b>On Reveal:</b> Steal an <b>Ongoing</b> ability from a random enemy card at\nthis location.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rogue-4f7c98ade89bb3c728611ae702d362e38882cfdd63de5f66d366c7d0780047e4.webp"
+			"description": "<b>On Reveal:</b> Steal the text from a random enemy <b>Ongoing</b> card here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rogue-ffa4e3a381994c2ca9ef3e2b6d79a3efbcf8f38fdb29cfecf403da05c030d05b.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Ronan",
@@ -1536,8 +1590,8 @@
 			"url": "/cards/Ronan/",
 			"name": "Ronan the Accuser",
 			"description": "<b>Ongoing:</b> +2 Power for each card in your opponent's hand.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ronan-107447d4e53ba3a30db36a8effa8a4b5d99f9a52eb654962915950188b86e8c4.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ronan-107447d4e53ba3a30db36a8effa8a4b5d99f9a52eb654962915950188b86e8c4.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Sabretooth",
@@ -1545,8 +1599,8 @@
 			"url": "/cards/Sabretooth/",
 			"name": "Sabretooth",
 			"description": "When this is destroyed, return it to your hand. It costs 0.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sabretooth-4f26d7405bfc5a9e2414f2632d2259f0594fb490d75050f70576206da687f6f7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sabretooth-550882b8f6d9ed0b82d50696e1b148d8ead2a92809b30da53c2a8a4370db0de3.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Sandman",
@@ -1554,8 +1608,8 @@
 			"url": "/cards/Sandman/",
 			"name": "Sandman",
 			"description": "<b>Ongoing:</b> Players can only play 1 card a turn.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-61af13a457b86785ddf90773a5fa3b890d0efd78ad52c7d0fa69a188d2043cfa.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-28c18dbfebae114c568cd6b9dbf36710808f991549f69f7310f810c26f9e9903.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Sauron",
@@ -1563,8 +1617,8 @@
 			"url": "/cards/Sauron/",
 			"name": "Sauron",
 			"description": "<b>On Reveal:</b> Remove the abilities from all <b>Ongoing</b> cards in your\nhand and deck.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-736a5a43f1d9b5f0c8ec56160b13b2f7606287adbafa762928d9d814e74cf6ee.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-8999b17465f706ae1dd02bff088f7e85c53f823d16e64f27de4c8131052210e4.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "ScarletWitch",
@@ -1572,8 +1626,8 @@
 			"url": "/cards/ScarletWitch/",
 			"name": "Scarlet Witch",
 			"description": "<b>On Reveal:</b> Replace this location with a random new one.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ScarletWitch-4dbd2cdd4d444e56a0ae76ba866471330a1d9dbb9c7adb5519ada133771f87f4.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ScarletWitch-652f4213d79cde56ce4e7913d3fc29335046180db7269b386ed5707bdc1349c5.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Scorpion",
@@ -1581,8 +1635,8 @@
 			"url": "/cards/Scorpion/",
 			"name": "Scorpion",
 			"description": "<b>On Reveal:</b> Afflict cards in your opponent's hand with -1 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-b1d75fde80a6a974e0049cb87a6a8ad4d0c0929f2f16b29de83ba23573a8e5df.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-216e46417c131747e78e07861eca3edfad7279921ce4537c1e8036a458e363ec.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Sentinel",
@@ -1590,8 +1644,8 @@
 			"url": "/cards/Sentinel/",
 			"name": "Sentinel",
 			"description": "<b>On Reveal:</b> Add another Sentinel to your hand.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sentinel-0c85ba00fc1a1aafb023a564059bf74a2a39569c5dabe4d6541a43391e6a31eb.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sentinel-832e6834d7fd47ce3b2a1246e5f741c1464e90487f19c626fa4a8329df67bfcc.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Sentry",
@@ -1599,8 +1653,8 @@
 			"url": "/cards/Sentry/",
 			"name": "Sentry",
 			"description": "You can't play this at the right location.\n<b>On Reveal:</b> Add a -10 Power Void to the right location.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sentry-1d249c3e092aa8c13751bf16db2f32ea7d65fc8bd5733533f72118269d20c471.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sentry-4e75060f2748e720934f666d3074100a2bf1b160017071e34e24262e5b1db4be.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Sera",
@@ -1608,8 +1662,8 @@
 			"url": "/cards/Sera/",
 			"name": "Sera",
 			"description": "<b>Ongoing:</b> Cards in your hand cost 1 less. <i>(minimum 1)</i>",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sera-228842f8ffe5d3332dbafd36d41695d3edd93a99685c7497ca89398fe1fe3af5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sera-15c7cea08bc7497610a89030d1080f3ca14338b4ef276a4099dd0a4ce2ef2571.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "ShadowKing",
@@ -1617,17 +1671,17 @@
 			"url": "/cards/ShadowKing/",
 			"name": "Shadow King",
 			"description": "<b>On Reveal:</b> Set all cards here to their original base Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-ecb99dd0431da00339b0368a3da9aa7dd6896d466dc04f5c235f44c8ce3b5ec7.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-cb3e4b8db461ec40ed389f0803e02831b5a77276e3751c626a3fd7f1687cd35a.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "ShangChi",
 			"variantKey": null,
 			"url": "/cards/ShangChi/",
 			"name": "Shang-Chi",
-			"description": "<b>On Reveal:</b> Destroy all enemy cards at this location that have\n9 or more Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShangChi-dcb1740537b84cb0f415e31c954716ac594565b8f64258287f3592058c9ecc66.webp"
+			"description": "<b>On Reveal:</b> Destroy all enemy cards at this location that have\n10 or more Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShangChi-02af9b7c01edd6b6038416898d0837e0d09979ac124bd22f5f11afde8aa810be.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Shanna",
@@ -1635,8 +1689,8 @@
 			"url": "/cards/Shanna/",
 			"name": "Shanna",
 			"description": "<b>On Reveal:</b> Add a random\n1-Cost card to each location.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Shanna-7c9795927b05dc469c027a9c88c72314db4b56488baf93838a54a7ad1a919695.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Shanna-d9bf5eed45b955c6bbdd8dceed7da9d1ea356d18551e9d20cad99d5e67367506.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "SheHulk",
@@ -1644,8 +1698,8 @@
 			"url": "/cards/SheHulk/",
 			"name": "She-Hulk",
 			"description": "Costs 1 less for each unspent Energy last turn.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SheHulk-81b6e2e46972bdeb0008625c7b489c85b65b34acb3ac54d6826b8398b52a4121.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SheHulk-53d3fd6b26b939eb6b836e34dff893d2f006c869717ae77cb49159ead6003913.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Shocker",
@@ -1653,17 +1707,17 @@
 			"url": "/cards/Shocker/",
 			"name": "Shocker",
 			"description": "<i>I'm gonna blast you!</i>",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Shocker-fc14db78ba1c49d9f16e28b5ec1d3e715124e3d1b1594244dde6d1db13cc2a00.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Shocker-fc14db78ba1c49d9f16e28b5ec1d3e715124e3d1b1594244dde6d1db13cc2a00.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Shuri",
 			"variantKey": null,
 			"url": "/cards/Shuri/",
 			"name": "Shuri",
-			"description": "<b>On Reveal:</b> If you play your next card here, double its Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Shuri-696a96c02588524139f7375c714acdf199111719692fc5a9f661dcc39da2f4fe.webp"
+			"description": "<b>On Reveal:</b> If you play your next card at this location, double its Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Shuri-ab66f1f04ef919ab55f8c0f7413ab3a514623cffee4f6de000dafdeceb4e8618.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Silk",
@@ -1671,8 +1725,8 @@
 			"url": "/cards/Silk/",
 			"name": "Silk",
 			"description": "After ANY card is played here, this moves to another location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Silk-2c8a881148815a7ed5979127a760c378c2d8b0d03f273b11e4e8c097777444bc.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Silk-921334963b23ba8c4fd38639e23e1cf2dab0c8253f3bff217d2b5b721c0d8f89.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "SilverSamurai",
@@ -1680,8 +1734,8 @@
 			"url": "/cards/SilverSamurai/",
 			"name": "Silver Samurai",
 			"description": "<b>On Reveal:</b> Each player discards the lowest-Power card from their hand.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSamurai-54a5cfc911bf5c32011ddd9dcf5c3a95e6a8f65c336e16c83d73d3aad725fe21.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSamurai-54a5cfc911bf5c32011ddd9dcf5c3a95e6a8f65c336e16c83d73d3aad725fe21.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "SilverSurfer",
@@ -1689,8 +1743,8 @@
 			"url": "/cards/SilverSurfer/",
 			"name": "Silver Surfer",
 			"description": "<b>On Reveal:</b> Give your other\n3-Cost cards +2 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSurfer-f11e71ac3ce6b7b797ea7cf9b11af2b0104d5f6896aeda1db1fa34de341e0c02.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSurfer-42ae47da216048a0304de39205add38b87cdf41b76b28b80d1d16f270f8e05ac.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Snowguard",
@@ -1698,8 +1752,8 @@
 			"url": "/cards/Snowguard/",
 			"name": "Snowguard",
 			"description": "<b>On Reveal:</b> Add the Hawk and Bear auroras to your hand.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Snowguard-ebc9e4ccd5ec7e996b6077974e4db2304415ec94ab278df6958ae825c2845477.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Snowguard-830c2cf89bad16f85e51cddfbe84bbe8a4e059f3a3581b53c3a8fd6d5e55a7b1.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Spectrum",
@@ -1707,8 +1761,8 @@
 			"url": "/cards/Spectrum/",
 			"name": "Spectrum",
 			"description": "<b>On Reveal:</b> Give your <b>Ongoing</b> cards +2 Power.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Spectrum-7e50d26fb5c95d9a76a029f23915411b77caa12fd3d6c5588f899debd5a59bdd.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Spectrum-00b28fce37b71e9d0f147629cede843adc7ff72e9d42398e7f06df589f37277b.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "SpiderHam",
@@ -1716,8 +1770,8 @@
 			"url": "/cards/SpiderHam/",
 			"name": "Spider-Ham",
 			"description": "<b>On Reveal:</b> Transform the leftmost card in your opponent's hand into a Pig, keeping its Power and Cost.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderHam-dbb3fd4f3dea0b0083fc0c6d9907562ea9527983c3036fb26785d441dcbf9999.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderHam-dbb3fd4f3dea0b0083fc0c6d9907562ea9527983c3036fb26785d441dcbf9999.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "SpiderMan",
@@ -1725,17 +1779,17 @@
 			"url": "/cards/SpiderMan/",
 			"name": "Spider-Man",
 			"description": "<b>On Reveal:</b> Move to another location and pull an enemy card from\nhere to there.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderMan-dd69ada31c07b4184f96444ef0b656343f085a8febc96255f8c0e9695bc2debb.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderMan-aede73c569e6532f7b9cdd67e9e42c451edad3b4bbb37888ca5eecfb21b77129.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "SpiderMan2099",
 			"variantKey": null,
 			"url": "/cards/SpiderMan2099/",
 			"name": "Spider-Man 2099",
-			"description": "The first time this moves to a location, destroy an enemy card there.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderMan2099-800469e51f2f457f9097f43b002f1299fef48d7b7ea30b47ffd0dd1c0215d6a8.webp"
+			"description": "The first time this moves to any location, destroy an enemy card there.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderMan2099-cb52174661b1e3d295c3ac78aed1ab198aca220f28ae1ee3ff0bb5f570c1baf5.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "SpiderWoman",
@@ -1743,8 +1797,8 @@
 			"url": "/cards/SpiderWoman/",
 			"name": "Spider-Woman",
 			"description": "<b>On Reveal:</b> Afflict all enemy cards here with -1 Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderWoman-eaa646a7f8905c7b2a536f5ac1a9799c905d10b7080f984b95d3bdfd934ecb08.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderWoman-446caba3238d439944b28ed62c8f64a9863bb92fc8db7c1f0ce101418f7d059c.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "SquirrelGirl",
@@ -1752,8 +1806,8 @@
 			"url": "/cards/SquirrelGirl/",
 			"name": "Squirrel Girl",
 			"description": "<b>On Reveal:</b> Add a 1-Power Squirrel to each other location.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SquirrelGirl-220dcec9af7b116b6dcecfa1c8a13c13146c954ba7caa041cc2f176e0e11d56c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SquirrelGirl-220dcec9af7b116b6dcecfa1c8a13c13146c954ba7caa041cc2f176e0e11d56c.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Starlord",
@@ -1761,8 +1815,8 @@
 			"url": "/cards/Starlord/",
 			"name": "Star-Lord",
 			"description": "<b>On Reveal:</b> If your opponent played a card here this turn, +3 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Starlord-9f3a9998a91963cb342931c912683632c4beb4915930535b60662e05c5dfb393.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Starlord-f8658cbc0a4a10fa0a23e0b9716c626476ad3d62fd3bbc168ace8b4522566b59.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Stature",
@@ -1770,8 +1824,8 @@
 			"url": "/cards/Stature/",
 			"name": "Stature",
 			"description": "Costs 1 if your opponent discarded a card from their hand this game.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Stature-2507026b1c45a1eaf94fd7205d0a95bb397fb53b99e09c52fd84cd725a945789.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Stature-d2863bd71907d1ea7ee0cc8b1e8d1fae325f536505df7f0a3dcc9c51f2306328.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Stegron",
@@ -1779,8 +1833,8 @@
 			"url": "/cards/Stegron/",
 			"name": "Stegron",
 			"description": "<b>On Reveal:</b> Move an enemy card from here to another location.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Stegron-981f18d35ee12d8e9c30039ee8a0e870cb06369be1b317fb9c1130ad1f6c1763.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Stegron-a95066373adaa069d37928d8a39a27a4f563af05634400fe69eb5ebff9866942.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Storm",
@@ -1788,8 +1842,8 @@
 			"url": "/cards/Storm/",
 			"name": "Storm",
 			"description": "<b>On Reveal:</b> Flood this location. Next turn is the last turn cards can\nbe played here.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Storm-ec9d0c44271db8b787e674225c9c85a8c9447513484f73db654e42368684518d.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Storm-ec9d0c44271db8b787e674225c9c85a8c9447513484f73db654e42368684518d.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "StrongGuy",
@@ -1797,17 +1851,17 @@
 			"url": "/cards/StrongGuy/",
 			"name": "Strong Guy",
 			"description": "<b>Ongoing:</b> If your hand is empty, +6 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/StrongGuy-c6adbe8d139c11e2a08a38cc04ef4b00e3492a9ba548b2c11df96679f812f1b2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/StrongGuy-23be235444f42389887351f27b885dd1533a2fa9d21e798ad6c4f0489f78c43a.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Sunspot",
 			"variantKey": null,
 			"url": "/cards/Sunspot/",
 			"name": "Sunspot",
-			"description": "At the end of each turn, gain +1 Power for each unspent Energy.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sunspot-236f9065ebc89706ca31e97d6ce442c0f82ec6fbb0222d32ef4e4ec752bb9688.webp"
+			"description": "After each turn, gain +1 Power for each unspent Energy.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sunspot-77f0d4731d0e3954e951fe9133e093509d8c4aba74abe99f05fd065952e48f47.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "SuperSkrull",
@@ -1815,8 +1869,8 @@
 			"url": "/cards/SuperSkrull/",
 			"name": "Super-Skrull",
 			"description": "<b>Ongoing:</b> Has the <b>Ongoing</b> effects of all enemy cards.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SuperSkrull-1feb60c91c44c44d41ce3bf26a53f9219ca34d7bd4a4a665ef688c889a52e9ef.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SuperSkrull-1feb60c91c44c44d41ce3bf26a53f9219ca34d7bd4a4a665ef688c889a52e9ef.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Swarm",
@@ -1824,8 +1878,8 @@
 			"url": "/cards/Swarm/",
 			"name": "Swarm",
 			"description": "When this is discarded from your hand, add two copies that Cost 0\nto your hand.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Swarm-a8b39d6885d7f495938392910d9c1aab877a95e9a725f18b0486ecde8f79ddc3.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Swarm-a8b39d6885d7f495938392910d9c1aab877a95e9a725f18b0486ecde8f79ddc3.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "SwordMaster",
@@ -1833,8 +1887,8 @@
 			"url": "/cards/SwordMaster/",
 			"name": "Sword Master",
 			"description": "<b>On Reveal:</b> Discard a card from your hand.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SwordMaster-f374109cc548fff20d51af209c1554287b793c688aba7d862e0ac357b8e6079b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SwordMaster-0936af43666ac895f3af56d4bcffd210007d6ca65c5007ad421a087320435638.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Taskmaster",
@@ -1842,8 +1896,8 @@
 			"url": "/cards/Taskmaster/",
 			"name": "Taskmaster",
 			"description": "<b>On Reveal:</b> Set this card’s Power equal to that of the last card you played. <i>(if that card's in play)</i>",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Taskmaster-cbceffb780f90d04b3a457b65167d873e8b0d2c1b5cbcac8fe1af1e45bce1627.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Taskmaster-b635b23f16a85774e143d05f5cb53af264faed336879274714b725933ef25341.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Thanos",
@@ -1851,8 +1905,8 @@
 			"url": "/cards/Thanos/",
 			"name": "Thanos",
 			"description": "At the start of the game, shuffle the six Infinity Stones into your deck.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thanos-b3f3d618344010bdeede46b22c2842bf9c90033879b12273a6e089263094835c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thanos-82f8499e4d098da8e38c4ab2a8ec74e340ca9c61f16c04609e8b0f60d51a3001.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "TheCollector",
@@ -1860,8 +1914,8 @@
 			"url": "/cards/TheCollector/",
 			"name": "The Collector",
 			"description": "When a card enters your hand from anywhere <i>(except your deck)</i>,\n+1 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TheCollector-09ebd04175103a831d9a86cf55ec3636d5f6d19391c7c5027fd419b236d7694c.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TheCollector-a96d7516d5da3d931a8d6d458ab3157a5bd5a8213d6103c79db8f36db2a3b92c.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Hood",
@@ -1869,8 +1923,8 @@
 			"url": "/cards/Hood/",
 			"name": "The Hood",
 			"description": "<b>On Reveal:</b> Add a Demon to your hand.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hood-58742138b5c515c37f9986484b7cc68240ad5c65750cf84595b9a707ea91cfe5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hood-914fffd7486352ba5dcdf09e50a49ca9f4fd810d1263fee1683ccaa6b6f7f383.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Infinaut",
@@ -1878,8 +1932,8 @@
 			"url": "/cards/Infinaut/",
 			"name": "The Infinaut",
 			"description": "If you played a card last turn, you can't play this.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Infinaut-68c3a094d1b23330f4865a2c969400d8a3d4116e2467ad235545cd2113e78263.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Infinaut-1c3cf32b4c10a93f80bbd59764f3292456d4f64bd9f69292c8a99bf7d93d7693.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "LivingTribunal",
@@ -1887,8 +1941,8 @@
 			"url": "/cards/LivingTribunal/",
 			"name": "The Living Tribunal",
 			"description": "<b>Ongoing:</b> Split your total Power evenly among all locations.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LivingTribunal-df7e08b54a7f0194c3f01a4ed103ef535dc37c615ae42c2f3d23b7e2d8e1dba9.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LivingTribunal-abecdb273d8809fdf4b9151c758e5fbf2b23a74804b90d63e09e80aa5fb03753.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "TheThing",
@@ -1896,8 +1950,8 @@
 			"url": "/cards/TheThing/",
 			"name": "The Thing",
 			"description": "<i>It's clobberin' time!</i>",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TheThing-b31fa8f4c440826b9f6ee915f1b960143e80e139298c781e243f7eb7ee1a2397.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TheThing-b31fa8f4c440826b9f6ee915f1b960143e80e139298c781e243f7eb7ee1a2397.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Thor",
@@ -1905,8 +1959,8 @@
 			"url": "/cards/Thor/",
 			"name": "Thor",
 			"description": "<b>On Reveal:</b> Shuffle Mjolnir into your deck.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thor-c66e1a4ad3afbfef4e98ab2e1a75c2e805359d5842733d478e3291a2d460077a.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thor-578a5e8c4866e46b76c561d649364efc517bc539e985f7e913fb6ca7eaf562a5.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Titania",
@@ -1914,8 +1968,8 @@
 			"url": "/cards/Titania/",
 			"name": "Titania",
 			"description": "After ANY card is played here, this card switches sides.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Titania-4d3c193750d3121177900d4b164a9f05bd0d076b4b1c96cde768f9b0de182a2b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Titania-1ae64730a3d0dfdcceaa3ef35be52304a5dee626b79a1e846f5601a796a30242.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "TyphoidMary",
@@ -1923,17 +1977,17 @@
 			"url": "/cards/TyphoidMary/",
 			"name": "Typhoid Mary",
 			"description": "<b>Ongoing:</b> Your other cards\nhave -1 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TyphoidMary-a84a2e7e23391d72e86afa18f2d20e054a208a7803fba6c4bd7acb6ced573fae.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TyphoidMary-67907153ba617f36b972f2bf6f9b015286378aea1af62ebd340fa811f2c28456.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Uatu",
 			"variantKey": null,
 			"url": "/cards/Uatu/",
 			"name": "Uatu the Watcher",
-			"description": "Once this is in your hand, you can see the unrevealed locations.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Uatu-615998e4b9f366acd781019e3ff7dbf85e4fcfaef08505539c188cb4f22daf4f.webp"
+			"description": "At the start of the game, shows the right location to you.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Uatu-615998e4b9f366acd781019e3ff7dbf85e4fcfaef08505539c188cb4f22daf4f.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Ultron",
@@ -1941,8 +1995,8 @@
 			"url": "/cards/Ultron/",
 			"name": "Ultron",
 			"description": "<b>On Reveal:</b> Create four 1-Power Drones at each other location.",
-			"cost": 6,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ultron-0b2ca2ed2d482cd284c53c725acd6563f26957374c031bdfa1ad626e67f0e775.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ultron-1884cb5909014edc0a370ea8f473b4e367acb5587c8f32544fd7c30b545bf372.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Valkyrie",
@@ -1950,8 +2004,8 @@
 			"url": "/cards/Valkyrie/",
 			"name": "Valkyrie",
 			"description": "<b>On Reveal:</b> Set ALL cards at this location to 3 Power.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Valkyrie-c25fafe8fc628ce56a542012ecc68b31e1e7f57610250700e4213889d27e1051.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Valkyrie-2cef4d9876ebca4e51334c98f99d76789bb4cf97680e02a8ac43db450e53074b.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Venom",
@@ -1959,17 +2013,17 @@
 			"url": "/cards/Venom/",
 			"name": "Venom",
 			"description": "<b>On Reveal:</b> Destroy your other cards at this location. Add their Power\nto this card.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Venom-23ecba3c6d7d504caea3a3e4690256dc43501af1ad980aa37726e7aac813a7a6.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Venom-9f28751133d7f0717a975c73dfbbb6c1ad29da3be53a6c3d52271da11edbb3c8.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Viper",
 			"variantKey": null,
 			"url": "/cards/Viper/",
 			"name": "Viper",
-			"description": "<b>On Reveal:</b> Your opponent gains control of one of your other cards\nat this location.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-aafe58bea50574eb7fa19eb97c83be9300f6249d4af6633bc8dd0643e3ea180a.webp"
+			"description": "<b>On Reveal:</b> One of your other cards here switches sides.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-89452adc8347c12b09661579273e4c2e636cfadf75ad99727408b5321f42ec97.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Vision",
@@ -1977,8 +2031,8 @@
 			"url": "/cards/Vision/",
 			"name": "Vision",
 			"description": "You can move this each turn.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Vision-b2fa2f3cfa8af61f5ab255ebb5a3a092528826023184174b1bb196b32261e19b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Vision-53eb981c777a371ea5056937709d5995e86c3e8f44648a5e36fbffdb0f01bca5.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Vulture",
@@ -1986,17 +2040,17 @@
 			"url": "/cards/Vulture/",
 			"name": "Vulture",
 			"description": "When this card moves,\n+5 Power.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Vulture-c0899c4a295caa6079db35557fc9bb676c58c752d55f0cb74489cc94d0cfa942.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Vulture-c0899c4a295caa6079db35557fc9bb676c58c752d55f0cb74489cc94d0cfa942.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Warpath",
 			"variantKey": null,
 			"url": "/cards/Warpath/",
 			"name": "Warpath",
-			"description": "<b>Ongoing:</b> If any of your locations are empty, +4 Power.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Warpath-38c7196eaa9e3847a01bd29c11777453b8c9f5f162431ce5db157a43a85e40f5.webp"
+			"description": "<b>Ongoing:</b> If any of your locations are empty, +5 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Warpath-4637f3b8e11dad11dc64aa7b5f7881cf3a731c0c90597d8d8391c4bf6985a974.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Wasp",
@@ -2004,17 +2058,26 @@
 			"url": "/cards/Wasp/",
 			"name": "Wasp",
 			"description": "<i>My secret power is that I get things done.</i>",
-			"cost": 0,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wasp-e3805f254a020fc5c7546ebbbc91cc48039f15a1adf778da45c3c0b36d6ab16a.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wasp-e3805f254a020fc5c7546ebbbc91cc48039f15a1adf778da45c3c0b36d6ab16a.webp",
+			"cost": 0
 		},
 		{
 			"cardDefKey": "Wave",
 			"variantKey": null,
 			"url": "/cards/Wave/",
 			"name": "Wave",
-			"description": "<b>On Reveal:</b> All cards cost 4 until the end of next turn.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wave-bba91298379e3bcda25b9e6a8bce0015de6503abfa85003a52366c1d002b2795.webp"
+			"description": "<b>On Reveal:</b> All cards cost a maximum of 4 until the end\nof next turn.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wave-3dee467bcca3fe2714dcb6ceaec91efc32f5aec8c4b1d0b13f5674f5bf3532a9.webp",
+			"cost": 3
+		},
+		{
+			"cardDefKey": "WerewolfByNight",
+			"variantKey": null,
+			"url": "/cards/WerewolfByNight/",
+			"name": "Werewolf By Night",
+			"description": "After you play an <b>On Reveal</b> card at another location, move there and\ngain +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-0a3a67b73f07c25948cb26e9c23a92ed399f4c0e8de088ac4f68ce0ea56fe3cb.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "WhiteQueen",
@@ -2022,17 +2085,17 @@
 			"url": "/cards/WhiteQueen/",
 			"name": "White Queen",
 			"description": "<b>On Reveal:</b> Copy the highest-Cost card in your opponent's hand\ninto your hand.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteQueen-85972ecb8fb54c937606c8668b3b2d04201e8e1a5ae7e7f6807cab89d820b836.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteQueen-52b671586cc3224ca71229108a7995417b547fa93a19b2a1acd8debe2a76d117.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "WhiteTiger",
 			"variantKey": null,
 			"url": "/cards/WhiteTiger/",
 			"name": "White Tiger",
-			"description": "<b>On Reveal:</b> Add a 7-Power Tiger to another location.",
-			"cost": 5,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteTiger-efedeaa35e9c894601b268b2556c95cc67876b0cae72416eb6138051d3bbe70a.webp"
+			"description": "<b>On Reveal:</b> Add a 8-Power Tiger to another location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteTiger-073ce96fc60fb60f53ecf717304a2f60e7dfdadeb3c47abbcc8f26ead4cc8582.webp",
+			"cost": 5
 		},
 		{
 			"cardDefKey": "Wolfsbane",
@@ -2040,8 +2103,8 @@
 			"url": "/cards/Wolfsbane/",
 			"name": "Wolfsbane",
 			"description": "<b>On Reveal:</b> +2 Power for each other card you have here.",
-			"cost": 3,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wolfsbane-2655d99bf5cd70b08dc4854ee3ca68f899b738b0ddac5a706c7a4522e311a0ed.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wolfsbane-2655d99bf5cd70b08dc4854ee3ca68f899b738b0ddac5a706c7a4522e311a0ed.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Wolverine",
@@ -2049,8 +2112,8 @@
 			"url": "/cards/Wolverine/",
 			"name": "Wolverine",
 			"description": "When this is discarded or destroyed, regenerate it at a random location\nwith +2 Power.",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wolverine-0adea4aded8c1301cc3cf4fa55e2b2c512438c00552f7f911d9e67cad490d720.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wolverine-5e7bebba994f7d08572a8e6505bfc26e26b8b2e42b1d6538484d81d4fb9c616b.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Wong",
@@ -2058,8 +2121,8 @@
 			"url": "/cards/Wong/",
 			"name": "Wong",
 			"description": "<b>Ongoing:</b> Your <b>On Reveal</b> abilities at this location happen twice.",
-			"cost": 4,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wong-31dde613883ce0d626f0ad574dd3d53e7f8a5db4a1cfac8555f6d526bc9080d0.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wong-a0a51bd935b8e165a3c46e9d1356b46bacb51db018c31870edceb0488372da09.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "X23",
@@ -2067,8 +2130,8 @@
 			"url": "/cards/X23/",
 			"name": "X-23",
 			"description": "When this is discarded or destroyed, regenerate it at a random location and you get +1 Energy next turn.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/X23-917986465da8c89bb5c678c390e026676f5eba3b2f6c9eee1ffbf46ba7a2e01b.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/X23-917986465da8c89bb5c678c390e026676f5eba3b2f6c9eee1ffbf46ba7a2e01b.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Yellowjacket",
@@ -2076,8 +2139,8 @@
 			"url": "/cards/Yellowjacket/",
 			"name": "Yellowjacket",
 			"description": "<b>On Reveal:</b> Afflict your other cards at this location with -1 Power.",
-			"cost": 0,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yellowjacket-8586c012104ff9221c9713aaf39618f09902c1cbdebb84fd59bac0d267a8ce30.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yellowjacket-8586c012104ff9221c9713aaf39618f09902c1cbdebb84fd59bac0d267a8ce30.webp",
+			"cost": 0
 		},
 		{
 			"cardDefKey": "Yondu",
@@ -2085,8 +2148,8 @@
 			"url": "/cards/Yondu/",
 			"name": "Yondu",
 			"description": "<b>On Reveal:</b> Destroy the top card of your opponent's deck.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yondu-8a852b0b2b763e9df83ec1e6051bebf6bcaa8d2ae4813442a859f6ae57e80ff2.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yondu-539e7b8bc5cc63ef9c62c0a308161cbd52462584a514d2f9496e1a28b972a290.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Zabu",
@@ -2094,8 +2157,8 @@
 			"url": "/cards/Zabu/",
 			"name": "Zabu",
 			"description": "<b>Ongoing:</b> Your 4-Cost cards cost 1 less. <i>(minimum 1)</i>",
-			"cost": 2,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zabu-0da27b0ff5b7a52e9eb17e48460d8d149161366cfea002ff5ec0bea109678ff5.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zabu-c32913e6cd1deabd11178c2963b1103e9484de759cffc201fe454589f4d183ba.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Zero",
@@ -2103,8 +2166,8 @@
 			"url": "/cards/Zero/",
 			"name": "Zero",
 			"description": "<b>On Reveal:</b> Remove the abilities on the next card you play.",
-			"cost": 1,
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zero-5c882a0ec1443239f55212f68531c0d4d138bf2d92e39705fbaa9e8dcbf9d627.webp"
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zero-24443c997de4f9e9bb05c472791b5468bdb831c761034800263ac98e4c1da4fe.webp",
+			"cost": 1
 		}
 	]
 }

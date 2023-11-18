@@ -1,19 +1,11 @@
 import { error, type RequestHandler } from '@sveltejs/kit';
 import { GetDraft } from '$lib/snap/draft';
-import { fetchSession } from '$lib/server/sessionHandler';
+import { ValidateSession } from '$lib/server/sessionHandler';
 
 export const POST: RequestHandler = async ({ cookies, locals, params }) => {
-	const session_id = cookies.get('session_id');
-	if (!session_id || !locals.user) {
-		throw error(401);
-	}
-	
-	const session = fetchSession(session_id);
-	if (session?.user_id != locals.user?.id) {
-		throw error(403);
-	}
+	ValidateSession(cookies, locals.user, 'session_id')
 
-	const draft = GetDraft(locals.user.name)
+	const draft = GetDraft(locals.user!.name)
 	if (!draft || !draft.currentChoice) {
 		throw error(404);
 	}

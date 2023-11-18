@@ -1,11 +1,22 @@
 import * as cards from '$lib/data/cards.json';
-import { EventEmitter } from '@d-fischer/typed-event-emitter';
+import { EventEmitter, type EventHandler } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 
 const drafts = new Map<string, Draft>();
 
+const voting_period_s = 20;
+
 export function GetDraft(player: string) {
 	return drafts.get(player);
+}
+
+export type DraftEvents = {
+	DraftStarted: EventHandler<[player_channel: string]>;
+	DraftCanceled: EventHandler<[player_channel: string]>;
+	NewChoice: EventHandler<[player_channel: string, choice: Choice, duration: number]>;
+	ChoiceSelected: EventHandler<[player_channel: string, card: Card]>;
+	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
+	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
 }
 
 export default class Draft extends EventEmitter {
@@ -13,14 +24,27 @@ export default class Draft extends EventEmitter {
 	public total: number = 0;
 	public player: string = '';
 	public currentChoice: Choice | undefined;
+	private voteTimer: NodeJS.Timeout | undefined;
 
-	public constructor() {
+	public constructor(draftEvents: DraftEvents) {
 		super();
+		this.onDraftStarted(draftEvents.DraftStarted);
+		this.onDraftCanceled(draftEvents.DraftCanceled);
+		this.onNewChoice(async (player_channel, choice) => {
+			// delay 5 seconds before announcing a new choice for the stream to update
+			await new Promise(f => setTimeout(f, 5000));
+			draftEvents.NewChoice(player_channel, choice, voting_period_s);
+		});
+		this.onChoiceSelected(draftEvents.ChoiceSelected);
+		this.onDraftComplete(draftEvents.DraftComplete);
+		this.onVotingClosed(draftEvents.VotingClosed)
 	}
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
 
     onNewChoice = this.registerEvent<[player_channel: string, choice: Choice]>();
+
+	onVotingClosed = this.registerEvent<[player_channel: string, result: string, ties: string[]]>()
 
     onChoiceSelected = this.registerEvent<[player_channel: string, card: Card]>();
 
@@ -42,6 +66,12 @@ export default class Draft extends EventEmitter {
 
 	public CancelDraft() {
 		drafts.delete(this.player);
+
+		if (this.voteTimer) {
+			clearTimeout(this.voteTimer);
+			this.voteTimer = undefined;
+		}
+
 		this.emit(this.onDraftCanceled, this.player);
 	}
 
@@ -51,6 +81,8 @@ export default class Draft extends EventEmitter {
 		if (available.length < 3) {
 			throw new Error('Not enough selectable cards to continue draft');
 		}
+
+		const voting_period_ms = (voting_period_s + 5) * 1000;
 	
 		const deck = shuffle(available);
 		const newChoice = {
@@ -60,12 +92,62 @@ export default class Draft extends EventEmitter {
 			votes: new Map<string, string>(),
 			votes1: 0,
 			votes2: 0,
-			votes3: 0
+			votes3: 0,
+			votes_closed: Date.now() + voting_period_ms, // voting period + 5 seconds after votes open
 		};
 	
 		this.emit(this.onNewChoice, this.player, newChoice);
+		this.voteTimer = setTimeout(() => {
+			const result = this.CloseVoting();
+			if (result && result.winner) {
+				this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties)
+			}
+		}, voting_period_ms);
 	
 		return newChoice;
+	}
+
+	private CloseVoting() {
+		let ties: Card[] = [];
+		let winner = undefined;
+		if (!this.currentChoice) return { winner: undefined, ties: ties };
+
+
+		if ((this.currentChoice?.votes1 > this.currentChoice?.votes2) &&
+			((this.currentChoice?.votes1 > this.currentChoice?.votes3))) {
+				winner = this.currentChoice?.card1;
+		}
+		if ((this.currentChoice?.votes2 > this.currentChoice?.votes1) &&
+			((this.currentChoice?.votes2 > this.currentChoice?.votes3))) {
+				winner = this.currentChoice?.card2;
+		}
+		if ((this.currentChoice?.votes3 > this.currentChoice?.votes2) &&
+			((this.currentChoice?.votes3 > this.currentChoice?.votes1))) {
+				winner = this.currentChoice?.card3;
+		}
+
+		if (!winner) {
+			if ((this.currentChoice.votes1 == this.currentChoice.votes2) &&
+				(this.currentChoice.votes1 == this.currentChoice.votes3)) {
+					ties = [this.currentChoice.card1, this.currentChoice.card2, this.currentChoice.card3]
+			}
+			else if ((this.currentChoice.votes1 == this.currentChoice.votes2)) {
+				ties = [this.currentChoice.card1, this.currentChoice.card2]
+			}
+			else if ((this.currentChoice.votes1 == this.currentChoice.votes3)) {
+				ties = [this.currentChoice.card1, this.currentChoice.card3]
+			}
+			
+			else {
+				ties = [this.currentChoice.card2, this.currentChoice.card3]
+			}
+			
+			winner = ties[Math.floor(Math.random() * ties.length)]
+		}
+		
+		this.Choose(winner.cardDefKey)
+
+		return { winner: winner, ties: ties.map((card) => card.cardDefKey) };
 	}
 
 	public Choose(cardDefKey: string | undefined | null) {
@@ -186,4 +268,5 @@ export type Choice = {
 	votes1: number;
 	votes2: number;
 	votes3: number;
+	votes_closed: number;
 };
