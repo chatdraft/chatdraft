@@ -21,6 +21,9 @@
 
 	onMount(() => {
 		setInterval(() => {
+			invalidateAll();
+		}, 5000);
+		setInterval(() => {
 			now = Date.now();
 		}, 100)
 	});

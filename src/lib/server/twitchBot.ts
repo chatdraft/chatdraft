@@ -68,4 +68,8 @@ export default class TwitchBot {
             TwitchBot.Say(player_channel, `Voting closed! The winning card is ${result}.`)
         }
     }
+
+    public static async ChoiceOverride(player_channel: string, result: string) {
+        TwitchBot.Say(player_channel, `${player_channel} overrode the vote and selected ${result}!`)
+    }
 }

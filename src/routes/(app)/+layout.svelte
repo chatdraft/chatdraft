@@ -76,7 +76,7 @@
 					<a href="mockdraft">Mock Draft</a>
 				</li>
 				<li>
-					<a href="{`stream/${user.display_name}`}" target="_blank">Stream View</a>
+					<a href="{`stream/${user.name}`}" target="_blank">Stream View</a>
 				</li>
 				{/if}
 				<li>

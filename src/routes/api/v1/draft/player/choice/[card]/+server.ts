@@ -31,7 +31,7 @@ export const POST: RequestHandler = async ({ cookies, locals, params }) => {
 		throw(400)
 	}
 
-	draft.Choose(choice.cardDefKey);
+	draft.Choose(choice.cardDefKey, true);
 
 	return new Response(null, { status: 204 } );
 };

@@ -17,6 +17,7 @@ export type DraftEvents = {
 	ChoiceSelected: EventHandler<[player_channel: string, card: Card]>;
 	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
 	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
+	ChoiceOverride: EventHandler<[player_channel: string, result: string]>;
 }
 
 export default class Draft extends EventEmitter {
@@ -38,6 +39,7 @@ export default class Draft extends EventEmitter {
 		this.onChoiceSelected(draftEvents.ChoiceSelected);
 		this.onDraftComplete(draftEvents.DraftComplete);
 		this.onVotingClosed(draftEvents.VotingClosed)
+		this.onChoiceOverride(draftEvents.ChoiceOverride)
 	}
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
@@ -51,6 +53,8 @@ export default class Draft extends EventEmitter {
     onDraftComplete = this.registerEvent<[player_channel: string, deck: Deck]>();
 
     onDraftCanceled = this.registerEvent<[player_channel: string]>();
+
+	onChoiceOverride = this.registerEvent<[player_channel: string, result: string]>();
 
 
 	public StartDraft(player: string) {
@@ -76,6 +80,11 @@ export default class Draft extends EventEmitter {
 	}
 
 	public NewChoice(excluded: Card[] = []): Choice {
+		if (this.voteTimer) {
+			clearTimeout(this.voteTimer);
+			this.voteTimer = undefined;
+		}
+
 		const available = cards.all.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
 	
 		if (available.length < 3) {
@@ -101,6 +110,9 @@ export default class Draft extends EventEmitter {
 			const result = this.CloseVoting();
 			if (result && result.winner) {
 				this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties)
+				if (this.total == 12) {
+					this.emit(this.onDraftComplete, this.player, this.cards);
+				}
 			}
 		}, voting_period_ms);
 	
@@ -150,7 +162,8 @@ export default class Draft extends EventEmitter {
 		return { winner: winner, ties: ties.map((card) => card.cardDefKey) };
 	}
 
-	public Choose(cardDefKey: string | undefined | null) {
+	public Choose(cardDefKey: string | undefined | null, override: boolean = false) {
+		if (override) this.emit(this.onChoiceOverride, this.player, cardDefKey);
 		if (!cardDefKey) return;
 
 		if (!this.CanChoose(cardDefKey)) return;
@@ -163,7 +176,6 @@ export default class Draft extends EventEmitter {
 
 		if (this.total == 12) {
 			this.currentChoice = undefined;
-			this.emit(this.onDraftComplete, this.player, this.cards);
 		} else {
 			this.currentChoice = this.NewChoice(this.cards);
 		}

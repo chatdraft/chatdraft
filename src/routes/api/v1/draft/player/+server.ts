@@ -21,7 +21,8 @@ export const POST: RequestHandler = async ({ locals, cookies }) => {
 		NewChoice: TwitchBot.NewChoice,
 		ChoiceSelected: TwitchBot.ChoiceSelected,
 		DraftComplete: TwitchBot.DraftComplete,
-		VotingClosed: TwitchBot.VotingClosed
+		VotingClosed: TwitchBot.VotingClosed,
+		ChoiceOverride: TwitchBot.ChoiceOverride,
 	});
 	draft.StartDraft(locals.user!.name);
 
