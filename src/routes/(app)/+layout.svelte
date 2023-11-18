@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-	import { twitch_login_uri } from '$lib/api/twitch/client';
+	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import '../../app.postcss';
 
 	// Floating UI for Popups
@@ -43,6 +43,10 @@
 	async function login() {
 		window.location.href = twitch_login_uri;
 	}
+
+	async function InviteBot() {
+		window.location.href = twitch_bot_uri;
+	}
 </script>
 
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotFooter="bg-surface-700 text-center">
@@ -72,12 +76,17 @@
 				</li>
 
 				{#if user}
-				<li>
-					<a href="mockdraft">Mock Draft</a>
-				</li>
-				<li>
-					<a href="{`stream/${user.name}`}" target="_blank">Stream View</a>
-				</li>
+					<li>
+						<a href="mockdraft">Mock Draft</a>
+					</li>
+					<li>
+						<a href="{`stream/${user.name}`}" target="_blank">Stream View</a>
+					</li>
+					{#if user.name == 'chatdraftbot'}
+						<li>
+							<button on:click={InviteBot}>Setup Chatbot</button>
+						</li>
+					{/if}
 				{/if}
 				<li>
 					{#if !user}
