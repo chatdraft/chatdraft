@@ -4,9 +4,8 @@ import { ApiClient } from '@twurple/api';
 import { env } from "$env/dynamic/private";
 import { RefreshingAuthProvider } from '@twurple/auth';
 import { PUBLIC_TWITCH_OAUTH_CLIENT_ID } from '$env/static/public';
-import { readFile } from 'fs/promises';
-import { existsSync } from 'fs';
 import TwitchBot from '$lib/server/twitchBot';
+import { existsToken, loadToken } from '$lib/server/tokenHandler';
 
 const KV = new Map();
 
@@ -19,8 +18,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.	locals.KV = KV;
 	event.locals.auth_provider = auth_provider;
 
-	if (!auth_provider.hasUser(env.TWITCH_USER_ID) && existsSync(`./tokens.${env.TWITCH_USER_ID}.json`)) {
-		const tokenData = JSON.parse(await readFile(`./tokens.${env.TWITCH_USER_ID}.json`, { encoding: 'utf-8' }));
+	if (!auth_provider.hasUser(env.TWITCH_USER_ID) && existsToken(env.TWITCH_USER_ID)) {
+		const tokenData = await loadToken(env.TWITCH_USER_ID);
 		auth_provider.addUser(env.TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
 		TwitchBot.getInstance(auth_provider)
 	}

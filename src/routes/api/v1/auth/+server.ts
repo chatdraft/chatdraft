@@ -3,8 +3,8 @@ import { error, redirect, type RequestHandler } from '@sveltejs/kit';
 import { env } from "$env/dynamic/private";
 import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import { PUBLIC_TWITCH_OAUTH_CLIENT_ID, PUBLIC_TWITCH_REDIRECT_URI } from '$env/static/public';
-import { promises as fs } from 'fs';
 import TwitchBot from '$lib/server/twitchBot';
+import { saveToken } from '$lib/server/tokenHandler';
 
 const authProvider = new RefreshingAuthProvider(
 	{
@@ -24,7 +24,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         const user_id = await authProvider.addUserForToken(tokenData);
 
         if(tokenData.scope.includes('chat:read') && tokenData.scope.includes('chat:edit')) {
-            await fs.writeFile(`./tokens.${user_id}.json`, JSON.stringify(tokenData), { encoding: 'utf-8' });
+            await saveToken(user_id, JSON.stringify(tokenData));
             authProvider.addUser(env.TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
             TwitchBot.getInstance(authProvider);
         }
@@ -33,7 +33,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
             authProvider.onRefresh(async (userId, newTokenData) => {
                 updateSession(session_id, newTokenData)
                 if (userId == env.TWITCH_USER_ID) {
-                    await fs.writeFile(`./tokens.${user_id}.json`, JSON.stringify(tokenData), { encoding: 'utf-8' })
+                    await saveToken(user_id, JSON.stringify(tokenData));
                 }
             });
 

@@ -6,34 +6,10 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { AppBar, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
-	import { onDestroy, onMount } from 'svelte';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
     export let data;
     $: user = data.user;
-
-	let intervalId: NodeJS.Timeout;
-
-	onMount(async () => {
-		const res = await fetch('/api/v1/validateSession', { method: 'POST' });
-
-        if (res.status == 200)
-        {
-			// refresh the user's token every 5 minutes while they are still using the app
-			intervalId = setInterval(async () => {
-				const {ok} = await fetch('/api/v1/refreshSession', {method: 'POST'});
-				if (!ok) logout()
-			}, 1000 * 60 * 5);
-        }
-
-		return {
-			props: {}
-		};
-	});
-
-	onDestroy(() => {
-		clearInterval(intervalId);
-	});
 
 	async function logout() {
 		await fetch('/api/v1/logout', {method: 'POST' });
