@@ -77,7 +77,9 @@ export default class Draft extends EventEmitter {
 			this.voteTimer = undefined;
 		}
 
-		this.emit(this.onDraftCanceled, this.player);
+		if (this.total < 12) {
+			this.emit(this.onDraftCanceled, this.player);
+		}
 	}
 
 	public NewChoice(excluded: Card[] = []): Choice {

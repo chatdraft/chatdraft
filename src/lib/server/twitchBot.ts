@@ -1,11 +1,13 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
+import { Bot, createBotCommand } from '@twurple/easy-bot';
 import { type Choice, type Card, type Deck, GetDraft } from '$lib/snap/draft';
 
 export default class TwitchBot {
 
     private static instance: TwitchBot;
     private chat: ChatClient | undefined;
+    private bot: Bot | undefined;
 
     private constructor(authProvider: RefreshingAuthProvider) {
         this.chat = new ChatClient({
@@ -14,6 +16,11 @@ export default class TwitchBot {
             authIntents: ['chat:read', 'chat:edit']
         });
         this.chat.connect();
+
+        this.bot = new Bot({authProvider, channels: [], 
+            commands: [
+                createBotCommand('chatdraft', async (_,{say}) => await say('Type 1, 2, or 3 to vote to draft the card you want to see played!'))
+            ]});
 
         this.chat.onMessage((channel, user, text) => {
             console.log(`#${channel} - <${user}>: ${text}`);
@@ -40,6 +47,10 @@ export default class TwitchBot {
         if (TwitchBot.instance.chat) TwitchBot.instance.chat.say(player_channel, text);
     }
 
+    public static Action(player_channel: string, text: string) {
+        if (TwitchBot.instance.chat) TwitchBot.instance.chat.action(player_channel, text);
+    }
+
     public static getInstance(authProvider: RefreshingAuthProvider): TwitchBot {
         if (!TwitchBot.instance) {
             TwitchBot.instance = new TwitchBot(authProvider);
@@ -49,15 +60,15 @@ export default class TwitchBot {
     }
 
     public static async DraftStarted(player_channel: string) {
-        TwitchBot.Say(player_channel, "A new draft has started!");
+        TwitchBot.Say(player_channel, "A new draft has started! Type 1, 2, or 3 to vote for the card you want to draft!");
     }
 
     public static async NewChoice(player_channel: string, choice: Choice, vote_duration: number) {
-        TwitchBot.Say(player_channel, `The new choice is up! You have ${vote_duration} seconds! Select from ${choice.card1.name}, ${choice.card2.name}, or ${choice.card3.name}!`);
+        TwitchBot.Say(player_channel, `Select from 1: ${choice.card1.name}, 2: ${choice.card2.name}, or 3: ${choice.card3.name}! You have ${vote_duration} seconds to vote!`);
     }
 
     public static async ChoiceSelected(player_channel: string, card: Card) {
-        TwitchBot.Say(player_channel, `${card.name} has been selected!`);
+        TwitchBot.Action(player_channel, `${card.name} has been selected!`);
     }
 
     public static async DraftComplete(player_channel: string, deck: Deck) {
@@ -70,10 +81,10 @@ export default class TwitchBot {
 
     public static async VotingClosed(player_channel: string, result: string, ties: string[]) {
         if (ties.length > 0) {
-            TwitchBot.Say(player_channel, `Voting closed! There was a tie between ${ties.join(', ')}. The randomly chosen card is ${result}.`);
+            TwitchBot.Action(player_channel, `${result} was chosen after a tie between ${ties.join(', ')}.`);
         }
         else {
-            TwitchBot.Say(player_channel, `Voting closed! The winning card is ${result}.`);
+            TwitchBot.Action(player_channel, `${result} was drafted!`);
         }
     }
 
@@ -88,6 +99,7 @@ export default class TwitchBot {
 
     public static async JoinChannel(player_channel: string) {
         if (!TwitchBot.instance.chat) return false;
+        if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
         return TwitchBot.instance.chat.join(player_channel)
     }
 }
