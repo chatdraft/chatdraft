@@ -61,7 +61,7 @@ export default class TwitchBot {
     }
 
     public static async DraftComplete(player_channel: string, deck: Deck) {
-        TwitchBot.Say(player_channel, `The completed deck has been drafted: ${deck.join(', ')}.`);
+        TwitchBot.Say(player_channel, `The completed deck has been drafted: ${deck.map((card) => card.name).join(', ')}.`);
     }
 
     public static async DraftCanceled(player_channel: string) {

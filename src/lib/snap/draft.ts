@@ -177,6 +177,7 @@ export default class Draft extends EventEmitter {
 
 		if (this.total == 12) {
 			this.currentChoice = undefined;
+			this.emit(this.onDraftComplete, this.player, this.cards);
 		} else {
 			this.currentChoice = this.NewChoice(this.cards);
 		}
