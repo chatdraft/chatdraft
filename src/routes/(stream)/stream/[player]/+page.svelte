@@ -65,7 +65,7 @@
 		<div class="min-h-screen flex flex-row bg-black/70 text-white">
 			<div class="flex flex-shrink flex-col">
 				<div class="h1 text-center my-10">Draft Complete!</div>
-				<SnapDeck cards={current_draft?.cards || []} perRow={4} />
+				<SnapDeck cards={current_draft?.cards || []} cols={4} />
 			</div>
 		</div>
 	{/if}

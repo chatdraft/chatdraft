@@ -30,5 +30,10 @@ export default {
 				]
 			}
 		})
-	]
+	],
+	safelist: [
+		{
+			pattern: /grid-cols-./,
+		}
+	  ]
 } satisfies Config;
