@@ -34,7 +34,7 @@
 
 {#if current_draft}
 	{#if current_draft?.total < 12 }
-		<div class="min-h-screen flex flex-col bg-white">
+		<div class="min-h-screen flex flex-col bg-white/50">
 			<section class="text-center text-5xl">
 				{#if time_remaining > 0}
 					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
