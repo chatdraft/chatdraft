@@ -38,13 +38,13 @@ export default class Draft extends EventEmitter {
 		this.onDraftStarted(draftEvents.DraftStarted);
 		this.onDraftCanceled(draftEvents.DraftCanceled);
 		this.onNewChoice(async (player_channel, choice) => {
-			// delay 5 seconds before announcing a new choice for the stream to update
-			await new Promise(f => setTimeout(f, 5000));
+			// delay 1 second1 before announcing a new choice for the stream to update
+			await new Promise(f => setTimeout(f, 1000));
 			draftEvents.NewChoice(player_channel, choice);
 		});
 		this.onChoiceSelected(draftEvents.ChoiceSelected);
 		this.onDraftComplete(async (player_channel, deck) => {
-			await new Promise(f=> setTimeout(f,6000));
+			await new Promise(f=> setTimeout(f,2000));
 			draftEvents.DraftComplete(player_channel, deck)
 			await new Promise(f=> setTimeout(f,this.voting_period_s*2*1000))
 			this.CancelDraft();
@@ -105,7 +105,7 @@ export default class Draft extends EventEmitter {
 			throw new Error('Not enough selectable cards to continue draft');
 		}
 
-		const voting_period_ms = (this.voting_period_s + 5) * 1000;
+		const voting_period_ms = (this.voting_period_s + 5) * 1000; // voting period + 5 seconds after votes open
 	
 		const deck = shuffle(available);
 		const newChoice = {
@@ -116,7 +116,7 @@ export default class Draft extends EventEmitter {
 			votes1: 0,
 			votes2: 0,
 			votes3: 0,
-			votes_closed: Date.now() + voting_period_ms, // voting period + 5 seconds after votes open
+			votes_closed: Date.now() + voting_period_ms,
 		};
 	
 		this.emit(this.onNewChoice, this.player, newChoice);
