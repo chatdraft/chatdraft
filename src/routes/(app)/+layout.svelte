@@ -71,6 +71,9 @@
 						<button on:click={logout}>Logout</button>
 					{/if}
 				</li>
+				<li>
+					{@html `<a target="_blank" href="https://www.buymeacoffee.com/oro.lol"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me coffee&emoji=☕&slug=oro.lol&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>`}
+				</li>
 			</ul>
 		</nav>
 	</svelte:fragment>
@@ -79,6 +82,8 @@
 	<!-- Router Slot -->
 	<slot />
 	<!-- ---- / ---- -->
-	<svelte:fragment slot="footer">©2023 oro version {__APP_VERSION__}</svelte:fragment>
+	<svelte:fragment slot="footer">
+		©2023 oro version {__APP_VERSION__}
+	</svelte:fragment>
 	<!-- (footer) -->
 </AppShell>

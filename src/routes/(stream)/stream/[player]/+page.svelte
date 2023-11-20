@@ -34,7 +34,7 @@
 
 {#if current_draft}
 	{#if current_draft?.total < 12 }
-		<div class="min-h-screen flex flex-col">
+		<div class="min-h-screen flex flex-col bg-white">
 			<section class="text-center text-5xl">
 				{#if time_remaining > 0}
 					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
@@ -44,15 +44,15 @@
 			</section>
 			<div class="flex flex-grow flex-wrap">
 				{#if choice1 && choice2 && choice3}
-					<div class="basis-1/3 text-center text-3xl">{votes1} votes</div>
-					<div class="basis-1/3 text-center text-3xl">{votes2} votes</div>
-					<div class="basis-1/3 text-center text-3xl">{votes3} votes</div>
-					<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
-					<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
-					<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>
 					<div class="basis-1/3 text-center text-6xl">1</div>
 					<div class="basis-1/3 text-center text-6xl">2</div>
 					<div class="basis-1/3 text-center text-6xl">3</div>
+					<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
+					<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
+					<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>
+					<div class="basis-1/3 text-center text-3xl">{votes1} votes</div>
+					<div class="basis-1/3 text-center text-3xl">{votes2} votes</div>
+					<div class="basis-1/3 text-center text-3xl">{votes3} votes</div>
 				{/if}
 			</div>
 			<div class="flex flex-shrink">
