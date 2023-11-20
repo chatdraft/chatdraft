@@ -2,6 +2,7 @@ import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
 import { type Choice, type Card, type Deck, GetDraft } from '$lib/snap/draft';
+import { env } from '$env/dynamic/private';
 
 export default class TwitchBot {
 
@@ -16,6 +17,8 @@ export default class TwitchBot {
             authIntents: ['chat:read', 'chat:edit']
         });
         this.chat.connect();
+
+        authProvider.addIntentsToUser(env.TWITCH_USER_ID, ['chat']);
 
         this.bot = new Bot({authProvider, channels: [], 
             commands: [
