@@ -38,7 +38,12 @@ export default class Draft extends EventEmitter {
 			draftEvents.NewChoice(player_channel, choice);
 		});
 		this.onChoiceSelected(draftEvents.ChoiceSelected);
-		this.onDraftComplete(draftEvents.DraftComplete);
+		this.onDraftComplete(async (player_channel, deck) => {
+			await new Promise(f=> setTimeout(f,6000));
+			draftEvents.DraftComplete(player_channel, deck)
+			await new Promise(f=> setTimeout(f,this.voting_period_s*2*1000))
+			this.CancelDraft();
+		});
 		this.onVotingClosed(draftEvents.VotingClosed)
 		this.onChoiceOverride(draftEvents.ChoiceOverride)
 	}
@@ -113,9 +118,6 @@ export default class Draft extends EventEmitter {
 			const result = this.CloseVoting();
 			if (result && result.winner) {
 				this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties)
-				if (this.total == 12) {
-					this.emit(this.onDraftComplete, this.player, this.cards);
-				}
 			}
 		}, voting_period_ms);
 	

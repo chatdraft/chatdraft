@@ -1,7 +1,7 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
-import { type Choice, type Card, type Deck, GetDraft } from '$lib/snap/draft';
+import Draft, { type Choice, type Card, type Deck, GetDraft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/private';
 
 export default class TwitchBot {
@@ -23,7 +23,28 @@ export default class TwitchBot {
         this.bot = new Bot({authProvider, channels: [], 
             commands: [
                 createBotCommand('chatdraft', async (_,{say}) => 
-                    await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`))
+                    await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`)),
+                createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
+                    if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
+                        const duration = Number(params[0]);
+                        const draft = new Draft({
+                            DraftStarted: TwitchBot.DraftStarted,
+                            DraftCanceled: TwitchBot.DraftCanceled,
+                            NewChoice: TwitchBot.NewChoice,
+                            ChoiceSelected: TwitchBot.ChoiceSelected,
+                            DraftComplete: TwitchBot.DraftComplete,
+                            VotingClosed: TwitchBot.VotingClosed,
+                            ChoiceOverride: TwitchBot.ChoiceOverride,
+                        }, duration);
+                    
+                        draft.StartDraft(broadcasterName);
+                    }
+                }),
+                createBotCommand('chatdraftcancel', async (params, {broadcasterName, msg}) => {
+                    if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
+                        GetDraft(broadcasterName)?.CancelDraft();
+                    }
+                })
             ]});
 
         this.chat.onMessage((channel, user, text) => {

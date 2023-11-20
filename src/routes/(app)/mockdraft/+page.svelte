@@ -71,7 +71,7 @@
 				<RangeSlider name="duration-range" bind:value={duration} min={30} max={180} ticked step={30}>
 					<div class="flex justify-between items-center">
 						<div class="font-bold">Voting period</div>
-						<div class="text-xs">{duration} seconds</div>
+						<div class="text-xs">{(Math.floor(duration/60)).toLocaleString(undefined, {maximumFractionDigits: 0})}:{(duration%60).toLocaleString(undefined, {minimumIntegerDigits: 2})}</div>
 					</div>
 				</RangeSlider>
 				<div/>
