@@ -62,11 +62,10 @@
 			</div>
 		</div>
 	{:else}
-		<div class="min-h-screen flex flex-row">
+		<div class="min-h-screen flex flex-row bg-black/70 text-white">
 			<div class="flex flex-shrink flex-col">
-				<span class="h1 my-20 text-center shrink basis-1/2"><br/>Draft Complete</span>
-				<SnapDeck cards={current_draft?.cards || []} />
-				<div class="shrink basis-1/2"></div>
+				<div class="h1 text-center my-10">Draft Complete!</div>
+				<SnapDeck cards={current_draft?.cards || []} perRow={4} />
 			</div>
 		</div>
 	{/if}

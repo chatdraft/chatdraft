@@ -68,7 +68,7 @@
 	{:else}
 		{#if data.botstatus}
 			<div class="grid grid-cols-2">
-				<RangeSlider name="duration-range" bind:value={duration} min={20} max={360} ticked step={10}>
+				<RangeSlider name="duration-range" bind:value={duration} min={30} max={180} ticked step={30}>
 					<div class="flex justify-between items-center">
 						<div class="font-bold">Voting period</div>
 						<div class="text-xs">{duration} seconds</div>

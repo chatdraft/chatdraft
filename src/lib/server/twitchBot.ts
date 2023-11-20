@@ -22,7 +22,8 @@ export default class TwitchBot {
 
         this.bot = new Bot({authProvider, channels: [], 
             commands: [
-                createBotCommand('chatdraft', async (_,{say}) => await say('Type 1, 2, or 3 to vote to draft the card you want to see played!'))
+                createBotCommand('chatdraft', async (_,{say}) => 
+                    await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`))
             ]});
 
         this.chat.onMessage((channel, user, text) => {
@@ -66,8 +67,8 @@ export default class TwitchBot {
         TwitchBot.Say(player_channel, "A new draft has started! Type 1, 2, or 3 to vote for the card you want to draft!");
     }
 
-    public static async NewChoice(player_channel: string, choice: Choice, vote_duration: number) {
-        TwitchBot.Say(player_channel, `Select from 1: ${choice.card1.name}, 2: ${choice.card2.name}, or 3: ${choice.card3.name}! You have ${vote_duration} seconds to vote!`);
+    public static async NewChoice(player_channel: string, choice: Choice) {
+        TwitchBot.Say(player_channel, `Vote (1) ${choice.card1.name} (2) ${choice.card2.name} (3) ${choice.card3.name}`);
     }
 
     public static async ChoiceSelected(player_channel: string, card: Card) {
@@ -84,7 +85,7 @@ export default class TwitchBot {
 
     public static async VotingClosed(player_channel: string, result: string, ties: string[]) {
         if (ties.length > 0) {
-            TwitchBot.Action(player_channel, `${result} was chosen after a tie between ${ties.join(', ')}.`);
+            TwitchBot.Action(player_channel, `${result} chosen after tie between ${ties.join(', ')}.`);
         }
         else {
             TwitchBot.Action(player_channel, `${result} was drafted!`);

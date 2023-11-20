@@ -11,7 +11,7 @@ export function GetDraft(player: string) {
 export type DraftEvents = {
 	DraftStarted: EventHandler<[player_channel: string]>;
 	DraftCanceled: EventHandler<[player_channel: string]>;
-	NewChoice: EventHandler<[player_channel: string, choice: Choice, duration: number]>;
+	NewChoice: EventHandler<[player_channel: string, choice: Choice]>;
 	ChoiceSelected: EventHandler<[player_channel: string, card: Card]>;
 	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
 	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
@@ -35,7 +35,7 @@ export default class Draft extends EventEmitter {
 		this.onNewChoice(async (player_channel, choice) => {
 			// delay 5 seconds before announcing a new choice for the stream to update
 			await new Promise(f => setTimeout(f, 5000));
-			draftEvents.NewChoice(player_channel, choice, this.voting_period_s);
+			draftEvents.NewChoice(player_channel, choice);
 		});
 		this.onChoiceSelected(draftEvents.ChoiceSelected);
 		this.onDraftComplete(draftEvents.DraftComplete);
