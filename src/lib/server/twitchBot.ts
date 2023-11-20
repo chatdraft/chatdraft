@@ -24,9 +24,14 @@ export default class TwitchBot {
             commands: [
                 createBotCommand('chatdraft', async (_,{say}) => 
                     await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`)),
-                createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
+                createBotCommand('chatdraftstart', async (params, {broadcasterName, msg, reply}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
                         const duration = Number(params[0]);
+                        if (!duration) {
+                            reply("No vote period specified.");
+                            return;
+                        }
+                        
                         const draft = new Draft({
                             DraftStarted: TwitchBot.DraftStarted,
                             DraftCanceled: TwitchBot.DraftCanceled,
