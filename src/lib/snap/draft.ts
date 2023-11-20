@@ -3,9 +3,14 @@ import { EventEmitter, type EventHandler } from '@d-fischer/typed-event-emitter'
 import { shuffle } from './utils';
 
 const drafts = new Map<string, Draft>();
+const previousDrafts = new Map<string, Draft>();
 
 export function GetDraft(player: string) {
 	return drafts.get(player);
+}
+
+export function GetPreviousDraft(player: string) {
+	return previousDrafts.get(player);
 }
 
 export type DraftEvents = {
@@ -43,6 +48,7 @@ export default class Draft extends EventEmitter {
 			draftEvents.DraftComplete(player_channel, deck)
 			await new Promise(f=> setTimeout(f,this.voting_period_s*2*1000))
 			this.CancelDraft();
+			previousDrafts.set(player_channel, this)
 		});
 		this.onVotingClosed(draftEvents.VotingClosed)
 		this.onChoiceOverride(draftEvents.ChoiceOverride)

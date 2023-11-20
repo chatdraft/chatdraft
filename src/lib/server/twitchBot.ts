@@ -1,7 +1,7 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
-import Draft, { type Choice, type Card, type Deck, GetDraft } from '$lib/snap/draft';
+import Draft, { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/private';
 
 export default class TwitchBot {
@@ -40,11 +40,17 @@ export default class TwitchBot {
                         draft.StartDraft(broadcasterName);
                     }
                 }),
-                createBotCommand('chatdraftcancel', async (params, {broadcasterName, msg}) => {
+                createBotCommand('chatdraftcancel', async (_, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
                         GetDraft(broadcasterName)?.CancelDraft();
                     }
-                })
+                }),
+                createBotCommand('chatdraftdeck', async (_, {broadcasterName, reply}) => {
+                    const previousDraft = GetPreviousDraft(broadcasterName);
+                    if (previousDraft) {
+                        reply(Draft.GetDeckCode(previousDraft.cards));
+                    }
+                }, {globalCooldown: 30, userCooldown: 60})
             ]});
 
         this.chat.onMessage((channel, user, text) => {
