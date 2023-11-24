@@ -40,13 +40,19 @@ export const createWSSGlobalInstance = () => {
 
 	(globalThis as ExtendedGlobal)[GlobalThisWSS] = wss;
 
-	wss.on('connection', (ws) => {
+	wss.on('connection', (ws: ExtendedWebSocket) => {
 		ws.socketId = nanoid();
 		console.log(`[wss:global] client connected (${ws.socketId})`);
 
 		ws.on('close', () => {
 			console.log(`[wss:global] client disconnected (${ws.socketId})`);
 		});
+		ws.on('message', (event) => {
+			if (event.toString() == 'ping') {
+				console.log(`[wss:global] ping from ${ws.socketId}`);
+				ws.send('pong');
+			}
+		})
 	});
 
 	return wss;

@@ -9,6 +9,7 @@
 
 	const establishWebSocket = () => {
 		if (webSocketEstablished) return;
+		console.log('1')
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
 		heartbeat();
@@ -31,13 +32,16 @@
 		ws.addEventListener('newchoice', (event) => {
 			console.log('[websocket] New choice');
 		});
+		ws.addEventListener('ping', () => {
+			console.log('[websocket] ping');
+		});
 	};
 
 	function heartbeat() {
+		setTimeout(heartbeat, 500);
 		if (!ws) return;
 		if (ws.readyState !== 1) return;
-		ws.send("heartbeat");
-		setTimeout(heartbeat, 500);
+		ws.send("ping");
 	}
 
 	const requestData = async () => {

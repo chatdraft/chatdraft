@@ -27,7 +27,7 @@
 	function heartbeat() {
 		if (!ws) return;
 		if (ws.readyState !== 1) return;
-		ws.send("heartbeat");
+		ws.send("ping");
 		setTimeout(heartbeat, 500);
 	}
 
