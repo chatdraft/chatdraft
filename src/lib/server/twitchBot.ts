@@ -3,6 +3,7 @@ import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
 import Draft, { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/private';
+import DraftFactory from '$lib/snap/draftFactory';
 
 export default class TwitchBot {
 
@@ -32,15 +33,7 @@ export default class TwitchBot {
                             return;
                         }
                         
-                        const draft = new Draft({
-                            DraftStarted: TwitchBot.DraftStarted,
-                            DraftCanceled: TwitchBot.DraftCanceled,
-                            NewChoice: TwitchBot.NewChoice,
-                            ChoiceSelected: TwitchBot.ChoiceSelected,
-                            DraftComplete: TwitchBot.DraftComplete,
-                            VotingClosed: TwitchBot.VotingClosed,
-                            ChoiceOverride: TwitchBot.ChoiceOverride,
-                        }, duration);
+                        const draft = DraftFactory.CreateDraft(duration);
                     
                         draft.StartDraft(broadcasterName);
                     }

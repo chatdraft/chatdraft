@@ -11,6 +11,28 @@
 	let now = Date.now();
 	let duration = 120;
 
+
+	let webSocketEstablished = false;
+	let ws: WebSocket | null = null;
+
+	const establishWebSocket = async () => {
+		if (webSocketEstablished) return;
+		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
+		ws.addEventListener('message', async (event) => {
+			console.log('[websocket] message received', event);
+			await handleMessage(event.data)
+		});
+
+		webSocketEstablished = true;
+
+		return ws;
+	};
+
+	const handleMessage = async(data: string) => {
+		invalidateAll();
+	}
+
 	$: current_draft = data.draft;
 	$: choice1 = data.choice?.card1!;
 	$: choice2 = data.choice?.card2!;
@@ -22,16 +44,15 @@
 
 	onMount(() => {
 		setInterval(() => {
-			invalidateAll();
-		}, 5000);
-		setInterval(() => {
 			now = Date.now();
 		}, 100)
+		if (data.draft) establishWebSocket();
 	});
 
 	async function NewDraft() {
 		const ret = await fetch(`/api/v1/draft/player?duration=${duration}`, { method: 'POST' });
 		invalidateAll();
+		establishWebSocket();
 	}
 
 	async function DraftCard(cardNumber: number) {

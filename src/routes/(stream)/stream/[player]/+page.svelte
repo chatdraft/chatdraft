@@ -8,6 +8,25 @@
 
 	let now = Date.now();
 
+	let webSocketEstablished = false;
+	let ws: WebSocket | null = null;
+
+	const establishWebSocket = async () => {
+		if (webSocketEstablished) return;
+		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
+		ws.addEventListener('message', async (event) => {
+			console.log('[websocket] message received', event);
+			await handleMessage(event.data)
+		});
+
+		return ws;
+	};
+
+	const handleMessage = async(data: string) => {
+		invalidateAll();
+	}
+
 	$: current_draft = data.draft;
 	$: choice1 = data.choice?.card1;
 	$: choice2 = data.choice?.card2;
@@ -17,13 +36,11 @@
 	$: votes3 = data.choice?.votes3!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 
-	onMount(() => {
-		setInterval(() => {
-			invalidateAll();
-		}, 5000);
+	onMount(async () => {
 		setInterval(() => {
 			now = Date.now();
 		}, 100)
+		await establishWebSocket();
 	});
 </script>
 
@@ -36,10 +53,10 @@
 	{#if current_draft?.total < 12 }
 		<div class="min-h-screen flex flex-col bg-black/70 text-white">
 			<section class="text-center text-5xl my-4">
-				{#if time_remaining > 0}
-					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
-				{:else}
+				{#if time_remaining > current_draft.duration || time_remaining < 0}
 					Tallying Final Votes...
+				{:else}
+					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
 				{/if}
 			</section>
 			<div class="flex flex-shrink flex-wrap">

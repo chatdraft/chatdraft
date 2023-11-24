@@ -1,6 +1,6 @@
 {
 	"name": "chatdraft",
-	"version": "0.0.3a",
+	"version": "0.0.4",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -13,7 +13,8 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"prodServer": "tsm ./prodServer.ts"
 	},
 	"devDependencies": {
 		"@iarna/toml": "^2.2.5",
@@ -26,6 +27,7 @@
 		"@tailwindcss/forms": "0.5.6",
 		"@tailwindcss/typography": "0.5.10",
 		"@types/node": "20.8.0",
+		"@types/ws": "^8.5.10",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"autoprefixer": "10.4.16",
@@ -53,6 +55,12 @@
 		"@twurple/auth": "^7.0.3",
 		"@twurple/chat": "^7.0.3",
 		"@twurple/easy-bot": "^7.0.5",
-		"@twurple/eventsub-ws": "^7.0.3"
+		"@twurple/eventsub-ws": "^7.0.3",
+		"@types/cookie-parser": "^1.4.6",
+		"cookie": "^0.6.0",
+		"cookie-parser": "^1.4.6",
+		"nanoid": "^5.0.3",
+		"tsm": "^2.3.0",
+		"ws": "^8.14.2"
 	}
 }

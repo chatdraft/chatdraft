@@ -12,8 +12,8 @@ export const load: PageLoad = async ({ fetch }) => {
 	if (draftret.ok) {
 		const draft: Draft = await draftret.json();
 
-		return { draft: draft, choice: draft.currentChoice, botstatus: botstatus };
+		return { draft: draft, choice: draft.currentChoice, botstatus: botstatus, player: draft.player };
 	}
 
-	return { draft: null, choice: null, botstatus: botstatus };
+	return { draft: null, choice: null, botstatus: botstatus, player: null };
 }
