@@ -11,6 +11,7 @@
 		if (webSocketEstablished) return;
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
+		heartbeat();
 		ws.addEventListener('open', (event) => {
 			webSocketEstablished = true;
 			console.log('[websocket] connection open', event);
@@ -31,6 +32,13 @@
 			console.log('[websocket] New choice');
 		});
 	};
+
+	function heartbeat() {
+		if (!ws) return;
+		if (ws.readyState !== 1) return;
+		ws.send("heartbeat");
+		setTimeout(heartbeat, 500);
+	}
 
 	const requestData = async () => {
 		const res = await fetch('/sockettest/api/test');

@@ -15,6 +15,7 @@
 		if (webSocketEstablished) return;
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
+		heartbeat();
 		ws.addEventListener('message', async (event) => {
 			console.log('[websocket] message received', event);
 			await handleMessage(event.data)
@@ -22,6 +23,13 @@
 
 		return ws;
 	};
+
+	function heartbeat() {
+		if (!ws) return;
+		if (ws.readyState !== 1) return;
+		ws.send("heartbeat");
+		setTimeout(heartbeat, 500);
+	}
 
 	const handleMessage = async(data: string) => {
 		invalidateAll();
