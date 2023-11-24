@@ -37,7 +37,8 @@
 		setTimeout(heartbeat, 500);
 	}
 
-	const handleMessage = async(data: string) => {
+	const handleMessage = async(message: string) => {
+		if (message == 'ping') return;
 		invalidateAll();
 	}
 
