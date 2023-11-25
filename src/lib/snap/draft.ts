@@ -31,10 +31,12 @@ export default class Draft extends EventEmitter {
 	private voteTimer: NodeJS.Timeout | undefined;
 
 	public duration = 20;
+	public selections = 3;
 
-	public constructor(duration: number) {
+	public constructor(duration: number, selections: number) {
 		super();
 		this.duration = duration;
+		this.selections = selections;
 	}
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
@@ -87,21 +89,24 @@ export default class Draft extends EventEmitter {
 
 		const available = cards.all.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
 	
-		if (available.length < 3) {
+		if (available.length < this.selections) {
 			throw new Error('Not enough selectable cards to continue draft');
 		}
 
 		const voting_period_ms = (this.duration + 1) * 1000; // voting period + 1 seconds after votes open
 	
 		const deck = shuffle(available);
+		const choices : Card[] = Array(this.selections);
+		const voteCounts : number[] = Array(this.selections);
+
+		for (let i = 0; i < this.selections; i++) {
+			choices[i] = deck.pop()!;
+			voteCounts[i] = 0;
+		}
 		const newChoice = {
-			card1: deck.pop()!,
-			card2: deck.pop()!,
-			card3: deck.pop()!,
+			cards: choices,
 			votes: new Map<string, string>(),
-			votes1: 0,
-			votes2: 0,
-			votes3: 0,
+			voteCounts: voteCounts,
 			votes_closed: Date.now() + voting_period_ms,
 		};
 	
@@ -121,36 +126,24 @@ export default class Draft extends EventEmitter {
 		let winner = undefined;
 		if (!this.currentChoice) return { winner: undefined, ties: ties };
 
-
-		if ((this.currentChoice?.votes1 > this.currentChoice?.votes2) &&
-			((this.currentChoice?.votes1 > this.currentChoice?.votes3))) {
-				winner = this.currentChoice?.card1;
-		}
-		if ((this.currentChoice?.votes2 > this.currentChoice?.votes1) &&
-			((this.currentChoice?.votes2 > this.currentChoice?.votes3))) {
-				winner = this.currentChoice?.card2;
-		}
-		if ((this.currentChoice?.votes3 > this.currentChoice?.votes2) &&
-			((this.currentChoice?.votes3 > this.currentChoice?.votes1))) {
-				winner = this.currentChoice?.card3;
-		}
+		let highVote = 0;
+		this.currentChoice.voteCounts.forEach((vote, index) => {
+			if (vote > highVote) {
+				if (this.currentChoice?.cards[index]) {
+					highVote = vote;
+					ties = [this.currentChoice?.cards[index]];
+					winner = this.currentChoice?.cards[index];
+				}
+			}
+			else if (vote == highVote) {
+				if (this.currentChoice?.cards[index]) {
+					ties.push(this.currentChoice?.cards[index])
+					winner = undefined;
+				}
+			}
+		})
 
 		if (!winner) {
-			if ((this.currentChoice.votes1 == this.currentChoice.votes2) &&
-				(this.currentChoice.votes1 == this.currentChoice.votes3)) {
-					ties = [this.currentChoice.card1, this.currentChoice.card2, this.currentChoice.card3]
-			}
-			else if ((this.currentChoice.votes1 == this.currentChoice.votes2)) {
-				ties = [this.currentChoice.card1, this.currentChoice.card2]
-			}
-			else if ((this.currentChoice.votes1 == this.currentChoice.votes3)) {
-				ties = [this.currentChoice.card1, this.currentChoice.card3]
-			}
-			
-			else {
-				ties = [this.currentChoice.card2, this.currentChoice.card3]
-			}
-			
 			winner = ties[Math.floor(Math.random() * ties.length)]
 		}
 		
@@ -194,12 +187,7 @@ export default class Draft extends EventEmitter {
 		if (!(card)) return false;
 	
 		const validChoice =
-			this.currentChoice &&
-			[
-				this.currentChoice.card1.cardDefKey,
-				this.currentChoice.card2.cardDefKey,
-				this.currentChoice.card3.cardDefKey
-			].includes(card.cardDefKey);
+			this.currentChoice && this.currentChoice.cards.some((card) => card.cardDefKey == cardDefKey);
 	
 		const alreadyDrafted = this.cards.some((c) => c.cardDefKey == cardDefKey);
 	
@@ -221,37 +209,17 @@ export default class Draft extends EventEmitter {
 
 		if (!this.currentChoice) return;
 
-		switch (this.currentChoice?.votes.get(user)) {
-			case '1':
-				this.currentChoice.votes1--;
-				break;
-			case '2':
-				this.currentChoice.votes2--;
-				break;
-			case '3':
-				this.currentChoice.votes3--;
-				break;
-			default:
-				// do nothing
-				break;
+		const vote = Number(choice);
+		if ((vote < 1) || (vote > 6)) return;
+
+		const oldVote = Number(this.currentChoice?.votes.get(user));
+		if ((oldVote >= 1) && (oldVote <= 6)) {
+			this.currentChoice.voteCounts[oldVote]--;
 		}
 
 		drafts.get(this.player)?.currentChoice?.votes.set(user, choice);
 
-		switch (choice) {
-			case '1':
-				this.currentChoice.votes1++;
-				break;
-			case '2':
-				this.currentChoice.votes2++;
-				break;
-			case '3':
-				this.currentChoice.votes3++;
-				break;
-			default:
-				//shouldn't happen
-				break;
-		}
+		this.currentChoice.voteCounts[vote]++;
 	}
 
 
@@ -271,12 +239,8 @@ export type Card = {
 export type Deck = Card[];
 
 export type Choice = {
-	card1: Card;
-	card2: Card;
-	card3: Card;
+	cards: Card[];
 	votes: Map<string, string>;
-	votes1: number;
-	votes2: number;
-	votes3: number;
+	voteCounts: number[];
 	votes_closed: number;
 };

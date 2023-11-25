@@ -17,5 +17,5 @@ export const GET: RequestHandler = async ({ params, url }) => {
 
 	if (!draft) throw error(404);
 
-	return json({cards: draft.cards, total: draft.total, player: draft.player, currentChoice: draft.currentChoice, duration: draft.duration });
+	return json({cards: draft.cards, total: draft.total, player: draft.player, currentChoice: draft.currentChoice, duration: draft.duration, selections: draft.selections });
 };

@@ -9,17 +9,19 @@ export const GET: RequestHandler = async ({ locals, cookies }) => {
 	const draft = GetDraft(locals.user!.name);
 	if (!draft) throw error(404);
 
-	return json({cards: draft.cards, total: draft.total, player: draft.player, currentChoice: draft.currentChoice, duration: draft.duration });
+	return json({cards: draft.cards, total: draft.total, player: draft.player, currentChoice: draft.currentChoice, duration: draft.duration, selections: draft.selections });
 };
 
 export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
 
 	let duration = 120;
+	let selections = 3;
 
 	if (url.searchParams.has('duration')) duration = +url.searchParams.get('duration')!
+	if (url.searchParams.has('selections')) selections = +url.searchParams.get('selections')!
 
-	const draft = DraftFactory.CreateDraft(duration)
+	const draft = DraftFactory.CreateDraft(duration, selections)
 
 	draft.StartDraft(locals.user!.name);
 

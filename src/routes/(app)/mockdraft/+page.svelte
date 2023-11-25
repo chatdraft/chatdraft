@@ -10,6 +10,7 @@
 	export let data;
 	let now = Date.now();
 	let duration = 120;
+	let selectionCount = 3;
 
 
 	let webSocketEstablished = false;
@@ -43,23 +44,23 @@
 	}
 
 	$: current_draft = data.draft;
-	$: choice1 = data.choice?.card1!;
-	$: choice2 = data.choice?.card2!;
-	$: choice3 = data.choice?.card3!;
-	$: votes1 = data.choice?.votes1!;
-	$: votes2 = data.choice?.votes2!;
-	$: votes3 = data.choice?.votes3!;
+	$: choices = data.choice?.cards!;
+	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
+	$: grid_layout = `grid-cols-${selectionCount}`;
 
 	onMount(() => {
 		setInterval(() => {
 			now = Date.now();
 		}, 100)
-		if (data.draft) establishWebSocket();
+		if (data.draft) {
+			selectionCount = data.draft.selections;
+			establishWebSocket();
+		}
 	});
 
 	async function NewDraft() {
-		const ret = await fetch(`/api/v1/draft/player?duration=${duration}`, { method: 'POST' });
+		const ret = await fetch(`/api/v1/draft/player?duration=${duration}&selections=${selectionCount}`, { method: 'POST' });
 		invalidateAll();
 		establishWebSocket();
 	}
@@ -105,6 +106,14 @@
 					</div>
 				</RangeSlider>
 				<div/>
+			</div><div class="grid grid-cols-2">
+				<RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
+					<div class="flex justify-between items-center">
+						<div class="font-bold">Number of cards per vote</div>
+						<div class="text-xs">{selectionCount}</div>
+					</div>
+				</RangeSlider>
+				<div/>
 			</div>
 			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
 			Please start a new draft.
@@ -123,31 +132,23 @@
 		</section>
 	{/if}
 
-	{#if choice1 && choice2 && choice3}
+	{#if (choices && choices.length > 0)}
 		Please select from:
 
-		<section class="grid grid-cols-3 justify-items-center">
-			<div class="p-4"><SnapCard card={choice1} /></div>
-			<div class="p-4"><SnapCard card={choice2} /></div>
-			<div class="p-4"><SnapCard card={choice3} /></div>
-			<div>{votes1} votes</div>
-			<div>{votes2} votes</div>
-			<div>{votes3} votes</div>
-			<button
-				type="button"
-				class="btn btn-md variant-outline-primary p-4 w-1/2"
-				on:click={() => DraftCard(1)}>Select</button
-			>
-			<button
-				type="button"
-				class="btn btn-md variant-outline-primary p-4 w-1/2"
-				on:click={() => DraftCard(2)}>Select</button
-			>
-			<button
-				type="button"
-				class="btn btn-md variant-outline-primary p-4 w-1/2"
-				on:click={() => DraftCard(3)}>Select</button
-			>
+		<section class="grid {grid_layout} justify-items-center">
+			{#each choices as choice}
+				<div class="p-4"><SnapCard card={choice} /></div>
+			{/each}
+			{#each votes as vote}
+				<div>{vote} votes</div>
+			{/each}
+			{#each choices as _choice, index}
+				<button
+					type="button"
+					class="btn btn-md variant-outline-primary p-4 w-1/2"
+					on:click={() => DraftCard(index)}>Select</button
+				>
+			{/each}
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}

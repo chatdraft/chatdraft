@@ -3,8 +3,8 @@ import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStar
 import Draft from "./draft";
 
 export default class DraftFactory {
-    public static CreateDraft(duration: number) {
-        const draft = new Draft(duration);
+    public static CreateDraft(duration: number, selections: number) {
+        const draft = new Draft(duration, selections);
 
         draft.onDraftStarted(TwitchBot.DraftStarted);
         draft.onDraftStarted(DraftStarted)

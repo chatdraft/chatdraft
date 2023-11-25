@@ -33,8 +33,13 @@ export default class TwitchBot {
                             reply("No vote period specified.");
                             return;
                         }
+
+                        const selections = Number(params[1]);
+                        if (!selections) {
+                            reply("No selection count specified.")
+                        }
                         
-                        const draft = DraftFactory.CreateDraft(duration);
+                        const draft = DraftFactory.CreateDraft(duration, selections);
                     
                         draft.StartDraft(broadcasterName);
                     }
@@ -95,7 +100,9 @@ export default class TwitchBot {
     }
 
     public static async NewChoice(player_channel: string, choice: Choice) {
-        TwitchBot.Say(player_channel, `Vote (1) ${choice.card1.name} (2) ${choice.card2.name} (3) ${choice.card3.name}`);
+        let expression = "Vote ";
+        choice.cards.forEach((card, index) => expression += `(${index}) ${card.name} `)
+        TwitchBot.Say(player_channel, expression);
     }
 
     public static async ChoiceSelected(player_channel: string, card: Card) {

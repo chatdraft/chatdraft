@@ -12,6 +12,7 @@
 	let ws: WebSocket | null = null;
 
 	let showDeck = false;
+	let selectionCount = 3;
 
 	const establishWebSocket = async () => {
 		if (webSocketEstablished) return;
@@ -64,22 +65,23 @@
 
 		invalidateAll();
 		showDeck = false;
+		selectionCount = current_draft?.selections!;
 	}
 
 	$: current_draft = data.draft;
-	$: choice1 = data.choice?.card1;
-	$: choice2 = data.choice?.card2;
-	$: choice3 = data.choice?.card3;
-	$: votes1 = data.choice?.votes1!;
-	$: votes2 = data.choice?.votes2!;
-	$: votes3 = data.choice?.votes3!;
+	$: choices = data.choice?.cards!;
+	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
+	$: grid_layout = `grid-cols-${selectionCount}`;
 
 	onMount(async () => {
 		setInterval(() => {
 			now = Date.now();
 		}, 100)
 		await establishWebSocket();
+		if (data.draft) {
+			selectionCount = data.draft.selections;
+		}
 	});
 </script>
 
@@ -98,17 +100,17 @@
 					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
 				{/if}
 			</section>
-			<div class="flex flex-shrink flex-wrap">
-				{#if choice1 && choice2 && choice3}
-					<div class="basis-1/3 text-center text-3xl max-h-fit my-4">{votes1} votes</div>
-					<div class="basis-1/3 text-center text-3xl max-h-fit my-4">{votes2} votes</div>
-					<div class="basis-1/3 text-center text-3xl max-h-fit my-4">{votes3} votes</div>
-					<div class="basis-1/3"><SnapCard hideText={true} card={choice1} /></div>
-					<div class="basis-1/3"><SnapCard hideText={true} card={choice2} /></div>
-					<div class="basis-1/3"><SnapCard hideText={true} card={choice3} /></div>
-					<div class="basis-1/3 text-center text-6xl my-4">1</div>
-					<div class="basis-1/3 text-center text-6xl my-4">2</div>
-					<div class="basis-1/3 text-center text-6xl my-4">3</div>
+			<div class="grid {grid_layout} justify-items-center">
+				{#if (choices && choices.length > 0)}
+					{#each votes as vote}
+						<div class="text-center text-3xl max-h-fit my-4">{vote} votes</div>
+					{/each}
+					{#each choices as choice}
+						<div><SnapCard hideText={true} card={choice} /></div>
+					{/each}
+					{#each choices as _choice, index}
+						<div class="text-center text-6xl my-4">{index + 1}</div>
+					{/each}
 				{/if}
 			</div>
 			<div class="flex flex-shrink">
