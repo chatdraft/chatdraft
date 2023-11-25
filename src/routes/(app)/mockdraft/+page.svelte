@@ -55,8 +55,8 @@
 		}, 100)
 		if (data.draft) {
 			selectionCount = data.draft.selections;
-			establishWebSocket();
 		}
+		establishWebSocket();
 	});
 
 	async function NewDraft() {

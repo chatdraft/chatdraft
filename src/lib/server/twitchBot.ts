@@ -65,8 +65,9 @@ export default class TwitchBot {
 
             if (!draft) return;
 
-            if (['1','2','3'].includes(text) && draft.IsActive()) {
+            if (['1','2','3','4','5','6'].includes(text) && draft.IsActive()) {
                 draft.Vote(user, text);
+                SendMessage(channel, 'voteupdated');
             }
         });
     }
@@ -96,12 +97,12 @@ export default class TwitchBot {
     }
 
     public static async DraftStarted(player_channel: string) {
-        TwitchBot.Say(player_channel, "A new draft has started! Type 1, 2, or 3 to vote for the card you want to draft!");
+        TwitchBot.Say(player_channel, "A new draft has started! Type the number to vote for the card you want to draft!");
     }
 
     public static async NewChoice(player_channel: string, choice: Choice) {
         let expression = "Vote ";
-        choice.cards.forEach((card, index) => expression += `(${index}) ${card.name} `)
+        choice.cards.forEach((card, index) => expression += `(${index + 1}) ${card.name} `)
         TwitchBot.Say(player_channel, expression);
     }
 

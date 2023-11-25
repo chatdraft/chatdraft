@@ -210,16 +210,16 @@ export default class Draft extends EventEmitter {
 		if (!this.currentChoice) return;
 
 		const vote = Number(choice);
-		if ((vote < 1) || (vote > 6)) return;
+		if ((vote < 1) || (vote > this.selections)) return;
 
 		const oldVote = Number(this.currentChoice?.votes.get(user));
 		if ((oldVote >= 1) && (oldVote <= 6)) {
-			this.currentChoice.voteCounts[oldVote]--;
+			this.currentChoice.voteCounts[oldVote - 1]--;
 		}
 
 		drafts.get(this.player)?.currentChoice?.votes.set(user, choice);
 
-		this.currentChoice.voteCounts[vote]++;
+		this.currentChoice.voteCounts[vote - 1]++;
 	}
 
 
