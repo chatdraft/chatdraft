@@ -36,7 +36,7 @@ export const onHttpServerUpgrade = (req: IncomingMessage, sock: Duplex, head: Bu
 };
 
 export const createWSSGlobalInstance = () => {
-	const wss = new WebSocketServer({ noServer: true }) as ExtendedWebSocketServer;
+	const wss = new WebSocketServer({ noServer: true, perMessageDeflate: false }) as unknown as ExtendedWebSocketServer;
 
 	(globalThis as ExtendedGlobal)[GlobalThisWSS] = wss;
 

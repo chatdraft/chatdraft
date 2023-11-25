@@ -68,11 +68,13 @@
 		selectionCount = current_draft?.selections!;
 	}
 
+	const gridcols = ['','','grid-cols-2','grid-cols-3','grid-cols-4','grid-cols-5','grid-cols-6']
+
 	$: current_draft = data.draft;
 	$: choices = data.choice?.cards!;
 	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
-	$: grid_layout = `grid-cols-${selectionCount}`;
+	$: grid_layout = gridcols[current_draft?.selections || 3];
 
 	onMount(async () => {
 		setInterval(() => {
@@ -91,7 +93,7 @@
 </svelte:head>
 
 {#if current_draft}
-	{#if current_draft?.total < 12 }
+	{#if time_remaining }
 		<div class="min-h-screen flex flex-col bg-black/70 text-white">
 			<section class="text-center text-5xl my-4">
 				{#if time_remaining > current_draft.duration || time_remaining < 0}
@@ -122,7 +124,7 @@
 	{:else}
 		<div class="min-h-screen flex flex-row bg-black/70 text-white">
 			<div class="flex flex-shrink flex-col">
-				<div class="h1 text-center my-10">Draft Complete!</div>
+				<div class="h1 text-center my-10">Draft Complete! - {current_draft.deckName}</div>
 				<SnapDeck cards={current_draft?.cards || []} cols={4} />
 			</div>
 		</div>

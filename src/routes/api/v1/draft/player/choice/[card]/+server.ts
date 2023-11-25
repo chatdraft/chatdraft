@@ -14,21 +14,14 @@ export const POST: RequestHandler = async ({ cookies, locals, params }) => {
 		throw error(400);
 	}
 
-	let choice;
-	switch (params.card) {
-		case '1':
-			choice = draft.currentChoice.card1;
-			break;
-		case '2':
-			choice = draft.currentChoice.card2;
-			break;
-		case '3':
-			choice = draft.currentChoice.card3;
-			break;
-	}
+	const selection = Number(params.card);
+	if ((selection < 0) || (selection > draft.selections)) {
+		throw error(400);
+	};
+	const choice = draft.currentChoice.cards[selection];
 
 	if (!choice) {
-		throw(400)
+		throw error(400);
 	}
 
 	draft.Choose(choice.cardDefKey, true);

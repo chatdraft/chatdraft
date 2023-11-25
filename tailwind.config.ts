@@ -33,7 +33,7 @@ export default {
 	],
 	safelist: [
 		{
-			pattern: /grid-cols-./,
+			pattern: /grid-cols-+/,
 		}
 	  ]
 } satisfies Config;

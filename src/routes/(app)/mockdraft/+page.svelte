@@ -43,11 +43,13 @@
 		invalidateAll();
 	}
 
+	const gridcols = ['','','','grid-cols-3','grid-cols-4','grid-cols-5','grid-cols-6']
+
 	$: current_draft = data.draft;
 	$: choices = data.choice?.cards!;
 	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
-	$: grid_layout = `grid-cols-${selectionCount}`;
+	$: grid_layout = gridcols[current_draft?.selections || 3];
 
 	onMount(() => {
 		setInterval(() => {
@@ -130,6 +132,10 @@
 					Tallying Final Votes...
 				{/if}
 		</section>
+	{/if}
+
+	{#if current_draft && current_draft.deckName }
+		<section class="text-center text-2xl">{current_draft.deckName}</section>
 	{/if}
 
 	{#if (choices && choices.length > 0)}

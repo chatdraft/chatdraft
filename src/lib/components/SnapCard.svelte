@@ -6,10 +6,14 @@
 </script>
 
 <div class="card h-full">
-	{#if !hideText}
+	{#if !hideText || !(card.displayImageUrl)}
 		<header class="card-header text-center"><b>{card.name}</b></header>
 	{/if}
-	<section><img src={card.displayImageUrl} alt="{card.name}'s card" /></section>
+	<section>
+		{#if card.displayImageUrl}
+			<img src={card.displayImageUrl} alt="{card.name}'s card" />
+		{/if}
+	</section>
 	{#if !hideText}
 		<footer class="text-center pb-4">{@html card.description}</footer>
 	{/if}

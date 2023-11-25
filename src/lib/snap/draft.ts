@@ -1,6 +1,7 @@
 import * as cards from '$lib/data/cards.json';
 import { EventEmitter, type EventHandler } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
+import { getRandomDeckName } from './draftNames';
 
 const drafts = new Map<string, Draft>();
 const previousDrafts = new Map<string, Draft>();
@@ -29,6 +30,7 @@ export default class Draft extends EventEmitter {
 	public player: string = '';
 	public currentChoice: Choice | undefined;
 	private voteTimer: NodeJS.Timeout | undefined;
+	public deckName: string = '';
 
 	public duration = 20;
 	public selections = 3;
@@ -100,7 +102,19 @@ export default class Draft extends EventEmitter {
 		const voteCounts : number[] = Array(this.selections);
 
 		for (let i = 0; i < this.selections; i++) {
-			choices[i] = deck.pop()!;
+			if (this.total < 12) {
+				choices[i] = deck.pop()!;
+			}
+			else {
+				const name = getRandomDeckName(this.cards)
+				choices[i] = {
+					cardDefKey: name,
+					displayImageUrl: '',
+					name: name,
+					description: '',
+					cost: 0
+				}
+			}
 			voteCounts[i] = 0;
 		}
 		const newChoice = {
@@ -156,6 +170,13 @@ export default class Draft extends EventEmitter {
 		if (override) this.emit(this.onChoiceOverride, this.player, cardDefKey);
 		if (!cardDefKey) return;
 
+		if (this.total == 12) {
+			this.deckName = cardDefKey;
+			this.currentChoice = undefined;
+			this.emit(this.onDraftComplete, this.player, this.cards);
+			return;
+		}
+
 		if (!this.CanChoose(cardDefKey)) return;
 
 		this.cards.push(Draft.LookupCard(cardDefKey)!);
@@ -164,12 +185,8 @@ export default class Draft extends EventEmitter {
 		});
 		this.total++;
 
-		if (this.total == 12) {
-			this.currentChoice = undefined;
-			this.emit(this.onDraftComplete, this.player, this.cards);
-		} else {
-			this.currentChoice = this.NewChoice(this.cards);
-		}
+		
+		this.currentChoice = this.NewChoice(this.cards);
 	}
 
 	private static LookupCard(cardDefKey: string | undefined | null) {
