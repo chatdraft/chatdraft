@@ -49,7 +49,6 @@ export const createWSSGlobalInstance = () => {
 		});
 		ws.on('message', (event) => {
 			if (event.toString() == 'ping') {
-				console.log(`[wss:global] ping from ${ws.socketId}`);
 				ws.send('pong');
 			}
 		})

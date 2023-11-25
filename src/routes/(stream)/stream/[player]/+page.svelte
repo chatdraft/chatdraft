@@ -11,12 +11,15 @@
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
 
+	let showDeck = false;
+
 	const establishWebSocket = async () => {
 		if (webSocketEstablished) return;
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
 		heartbeat();
 		ws.addEventListener('message', async (event) => {
+			if (event.data == 'pong') return;
 			console.log('[websocket] message received', event);
 			await handleMessage(event.data)
 		});
@@ -25,15 +28,42 @@
 	};
 
 	function heartbeat() {
+		setTimeout(heartbeat, 500);
 		if (!ws) return;
 		if (ws.readyState !== 1) return;
 		ws.send("ping");
-		setTimeout(heartbeat, 500);
 	}
 
 	const handleMessage = async(message: string) => {
-		if (message == 'ping') return;
+		if (message == 'showdeck') {
+			if (data.draft) return;
+
+			const ret = await fetch(`/api/v1/draft/player/${data.player}?previous=true`)
+			if (!ret.ok) return;
+
+			data.draft = await ret.json();
+			if (!data.draft) return;
+
+			showDeck = true;
+			setTimeout(() => {
+				if (showDeck) {
+					data.draft = null;
+					showDeck = false;
+				}
+			}, 30000)
+
+
+			return;
+		}
+
+		if (message.startsWith('draftcomplete')) {
+			setTimeout(() => {
+				current_draft = null;
+			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
+		}
+
 		invalidateAll();
+		showDeck = false;
 	}
 
 	$: current_draft = data.draft;

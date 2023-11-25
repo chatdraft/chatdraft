@@ -24,16 +24,8 @@
 		});
 		ws.addEventListener('message', (event) => {
 			console.log('[websocket] message received', event);
+			if (event.data == 'pong') return;
 			logEvent(`[websocket] message received: ${event.data}`);
-		});
-		ws.addEventListener('draftstarted', function draftStarted(player_channel) {
-			console.log(`[websocket] draft started ${player_channel}`);
-		});
-		ws.addEventListener('newchoice', (event) => {
-			console.log('[websocket] New choice');
-		});
-		ws.addEventListener('ping', () => {
-			console.log('[websocket] ping');
 		});
 	};
 

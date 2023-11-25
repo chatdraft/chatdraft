@@ -100,6 +100,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey":"Annihilus",
+			"variantKey":null,
+			"url":"/cards/Annihilus/",
+			"name":"Annihilus",
+			"description":"<b>On Reveal:</b> Your cards with 0 or less Power switch sides. Destroy\nthose that can't.",
+			"displayImageUrl":"https://game-assets.snap.fan/card_variant_images/Annihilus-3bc71c4c97ba01409fdff116fe2b8c5f49b86087d55b45ee3f05206d085734eb.webp",
+			"cost": 5
+		},
+		{
 			"cardDefKey": "AntMan",
 			"variantKey": null,
 			"url": "/cards/AntMan/",

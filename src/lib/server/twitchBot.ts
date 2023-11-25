@@ -4,6 +4,7 @@ import { Bot, createBotCommand } from '@twurple/easy-bot';
 import Draft, { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/private';
 import DraftFactory from '$lib/snap/draftFactory';
+import { SendMessage } from './webSocketUtils';
 
 export default class TwitchBot {
 
@@ -47,6 +48,7 @@ export default class TwitchBot {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
                         reply(Draft.GetDeckCode(previousDraft.cards));
+                        SendMessage(broadcasterName, 'showdeck')
                     }
                 }, {globalCooldown: 30, userCooldown: 60})
             ]});

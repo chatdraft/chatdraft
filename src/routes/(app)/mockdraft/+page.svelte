@@ -31,14 +31,14 @@
 	};
 
 	function heartbeat() {
+		setTimeout(heartbeat, 500);
 		if (!ws) return;
 		if (ws.readyState !== 1) return;
 		ws.send("ping");
-		setTimeout(heartbeat, 500);
 	}
 
 	const handleMessage = async(message: string) => {
-		if (message == 'ping') return;
+		if (message == 'pong') return;
 		invalidateAll();
 	}
 

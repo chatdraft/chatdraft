@@ -1,7 +1,7 @@
 import type { Choice, Card, Deck } from "$lib/snap/draft";
 import { type ExtendedGlobal, GlobalThisWSS } from "./webSocketHandler";
 
-function SendMessage(player_channel: string, message: string) {
+export function SendMessage(player_channel: string, message: string) {
 	const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
 	if (wss !== undefined) {
 		wss.clients.forEach(client => {
