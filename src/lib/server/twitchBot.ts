@@ -119,7 +119,7 @@ export default class TwitchBot {
     }
 
     public static async VotingClosed(player_channel: string, result: string, ties: string[]) {
-        if (ties.length > 0) {
+        if (ties.length > 1) {
             TwitchBot.Action(player_channel, `${result} chosen after tie between ${ties.join(', ')}.`);
         }
         else {
