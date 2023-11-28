@@ -43,7 +43,7 @@ export function ValidateSession(cookies: Cookies, user: HelixUser | null | undef
 	}
 }
 
-function refreshTimeout(sessionId: string) {
+export function refreshTimeout(sessionId: string) {
     if (sessionUserTimeouts.has(sessionId)) {
         sessionUserTimeouts.get(sessionId)?.refresh();
     }

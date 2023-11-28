@@ -4,12 +4,14 @@ import { nanoid } from 'nanoid';
 import type { Server, WebSocket as WebSocketBase } from 'ws';
 import type { IncomingMessage } from 'http';
 import type { Duplex } from 'stream';
+import { refreshTimeout } from './sessionHandler';
 
 export const GlobalThisWSS = Symbol.for('sveltekit.wss');
 
 export interface ExtendedWebSocket extends WebSocketBase {
 	socketId: string;
 	userId: string;
+	sessionId: string;
 	player_channel: string;
 }
 
@@ -48,6 +50,8 @@ export const createWSSGlobalInstance = () => {
 			console.log(`[wss:global] client disconnected (${ws.socketId})`);
 		});
 		ws.on('message', (event) => {
+			
+			refreshTimeout(ws.sessionId);
 			if (event.toString() == 'ping') {
 				ws.send('pong');
 			}

@@ -30,7 +30,10 @@ export const startupWebsocketServer = () => {
 			if (cookies.session_id) {
 				const session_id = cookies.session_id;
 				const session = fetchSession(session_id);
-				if (session) ws.userId = session.user_id;
+				if (session) {
+					ws.userId = session.user_id;
+					ws.sessionId = session_id;
+				}
 			}
 
 			const url_components = request.url?.split('/')
