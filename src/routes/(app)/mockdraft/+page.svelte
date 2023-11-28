@@ -19,7 +19,7 @@
 	const establishWebSocket = async () => {
 		if (webSocketEstablished) return;
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
+		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
 		heartbeat();
 		ws.addEventListener('message', async (event) => {
 			console.log('[websocket] message received', event);

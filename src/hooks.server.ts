@@ -24,7 +24,7 @@ export const startupWebsocketServer = () => {
 	if (wssInitialized) return;
 	const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
 	if (wss !== undefined) {
-		wss.on('connection', (ws, request) => {
+		wss.on('connection', async (ws, request) => {
 			// This is where you can authenticate the client from the request
 			const cookies = cookie.parse(request.headers.cookie || '');
 			if (cookies.session_id) {
@@ -33,6 +33,8 @@ export const startupWebsocketServer = () => {
 				if (session) {
 					ws.userId = session.user_id;
 					ws.sessionId = session_id;
+					const api = new ApiClient({ authProvider: auth_provider });
+					ws.player_channel = (await api.users.getUserById(session.user_id))?.name;
 				}
 			}
 
