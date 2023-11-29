@@ -15,5 +15,11 @@ export const load: PageLoad = async ({ fetch }) => {
 		return { draft: draft, choice: draft.currentChoice, botstatus: botstatus, player: draft.player };
 	}
 
+	const prevdraftret = await fetch('api/v1/draft/player?previous=true');
+	if (prevdraftret.ok) {
+		const prevdraft: Draft = await prevdraftret.json();
+		return { draft: prevdraft, choice: undefined, botstatus: botstatus, player: prevdraft.player}
+	}
+
 	return { draft: null, choice: null, botstatus: botstatus, player: null };
 }

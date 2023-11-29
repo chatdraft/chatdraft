@@ -8,6 +8,7 @@ type TSessionID = string;
 
 const sessionUsers = new Map<TSessionID, {token: AccessToken, user_id: string}>();
 const sessionUserTimeouts = new Map<TSessionID, NodeJS.Timeout>();
+const sessionTimeout = 1000 * 60 * 60 // 60 minutes
 
 export function setSession(accessToken: AccessToken, user_id: string) {
 
@@ -18,7 +19,7 @@ export function setSession(accessToken: AccessToken, user_id: string) {
 
     const timeout = setTimeout(() => {
         deleteSession(newSessionID)
-    }, 1000 * 60 * 10) //  10 minutes
+    }, sessionTimeout);
 
     sessionUserTimeouts.set(newSessionID, timeout);
 
@@ -50,7 +51,7 @@ export function refreshTimeout(sessionId: string) {
     else {
         const timeout = setTimeout(() => {
             deleteSession(sessionId);
-        }, 1000 * 60 * 10); //  10 minutes
+        }, sessionTimeout);
         sessionUserTimeouts.set(sessionId, timeout);
     }
 }

@@ -4,8 +4,7 @@
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import  Draft from '$lib/snap/draft.js';
 	import { CodeBlock, RangeSlider } from '@skeletonlabs/skeleton';
-	import { onMount } from 'svelte';
-	// import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	export let data;
 	let now = Date.now();
@@ -59,6 +58,11 @@
 			selectionCount = data.draft.selections;
 		}
 		establishWebSocket();
+	});
+
+	onDestroy(() => {
+		if (ws) ws?.close()
+		ws = null;
 	});
 
 	async function NewDraft() {

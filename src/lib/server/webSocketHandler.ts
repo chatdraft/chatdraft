@@ -50,7 +50,6 @@ export const createWSSGlobalInstance = () => {
 			console.log(`[wss:global] client disconnected (${ws.socketId})`);
 		});
 		ws.on('message', (event) => {
-			
 			refreshTimeout(ws.sessionId);
 			if (event.toString() == 'ping') {
 				ws.send('pong');

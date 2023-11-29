@@ -163,7 +163,7 @@ export default class Draft extends EventEmitter {
 		
 		this.Choose(winner.cardDefKey)
 
-		return { winner: winner, ties: ties.map((card) => card.cardDefKey) };
+		return { winner: winner, ties: ties.map((card) => card.name) };
 	}
 
 	public Choose(cardDefKey: string | undefined | null, override: boolean = false) {

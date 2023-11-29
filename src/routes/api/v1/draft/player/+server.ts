@@ -1,12 +1,18 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GetDraft } from '$lib/snap/draft';
+import { GetDraft, GetPreviousDraft } from '$lib/snap/draft';
 import { ValidateSession } from '$lib/server/sessionHandler';
 import DraftFactory from '$lib/snap/draftFactory';
 
-export const GET: RequestHandler = async ({ locals, cookies }) => {
+export const GET: RequestHandler = async ({ locals, cookies, url }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
 
-	const draft = GetDraft(locals.user!.name);
+	let draft;
+	if (url.searchParams.get('previous')) {
+		draft = GetPreviousDraft(locals.user?.name || '');
+	}
+	else {
+		draft = GetDraft(locals.user?.name || '');
+	}
 	if (!draft) throw error(404);
 
 	return json({cards: draft.cards, total: draft.total, player: draft.player, currentChoice: draft.currentChoice, duration: draft.duration, selections: draft.selections, deckName: draft.deckName });
