@@ -72,7 +72,7 @@
 					{/if}
 				</li>
 				<li>
-					{@html `<a target="_blank" href="https://www.buymeacoffee.com/oro.lol"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me coffee&emoji=☕&slug=oro.lol&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>`}
+					{@html `<a href="https://www.buymeacoffee.com/oro.lol" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"></a>`}
 				</li>
 			</ul>
 		</nav>
