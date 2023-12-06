@@ -92,7 +92,7 @@
 </svelte:head>
 
 {#if current_draft}
-	<h1 class="bg-black/70 text-white text-4xl flex justify-center uppercase font-snapa font-outline">Oro Chat Draft</h1>
+	<h1 class="text-black text-4xl flex justify-center uppercase font-snapa font-outline shadow-white">Oro Chat Draft</h1>
 	{#if time_remaining }
 		<div class="bg-black/70 text-white text-4xl rounded-sm">
 			{#if data.hide != 'choice'}
@@ -149,7 +149,7 @@
 				</div>
 			{/if}
 			{#if data.hide != 'choice' && data.hide != 'deck'}
-				<br/>
+				<div class="mt-4 bg-white"></div>
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
