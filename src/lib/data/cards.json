@@ -1159,7 +1159,16 @@
             "name": "Martyr",
             "description": "At the end of the game, move to a location that LOSES you the\ngame. <i>(if possible)</i>",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Martyr-9b7cb965d3aea9d12e87c06988b558181cae574f009451f3f6d34f002c10147e.webp",
-			"cost": 1
+            "cost": 1
+        },
+        {
+            "cardDefKey": "SebastianShaw",
+            "variantKey": null,
+            "url": "/cards/SebastianShaw/",
+            "name": "Sebastian Shaw",
+            "description": "When this card permanently gains Power, gain +2 more Power. <i>(wherever this is)</i>",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SebastianShaw-a844e16491d1927485a8c8a8cd1fa69f26accb8c3584fa5b712a133ba5a64200.webp",
+            "cost": 3
         },
         {
             "cardDefKey": "MasterMold",

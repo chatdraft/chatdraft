@@ -6,8 +6,6 @@
 
 	export let data;
 
-	export const ssr = false;
-
 	let now = Date.now();
 
 	let webSocketEstablished = false;
@@ -129,7 +127,7 @@
 									<div class="border-white border-2 rounded-lg shadow-md shadow-black/100 relative">
 										<!-- Selection Value-->
 										<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
-											<div class="text-center text-6xl my-4">{index + 1}</div>
+											{index + 1}
 										</span>
 										<!-- Vote Icon & Number of Votes-->
 										<div class="flex justify-center absolute bottom-0 right-2">
@@ -153,7 +151,7 @@
 						{/if}
 				</div>
 			{/if}
-			
+
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
 				<div class="bg-black bg-opacity-70 text-slate-200 text-2xl mt-4 font-outline rounded-sm">
@@ -168,7 +166,7 @@
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
 								{#if current_draft?.cards[i]}
-									<SnapCard hideText={true} card={current_draft?.cards[i]} />
+									<img src="{current_draft?.cards[i].displayImageUrl}" alt="{current_draft?.cards[i].name}" />
 								{:else}
 									<img src="/Placeholder.webp" alt="Placeholder card" />
 								{/if}
