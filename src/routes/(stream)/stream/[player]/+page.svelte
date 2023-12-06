@@ -6,6 +6,8 @@
 
 	export let data;
 
+	export const ssr = false;
+
 	let now = Date.now();
 
 	let webSocketEstablished = false;
@@ -74,7 +76,6 @@
 	$: choices = data.choice?.cards!;
 	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
-	$: grid_layout = gridcols[current_draft?.selections || 3];
 
 	onMount(async () => {
 		setInterval(() => {
@@ -93,38 +94,94 @@
 </svelte:head>
 
 {#if current_draft}
+	<h1 class="text-black text-4xl flex justify-center uppercase font-snapa">Oro Chat Draft</h1>
 	{#if time_remaining }
-		<div class="min-h-screen flex flex-col bg-black/70 text-white">
-			<section class="text-center text-5xl my-4">
-				{#if time_remaining > current_draft.duration || time_remaining < 0}
-					Tallying Final Votes...
-				{:else}
-					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
-				{/if}
-			</section>
-			<div class="grid {grid_layout} justify-items-center">
-				{#if (choices && choices.length > 0)}
-					{#each votes as vote}
-						<div class="text-center text-3xl max-h-fit my-4">{vote} votes</div>
-					{/each}
-					{#each choices as choice}
-						<div><SnapCard hideText={true} card={choice} /></div>
-					{/each}
-					{#each choices as _choice, index}
-						<div class="text-center text-6xl my-4">{index + 1}</div>
-					{/each}
-				{/if}
-			</div>
-			<div class="flex flex-shrink">
-				<div class="shrink basis-1/2"></div>
-				<SnapDeck cards={current_draft?.cards || []} />
-				<div class="shrink basis-1/2"></div>
-			</div>
+		<div class="bg-black/70 text-white text-4xl rounded-sm">
+			{#if data.hide != 'choice'}
+				<!-- Pick Number and Timer -->
+				<div class="flex justify-evenly items-center">
+					<h2 class="font-outline">
+						<span class="uppercase font-snapa">Pick:</span>
+						<span class="font-snapn">{current_draft.total + 1}</span>
+					</h2>
+					<!-- Countdown Timer Icon & Seconds -->
+					<div class="items-center inline-flex">
+						{#if time_remaining > current_draft.duration || time_remaining < 0}
+							<span class="font-snapa font-outline">
+								Tallying Final Votes...
+							</span>
+						{:else}
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+							class="h-8 inline-block">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+							</svg>
+							<span class="font-snapn font-outline">
+								{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+							</span>
+						{/if}
+					
+					</div>
+				</div>
+				<!-- Grid of Cards -->
+				<div class="grid grid-cols-3 gap-2 p-2 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
+						{#if (choices && choices.length > 0)}
+								{#each choices as choice, index}
+									<div class="border-white border-2 rounded-lg shadow-md shadow-black/100 relative">
+										<!-- Selection Value-->
+										<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
+											<div class="text-center text-6xl my-4">{index + 1}</div>
+										</span>
+										<!-- Vote Icon & Number of Votes-->
+										<div class="flex justify-center absolute bottom-0 right-2">
+											<div class="flex items-center">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+												stroke="currentColor" class="h-8 stroke-black stroke-1 fill-white drop-shadow-[-2px_2px_2px_var(--tw-shadow-color)] inline-block transform translate-x-1.5">
+												<path stroke-linecap="round" stroke-linejoin="round"
+													d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+												</svg>
+												<span class="font-outline">
+													{votes[index]}
+												</span>
+											</div>
+										</div>
+
+										<!-- Card Image -->
+										<div><SnapCard hideText={true} card={choice} /></div>
+
+									</div>
+								{/each}
+						{/if}
+				</div>
+			{/if}
+			
+			{#if data.hide != 'deck'}
+				<!-- Drafted Cards -->
+				<div class="bg-black bg-opacity-70 text-slate-200 text-2xl mt-4 font-outline rounded-sm">
+					<div class="flex justify-evenly items-center">
+					<h2 class="uppercase font-snapa">
+						Drafted Cards
+					</h2>
+					</div>
+					<!-- Grid of Cards -->
+					<div class="grid grid-cols-4 gap-2 [text-shadow:2px_-2px_-2px_var(--tw-shadow-color)] shadow-black">
+						{#each Array(12) as _, i}
+							<div class="border-slate-200 border-0 rounded-lg relative">
+								<!-- Card Image -->
+								{#if current_draft?.cards[i]}
+									<SnapCard hideText={true} card={current_draft?.cards[i]} />
+								{:else}
+									<img src="/Placeholder.webp" alt="Placeholder card" />
+								{/if}
+							</div>
+						{/each}
+					</div>
+				</div>
+			{/if}
 		</div>
 	{:else}
 		<div class="min-h-screen flex flex-row bg-black/70 text-white">
 			<div class="flex flex-shrink flex-col">
-				<div class="h1 text-center my-10">Draft Complete! - {current_draft.deckName}</div>
+				<div class="h1 text-center my-10 font-snapa">Draft Complete! - {current_draft.deckName}</div>
 				<SnapDeck cards={current_draft?.cards || []} cols={4} />
 			</div>
 		</div>

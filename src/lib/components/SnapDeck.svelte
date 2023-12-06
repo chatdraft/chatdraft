@@ -14,7 +14,7 @@
 					{:else}
 						<img
 							class="pt-4 pb-6 px-8 flex-none"
-							src="https://assets.snap.fan/files/assets/card-frame-placeholder.ef8c62230e9519b4.webp"
+							src="/Placeholder.webp"
 							alt="Placeholder card"
 						/>
 					{/if}

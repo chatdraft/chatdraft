@@ -9,7 +9,7 @@
 	export let data;
 	let now = Date.now();
 	let duration = 120;
-	let selectionCount = 3;
+	let selectionCount = 6;
 
 
 	let webSocketEstablished = false;
@@ -48,7 +48,7 @@
 	$: choices = data.choice?.cards!;
 	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
-	$: grid_layout = gridcols[current_draft?.selections || 3];
+	$: grid_layout = gridcols[current_draft?.selections || 6];
 
 	onMount(() => {
 		setInterval(() => {
@@ -88,12 +88,12 @@
 </script>
 
 <svelte:head>
-	<title>oro's chat draft - Mock Draft</title>
+	<title>oro's chat draft - Draft</title>
 	<meta name="Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 
 <div class="space-y-4 p-4">
-	<h1>Mock Draft</h1>
+	<h1>Draft</h1>
 	{#if (current_draft)}
 		<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 			{#if current_draft.total < 12}

@@ -11,7 +11,13 @@ export default {
 		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
 	],
 	theme: {
-		extend: {}
+		extend:
+		{
+			fontFamily: {
+				'snapa': ['CCElephantmenTall'],
+				'snapn': ['CCUltimatumBold']
+			}
+		},
 	},
 	plugins: [
 		forms,
@@ -35,5 +41,5 @@ export default {
 		{
 			pattern: /grid-cols-+/,
 		}
-	  ]
+	]
 } satisfies Config;

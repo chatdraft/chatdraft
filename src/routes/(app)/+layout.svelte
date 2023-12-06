@@ -28,9 +28,9 @@
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotFooter="bg-surface-700 text-center">
 	<svelte:fragment slot="header">
 		<AppBar>
-			<div class="grid items-center grid-cols-2 w-screen">
+			<div class="grid items-center grid-cols-2 w-screen font-snapa uppercase text-2xl">
 				<div>
-					Chat Draft
+					Oro Chat Draft
 				</div>
 
 				<div class="place-self-end pr-8">
@@ -53,10 +53,16 @@
 
 				{#if user}
 					<li>
-						<a href="mockdraft">Mock Draft</a>
+						<a href="draft">Draft</a>
 					</li>
 					<li>
-						<a href="{`stream/${user.name}`}" target="_blank">Stream View</a>
+						<a href="{`stream/${user.name}`}" target="_blank">Stream View <br/> Options & Deck</a>
+					</li>
+					<li>
+						<a href="{`stream/${user.name}`}?hide=deck" target="_blank">Stream View <br/> Options only</a>
+					</li>
+					<li>
+						<a href="{`stream/${user.name}`}?hide=choice" target="_blank">Stream View <br/> Deck only</a>
 					</li>
 					{#if user.name == 'chatdraftbot'}
 						<li>
