@@ -37,7 +37,7 @@
 
 	const handleMessage = async(message: string) => {
 		if (message == 'showdeck') {
-			if (data.draft) return;
+			if (current_draft) return;
 
 			const ret = await fetch(`/api/v1/draft/player/${data.player}?previous=true`)
 			if (!ret.ok) return;
@@ -179,7 +179,7 @@
 		{#if data.hide != 'deck'}
 			<div class="min-h-screen flex flex-row bg-black/70 text-white">
 				<div class="flex flex-shrink flex-col">
-					<div class="h1 text-center my-10 font-snapa">Draft Complete! - {current_draft.deckName}</div>
+					<div class="h1 text-center my-10 font-snapa">Draft Complete! {current_draft.deckName}</div>
 					<SnapDeck cards={current_draft?.cards || []} cols={4} />
 				</div>
 			</div>
