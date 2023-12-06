@@ -170,13 +170,6 @@ export default class Draft extends EventEmitter {
 		if (override) this.emit(this.onChoiceOverride, this.player, cardDefKey);
 		if (!cardDefKey) return;
 
-		if (this.total == 12) {
-			this.deckName = cardDefKey;
-			this.currentChoice = undefined;
-			this.emit(this.onDraftComplete, this.player, this.cards);
-			return;
-		}
-
 		if (!this.CanChoose(cardDefKey)) return;
 
 		this.cards.push(Draft.LookupCard(cardDefKey)!);
@@ -184,6 +177,13 @@ export default class Draft extends EventEmitter {
 			return a.cost - b.cost;
 		});
 		this.total++;
+
+		if (this.total == 12) {
+			this.deckName = ''; //cardDefKey;
+			this.currentChoice = undefined;
+			this.emit(this.onDraftComplete, this.player, this.cards);
+			return;
+		}
 
 		
 		this.currentChoice = this.NewChoice(this.cards);

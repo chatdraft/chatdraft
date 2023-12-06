@@ -8,7 +8,7 @@
 
 	export let data;
 	let now = Date.now();
-	let duration = 120;
+	let duration = 90;
 	let selectionCount = 6;
 
 
@@ -45,6 +45,7 @@
 	const gridcols = ['','','','grid-cols-3','grid-cols-4','grid-cols-5','grid-cols-6']
 
 	$: current_draft = data.draft;
+	$: previous_draft = data.previous_draft;
 	$: choices = data.choice?.cards!;
 	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
@@ -164,5 +165,11 @@
 	{:else if current_draft?.cards}
 		<SnapDeck cards={current_draft?.cards} />
 		<CodeBlock language="Deck Code" class="break-words" code={Draft.GetDeckCode(current_draft?.cards)}></CodeBlock>
+	{/if}
+	<br/><br/>
+	{#if previous_draft?.cards}
+		<h2>Previous Draft:</h2>
+		<SnapDeck cards={previous_draft.cards} />
+		<CodeBlock language="Deck Code" class="break-words" code={Draft.GetDeckCode(previous_draft.cards)}></CodeBlock>
 	{/if}
 </div>

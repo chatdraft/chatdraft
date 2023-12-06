@@ -92,7 +92,7 @@
 </svelte:head>
 
 {#if current_draft}
-	<h1 class="text-black text-4xl flex justify-center uppercase font-snapa">Oro Chat Draft</h1>
+	<h1 class="bg-black/70 text-white text-4xl flex justify-center uppercase font-snapa font-outline">Oro Chat Draft</h1>
 	{#if time_remaining }
 		<div class="bg-black/70 text-white text-4xl rounded-sm">
 			{#if data.hide != 'choice'}
@@ -104,20 +104,17 @@
 					</h2>
 					<!-- Countdown Timer Icon & Seconds -->
 					<div class="items-center inline-flex">
-						{#if time_remaining > current_draft.duration || time_remaining < 0}
-							<span class="font-snapa font-outline">
-								Tallying Final Votes...
-							</span>
-						{:else}
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
 							class="h-8 inline-block">
 								<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
 							<span class="font-snapn font-outline">
-								{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+								{#if time_remaining > current_draft.duration || time_remaining < 0}
+									0 s
+								{:else}
+									{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})} s
+								{/if}
 							</span>
-						{/if}
-					
 					</div>
 				</div>
 				<!-- Grid of Cards -->
@@ -151,10 +148,12 @@
 						{/if}
 				</div>
 			{/if}
-
+			{#if data.hide != 'choice' && data.hide != 'deck'}
+				<br/>
+			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
-				<div class="bg-black bg-opacity-70 text-slate-200 text-2xl mt-4 font-outline rounded-sm">
+				<div class="text-slate-200 text-2xl font-outline rounded-sm">
 					<div class="flex justify-evenly items-center">
 					<h2 class="uppercase font-snapa">
 						Drafted Cards
@@ -177,11 +176,13 @@
 			{/if}
 		</div>
 	{:else}
-		<div class="min-h-screen flex flex-row bg-black/70 text-white">
-			<div class="flex flex-shrink flex-col">
-				<div class="h1 text-center my-10 font-snapa">Draft Complete! - {current_draft.deckName}</div>
-				<SnapDeck cards={current_draft?.cards || []} cols={4} />
+		{#if data.hide != 'deck'}
+			<div class="min-h-screen flex flex-row bg-black/70 text-white">
+				<div class="flex flex-shrink flex-col">
+					<div class="h1 text-center my-10 font-snapa">Draft Complete! - {current_draft.deckName}</div>
+					<SnapDeck cards={current_draft?.cards || []} cols={4} />
+				</div>
 			</div>
-		</div>
+		{/if}
 	{/if}
 {/if}
