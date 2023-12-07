@@ -50,19 +50,13 @@
 				<li>
 					<a href="about">About</a>
 				</li>
+				<li>
+					<a href="setup">Setup</a>
+				</li>
 
 				{#if user}
 					<li>
 						<a href="draft">Draft</a>
-					</li>
-					<li>
-						<a href="{`stream/${user.name}`}" target="_blank">Stream View <br/> Options & Deck</a>
-					</li>
-					<li>
-						<a href="{`stream/${user.name}`}?hide=deck" target="_blank">Stream View <br/> Options only</a>
-					</li>
-					<li>
-						<a href="{`stream/${user.name}`}?hide=choice" target="_blank">Stream View <br/> Deck only</a>
 					</li>
 					{#if user.name == 'chatdraftbot'}
 						<li>

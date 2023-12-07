@@ -5,6 +5,7 @@ import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import { PUBLIC_TWITCH_OAUTH_CLIENT_ID, PUBLIC_TWITCH_REDIRECT_URI } from '$env/static/public';
 import TwitchBot from '$lib/server/twitchBot';
 import { saveToken } from '$lib/server/tokenHandler';
+import { ApiClient } from '@twurple/api';
 
 const authProvider = new RefreshingAuthProvider(
 	{
@@ -16,6 +17,8 @@ const authProvider = new RefreshingAuthProvider(
 export const GET: RequestHandler = async ( { cookies, url } ) => {
     const code = url.searchParams.get('code');
     if (!code) throw error(400, 'No code provided.');
+
+    let redirect_uri = '/';
 
     try {
         // Get the authentication object using the user's code
@@ -51,9 +54,18 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         // set the session cookie
         cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn! })
 
+        const api = new ApiClient({authProvider});
+        const user = await api.users.getUserById(user_id);
+        if ((user) && !(await TwitchBot.IsBotInChannel(user.name))) {
+            redirect_uri = '/setup';
+        }
+        else {
+            redirect_uri = '/draft';
+        }
+
     } catch (error) {
         console.log(error);
     };
 
-    throw redirect(302, '/')
+    throw redirect(302, redirect_uri)
 }

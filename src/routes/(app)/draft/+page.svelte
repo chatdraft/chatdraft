@@ -81,11 +81,6 @@
 		const ret = await fetch('/api/v1/draft/player', { method: 'DELETE' });
 		invalidateAll();
 	}
-
-	async function InviteBot() {
-		const ret = await fetch(`/api/v1/bot/invite`, {method: 'POST'});
-		invalidateAll();
-	}
 </script>
 
 <svelte:head>
@@ -125,7 +120,7 @@
 			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
 			Please start a new draft.
 		{:else}
-		<button type="button" class="btn btn-lg variant-filled-primary" on:click={InviteBot}>Invite Bot</button>
+			Please go to <a class="anchor" href="/setup">Setup</a>
 		{/if}
 	{/if}
 	<br/>
