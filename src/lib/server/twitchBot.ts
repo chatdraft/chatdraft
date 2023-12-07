@@ -5,6 +5,7 @@ import Draft, { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft } 
 import { env } from '$env/dynamic/private';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
+import { addChannel, getChannels } from './channelHandler';
 
 export default class TwitchBot {
 
@@ -12,17 +13,17 @@ export default class TwitchBot {
     private chat: ChatClient | undefined;
     private bot: Bot | undefined;
 
-    private constructor(authProvider: RefreshingAuthProvider) {
+    private constructor(authProvider: RefreshingAuthProvider, channels: string[]) {
         this.chat = new ChatClient({
             authProvider,
-            channels: [],
+            channels: channels,
             authIntents: ['chat:read', 'chat:edit']
         });
         this.chat.connect();
 
         authProvider.addIntentsToUser(env.TWITCH_USER_ID, ['chat']);
 
-        this.bot = new Bot({authProvider, channels: [], 
+        this.bot = new Bot({authProvider, channels: channels, 
             commands: [
                 createBotCommand('chatdraft', async (_,{say}) => 
                     await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`)),
@@ -88,9 +89,10 @@ export default class TwitchBot {
         if (TwitchBot.instance.chat) TwitchBot.instance.chat.action(player_channel, text);
     }
 
-    public static getInstance(authProvider: RefreshingAuthProvider): TwitchBot {
+    public static async getInstance(authProvider: RefreshingAuthProvider): Promise<TwitchBot> {
         if (!TwitchBot.instance) {
-            TwitchBot.instance = new TwitchBot(authProvider);
+            const channels = await getChannels();
+            TwitchBot.instance = new TwitchBot(authProvider, channels);
         }
 
         return TwitchBot.instance;
@@ -139,6 +141,7 @@ export default class TwitchBot {
     public static async JoinChannel(player_channel: string) {
         if (!TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
+        await addChannel(player_channel);
         return TwitchBot.instance.chat.join(player_channel)
     }
 }
