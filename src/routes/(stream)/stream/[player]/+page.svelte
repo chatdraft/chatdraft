@@ -100,16 +100,16 @@
 				<div class="bg-purple-900 bg-opacity-70 text-white text-4xl rounded-lg">
 					<div class="flex items-center">
 						<h2 class="font-outline pl-4">
-							<span class="uppercase font-snapa">Pick:</span>
-							<span class="font-snapn">{current_draft.total + 1}</span>
+							<span class="uppercase font-snapa font-outline shadow-black">Pick:</span>
+							<span class="font-snapn font-outline shadow-black">{current_draft.total + 1}</span>
 						</h2>
 						<!-- Countdown Timer Icon & Seconds -->
-						<div class="items-center inline-flex absolute right-4">
+						<div class="items-center inline-flex absolute right-4 font-snapn font-outline shadow-black">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
 								class="h-8 inline-block">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 								</svg>
-								<span class="font-snapn font-outline">
+								<span>
 									{#if time_remaining > current_draft.duration || time_remaining < 0}
 										0s
 									{:else}
@@ -157,7 +157,7 @@
 				<!-- Drafted Cards -->
 				<div class="bg-purple-900 bg-opacity-70 text-slate-200 text-2xl font-outline rounded-lg">
 					<div class="flex justify-evenly items-center">
-					<h2 class="uppercase font-snapa">
+					<h2 class="uppercase font-snapa font-outline shadow-black">
 						Drafted Cards
 					</h2>
 					</div>
