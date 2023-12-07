@@ -98,22 +98,22 @@
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
 				<div class="bg-purple-900 bg-opacity-70 text-white text-4xl rounded-lg">
-					<div class="flex justify-evenly items-center">
-						<h2 class="font-outline">
+					<div class="flex items-center">
+						<h2 class="font-outline pl-4">
 							<span class="uppercase font-snapa">Pick:</span>
 							<span class="font-snapn">{current_draft.total + 1}</span>
 						</h2>
 						<!-- Countdown Timer Icon & Seconds -->
-						<div class="items-center inline-flex">
+						<div class="items-center inline-flex absolute right-4">
 								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
 								class="h-8 inline-block">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 								</svg>
 								<span class="font-snapn font-outline">
 									{#if time_remaining > current_draft.duration || time_remaining < 0}
-										0 s
+										0s
 									{:else}
-										{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})} s
+										{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}s
 									{/if}
 								</span>
 						</div>
