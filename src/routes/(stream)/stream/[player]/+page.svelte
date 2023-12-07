@@ -92,68 +92,70 @@
 </svelte:head>
 
 {#if current_draft}
-	<h1 class="text-black text-4xl flex justify-center uppercase font-snapa font-outline shadow-white">Oro Chat Draft</h1>
+	<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
 	{#if time_remaining }
-		<div class="bg-black/70 text-white text-4xl rounded-sm">
+		<div class="text-white text-4xl rounded-sm font-snapa">
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
-				<div class="flex justify-evenly items-center">
-					<h2 class="font-outline">
-						<span class="uppercase font-snapa">Pick:</span>
-						<span class="font-snapn">{current_draft.total + 1}</span>
-					</h2>
-					<!-- Countdown Timer Icon & Seconds -->
-					<div class="items-center inline-flex">
-							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-							class="h-8 inline-block">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-							</svg>
-							<span class="font-snapn font-outline">
-								{#if time_remaining > current_draft.duration || time_remaining < 0}
-									0 s
-								{:else}
-									{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})} s
-								{/if}
-							</span>
+				<div class="bg-purple-900 bg-opacity-70 text-white text-4xl rounded-lg">
+					<div class="flex justify-evenly items-center">
+						<h2 class="font-outline">
+							<span class="uppercase font-snapa">Pick:</span>
+							<span class="font-snapn">{current_draft.total + 1}</span>
+						</h2>
+						<!-- Countdown Timer Icon & Seconds -->
+						<div class="items-center inline-flex">
+								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+								class="h-8 inline-block">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								<span class="font-snapn font-outline">
+									{#if time_remaining > current_draft.duration || time_remaining < 0}
+										0 s
+									{:else}
+										{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})} s
+									{/if}
+								</span>
+						</div>
 					</div>
-				</div>
-				<!-- Grid of Cards -->
-				<div class="grid grid-cols-3 gap-2 p-2 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
-						{#if (choices && choices.length > 0)}
-								{#each choices as choice, index}
-									<div class="border-white border-2 rounded-lg shadow-md shadow-black/100 relative">
-										<!-- Selection Value-->
-										<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
-											{index + 1}
-										</span>
-										<!-- Vote Icon & Number of Votes-->
-										<div class="flex justify-center absolute bottom-0 right-2">
-											<div class="flex items-center">
-												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-												stroke="currentColor" class="h-8 stroke-black stroke-1 fill-white drop-shadow-[-2px_2px_2px_var(--tw-shadow-color)] inline-block transform translate-x-1.5">
-												<path stroke-linecap="round" stroke-linejoin="round"
-													d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-												</svg>
-												<span class="font-outline">
-													{votes[index]}
-												</span>
+					<!-- Grid of Cards -->
+					<div class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
+							{#if (choices && choices.length > 0)}
+									{#each choices as choice, index}
+										<div class="border-white bg-black bg-opacity-70 border-2 rounded-lg shadow-md shadow-black/100 relative">
+											<!-- Selection Value-->
+											<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
+												{index + 1}
+											</span>
+											<!-- Vote Icon & Number of Votes-->
+											<div class="flex justify-center absolute bottom-0 right-2">
+												<div class="flex items-center">
+													<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+													stroke="currentColor" class="h-8 stroke-black stroke-1 fill-white drop-shadow-[-2px_2px_2px_var(--tw-shadow-color)] inline-block transform translate-x-1.5">
+													<path stroke-linecap="round" stroke-linejoin="round"
+														d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+													</svg>
+													<span class="font-outline">
+														{votes[index]}
+													</span>
+												</div>
 											</div>
+
+											<!-- Card Image -->
+											<div><SnapCard hideText={true} card={choice} /></div>
+
 										</div>
-
-										<!-- Card Image -->
-										<div><SnapCard hideText={true} card={choice} /></div>
-
-									</div>
-								{/each}
-						{/if}
+									{/each}
+							{/if}
+					</div>
 				</div>
 			{/if}
 			{#if data.hide != 'choice' && data.hide != 'deck'}
-				<div class="mt-4 bg-white"></div>
+				<div class="mt-4 bg-transparent"></div>
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
-				<div class="text-slate-200 text-2xl font-outline rounded-sm">
+				<div class="bg-purple-900 bg-opacity-70 text-slate-200 text-2xl font-outline rounded-lg">
 					<div class="flex justify-evenly items-center">
 					<h2 class="uppercase font-snapa">
 						Drafted Cards
