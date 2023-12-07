@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
+	import { twitch_login_uri } from '$lib/api/twitch/client';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import  Draft from '$lib/snap/draft.js';
 	import { CodeBlock, RangeSlider } from '@skeletonlabs/skeleton';
 	import { onDestroy, onMount } from 'svelte';
+	import { page } from '$app/stores';
 
 	export let data;
 	let now = Date.now();
@@ -120,7 +122,12 @@
 			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
 			Please start a new draft.
 		{:else}
-			Please go to <a class="anchor" href="/setup">Setup</a>
+			If this is your first time here, please go to
+			<a class="anchor" href="/setup">Setup</a>. 
+			{#if !($page.data.user)}
+				Otherwise, please
+				<a class="anchor" href="{twitch_login_uri}">Login with Twitch</a>
+			{/if}
 		{/if}
 	{/if}
 	<br/>

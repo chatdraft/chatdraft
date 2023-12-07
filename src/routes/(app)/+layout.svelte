@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
+	import { goto } from '$app/navigation';
 	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import '../../app.postcss';
 
@@ -13,7 +13,7 @@
 
 	async function logout() {
 		await fetch('/api/v1/logout', {method: 'POST' });
-		await invalidateAll();
+		goto('/');
 	}
 
 	async function login() {

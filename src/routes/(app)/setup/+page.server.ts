@@ -1,5 +1,5 @@
 import TwitchBot from '$lib/server/twitchBot';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
 
 export const load = (async ({locals, url}) => {
@@ -10,3 +10,16 @@ export const load = (async ({locals, url}) => {
     }
     return { user: user, botInChannel: botInChannel, url_base: url.origin };
 }) satisfies PageServerLoad;
+
+export const actions = {
+    join: async ({locals}) => {
+        if (locals.user) {
+            await TwitchBot.JoinChannel(locals.user.name);
+        }
+    },
+    part: async ({locals}) => {
+        if (locals.user) {
+            await TwitchBot.PartChannel(locals.user.name);
+        }
+    }
+} satisfies Actions

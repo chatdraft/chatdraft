@@ -5,7 +5,7 @@ import Draft, { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft } 
 import { env } from '$env/dynamic/private';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
-import { addChannel, getChannels } from './channelHandler';
+import { addChannel, getChannels, removeChannel } from './channelHandler';
 
 export default class TwitchBot {
 
@@ -143,5 +143,12 @@ export default class TwitchBot {
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
         await addChannel(player_channel);
         return TwitchBot.instance.chat.join(player_channel)
+    }
+
+    public static async PartChannel(player_channel: string) {
+        if (!TwitchBot.instance.chat) return false;
+        if (TwitchBot.instance.bot) TwitchBot.instance.bot.leave(player_channel);
+        await removeChannel(player_channel);
+        return TwitchBot.instance.chat.part(player_channel);
     }
 }
