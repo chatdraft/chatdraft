@@ -18,7 +18,7 @@
 	<meta name="Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 
-<div class="m-4">
+<div class="p-4">
     <Stepper buttonCompleteLabel="Start Drafting!" on:complete={onComplete}>
         <Step locked={data.user == undefined}>
             <svelte:fragment slot="header">
