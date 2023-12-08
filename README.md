@@ -29,6 +29,7 @@ account and use the app.
 ## Deployment
 
 TBD
+
 ## Authors
 
 - **oro** - *Initial author* -
@@ -36,5 +37,8 @@ TBD
 - **jjrolk** - *Interface design and testing*
 
 ## Acknowledgements
+
+- **Billie Thompson** - *Provided README Template* -
+    [PurpleBooth](https://github.com/PurpleBooth)
 
 Alpha and beta testers will be listed here etc
