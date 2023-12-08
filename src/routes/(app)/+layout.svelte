@@ -14,8 +14,8 @@
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotFooter="bg-surface-700 text-center">
 	<svelte:fragment slot="header">
 		<AppBar>
-			<div class="grid items-center grid-cols-2 w-screen font-snapa uppercase text-2xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone">
-				<div>
+			<div class="grid items-center grid-cols-2 w-screen">
+				<div class="font-snapa uppercase text-2xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone px-2">
 					Oro Chat Draft
 				</div>
 

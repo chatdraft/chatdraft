@@ -20,7 +20,7 @@
 
 {#if data.user == undefined}
     <div class="p-4">
-        <h1>Welcome to <span class="font-snapa uppercase bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone">Oro Chat Draft</span>!</h1>
+        <h1>Welcome to <span class="font-snapa uppercase bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone px-1">Oro Chat Draft</span>!</h1>
         Please start by <a class="anchor" href="{twitch_login_uri}">logging in with Twitch</a> and returning to this page.
         TODO: Add explanation of the channel points permissions requested and screenshot of the Twitch auth page
     </div>
