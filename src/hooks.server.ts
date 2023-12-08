@@ -9,6 +9,7 @@ import { existsToken, loadToken } from '$lib/server/tokenHandler';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
 import { building } from '$app/environment';
 import cookie from 'cookie';
+import { userAuthorized } from '$lib/server/authorizationHandler';
 
 const KV = new Map();
 
@@ -92,6 +93,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 			// Get the user's data using the access token
 			event.locals.user = await api.users.getAuthenticatedUser(session.user_id);
+			event.locals.user_authorized = await userAuthorized(event.locals.user.name);
 
 			return await resolve(event);
 		}

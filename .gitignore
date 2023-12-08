@@ -224,3 +224,4 @@ $RECYCLE.BIN/
 # token files containing twitch chat token data
 tokens.*.json
 channels.json
+authorized_users.json

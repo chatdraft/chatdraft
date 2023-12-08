@@ -12,6 +12,7 @@ declare global {
 			KV: Map<string, string>;
 			auth_provider: RefreshingAuthProvider;
 			wss?: ExtendedWebSocketServer;
+			user_authorized: boolean;
 		}
 		interface PublicEnv {
 			PUBLIC_TWITCH_OAUTH_CLIENT_ID: string;

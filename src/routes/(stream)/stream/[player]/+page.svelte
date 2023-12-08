@@ -92,8 +92,8 @@
 </svelte:head>
 
 {#if current_draft}
-	<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
 	{#if time_remaining }
+		<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
 		<div class="text-white text-4xl rounded-sm font-snapa">
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
@@ -179,9 +179,9 @@
 		</div>
 	{:else}
 		{#if data.hide != 'deck'}
+			<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
 			<div class="min-h-screen flex flex-row bg-black/70 text-white">
 				<div class="flex flex-shrink flex-col">
-					<div class="h1 text-center my-10 font-snapa">Draft Complete! {current_draft.deckName}</div>
 					<SnapDeck cards={current_draft?.cards || []} cols={4} />
 				</div>
 			</div>

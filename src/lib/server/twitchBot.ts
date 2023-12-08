@@ -50,11 +50,16 @@ export default class TwitchBot {
                         GetDraft(broadcasterName)?.CancelDraft();
                     }
                 }),
-                createBotCommand('chatdraftdeck', async (_, {broadcasterName, reply}) => {
+                createBotCommand('chatdraftdeck', async (_, {broadcasterName}) => {
+                    const previousDraft = GetPreviousDraft(broadcasterName);
+                    if (previousDraft) {
+                        SendMessage(broadcasterName, 'showdeck')
+                    }
+                }, {globalCooldown: 30, userCooldown: 60}),
+                createBotCommand('chatdraftcode', async (_, {broadcasterName, reply}) => {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
                         reply(Draft.GetDeckCode(previousDraft.cards));
-                        SendMessage(broadcasterName, 'showdeck')
                     }
                 }, {globalCooldown: 30, userCooldown: 60})
             ]});

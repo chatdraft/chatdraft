@@ -123,7 +123,7 @@
 			Please start a new draft.
 		{:else}
 			If this is your first time here, please go to
-			<a class="anchor" href="/setup">Setup</a>. 
+			<a class="anchor" href="/start">Getting Started</a>. 
 			{#if !($page.data.user)}
 				Otherwise, please
 				<a class="anchor" href="{twitch_login_uri}">Login with Twitch</a>

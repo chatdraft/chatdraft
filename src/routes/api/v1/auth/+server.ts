@@ -57,7 +57,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         const api = new ApiClient({authProvider});
         const user = await api.users.getUserById(user_id);
         if ((user) && !(await TwitchBot.IsBotInChannel(user.name))) {
-            redirect_uri = '/setup';
+            redirect_uri = '/start';
         }
         else {
             redirect_uri = '/draft';
