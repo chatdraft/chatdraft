@@ -51,7 +51,7 @@
                 <nav class="list-nav">
                     TODO: insert explanation of setting up browser sources and the choice between combined or separate sources
                     <br/><br/><br/>
-                    <BrowserSources url_base="{data.url_base}" user="{data.user || ''}"/>
+                    <BrowserSources url_base="{data.url_base}" user="{data.user}"/>
                 </nav>
             </Step>
             <Step>
