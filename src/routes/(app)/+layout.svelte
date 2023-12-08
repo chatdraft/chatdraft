@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
 	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import '../../app.postcss';
 
@@ -10,20 +9,6 @@
 
     export let data;
     $: user = data.user;
-
-	async function logout() {
-		await fetch('/api/v1/logout', {method: 'POST' });
-		await invalidateAll();
-		goto('/');
-	}
-
-	async function login() {
-		window.location.href = twitch_login_uri;
-	}
-
-	async function InviteBot() {
-		window.location.href = twitch_bot_uri;
-	}
 </script>
 
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotFooter="bg-surface-700 text-center">
@@ -82,23 +67,23 @@
 
 				{#if user && user.name == 'chatdraftbot'}
 					<li>
-						<button on:click={InviteBot}>
+						<a href={twitch_bot_uri}>
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9c-2-2-5-2.4-7.4-1.3L9 6L6 9L1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4Z"/></svg>
 							<span class="mr-2">Setup Chatbot</span>
-						</button>
+						</a>
 					</li>
 				{/if}
 				<li>
 					{#if !user}
-						<button on:click={login}>
+						<a href={twitch_login_uri}>
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21v-2h7V5h-7V3h7q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21h-7Zm-2-4l-1.375-1.45l2.55-2.55H3v-2h8.175l-2.55-2.55L10 7l5 5l-5 5Z"/></svg>
 							<span class="mr-2">Log in</span>
-						</button>
+						</a>
 					{:else}
-						<button on:click={logout}>
+						<a href="logout">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h7v2H5Zm11-4l-1.375-1.45l2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5l-5 5Z"/></svg>
 							<span class="mr-2">Logout</span>
-						</button>
+						</a>
 					{/if}
 				</li>
 				<li>

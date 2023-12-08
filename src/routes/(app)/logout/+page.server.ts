@@ -1,12 +1,12 @@
 import { deleteSession } from '$lib/server/sessionHandler';
-import { redirect, type RequestHandler } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
-export const POST: RequestHandler = async ( { cookies} ) => {
-
+export const load = (async ({cookies}) => {
     if (cookies.get('session_id')) {
         deleteSession(cookies.get('session_id')!);
         cookies.delete('session_id', {path: '/', httpOnly: true })
     }
 
     throw redirect(302, '/');
-}
+}) satisfies PageServerLoad;
