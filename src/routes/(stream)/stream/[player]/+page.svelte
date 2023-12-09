@@ -105,17 +105,14 @@
 						</h2>
 						<!-- Countdown Timer Icon & Seconds -->
 						<div class="items-center inline-flex absolute right-4 font-snapn font-outline shadow-black">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-								class="h-8 inline-block">
-									<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-								</svg>
-								<span>
-									{#if time_remaining > current_draft.duration || time_remaining < 0}
-										0s
-									{:else}
-										{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}s
-									{/if}
-								</span>
+							<iconify-icon icon="ion:timer-outline" width="32" height="32" flip="horizontal"></iconify-icon>
+							<span>
+								{#if time_remaining > current_draft.duration || time_remaining < 0}
+									0s
+								{:else}
+									{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}s
+								{/if}
+							</span>
 						</div>
 					</div>
 					<!-- Grid of Cards -->
@@ -130,11 +127,7 @@
 											<!-- Vote Icon & Number of Votes-->
 											<div class="flex justify-center absolute bottom-0 right-2">
 												<div class="flex items-center">
-													<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-													stroke="currentColor" class="h-8 stroke-black stroke-1 fill-white drop-shadow-[-2px_2px_2px_var(--tw-shadow-color)] inline-block transform translate-x-1.5">
-													<path stroke-linecap="round" stroke-linejoin="round"
-														d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-													</svg>
+													<iconify-icon icon="mdi:heart" width="32" height="32" flip="horizontal"></iconify-icon>
 													<span class="font-outline">
 														{votes[index]}
 													</span>
