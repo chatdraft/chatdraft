@@ -1,6 +1,7 @@
 import { setSession, updateSession } from '$lib/server/sessionHandler';
 import { error, redirect, type RequestHandler } from '@sveltejs/kit';
-import { env } from "$env/dynamic/private";
+import { env as privateenv } from "$env/dynamic/private";
+import { env } from "$env/dynamic/public";
 import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import { PUBLIC_TWITCH_OAUTH_CLIENT_ID, PUBLIC_TWITCH_REDIRECT_URI } from '$env/static/public';
 import TwitchBot from '$lib/server/twitchBot';
@@ -10,7 +11,7 @@ import { ApiClient } from '@twurple/api';
 const authProvider = new RefreshingAuthProvider(
 	{
 		clientId: PUBLIC_TWITCH_OAUTH_CLIENT_ID,
-		clientSecret: env.TWITCH_CLIENT_SECRET
+		clientSecret: privateenv.TWITCH_CLIENT_SECRET
 	}
 );
 
@@ -22,20 +23,20 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
 
     try {
         // Get the authentication object using the user's code
-        const tokenData = await exchangeCode(PUBLIC_TWITCH_OAUTH_CLIENT_ID, env.TWITCH_CLIENT_SECRET, code, PUBLIC_TWITCH_REDIRECT_URI);
+        const tokenData = await exchangeCode(PUBLIC_TWITCH_OAUTH_CLIENT_ID, privateenv.TWITCH_CLIENT_SECRET, code, PUBLIC_TWITCH_REDIRECT_URI);
 
         const user_id = await authProvider.addUserForToken(tokenData);
 
         if(tokenData.scope.includes('chat:read') && tokenData.scope.includes('chat:edit')) {
             await saveToken(user_id, JSON.stringify(tokenData));
-            authProvider.addUser(env.TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
+            authProvider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
             TwitchBot.getInstance(authProvider);
         }
         else {
             const session_id = setSession(tokenData, user_id);
             authProvider.onRefresh(async (userId, newTokenData) => {
                 updateSession(session_id, newTokenData)
-                if (userId == env.TWITCH_USER_ID) {
+                if (userId == env.PUBLIC_TWITCH_USER_ID) {
                     await saveToken(user_id, JSON.stringify(tokenData));
                 }
             });

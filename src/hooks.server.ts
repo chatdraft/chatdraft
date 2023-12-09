@@ -1,7 +1,8 @@
 import { fetchSession } from '$lib/server/sessionHandler';
 import type { Handle } from '@sveltejs/kit';
 import { ApiClient } from '@twurple/api';
-import { env } from '$env/dynamic/private';
+import { env as privateenv } from '$env/dynamic/private';
+import { env } from '$env/dynamic/public';
 import { RefreshingAuthProvider } from '@twurple/auth';
 import { PUBLIC_TWITCH_OAUTH_CLIENT_ID } from '$env/static/public';
 import TwitchBot from '$lib/server/twitchBot';
@@ -15,7 +16,7 @@ const KV = new Map();
 
 const auth_provider = new RefreshingAuthProvider({
 	clientId: PUBLIC_TWITCH_OAUTH_CLIENT_ID,
-	clientSecret: env.TWITCH_CLIENT_SECRET
+	clientSecret: privateenv.TWITCH_CLIENT_SECRET
 });
 
 
@@ -71,9 +72,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 
-	if (!auth_provider.hasUser(env.TWITCH_USER_ID) && existsToken(env.TWITCH_USER_ID)) {
-		const tokenData = await loadToken(env.TWITCH_USER_ID);
-		auth_provider.addUser(env.TWITCH_USER_ID, tokenData, ['chat:read', 'chat:edit']);
+	if (!auth_provider.hasUser(env.PUBLIC_TWITCH_USER_ID) && existsToken(env.PUBLIC_TWITCH_USER_ID)) {
+		const tokenData = await loadToken(env.PUBLIC_TWITCH_USER_ID);
+		auth_provider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read', 'chat:edit']);
 		TwitchBot.getInstance(auth_provider);
 	}
 
