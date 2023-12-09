@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidate, onNavigate } from '$app/navigation';
 	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import '../../app.postcss';
 
@@ -9,6 +10,10 @@
 
     export let data;
     $: user = data.user;
+
+	onNavigate(async () => {
+		invalidate('chatdraft:auth');
+	});
 </script>
 
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotFooter="bg-surface-700 text-center">

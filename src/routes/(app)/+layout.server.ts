@@ -2,6 +2,7 @@ import TwitchBot from "$lib/server/twitchBot";
 import type { LayoutServerLoad } from "./$types";
 
 export const load :LayoutServerLoad = async (event) => {
+    event.depends('chatdraft:auth')
     if (event.locals.user) {
         const initialSetupDone = await TwitchBot.IsBotInChannel(event.locals.user.name);
         return { user: {
