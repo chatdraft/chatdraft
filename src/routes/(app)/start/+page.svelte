@@ -14,8 +14,8 @@
 </script>
 
 <svelte:head>
-	<title>oro's chat draft - Setup</title>
-	<meta name="Marvel Snap Twitch Chat Draft" />
+	<title>oro's chat draft - Get Started</title>
+	<meta name="description" content="Get Started with Oro Chat Draft and run a Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 
 {#if data.user == undefined}

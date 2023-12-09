@@ -7,6 +7,12 @@
     export let data: PageData;
 </script>
 
+
+<svelte:head>
+	<title>oro's chat draft - Settings</title>
+	<meta name="description" content="Oro Chat Draft Settings" />
+</svelte:head>
+
 <div class="p-4">
     <h1>Setup</h1>
     <br/>
