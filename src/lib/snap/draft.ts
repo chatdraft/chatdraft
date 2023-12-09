@@ -11,7 +11,14 @@ export function GetDraft(player: string) {
 }
 
 export function GetPreviousDraft(player: string) {
-	return previousDrafts.get(player);
+	return previousDrafts.get(player) as IDraft;
+}
+
+export function GetDeckCode(deck: Deck): string {
+	type cardCode = { CardDefId: string }
+	const obj = {Cards: Array<cardCode>()}
+	deck.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
+	return btoa(JSON.stringify(obj))
 }
 
 export type DraftEvents = {
@@ -24,11 +31,18 @@ export type DraftEvents = {
 	ChoiceOverride: EventHandler<[player_channel: string, result: string]>;
 }
 
-export default class Draft extends EventEmitter {
-	public cards: Deck = [];
-	public total: number = 0;
-	public player: string = '';
-	public currentChoice: Choice | undefined;
+export default interface IDraft {
+	cards: Deck;
+	total: number;
+	player: string;
+	currentChoice: Choice | undefined;
+	duration: number;
+	selections: number;
+	deckName: string;
+}
+
+export class Draft extends EventEmitter implements IDraft {
+	
 	private voteTimer: NodeJS.Timeout | undefined;
 	public deckName: string = '';
 
@@ -40,6 +54,10 @@ export default class Draft extends EventEmitter {
 		this.duration = duration;
 		this.selections = selections;
 	}
+	cards: Deck = [];
+	total: number = 0;
+	player: string = '';
+	currentChoice: Choice | undefined;
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
 
@@ -209,15 +227,6 @@ export default class Draft extends EventEmitter {
 		const alreadyDrafted = this.cards.some((c) => c.cardDefKey == cardDefKey);
 	
 		return validChoice && !alreadyDrafted;
-	}
-
-
-
-	public static GetDeckCode(deck: Deck): string {
-		type cardCode = { CardDefId: string }
-		const obj = {Cards: Array<cardCode>()}
-		deck.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
-		return btoa(JSON.stringify(obj))
 	}
 
 

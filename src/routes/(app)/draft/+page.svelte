@@ -3,10 +3,10 @@
 	import { twitch_login_uri } from '$lib/api/twitch/client';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import  Draft from '$lib/snap/draft.js';
 	import { CodeBlock, RangeSlider } from '@skeletonlabs/skeleton';
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { Draft, GetDeckCode } from '$lib/snap/draft.js';
 
 	export let data;
 	let now = Date.now();
@@ -166,12 +166,12 @@
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
 		<SnapDeck cards={current_draft?.cards} />
-		<CodeBlock language="Deck Code" class="break-words" code={Draft.GetDeckCode(current_draft?.cards)}></CodeBlock>
+		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
 	{/if}
 	<br/><br/>
 	{#if previous_draft?.cards}
 		<h2>Previous Draft:</h2>
 		<SnapDeck cards={previous_draft.cards} />
-		<CodeBlock language="Deck Code" class="break-words" code={Draft.GetDeckCode(previous_draft.cards)}></CodeBlock>
+		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(previous_draft.cards)}></CodeBlock>
 	{/if}
 </div>

@@ -1,5 +1,6 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
 import { GetDraft, GetPreviousDraft } from '$lib/snap/draft';
+import type IDraft from '$lib/snap/draft';
 
 export const GET: RequestHandler = async ({ params, url }) => {
 	if (!params.player) {
@@ -7,7 +8,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 	}
 
 
-	let draft;
+	let draft: IDraft | undefined;
 	if (url.searchParams.get('previous')) {
 		draft = GetPreviousDraft(params.player);
 	}

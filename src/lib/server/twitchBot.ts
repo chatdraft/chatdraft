@@ -1,7 +1,7 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
-import Draft, { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft } from '$lib/snap/draft';
+import { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft, GetDeckCode } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
@@ -59,7 +59,7 @@ export default class TwitchBot {
                 createBotCommand('chatdraftcode', async (_, {broadcasterName, reply}) => {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
-                        reply(Draft.GetDeckCode(previousDraft.cards));
+                        reply(GetDeckCode(previousDraft.cards));
                     }
                 }, {globalCooldown: 30, userCooldown: 60})
             ]});

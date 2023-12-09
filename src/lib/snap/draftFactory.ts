@@ -1,6 +1,6 @@
 import TwitchBot from "$lib/server/twitchBot";
 import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStarted, NewChoice, VotingClosed } from "$lib/server/webSocketUtils";
-import Draft from "./draft";
+import { Draft } from "./draft";
 
 export default class DraftFactory {
     public static CreateDraft(duration: number, selections: number) {

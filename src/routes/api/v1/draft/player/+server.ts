@@ -2,11 +2,12 @@ import { error, json, type RequestHandler } from '@sveltejs/kit';
 import { GetDraft, GetPreviousDraft } from '$lib/snap/draft';
 import { ValidateSession } from '$lib/server/sessionHandler';
 import DraftFactory from '$lib/snap/draftFactory';
+import type IDraft from '$lib/snap/draft';
 
 export const GET: RequestHandler = async ({ locals, cookies, url }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
 
-	let draft;
+	let draft: IDraft | undefined;
 	if (url.searchParams.get('previous')) {
 		draft = GetPreviousDraft(locals.user?.name || '');
 	}
