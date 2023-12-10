@@ -32,6 +32,8 @@
 				<div class="place-self-end pr-8">
 					{#if user}
 						<Avatar src={user.profile_picture_url}></Avatar>
+					{:else}
+						<a class="btn btn-md variant-outline-primary" href={twitch_login_uri}>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1"></iconify-icon></a>
 					{/if}
 				</div>
 			</div>
@@ -88,7 +90,7 @@
 					{#if !user}
 						<a href={twitch_login_uri}>
 							<iconify-icon icon="material-symbols:login" width="28" height="28"></iconify-icon>
-							<span class="mr-2">Log in</span>
+							<span class="mr-2">Log in</span><iconify-icon icon="ri:twitch-fill" width="24" height="24"></iconify-icon>
 						</a>
 					{:else}
 						<a href="logout" data-sveltekit-preload-data="tap" data-sveltekit-reload>
@@ -98,7 +100,11 @@
 					{/if}
 				</li>
 				<li>
-					{@html `<a href="https://www.buymeacoffee.com/oro.lol" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"></a>`}
+					<div>
+						<a href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="relative"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
+							<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-0 right-1"></iconify-icon>
+						</a>
+					</div>
 				</li>
 			</ul>
 		</nav>

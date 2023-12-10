@@ -113,7 +113,7 @@ export class Draft extends EventEmitter implements IDraft {
 			throw new Error('Not enough selectable cards to continue draft');
 		}
 
-		const voting_period_ms = (this.duration + 1) * 1000; // voting period + 1 seconds after votes open
+		const voting_period_ms = (this.duration + 5) * 1000; // voting period + 5 seconds after votes open
 	
 		const deck = shuffle(available);
 		const choices : Card[] = Array(this.selections);
@@ -195,6 +195,8 @@ export class Draft extends EventEmitter implements IDraft {
 			return a.cost - b.cost;
 		});
 		this.total++;
+
+		this.emit(this.onChoiceSelected, this.player, Draft.LookupCard(cardDefKey)!)
 
 		if (this.total == 12) {
 			this.deckName = ''; //cardDefKey;

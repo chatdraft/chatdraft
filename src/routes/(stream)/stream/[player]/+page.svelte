@@ -2,6 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
+	import type { Card } from '$lib/snap/draft.js';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -61,14 +62,25 @@
 			setTimeout(() => {
 				current_draft = null;
 			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
+			invalidateAll();
 		}
 
-		invalidateAll();
+		if (message.startsWith('choiceselected')) {
+			winningCard = JSON.parse(message.slice('choiceselected:'.length));
+		}
+
+		if (message.startsWith('newchoice')) {
+			winningCard = undefined;
+			invalidateAll();
+		}
+
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
 	}
 
 	const gridcols = ['','','grid-cols-2','grid-cols-3','grid-cols-4','grid-cols-5','grid-cols-6']
+
+	let winningCard: Card | undefined = undefined;
 
 	$: current_draft = data.draft;
 	$: choices = data.choice?.cards!;
@@ -117,29 +129,29 @@
 					</div>
 					<!-- Grid of Cards -->
 					<div class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
-							{#if (choices && choices.length > 0)}
-									{#each choices as choice, index}
-										<div class="border-white bg-black bg-opacity-70 border-2 rounded-lg shadow-md shadow-black/100 relative">
-											<!-- Selection Value-->
-											<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
-												{index + 1}
-											</span>
-											<!-- Vote Icon & Number of Votes-->
-											<div class="flex justify-center absolute bottom-0 right-2">
-												<div class="flex items-center">
-													<iconify-icon icon="mdi:heart" width="32" height="32" flip="horizontal" class="h-8 stroke-black stroke-1 fill-white drop-shadow-[-2px_2px_2px_var(--tw-shadow-color)] inline-block transform translate-x-1.5"></iconify-icon>
-													<span class="font-outline">
-														{votes[index]}
-													</span>
-												</div>
+						{#if (choices && choices.length > 0)}
+								{#each choices as choice, index}
+									<div class="border-white bg-black bg-opacity-70 border-2 rounded-lg shadow-md shadow-black/100 relative" class:blur="{winningCard && winningCard.cardDefKey != choice.cardDefKey}">
+										<!-- Selection Value-->
+										<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
+											{index + 1}
+										</span>
+										<!-- Vote Icon & Number of Votes-->
+										<div class="flex justify-center absolute bottom-0 right-2">
+											<div class="flex items-center">
+												<iconify-icon icon="mdi:heart" width="32" height="32" flip="horizontal" class="h-8 stroke-black stroke-1 fill-white drop-shadow-[-2px_2px_2px_var(--tw-shadow-color)] inline-block transform translate-x-1.5"></iconify-icon>
+												<span class="font-outline">
+													{votes[index]}
+												</span>
 											</div>
-
-											<!-- Card Image -->
-											<div><SnapCard hideText={true} card={choice} /></div>
-
 										</div>
-									{/each}
-							{/if}
+
+										<!-- Card Image -->
+										<div><SnapCard hideText={true} card={choice} /></div>
+
+									</div>
+								{/each}
+						{/if}
 					</div>
 				</div>
 			{/if}
