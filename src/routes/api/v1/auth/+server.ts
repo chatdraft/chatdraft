@@ -28,7 +28,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         const user_id = await authProvider.addUserForToken(tokenData);
 
         if(tokenData.scope.includes('chat:read') && tokenData.scope.includes('chat:edit')) {
-            await saveToken(user_id, JSON.stringify(tokenData));
+            await saveToken(user_id, tokenData);
             authProvider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
             TwitchBot.getInstance(authProvider);
         }
@@ -37,7 +37,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
             authProvider.onRefresh(async (userId, newTokenData) => {
                 updateSession(session_id, newTokenData)
                 if (userId == env.PUBLIC_TWITCH_USER_ID) {
-                    await saveToken(user_id, JSON.stringify(tokenData));
+                    await saveToken(user_id, tokenData);
                 }
             });
 

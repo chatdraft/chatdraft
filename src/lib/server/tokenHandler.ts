@@ -1,8 +1,9 @@
 
+import type { AccessToken } from '@twurple/auth';
 import { existsSync, promises as fs } from 'fs';
 import { readFile } from 'fs/promises';
 
-export async function saveToken(user_id: string, token_data: string) {
+export async function saveToken(user_id: string, token_data: AccessToken) {
     await fs.writeFile(tokenFileName(user_id), JSON.stringify(token_data), { encoding: 'utf-8' });
 }
 

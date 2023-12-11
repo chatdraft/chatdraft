@@ -139,7 +139,7 @@ export default class TwitchBot {
     }
 
     public static async IsBotInChannel(player_channel: string) {
-        if (!TwitchBot.instance.chat) return false;
+        if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
         return TwitchBot.instance.chat.currentChannels.includes(`#${player_channel}`);
     }
 

@@ -74,6 +74,10 @@
 			winningCard = undefined;
 			invalidateAll();
 		}
+		
+		if (message.startsWith('draftcanceled')) {
+			invalidateAll();
+		}
 
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
