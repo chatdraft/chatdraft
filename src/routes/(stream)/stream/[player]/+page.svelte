@@ -25,6 +25,7 @@
 			console.log('[websocket] message received', event);
 			await handleMessage(event.data)
 		});
+		ws.addEventListener('close', async () => { webSocketEstablished = false; })
 
 		return ws;
 	};
@@ -120,7 +121,7 @@
 							<iconify-icon icon="ion:timer-outline" width="32" height="32" flip="horizontal"></iconify-icon>
 							<span>
 								{#if time_remaining > current_draft.duration || time_remaining < 0}
-									0s
+									{current_draft.duration}s
 								{:else}
 									{time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}s
 								{/if}
