@@ -79,6 +79,10 @@
 			invalidateAll();
 		}
 
+		if (message.startsWith('voteupdated')) {
+			invalidateAll();
+		}
+
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
 	}
