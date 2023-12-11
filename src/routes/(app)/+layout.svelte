@@ -21,10 +21,10 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </svelte:head>
 
-<AppShell slotSidebarLeft="bg-surface-500/5 p-4 text-center" slotFooter="bg-surface-700 text-center">
+<AppShell slotSidebarLeft="bg-surface-500/5 text-center" slotFooter="bg-surface-700 text-center">
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-2" slotDefault="place-self-start" slotTrail="place-content-end">
-				<div class="font-snapa uppercase text-4xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone">
+				<div class="font-snapa uppercase text-4xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone px-2">
 					Oro Chat Draft
 				</div>
 			
@@ -39,7 +39,7 @@
 	</svelte:fragment>
 
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail class="text-center">
+		<AppRail class="text-center overflow-x-hidden">
 			<AppRailAnchor href="/">
 					<iconify-icon icon="material-symbols:home" width="28" height="28"></iconify-icon>
 					<p class="mr-2 w-full">Home</p>
@@ -83,8 +83,8 @@
 				</AppRailAnchor>
 			{/if}
 			<svelte:fragment slot="trail">
-				<AppRailAnchor href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="relative"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
-					<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-0 right-1"></iconify-icon>
+				<AppRailAnchor href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="relative"><img class="p-2" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
+					<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1"></iconify-icon>
 				</AppRailAnchor>
 			</svelte:fragment>
 		</AppRail>
