@@ -39,47 +39,47 @@
 	</svelte:fragment>
 
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail>
+		<AppRail class="text-center">
 			<AppRailAnchor href="/">
 					<iconify-icon icon="material-symbols:home" width="28" height="28"></iconify-icon>
-					<p class="mr-2">Home</p>
+					<p class="mr-2 w-full">Home</p>
 			</AppRailAnchor>
 			<AppRailAnchor href="about">
 				<iconify-icon icon="material-symbols:info-outline" width="28" height="28"></iconify-icon>
-				<p class="mr-2">About</p>
+				<p class="mr-2 w-full">About</p>
 			</AppRailAnchor>
 
 			{#if user && user.initialSetupDone}
 				<AppRailAnchor href="settings">
 					<iconify-icon icon="mdi:gear" width="28" height="28"></iconify-icon>
-					<p class="mr-2">Settings</p>
+					<p class="mr-2 w-full">Settings</p>
 				</AppRailAnchor>
 				<AppRailAnchor href="draft">
 					<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
-					<p class="mr-2">Draft</p>
+					<p class="mr-2 w-full">Draft</p>
 				</AppRailAnchor>
 			{:else}
 				<AppRailAnchor href="start">
 					<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
-					<p class="mr-2">Get Started</p>
+					<p class="mr-2 w-full">Get Started</p>
 				</AppRailAnchor>
 			{/if}
 
 			{#if user && user.id == env.PUBLIC_TWITCH_USER_ID}
 				<AppRailAnchor href={twitch_bot_uri}>
 					<iconify-icon icon="mdi:wrench" width="28" height="28"></iconify-icon>
-					<span class="mr-2">Setup Chatbot</span>
+					<span class="mr-2 w-full">Setup Chatbot</span>
 				</AppRailAnchor>
 			{/if}
 			{#if !user}
 				<AppRailAnchor href={twitch_login_uri}>
 					<iconify-icon icon="ri:twitch-fill" width="24" height="24"></iconify-icon>
-					<p class="mr-2">Log in</p>
+					<p class="mr-2 w-full">Log in</p>
 				</AppRailAnchor>
 			{:else}
 				<AppRailAnchor href="logout" data-sveltekit-preload-data="tap" data-sveltekit-reload>
 					<iconify-icon icon="material-symbols:logout" width="28" height="28"></iconify-icon>
-					<p class="mr-2">Logout</p>
+					<p class="mr-2 w-full">Logout</p>
 				</AppRailAnchor>
 			{/if}
 			<svelte:fragment slot="trail">
