@@ -7,6 +7,7 @@
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { AppBar, AppRail, AppRailAnchor, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
+	import { page } from '$app/stores';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
     export let data;
@@ -42,33 +43,33 @@
 		<AppRail class="text-center overflow-x-hidden">
 			<AppRailAnchor href="/">
 					<iconify-icon icon="material-symbols:home" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full">Home</p>
+					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id == '/(app)'}>Home</p>
 			</AppRailAnchor>
 			<AppRailAnchor href="about">
 				<iconify-icon icon="material-symbols:info-outline" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full">About</p>
+				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('about')}>About</p>
 			</AppRailAnchor>
 
 			{#if user && user.initialSetupDone}
 				<AppRailAnchor href="settings">
 					<iconify-icon icon="mdi:gear" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full">Settings</p>
+					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('settings')}>Settings</p>
 				</AppRailAnchor>
 				<AppRailAnchor href="draft">
 					<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full">Draft</p>
+					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('draft')}>Draft</p>
 				</AppRailAnchor>
 			{:else}
 				<AppRailAnchor href="start">
 					<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full">Get Started</p>
+					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('start')}>Get Started</p>
 				</AppRailAnchor>
 			{/if}
 
 			{#if user && user.admin}
 			<AppRailAnchor href="admin">
 				<iconify-icon icon="mdi:administrator" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full">Admin</p>
+				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('admin')}>Admin</p>
 			</AppRailAnchor>
 			{/if}
 
