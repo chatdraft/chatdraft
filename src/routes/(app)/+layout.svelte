@@ -65,6 +65,13 @@
 				</AppRailAnchor>
 			{/if}
 
+			{#if user && user.admin}
+			<AppRailAnchor href="admin">
+				<iconify-icon icon="mdi:administrator" width="28" height="28"></iconify-icon>
+				<p class="mr-2 w-full">Admin</p>
+			</AppRailAnchor>
+			{/if}
+
 			{#if user && user.id == env.PUBLIC_TWITCH_USER_ID}
 				<AppRailAnchor href={twitch_bot_uri}>
 					<iconify-icon icon="mdi:wrench" width="28" height="28"></iconify-icon>

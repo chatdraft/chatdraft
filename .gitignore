@@ -225,3 +225,4 @@ $RECYCLE.BIN/
 tokens.*.json
 channels.json
 authorized_users.json
+admin_users.json

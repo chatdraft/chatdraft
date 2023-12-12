@@ -6,6 +6,22 @@ import { getRandomDeckName } from './draftNames';
 const drafts = new Map<string, Draft>();
 const previousDrafts = new Map<string, Draft>();
 
+export function GetDrafts() {
+	const idrafts: IDraft[] = [];
+	drafts.forEach((draft => {
+		idrafts.push(draft.toIDraft())
+	}));
+	return idrafts;
+}
+
+export function GetPreviousDrafts() {
+	const idrafts: IDraft[] = [];
+	previousDrafts.forEach((draft => {
+		idrafts.push(draft.toIDraft());
+	}))
+	return idrafts;
+}
+
 export function GetDraft(player: string) {
 	return drafts.get(player);
 }
@@ -253,6 +269,18 @@ export class Draft extends EventEmitter implements IDraft {
 
 	public IsActive() {
 		return (drafts.has(this.player) && this.currentChoice);
+	}
+	
+	public toIDraft(): IDraft {
+		return ({
+			cards: this.cards,
+			total: this.total,
+			player: this.player,
+			currentChoice: this.currentChoice,
+			duration: this.duration,
+			selections: this.selections,
+			deckName: this.deckName,
+		});
 	}
 }
 

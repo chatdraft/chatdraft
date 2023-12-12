@@ -3,7 +3,7 @@ import { existsSync, promises as fs } from 'fs';
 
 const channelsFileName = `./channels.json`;
 
-export async function addChannel(user_name: string) {
+export async function AddChannel(user_name: string) {
     const channels = await ReadChannels();
 
     if (channels.includes(user_name)) return;
@@ -13,7 +13,7 @@ export async function addChannel(user_name: string) {
     await fs.writeFile(channelsFileName, JSON.stringify(channels), { encoding: 'utf-8' });
 }
 
-export async function removeChannel(user_name: string) {
+export async function RemoveChannel(user_name: string) {
     const channels = await ReadChannels();
 
     const index = channels.indexOf(user_name);
@@ -23,13 +23,13 @@ export async function removeChannel(user_name: string) {
     }
 }
 
-export async function existsChannel(user_name: string) {
+export async function ExistsChannel(user_name: string) {
     const channels = await ReadChannels();
 
     return (channels.includes(user_name));
 }
 
-export async function getChannels() {
+export async function GetChannels() {
     const channels = await ReadChannels();
 
     return channels;
