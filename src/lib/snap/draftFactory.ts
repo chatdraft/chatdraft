@@ -19,7 +19,7 @@ export default class DraftFactory {
             NewChoice(player_channel, choice);
         });
 
-        draft.onChoiceSelected(TwitchBot.ChoiceSelected);
+        //draft.onChoiceSelected(TwitchBot.ChoiceSelected);
         draft.onChoiceSelected(ChoiceSelected);
 
         draft.onDraftComplete(async (player_channel, deck) => {
