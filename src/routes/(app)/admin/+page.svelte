@@ -49,9 +49,23 @@
     <section>Chatbot is connected to:</section>
     <ul class="list-disc list-inside">
         {#each channels as channel}
-            <li>{channel}</li>
+
+            <form method="POST" action="?/partchannel" use:enhance>
+                <li>
+                    <button class="btn-icon btn-icon-sm variant-outline-error">
+                        <iconify-icon icon="mdi:remove-bold"></iconify-icon>
+                    </button>
+                    {channel}
+                    <input type="hidden" id="username" name="username" value="{channel}">
+                </li>
+            </form>
         {/each}
     </ul>
+    <form method="POST" action="?/joinchannel" use:enhance>
+        <label for="username">Join Channel:</label>
+        <input type="text" id="username" name="username" placeholder="Username" class="text-black">
+        <button class="btn-icon btn-icon-sm variant-outline-primary"><iconify-icon icon="mdi:check-bold"></iconify-icon></button>
+    </form>
     <br/>
 
     <section>Number of Active Drafts: {drafts.length}</section>

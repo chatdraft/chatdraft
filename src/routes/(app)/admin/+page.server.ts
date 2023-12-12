@@ -2,7 +2,7 @@ import { AuthorizeUser, DeauthorizeUser, GetAdminUsers, GetAuthorizedUsers, IsUs
 import { GetDrafts, GetPreviousDrafts } from '$lib/snap/draft';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { GetChannels } from '$lib/server/channelHandler';
+import { AddChannel, GetChannels, RemoveChannel } from '$lib/server/channelHandler';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw redirect(302, '/')
@@ -36,5 +36,19 @@ export const actions = {
         if (username) {
             DeauthorizeUser(username.toString());
         }
-    }
+    },
+    joinchannel: async ({request}) => {
+        const data = await request.formData();
+        const username = data.get("username");
+        if (username) {
+            AddChannel(username.toString());
+        }
+    },
+    partchannel: async ({request}) => {
+        const data = await request.formData();
+        const username = data.get("username");
+        if (username) {
+            RemoveChannel(username.toString());
+        }
+    },
 } satisfies Actions
