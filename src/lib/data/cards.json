@@ -77,9 +77,9 @@
             "variantKey": null,
             "url": "/cards/AmericaChavez/",
             "name": "America Chavez",
-            "description": "Starts on the bottom of your deck. Draw this on turn 6.",
+            "description": "<b>On Reveal:</b> The top card of your deck gets +2 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AmericaChavez-5e032a4c71aea6bf4fc6b4c2eb35044360dbc00f9c71470a0bd177695be67477.webp",
-            "cost": 6
+            "cost": 2
         },
         {
             "cardDefKey": "Angel",
@@ -242,6 +242,15 @@
             "description": "<b>On Reveal:</b> Discard the rightmost card from your hand.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blade-0ba1493083ad63b5052dd1d1a12f3f19ca0c09e7049e6df9988ac133a60d865a.webp",
             "cost": 1
+        },
+        {
+            "cardDefKey": "Blob",
+            "variantKey": null,
+            "url": "/cards/Blob/",
+            "name": "Blob",
+            "description": "<b>On Reveal:</b> Merge your deck into this. <i>(and gain its total Power)</i>\n<b>Ongoing:</b> Can't be moved.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blob-e6a1644e8713007dfed263f887838e0dde64d5ca25605ab30ac67025136d2347.webp",
+            "cost": 6
         },
         {
             "cardDefKey": "BlueMarvel",
