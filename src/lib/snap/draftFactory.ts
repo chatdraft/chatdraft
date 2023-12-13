@@ -14,7 +14,7 @@ export default class DraftFactory {
 
         draft.onNewChoice(async (player_channel, choice) => {
             // delay 5 seconds before announcing a new choice for the stream to update
-            await new Promise(f => setTimeout(f, 5000));
+            if (draft.total > 0) await new Promise(f => setTimeout(f, 5000));
             TwitchBot.NewChoice(player_channel, choice);
             NewChoice(player_channel, choice);
         });
