@@ -20,12 +20,16 @@
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
 		heartbeat();
-		ws.addEventListener('message', async (event) => {
+		ws.onmessage =  async (event) => {
 			if (event.data == 'pong') return;
 			console.log('[websocket] message received', event);
 			await handleMessage(event.data)
-		});
-		ws.addEventListener('close', async () => { webSocketEstablished = false; })
+		};
+		ws.onclose = async () => { 
+			webSocketEstablished = false;
+			ws = null;
+			setTimeout(establishWebSocket, 5000);
+		};
 
 		return ws;
 	};

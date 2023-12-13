@@ -19,9 +19,11 @@
 </svelte:head>
 
 
-
 <section class="p-4">
+    <h1>Admin</h1>
+    <br/>
     <button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}><iconify-icon icon="material-symbols:refresh"></iconify-icon></button>
+    <br/><br/>
     <section>Admin Accounts:</section>
     <ul class="list-disc list-inside">
         {#each adminUsers as username}

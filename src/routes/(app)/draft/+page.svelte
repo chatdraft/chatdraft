@@ -22,10 +22,16 @@
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
 		heartbeat();
-		ws.addEventListener('message', async (event) => {
+		ws.onmessage = async (event) => {
 			console.log('[websocket] message received', event);
 			await handleMessage(event.data)
-		});
+		};
+
+		ws.onclose = async () => { 
+			webSocketEstablished = false;
+			ws = null;
+			setTimeout(establishWebSocket, 5000);
+		};
 
 		webSocketEstablished = true;
 
