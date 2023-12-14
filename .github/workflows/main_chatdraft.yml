@@ -38,6 +38,10 @@ jobs:
         with:
           name: node-app
           path: release.zip
+        env:
+          PUBLIC_TWITCH_OAUTH_CLIENT_ID: ${{ vars.PUBLIC_TWITCH_OAUTH_CLIENT_ID }}
+          PUBLIC_TWITCH_USER_ID: ${{ vars.PUBLIC_TWITCH_USER_ID }}
+          PUBLIC_TWITCH_REDIRECT_URI: ${{ vars.PUBLIC_TWITCH_REDIRECT_URI }}
 
   deploy:
     runs-on: ubuntu-latest
