@@ -3,14 +3,13 @@ import { error, redirect, type RequestHandler } from '@sveltejs/kit';
 import { env as privateenv } from "$env/dynamic/private";
 import { env } from "$env/dynamic/public";
 import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
-import { PUBLIC_TWITCH_OAUTH_CLIENT_ID, PUBLIC_TWITCH_REDIRECT_URI } from '$env/static/public';
 import TwitchBot from '$lib/server/twitchBot';
 import { saveToken } from '$lib/server/tokenHandler';
 import { ApiClient } from '@twurple/api';
 
 const authProvider = new RefreshingAuthProvider(
 	{
-		clientId: PUBLIC_TWITCH_OAUTH_CLIENT_ID,
+		clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID,
 		clientSecret: privateenv.TWITCH_CLIENT_SECRET
 	}
 );
@@ -23,7 +22,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
 
     try {
         // Get the authentication object using the user's code
-        const tokenData = await exchangeCode(PUBLIC_TWITCH_OAUTH_CLIENT_ID, privateenv.TWITCH_CLIENT_SECRET, code, PUBLIC_TWITCH_REDIRECT_URI);
+        const tokenData = await exchangeCode(env.PUBLIC_TWITCH_OAUTH_CLIENT_ID, privateenv.TWITCH_CLIENT_SECRET, code, env.PUBLIC_TWITCH_REDIRECT_URI);
 
         const user_id = await authProvider.addUserForToken(tokenData);
 

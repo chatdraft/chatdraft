@@ -103,7 +103,7 @@
 	<slot />
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="footer">
-		©2023 oro version {__APP_VERSION__} Test
+		©2023 oro version {__APP_VERSION__}
 	</svelte:fragment>
 	<!-- (footer) -->
 </AppShell>

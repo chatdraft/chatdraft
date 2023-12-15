@@ -4,7 +4,6 @@ import { ApiClient } from '@twurple/api';
 import { env as privateenv } from '$env/dynamic/private';
 import { env } from '$env/dynamic/public';
 import { RefreshingAuthProvider } from '@twurple/auth';
-import { PUBLIC_TWITCH_OAUTH_CLIENT_ID } from '$env/static/public';
 import TwitchBot from '$lib/server/twitchBot';
 import { existsToken, loadToken } from '$lib/server/tokenHandler';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
@@ -15,7 +14,7 @@ import { IsUserAuthorized } from '$lib/server/authorizationHandler';
 const KV = new Map();
 
 const auth_provider = new RefreshingAuthProvider({
-	clientId: PUBLIC_TWITCH_OAUTH_CLIENT_ID,
+	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID,
 	clientSecret: privateenv.TWITCH_CLIENT_SECRET
 });
 
