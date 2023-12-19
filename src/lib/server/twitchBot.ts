@@ -45,24 +45,28 @@ export default class TwitchBot {
                         draft.StartDraft(broadcasterName);
                     }
                 }),
+                
                 createBotCommand('chatdraftcancel', async (_, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
                         GetDraft(broadcasterName)?.CancelDraft();
                     }
                 }),
+
                 createBotCommand('chatdraftdeck', async (_, {broadcasterName}) => {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
                         SendMessage(broadcasterName, 'showdeck')
                     }
                 }, {globalCooldown: 30, userCooldown: 60}),
+
                 createBotCommand('chatdraftcode', async (_, {broadcasterName, reply}) => {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
                         reply(GetDeckCode(previousDraft.cards));
                     }
                 }, {globalCooldown: 30, userCooldown: 60})
-            ]});
+            ]
+        });
 
         this.chat.onMessage((channel, user, text) => {
             console.log(`#${channel} - <${user}>: ${text}`);
@@ -76,6 +80,10 @@ export default class TwitchBot {
                 SendMessage(channel, 'voteupdated');
             }
         });
+    }
+
+    public IsHealthy() {
+        return (this.chat && this.chat.isConnected)
     }
 
     public static IsInitialized() {

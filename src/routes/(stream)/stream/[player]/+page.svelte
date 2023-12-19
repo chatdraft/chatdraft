@@ -87,17 +87,19 @@
 			invalidateAll();
 		}
 
+		if (message.startsWith('previewtoggled')) {
+			invalidateAll();
+		}
+
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
 	}
 
-	const gridcols = ['','','grid-cols-2','grid-cols-3','grid-cols-4','grid-cols-5','grid-cols-6']
-
 	let winningCard: Card | undefined = undefined;
 
-	$: current_draft = data.draft;
-	$: choices = data.choice?.cards!;
-	$: votes = data.choice?.voteCounts!;
+	$: current_draft = data.previewStatus ? data.previewDraft : data.draft;
+	$: choices = current_draft?.currentChoice?.cards!;
+	$: votes = current_draft?.currentChoice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 
 	onMount(async () => {

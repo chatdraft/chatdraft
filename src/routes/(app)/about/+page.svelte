@@ -22,4 +22,7 @@
 		<a class="anchor" href="start">Get Started</a>
 		page will walk you through each of these steps.
 	</p>
+	<p>
+		TODO: Insert list of chat bot commands and explanations
+	</p>
 </div>

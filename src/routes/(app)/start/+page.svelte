@@ -51,7 +51,8 @@
                 <nav class="list-nav">
                     TODO: insert explanation of setting up browser sources and the choice between combined or separate sources
                     <br/><br/><br/>
-                    <BrowserSources url_base="{data.url_base}" user="{data.user}"/>
+                    <BrowserSources url_base="{data.url_base}" user="{data.user}" previewMode={data.previewMode}/>
+                    Remember to turn off preview mode before starting a real draft. Preview mode can be toggled in Settings at anytime.
                 </nav>
             </Step>
             <Step>

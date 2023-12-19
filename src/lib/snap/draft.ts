@@ -22,6 +22,45 @@ export function GetPreviousDrafts() {
 	return idrafts;
 }
 
+export function GetPreviewDraft(): IDraft {
+	const total = Math.floor( Math.random() * 13 )
+
+	const deck: Card[] = [];
+	const shuffled: Card[] = [];
+	cards.all.forEach(card => shuffled.push(card));
+	shuffle(shuffled);
+	for(let i = 0; i < total; i++) {
+		deck.push(shuffled.pop()!)
+	}
+
+	const player = 'preview';
+
+	const duration = 60;
+	const selections = 6
+	const currentChoice: Choice = {
+		cards: [],
+		votes: new Map<string, string>(),
+		voteCounts: [],
+		votes_closed: Date.now() + duration * 1000,
+	}
+
+	for (let i = 0; i < selections; i++) {
+		currentChoice.cards.push(shuffled.pop()!);
+		currentChoice.voteCounts.push(0);
+	}
+	const deckName = 'Preview';
+
+	return {
+		total: total,
+		cards: deck,
+		player: player,
+		currentChoice: currentChoice,
+		duration: duration,
+		selections: selections,
+		deckName: deckName
+	}
+}
+
 export function GetDraft(player: string) {
 	return drafts.get(player);
 }

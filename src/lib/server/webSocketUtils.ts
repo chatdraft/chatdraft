@@ -39,3 +39,7 @@ export const VotingClosed = async (player_channel: string) => {
 export const ChoiceOverride = async (player_channel: string, result: string) => {
     SendMessage(player_channel, `choiceoverride:${result}`);
 }
+
+export const PreviewToggled = async(player_channel: string, previewStatus: boolean) => {
+    SendMessage(player_channel, `previewtoggled:${previewStatus}`);
+}

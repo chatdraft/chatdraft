@@ -1,12 +1,23 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
 	import { RadioGroup, RadioItem, clipboard } from "@skeletonlabs/skeleton";
 
     export let url_base: string;
     export let user: string;
+    export let previewMode: boolean = false;
     let splitView = false;
 </script>
 
-
+<form method="post" use:enhance action="?/togglePreview">
+        <button class="btn btn-sm m-4" class:variant-filled-primary={previewMode} class:variant-filled-warning={!previewMode}>
+            {#if previewMode}
+                Preview On
+            {:else}
+                Preview Off
+            {/if}
+        </button>
+</form>
+<br/><br/>
 <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
     <RadioItem bind:group={splitView} name="SourceView" value={false}>Combined</RadioItem>
     <RadioItem bind:group={splitView} name="SourceView" value={true}>Separate</RadioItem>
