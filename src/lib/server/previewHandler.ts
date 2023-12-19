@@ -11,10 +11,12 @@ export function GetPreviewStatus(username: string) {
 
 export function SetPreviewStatus(username: string) {
     previews.set(username, true);
+    PreviewToggled(username, true);
 }
 
 export function ClearPreviewStatus(username: string) {
     previews.set(username, false);
+    PreviewToggled(username, false);
 }
 
 export function TogglePreviewStatus(username: string) {

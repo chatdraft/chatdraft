@@ -1,3 +1,4 @@
+import { ClearPreviewStatus } from "$lib/server/previewHandler";
 import TwitchBot from "$lib/server/twitchBot";
 import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStarted, NewChoice, VotingClosed } from "$lib/server/webSocketUtils";
 import { Draft } from "./draft";
@@ -7,7 +8,10 @@ export default class DraftFactory {
         const draft = new Draft(duration, selections);
 
         draft.onDraftStarted(TwitchBot.DraftStarted);
-        draft.onDraftStarted(DraftStarted)
+        draft.onDraftStarted(DraftStarted);
+        draft.onDraftStarted((player) => {
+            ClearPreviewStatus(player)
+        });
 
         draft.onDraftCanceled(TwitchBot.DraftCanceled);
         draft.onDraftCanceled(DraftCanceled);
