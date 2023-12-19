@@ -9,9 +9,7 @@ export default class DraftFactory {
 
         draft.onDraftStarted(TwitchBot.DraftStarted);
         draft.onDraftStarted(DraftStarted);
-        draft.onDraftStarted((player) => {
-            ClearPreviewStatus(player)
-        });
+        draft.onDraftStarted((player) => { ClearPreviewStatus(player) });
 
         draft.onDraftCanceled(TwitchBot.DraftCanceled);
         draft.onDraftCanceled(DraftCanceled);

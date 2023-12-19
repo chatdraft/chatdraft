@@ -6,7 +6,7 @@ export function GetPreviewStatus(username: string) {
     if (previews.has(username)) {
         return previews.get(username)!;
     }
-    return true;
+    return false;
 }
 
 export function SetPreviewStatus(username: string) {
