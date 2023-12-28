@@ -231,7 +231,7 @@
             "url": "/cards/BlackWidow/",
             "name": "Black Widow",
             "description": "<b>On Reveal:</b> Add a Widow's Bite to your opponent's hand.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-04d01f13e7e43fde014e3b9c80df30edca0c305e62f26f85096228f420c36ef9.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-fe11ee5be84194652324e644f6b641ad38484c07f0bb3e5ff7a41284803bf224.webp",
             "cost": 2
         },
         {
@@ -681,7 +681,7 @@
             "url": "/cards/Gladiator/",
             "name": "Gladiator",
             "description": "<b>On Reveal:</b> Add a card from your opponent's deck to their side of this location. If it has less Power, destroy it.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gladiator-cdebc66d67edaffa2de53f5bb41579c71e8a79d257939279b1af07907011cc6b.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gladiator-9f68ababcba60348cf1b399bc404328e3560f4c5b68e653fc1fd695b320e42b0.webp",
             "cost": 3
         },
         {
@@ -710,6 +710,15 @@
             "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Groot-d37a4162a0b4b14bd988267fc13310f0ab0c895f4c9a9eaddc8f4fdcda0bb72c.webp",
             "cost": 3
+        },
+        {
+            "cardDefKey": "Havok",
+            "variantKey": null,
+            "url": "/cards/Havok/",
+            "name": "Havok",
+            "description": "After each turn, you lose 1 Max Energy and this gains +4 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Havok-167906e1e6eebfbd006695f5f8a350365ad538477470c0c47ae3f0990c1dea71.webp",
+            "cost": 2
         },
         {
             "cardDefKey": "Hawkeye",
@@ -1167,7 +1176,7 @@
             "url": "/cards/Martyr/",
             "name": "Martyr",
             "description": "At the end of the game, move to a location that LOSES you the\ngame. <i>(if possible)</i>",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Martyr-9b7cb965d3aea9d12e87c06988b558181cae574f009451f3f6d34f002c10147e.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Martyr-383410b9b395c432cbdadcc3908b766f3041a11aa5868aa57ff89d3687cfb002.webp",
             "cost": 1
         },
         {
@@ -1194,7 +1203,7 @@
             "url": "/cards/Maximus/",
             "name": "Maximus",
             "description": "<b>On Reveal:</b> Your opponent\ndraws 2 cards.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Maximus-aab144021aaad7d22007479eea998c98c8fceedf755c3bf9cfcc64968945b284.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Maximus-f2908d0277c319541344b849fc283a72082d35a19682b8d09e3f73ee1e094531.webp",
             "cost": 3
         },
         {
@@ -1509,7 +1518,7 @@
             "url": "/cards/ProfessorX/",
             "name": "Professor X",
             "description": "<b>Ongoing:</b> Lock down this location. <i>(Cards can't be added, removed, etc.)</i>",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ProfessorX-279cd68673fd1fd21fff74c3aa11b2921d4f59ebc337de413f1e67663a32d3d1.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ProfessorX-f951ad26d8a20b53336cfb37c7537c42787580ccad5d2bcd6b02c3d20df90aad.webp",
             "cost": 5
         },
         {
@@ -1527,7 +1536,7 @@
             "url": "/cards/Punisher/",
             "name": "Punisher",
             "description": "<b>Ongoing:</b> +1 Power for each opposing card at this location.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Punisher-b22dcb0155b1d81216103576f78c00bbcdc6100bb75e1a3a95ccd2cb6cb5edda.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Punisher-1032d059edb9ae77c2cf42cbf04772aa7996167af4e26fca49d3f2693c2507ea.webp",
             "cost": 3
         },
         {
@@ -1626,7 +1635,7 @@
             "url": "/cards/Ronan/",
             "name": "Ronan the Accuser",
             "description": "<b>Ongoing:</b> +2 Power for each card in your opponent's hand.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ronan-107447d4e53ba3a30db36a8effa8a4b5d99f9a52eb654962915950188b86e8c4.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ronan-a8917fcfee1457696faa66b2ec220870872ebbefbc71ffa570a24acad6ed3498.webp",
             "cost": 5
         },
         {
@@ -1673,6 +1682,15 @@
             "description": "<b>On Reveal:</b> Afflict cards in your opponent's hand with -1 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-216e46417c131747e78e07861eca3edfad7279921ce4537c1e8036a458e363ec.webp",
             "cost": 2
+        },
+        {
+            "cardDefKey": "Selene",
+            "variantKey": null,
+            "url": "/cards/Selene/",
+            "name": "Selene",
+            "description": "<b>On Reveal:</b> Afflict the lowest-Power card in each player's hand\nwith -3 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Selene-8fe76746460efd27622676063aa1affa5ef96b79e27721c63fe9bd1644314a48.webp",
+            "cost": 1
         },
         {
             "cardDefKey": "Sentinel",
@@ -2058,7 +2076,7 @@
             "url": "/cards/Viper/",
             "name": "Viper",
             "description": "<b>On Reveal:</b> One of your other cards here switches sides.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-89452adc8347c12b09661579273e4c2e636cfadf75ad99727408b5321f42ec97.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-2b90a471b8beb44a0dc5527b879b2fd5659012b98b0b128ff9375ece776fad7e.webp",
             "cost": 2
         },
         {
@@ -2112,7 +2130,7 @@
             "url": "/cards/WerewolfByNight/",
             "name": "Werewolf By Night",
             "description": "After you play an <b>On Reveal</b> card at another location, move there and\ngain +2 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-0a3a67b73f07c25948cb26e9c23a92ed399f4c0e8de088ac4f68ce0ea56fe3cb.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-52da3d0454a94b9b00be3ea28ca6c9b209661a148d30d621c55685b1a57fa964.webp",
             "cost": 3
         },
         {
