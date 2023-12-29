@@ -32,11 +32,18 @@ TBD
 
 - **oro** - *Initial author* -
     [ssbm-oro](https://github.com/ssbm-oro)
-- **jjrolk** - *Interface design and testing*
+- **jjrolk** - *Interface design and testing* - [jjrolk](https://github.com/jjrolk)
 
 ## Acknowledgements
 
 - **Billie Thompson** - *Provided README Template* -
     [PurpleBooth](https://github.com/PurpleBooth)
 
-Alpha and beta testers will be listed here etc
+### Alpha Testers
+
+- [**jjrolk**](https://twitch.tv/jjrolk)
+- [**Felicity**](https://twitch.tv/felicity)
+- [**ItsGuestGaming**](https://twitch.tv/itsguestgaming)
+- [**SuperTechGod**](https://twitch.tv/supertechgod)
+- [**RHickey28**](https://twitch.tv/rhickey28)
+- [**JeeseJames**](https://twitch.tv/jeesejames)
