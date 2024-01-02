@@ -289,6 +289,15 @@
             "cost": 3
         },
         {
+            "cardDefKey": "Caiera",
+            "variantKey": null,
+            "url": "/cards/Caiera/",
+            "name": "Caiera",
+            "description": "<b>Ongoing:</b> Your 1 and 6-Cost cards can't be destroyed.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Caiera-80cb62f474dd668cfdf045921e8a16e70e0f8140c222f3503da343fe8945840c.webp",
+            "cost": 3
+        },
+        {
             "cardDefKey": "CaptainAmerica",
             "variantKey": null,
             "url": "/cards/CaptainAmerica/",
@@ -1799,6 +1808,15 @@
             "description": "<b>On Reveal:</b> Give your other\n3-Cost cards +2 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSurfer-42ae47da216048a0304de39205add38b87cdf41b76b28b80d1d16f270f8e05ac.webp",
             "cost": 3
+        },
+        {
+            "cardDefKey": "Skaar",
+            "variantKey": null,
+            "url": "/cards/Skaar/",
+            "name": "Skaar",
+            "description": "Costs 2 less for each of your cards that has 10 or more Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Skaar-29567d31beb45f447d65b6090634b2425409446cb8c774fd04562f8abf52ebeb.webp",
+            "cost": 6
         },
         {
             "cardDefKey": "Snowguard",
