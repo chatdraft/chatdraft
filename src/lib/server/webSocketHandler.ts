@@ -1,24 +1,23 @@
 import { parse } from 'url';
 import { WebSocketServer } from 'ws';
 import { nanoid } from 'nanoid';
-import type { Server, WebSocket as WebSocketBase } from 'ws';
+import type WebSocketBase from 'ws';
 import type { IncomingMessage } from 'http';
 import type { Duplex } from 'stream';
 import { refreshTimeout } from './sessionHandler';
 
 export const GlobalThisWSS = Symbol.for('sveltekit.wss');
 
-export interface ExtendedWebSocket extends WebSocketBase {
+declare class ExtendedWebSocket extends WebSocketBase {
 	socketId: string;
 	userId: string;
 	sessionId: string;
 	player_channel: string;
 }
 
-// You can define server-wide functions or class instances here
-export interface ExtendedWebSocketServer extends Server<ExtendedWebSocket> {};
+export type { ExtendedWebSocket };
 
-//export type ExtendedWebSocketServer = Server<ExtendedWebSocket>;
+export type ExtendedWebSocketServer = WebSocketBase.Server<typeof ExtendedWebSocket>;
 
 export type ExtendedGlobal = typeof globalThis & {
 	[GlobalThisWSS]: ExtendedWebSocketServer;

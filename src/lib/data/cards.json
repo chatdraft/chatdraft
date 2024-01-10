@@ -77,7 +77,7 @@
             "variantKey": null,
             "url": "/cards/AmericaChavez/",
             "name": "America Chavez",
-            "description": "<b>On Reveal:</b> The top card of your deck gets +2 Power.",
+            "description": "<b>On Reveal:</b> Give the top card of your deck +2 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AmericaChavez-5e032a4c71aea6bf4fc6b4c2eb35044360dbc00f9c71470a0bd177695be67477.webp",
             "cost": 2
         },
@@ -86,7 +86,7 @@
             "variantKey": null,
             "url": "/cards/Angel/",
             "name": "Angel",
-            "description": "When one of your cards is destroyed, this flies out of your deck to replace it.",
+            "description": "When one of your cards is destroyed, this flies out of your hand or deck to replace it.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angel-e21430c1e42c4e0db2ee24e47adf92c317aece1155f78d784e68190219f04280.webp",
             "cost": 1
         },
@@ -104,8 +104,8 @@
             "variantKey": null,
             "url": "/cards/Annihilus/",
             "name": "Annihilus",
-            "description": "<b>On Reveal:</b> Your cards with 0 or less Power switch sides. Destroy\nthose that can't.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Annihilus-3bc71c4c97ba01409fdff116fe2b8c5f49b86087d55b45ee3f05206d085734eb.webp",
+            "description": "<b>On Reveal:</b> Your cards with Power below 0 switch sides. Destroy\nthose that can't.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Annihilus-02e060189f75db2a871d0b102b0e7e43a6b6a69a42b34255ecdc8c78c6f2ad26.webp",
             "cost": 5
         },
         {
@@ -536,8 +536,8 @@
             "variantKey": null,
             "url": "/cards/Dracula/",
             "name": "Dracula",
-            "description": "At the end of the game, discard a card from your hand. This has its Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dracula-a11c225be00a514b978ca2ef41300ed9f1ed32cb09cd1097edb76e2ee4f2e99f.webp",
+            "description": "At the end of the game, discard a card from your hand to gain its Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dracula-125ba136e54d466b436ac458dfd73c75eddcdfbba20c3784159fbbbd4b65c133.webp",
             "cost": 4
         },
         {
@@ -784,6 +784,15 @@
             "cost": 4
         },
         {
+            "cardDefKey": "Hercules",
+            "variantKey": null,
+            "url": "/cards/Hercules/",
+            "name": "Hercules",
+            "description": "The first time another card moves here each turn, move it to another location.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-f1ed3bcbac3f83ba2b889a87ded2151d6f1a51cb57484adac5e21c1081ba0842.webp",
+            "cost": 4
+        },
+        {
             "cardDefKey": "HighEvolutionary",
             "variantKey": null,
             "url": "/cards/HighEvolutionary/",
@@ -986,8 +995,8 @@
             "variantKey": null,
             "url": "/cards/Kingpin/",
             "name": "Kingpin",
-            "description": "When a card moves here on turn 6, destroy it.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kingpin-5812e23048122d4416e57aef10af75811ddaa7a28586c8e837fe70dd2e005102.webp",
+            "description": "When an enemy card moves here, afflict it with -2 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kingpin-9ad2b8e3b48ba157218d4968d7b43127d06f94dff38d652da5a87c572efbf5e9.webp",
             "cost": 3
         },
         {
@@ -1103,7 +1112,7 @@
             "variantKey": null,
             "url": "/cards/Loki/",
             "name": "Loki",
-            "description": "<b>On Reveal:</b> Replace your hand with cards from your opponent's starting deck. Give them -1 cost.",
+            "description": "<b>On Reveal:</b> Transform your hand into cards from your opponent's starting deck and give them -1 Cost.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-fd0954a7248e815c49dca118f1d17208e3830c2ebdd0018c5efc0af0fe65173d.webp",
             "cost": 4
         },
@@ -1337,8 +1346,8 @@
             "variantKey": null,
             "url": "/cards/MsMarvel/",
             "name": "Ms. Marvel",
-            "description": "<b>Ongoing:</b> Adjacent locations where your cards have unique Costs\nhave +5 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MsMarvel-dae03ed7c592426194f8c6921e7b2c504353b617f75a418651c96590d4ff8a11.webp",
+            "description": "<b>Ongoing:</b> Your adjacent locations with 2+ cards and no repeated Costs have +5 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MsMarvel-d1500265b2ade02cb1f4b01c85dd821766d3261c2a0ebee43bef29e9c6b23bed.webp",
             "cost": 4
         },
         {
@@ -1553,7 +1562,7 @@
             "variantKey": null,
             "url": "/cards/Quake/",
             "name": "Quake",
-            "description": "<b>On Reveal:</b> If this is at the middle location, swap the positions of\neach location.",
+            "description": "<b>On Reveal:</b> Swap the positions of the other two locations.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quake-6d7c7801d6839281560c3b2d1aec0936e9a890cccf0b0bb64b2ffc358f384f77.webp",
             "cost": 2
         },
