@@ -1234,6 +1234,15 @@
             "cost": 2
         },
         {
+            "cardDefKey": "Miek",
+            "variantKey": null,
+            "url": "/cards/Miek/",
+            "name": "Miek",
+            "description": "After each turn, if you discarded any cards, gain +1 Power for each\nand move.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Miek-e55826a3db08b3f4f9b12de4a1e5cd06d3ee9bd4baa82e8c0a8bd4417a8df345.webp",
+            "cost": 1
+        },
+        {
             "cardDefKey": "MilesMorales",
             "variantKey": null,
             "url": "/cards/MilesMorales/",
