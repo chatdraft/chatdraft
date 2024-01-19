@@ -248,8 +248,8 @@
             "variantKey": null,
             "url": "/cards/Blob/",
             "name": "Blob",
-            "description": "<b>On Reveal:</b> Merge your deck into this. <i>(and gain its total Power)</i>\n<b>Ongoing:</b> Can't be moved.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blob-e6a1644e8713007dfed263f887838e0dde64d5ca25605ab30ac67025136d2347.webp",
+            "description": "<b>On Reveal:</b> Merge cards from your deck into this until it gains 15 or more Power. \n<b>Ongoing:</b> Can't be moved.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blob-44863a075c8653ea28da532bcafdc7abdd511f19546049700f6f808737e7278d.webp",
             "cost": 6
         },
         {
@@ -401,8 +401,8 @@
             "variantKey": null,
             "url": "/cards/Dagger/",
             "name": "Dagger",
-            "description": "When this moves to a location,\n+2 Power for each card your\nopponent has there.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dagger-fb354ef89b25517d937a15b7454855fc78618dc58c4fa3c0cca44bf566a1079c.webp",
+            "description": "When this moves to a location,\n+3 Power for each enemy card there.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dagger-69b64f266f85e8a9b4d1994911d1435570c2297707d018fab4117aa3a8b8afac.webp",
             "cost": 2
         },
         {
@@ -438,7 +438,7 @@
             "url": "/cards/Dazzler/",
             "name": "Dazzler",
             "description": "<b>Ongoing:</b> +2 Power for each location that's full on your side.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dazzler-45ed355ad2f753581aa713c5a8556d63804ecc50a98aa8e8d639a922a72df5dc.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dazzler-37b109cf179cccd4aea02ea95eaa38eb0e829b913c91995a62b3cbaaac60fed7.webp",
             "cost": 3
         },
         {
@@ -483,7 +483,7 @@
             "url": "/cards/Destroyer/",
             "name": "Destroyer",
             "description": "<b>On Reveal:</b> Destroy your\nother cards.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-b48e87c5bf31277c4d941a446e344e78e0dbe252079dde005e088bd6b632b0fa.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-0ba3d1b1e7ac9a9b2ee7bd6d754787489f7b8371276fa40d83668fde29d54704.webp",
             "cost": 6
         },
         {
@@ -582,7 +582,7 @@
             "url": "/cards/Elektra/",
             "name": "Elektra",
             "description": "<b>On Reveal:</b> Destroy a random enemy 1-Cost card at this location.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Elektra-ca19257478dbd2833b874e425bfb33ca1420f3b963690135bc50daaa2247b6c2.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Elektra-8e4c49189464af021fb58b872d4323ba1c93f31fefc80043009c496733b6deaa.webp",
             "cost": 1
         },
         {
@@ -789,7 +789,7 @@
             "url": "/cards/Hercules/",
             "name": "Hercules",
             "description": "The first time another card moves here each turn, move it to another location.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-f1ed3bcbac3f83ba2b889a87ded2151d6f1a51cb57484adac5e21c1081ba0842.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-176cfb1ac3916406300d79c25ca50a4d3e501bb6cde3d5404efba92eea1fb0ef.webp",
             "cost": 4
         },
         {
@@ -1716,7 +1716,7 @@
             "url": "/cards/Selene/",
             "name": "Selene",
             "description": "<b>On Reveal:</b> Afflict the lowest-Power card in each player's hand\nwith -3 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Selene-8fe76746460efd27622676063aa1affa5ef96b79e27721c63fe9bd1644314a48.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Selene-db39c2f4b3e355147f76027cda6ff66a8e6ca9dab2e2016bf4eaced5aabf4761.webp",
             "cost": 1
         },
         {
@@ -2112,7 +2112,7 @@
             "url": "/cards/Viper/",
             "name": "Viper",
             "description": "<b>On Reveal:</b> One of your other cards here switches sides.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-2b90a471b8beb44a0dc5527b879b2fd5659012b98b0b128ff9375ece776fad7e.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-0e211444f5b88308b3a4c88a3146326655812129e482f191143419746484aedf.webp",
             "cost": 2
         },
         {
