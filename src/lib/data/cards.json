@@ -439,7 +439,7 @@
             "name": "Dazzler",
             "description": "<b>Ongoing:</b> +2 Power for each location that's full on your side.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dazzler-37b109cf179cccd4aea02ea95eaa38eb0e829b913c91995a62b3cbaaac60fed7.webp",
-            "cost": 3
+            "cost": 2
         },
         {
             "cardDefKey": "Deadpool",
@@ -2113,7 +2113,7 @@
             "name": "Viper",
             "description": "<b>On Reveal:</b> One of your other cards here switches sides.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-0e211444f5b88308b3a4c88a3146326655812129e482f191143419746484aedf.webp",
-            "cost": 2
+            "cost": 3
         },
         {
             "cardDefKey": "Vision",
