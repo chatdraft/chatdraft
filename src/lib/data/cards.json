@@ -703,6 +703,15 @@
             "cost": 2
         },
         {
+            "cardDefKey": "GrandMaster",
+            "variantKey": null,
+            "url": "/cards/GrandMaster/",
+            "name": "Grand Master",
+            "description": "<b>On Reveal:</b> Move one of your other <b>On Reveal</b> cards here to the middle location. Its ability happens again.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GrandMaster-685e5a881c789e0785b502a9d4ff01a90f5f66f0fe233f43508ddd147d02a496.webp",
+            "cost": 2
+        },
+        {
             "cardDefKey": "GreenGoblin",
             "variantKey": null,
             "url": "/cards/GreenGoblin/",
