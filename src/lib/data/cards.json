@@ -181,6 +181,15 @@
             "cost": 3
         },
         {
+            "cardDefKey": "BetaRayBill",
+            "variantKey": null,
+            "url": "/cards/BetaRayBill/",
+            "name": "Beta Ray Bill",
+            "description": "<b>On Reveal:</b> Shuffle Stormbreaker into your deck.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BetaRayBill-bd723c41817ec0d519146a89922ee3b66b021b2be9ca280db043e90d3bbc2140.webp",
+            "cost": 4
+        },
+        {
             "cardDefKey": "Bishop",
             "variantKey": null,
             "url": "/cards/Bishop/",
