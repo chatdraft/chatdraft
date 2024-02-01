@@ -663,8 +663,8 @@
             "url": "/cards/Ghost/",
             "name": "Ghost",
             "description": "<b>Ongoing:</b> Your cards are always revealed last. <i>(Their <b>On Reveal</b> abilities happen last.)</i>",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ghost-1d2e2135128fca02cc13cbf02ab85c200c3ee46738150cd2f4b680a70a21bcb5.webp",
-            "cost": 1
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ghost-5af5d7f5706488c3ad817f8e57685f9ab0a4eec820b23299d1376d75c0430252.webp",
+            "cost": 3
         },
         {
             "cardDefKey": "GhostRider",
@@ -771,7 +771,7 @@
             "url": "/cards/Heimdall/",
             "name": "Heimdall",
             "description": "<b>On Reveal:</b> Move your other cards one location to the left.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Heimdall-36a55da3c310c672ecf7e071065f53f98d34fdd598f636c43c48b3da99e967ac.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Heimdall-c3846ccd37b6de222e90af73060304bfc38a60dd91fd83c2008acca91968e8a0.webp",
             "cost": 6
         },
         {
@@ -861,8 +861,8 @@
             "url": "/cards/Hulkbuster/",
             "name": "Hulkbuster",
             "description": "<b>On Reveal:</b> Merge this card with a random friendly card at this location.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkbuster-213c6c0e43c11e333f7609304a7cbb505ce41c232e2bd0731f66fcbf90e46715.webp",
-            "cost": 3
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkbuster-d6946c7dbbe1ab1cb2095e39be78def00d632c3e672dad964a7018de1711bd1c.webp",
+            "cost": 2
         },
         {
             "cardDefKey": "HumanTorch",
@@ -1140,8 +1140,8 @@
             "url": "/cards/LukeCage/",
             "name": "Luke Cage",
             "description": "<b>Ongoing:</b> Your cards can't have their Power reduced.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-3f00c65592abba24bde3008cda62a6ed4363cf21f8ac3c477f7d610b4dfba96e.webp",
-            "cost": 2
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-3ed733977deec1567d28494c1930748de736e7158154899d42b2441bac997418.webp",
+            "cost": 3
         },
         {
             "cardDefKey": "MBaku",
@@ -1896,8 +1896,8 @@
             "url": "/cards/SpiderMan2099/",
             "name": "Spider-Man 2099",
             "description": "The first time this moves to any location, destroy an enemy card there.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderMan2099-cb52174661b1e3d295c3ac78aed1ab198aca220f28ae1ee3ff0bb5f570c1baf5.webp",
-            "cost": 4
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SpiderMan2099-c6f81bc1f91307ce7a15c8fef63f2f77150d7092c406cbe4d30338487c283695.webp",
+            "cost": 5
         },
         {
             "cardDefKey": "SpiderWoman",
