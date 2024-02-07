@@ -235,6 +235,15 @@
             "cost": 5
         },
         {
+            "cardDefKey": "BlackSwan",
+            "variantKey": null,
+            "url": "/cards/BlackSwan/",
+            "name": "Black Swan",
+            "description": "<b>On Reveal:</b> Until the end of next turn, your 1-Cost cards cost 0.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackSwan-720fde1124ecb87e37d9983eda3cecf74899fe598d1d950b9800a5336e6cafa8.webp",
+            "cost": 3
+        },
+        {
             "cardDefKey": "BlackWidow",
             "variantKey": null,
             "url": "/cards/BlackWidow/",
@@ -1978,6 +1987,15 @@
             "name": "Super-Skrull",
             "description": "<b>Ongoing:</b> Has the <b>Ongoing</b> effects of all enemy cards.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SuperSkrull-1feb60c91c44c44d41ce3bf26a53f9219ca34d7bd4a4a665ef688c889a52e9ef.webp",
+            "cost": 4
+        },
+        {
+            "cardDefKey": "Supergiant",
+            "variantKey": null,
+            "url": "/cards/Supergiant/",
+            "name": "Supergiant",
+            "description": "<b>On Reveal:</b> All cards played next turn don't reveal until the game ends.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Supergiant-f64844dd4adc0033b78fe53b508c3b431f66f9d2ec394b312385fdb5d4d26042.webp",
             "cost": 4
         },
         {
