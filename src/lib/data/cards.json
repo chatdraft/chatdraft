@@ -176,9 +176,9 @@
             "variantKey": null,
             "url": "/cards/Beast/",
             "name": "Beast",
-            "description": "<b>On Reveal:</b> Return your other cards at this location to your hand.\nThey cost 1 less.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-7aa3972873116063da5c929135c690338c1682fa0205e9d9353a2a2bae5c2aa6.webp",
-            "cost": 3
+            "description": "<b>On Reveal:</b> Return your other cards here to your hand. They cost 1 less next turn.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-d0907010411769d49099d581329ba82cfe44e3aba6ca26248dbd31f56d90e91f.webp",
+            "cost": 2
         },
         {
             "cardDefKey": "BetaRayBill",
@@ -797,7 +797,7 @@
             "variantKey": null,
             "url": "/cards/Helicarrier/",
             "name": "Helicarrier",
-            "description": "When you discard this from your hand, add 3 random cards\nto your hand.",
+            "description": "When you discard this, fill your hand with random cards.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Helicarrier-04d726d8bb6185dd18ebeb714c30f875fca28aa728005c9557593168504451b4.webp",
             "cost": 6
         },
@@ -1517,7 +1517,7 @@
             "variantKey": null,
             "url": "/cards/OmegaRed/",
             "name": "Omega Red",
-            "description": "<b>Ongoing:</b> If you're ahead by\n10 Power here, +4 Power\nto other locations.",
+            "description": "<b>Ongoing:</b> If you're winning here, +3 Power to other locations.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/OmegaRed-42748ad51766fcc09ef3437bf09d56a185dacd610d48dd7f0168927b17a94667.webp",
             "cost": 4
         },
