@@ -406,6 +406,15 @@
             "cost": 3
         },
         {
+            "cardDefKey": "CullObsidian",
+            "variantKey": null,
+            "url": "/cards/CullObsidian/",
+            "name": "Cull Obsidian",
+            "description": "You can only play this where you have a 1-Cost card.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CullObsidian-b2513cdb78568ed444bf532550470fb5f9a24c1aeeddafdbbd26c25899285c42.webp",
+            "cost": 4
+        },
+        {
             "cardDefKey": "Cyclops",
             "variantKey": null,
             "url": "/cards/Cyclops/",
