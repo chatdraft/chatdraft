@@ -379,6 +379,15 @@
             "cost": 2
         },
         {
+            "cardDefKey": "CorvusGlaive",
+            "variantKey": null,
+            "url": "/cards/CorvusGlaive/",
+            "name": "Corvus Glaive",
+            "description": "<b>On Reveal:</b> Discard 2 cards from your hand to get +1 Max Energy.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CorvusGlaive-9dac2e70a5580caa52f02b50bf20b4cff7bf5b55ce490444c7cdbe173f4ec789.webp",
+            "cost": 3
+        },
+        {
             "cardDefKey": "Cosmo",
             "variantKey": null,
             "url": "/cards/Cosmo/",
