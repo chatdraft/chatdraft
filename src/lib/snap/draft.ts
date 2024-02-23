@@ -104,15 +104,17 @@ export class Draft extends EventEmitter implements IDraft {
 	public duration = 20;
 	public selections = 3;
 
-	public constructor(duration: number, selections: number) {
+	public constructor(duration: number, selections: number, subsExtraVote = false) {
 		super();
 		this.duration = duration;
 		this.selections = selections;
+		this.subsExtraVote = subsExtraVote;
 	}
 	cards: Deck = [];
 	total: number = 0;
 	player: string = '';
 	currentChoice: Choice | undefined;
+	subsExtraVote: boolean = false;
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
 
@@ -287,22 +289,28 @@ export class Draft extends EventEmitter implements IDraft {
 	}
 
 
-	public Vote(user: string, choice: string) {
+	public Vote(user: string, choice: string, isSubscriber: boolean) {
 		if (!this.IsActive()) return;
 
 		if (!this.currentChoice) return;
+
+		let extraVotes = 0;
+
+		if (isSubscriber && this.subsExtraVote) {
+			extraVotes++;
+		}
 
 		const vote = Number(choice);
 		if ((vote < 1) || (vote > this.selections)) return;
 
 		const oldVote = Number(this.currentChoice?.votes.get(user));
 		if ((oldVote >= 1) && (oldVote <= 6)) {
-			this.currentChoice.voteCounts[oldVote - 1]--;
+			this.currentChoice.voteCounts[oldVote - 1]-= 1 + extraVotes;
 		}
 
 		drafts.get(this.player)?.currentChoice?.votes.set(user, choice);
 
-		this.currentChoice.voteCounts[vote - 1]++;
+		this.currentChoice.voteCounts[vote - 1]+= 1 + extraVotes;
 	}
 
 

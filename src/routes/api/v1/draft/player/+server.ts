@@ -24,11 +24,13 @@ export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 
 	let duration = 120;
 	let selections = 3;
+	let subsExtraVote = false;
 
 	if (url.searchParams.has('duration')) duration = +url.searchParams.get('duration')!
 	if (url.searchParams.has('selections')) selections = +url.searchParams.get('selections')!
+	if (url.searchParams.has('subsExtraVote')) subsExtraVote = url.searchParams.get('subsExtraVote') == 'true';
 
-	const draft = DraftFactory.CreateDraft(duration, selections)
+	const draft = DraftFactory.CreateDraft(duration, selections, subsExtraVote)
 
 	draft.StartDraft(locals.user!.name);
 

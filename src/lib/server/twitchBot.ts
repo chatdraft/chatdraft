@@ -68,7 +68,7 @@ export default class TwitchBot {
             ]
         });
 
-        this.chat.onMessage((channel, user, text) => {
+        this.chat.onMessage((channel, user, text, msg) => {
             console.log(`#${channel} - <${user}>: ${text}`);
 
             const draft = GetDraft(channel);
@@ -76,7 +76,7 @@ export default class TwitchBot {
             if (!draft) return;
 
             if (['1','2','3','4','5','6'].includes(text) && draft.IsActive()) {
-                draft.Vote(user, text);
+                draft.Vote(user, text, msg.userInfo.isSubscriber);
                 SendMessage(channel, 'voteupdated');
             }
         });

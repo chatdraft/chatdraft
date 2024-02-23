@@ -3,15 +3,16 @@
 	import { twitch_login_uri } from '$lib/api/twitch/client';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { CodeBlock, RangeSlider } from '@skeletonlabs/skeleton';
+	import { CodeBlock, RangeSlider, SlideToggle } from '@skeletonlabs/skeleton';
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { Draft, GetDeckCode } from '$lib/snap/draft.js';
+	import { GetDeckCode } from '$lib/snap/draft.js';
 
 	export let data;
 	let now = Date.now();
 	let duration = 90;
 	let selectionCount = 6;
+	let subsExtraVote = false;
 
 
 	let webSocketEstablished = false;
@@ -75,7 +76,7 @@
 	});
 
 	async function NewDraft() {
-		const ret = await fetch(`/api/v1/draft/player?duration=${duration}&selections=${selectionCount}`, { method: 'POST' });
+		const ret = await fetch(`/api/v1/draft/player?duration=${duration}&selections=${selectionCount}&subsExtraVote=${subsExtraVote}`, { method: 'POST' });
 		invalidateAll();
 		establishWebSocket();
 	}
@@ -116,7 +117,8 @@
 					</div>
 				</RangeSlider>
 				<div/>
-			</div><div class="grid grid-cols-2">
+			</div>
+			<div class="grid grid-cols-2">
 				<RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
 					<div class="flex justify-between items-center">
 						<div class="font-bold">Number of cards per vote</div>
@@ -125,8 +127,10 @@
 				</RangeSlider>
 				<div/>
 			</div>
+			<div>
+				<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to Subscriber votes</SlideToggle>
+			</div>
 			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
-			Please start a new draft.
 		{:else}
 			If this is your first time here, please go to
 			<a class="anchor" href="/start">Getting Started</a>. 
