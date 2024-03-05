@@ -865,6 +865,15 @@
             "cost": 5
         },
         {
+            "cardDefKey": "HopeSummers",
+            "variantKey": null,
+            "url": "/cards/HopeSummers/",
+            "name": "Hope Summers",
+            "description": "After you play a card here, you get +1 Energy next turn.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HopeSummers-92576432c4779aab9923130df2e551a9e008df76068438492ec5e28605c72b65.webp",
+            "cost": 3
+        },
+        {
             "cardDefKey": "HowardTheDuck",
             "variantKey": null,
             "url": "/cards/HowardTheDuck/",
@@ -1574,6 +1583,15 @@
             "description": "<b>On Reveal:</b> Revive one of your destroyed cards and merge with it. That card can move each turn.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ThePhoenixForce-7b39c66ee5e30b2b0eab0a4411d3becd3f73f8fdf168e5e529020483cf6a9c8a.webp",
             "cost": 4
+        },
+        {
+            "cardDefKey": "Pixie",
+            "variantKey": null,
+            "url": "/cards/Pixie/",
+            "name": "Pixie",
+            "description": "<b>On Reveal:</b> Shuffle the Costs of all cards in your deck that started there.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Pixie-df319bb05ecfbe1a31272cd19f9515d734d35dc88a615dba0182ca5d174920c5.webp",
+            "cost": 2
         },
         {
             "cardDefKey": "Polaris",
