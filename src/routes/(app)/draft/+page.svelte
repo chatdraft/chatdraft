@@ -98,13 +98,13 @@
 </svelte:head>
 
 <div class="space-y-4 p-4">
-	<h1>Draft</h1>
+	<h1 class="h1">Draft</h1>
 	{#if (current_draft)}
 		<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 			{#if current_draft.total < 12}
-				Cancel Draft
+				Cancel draft
 			{:else}
-				Finish Draft
+				Finish draft
 			{/if}
 		</button>
 	{:else}
@@ -130,7 +130,7 @@
 			<div>
 				<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to Subscriber votes</SlideToggle>
 			</div>
-			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New Draft</button><br/>
+			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New draft</button><br/>
 		{:else}
 			If this is your first time here, please go to
 			<a class="anchor" href="/start">Getting Started</a>. 
@@ -156,8 +156,8 @@
 	{/if}
 
 	{#if (choices && choices.length > 0)}
-		Please select from:
-
+		<h3 class="h3">Options:</h3>
+		Press Select to override the votes and force choose a particular card.
 		<section class="grid {grid_layout} justify-items-center">
 			{#each choices as choice}
 				<div class="p-4"><SnapCard card={choice} /></div>
@@ -175,13 +175,13 @@
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
-		<SnapDeck cards={current_draft?.cards} />
 		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
+		<SnapDeck cards={current_draft?.cards} />
 	{/if}
-	<br/><br/>
+	<br/>
 	{#if previous_draft?.cards}
-		<h2>Previous Draft:</h2>
-		<SnapDeck cards={previous_draft.cards} />
+		<h2 class="h2">Previous Draft:</h2>
 		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(previous_draft.cards)}></CodeBlock>
+		<SnapDeck cards={previous_draft.cards} />
 	{/if}
 </div>

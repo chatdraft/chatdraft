@@ -4,7 +4,7 @@ import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 
-export const load = (async ({locals, url}) => {
+export const load = (async ({locals}) => {
     if (!locals.user || !locals.user_authorized) throw redirect(302, '/');
     const user = locals.user?.name;
     let botInChannel = false;
@@ -13,7 +13,7 @@ export const load = (async ({locals, url}) => {
         botInChannel = await TwitchBot.IsBotInChannel(user);
         previewMode = GetPreviewStatus(user)
     }
-    return { user: user, botInChannel: botInChannel, url_base: url.origin, previewMode: previewMode};
+    return { user: user, botInChannel: botInChannel, previewMode: previewMode};
 }) satisfies PageServerLoad;
 
 export const actions = {

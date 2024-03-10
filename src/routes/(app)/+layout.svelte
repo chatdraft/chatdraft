@@ -22,6 +22,10 @@
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </svelte:head>
 
+
+<a href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="absolute bottom-6 right-2 w-36"><img class="p-2" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
+	<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1"></iconify-icon>
+</a>
 <AppShell slotSidebarLeft="bg-surface-500/5 text-center" slotFooter="bg-surface-700 text-center">
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-2" slotDefault="place-self-start" slotTrail="place-content-end">
@@ -50,20 +54,22 @@
 				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('about')}>About</p>
 			</AppRailAnchor>
 
-			{#if user && user.initialSetupDone}
-				<AppRailAnchor href="settings">
-					<iconify-icon icon="mdi:gear" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('settings')}>Settings</p>
-				</AppRailAnchor>
-				<AppRailAnchor href="draft">
-					<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('draft')}>Draft</p>
-				</AppRailAnchor>
-			{:else}
-				<AppRailAnchor href="start">
-					<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('start')}>Get Started</p>
-				</AppRailAnchor>
+			{#if user}
+				{#if user.initialSetupDone}
+					<AppRailAnchor href="settings">
+						<iconify-icon icon="mdi:gear" width="28" height="28"></iconify-icon>
+						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('settings')}>Settings</p>
+					</AppRailAnchor>
+					<AppRailAnchor href="draft">
+						<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
+						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('draft')}>Draft</p>
+					</AppRailAnchor>
+				{:else}
+					<AppRailAnchor href="start">
+						<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
+						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('start')}>Get Started</p>
+					</AppRailAnchor>
+				{/if}
 			{/if}
 
 			{#if user && user.admin}
@@ -91,16 +97,17 @@
 				</AppRailAnchor>
 			{/if}
 			<svelte:fragment slot="trail">
-				<AppRailAnchor href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="relative"><img class="p-2" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
-					<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1"></iconify-icon>
-				</AppRailAnchor>
+				
 			</svelte:fragment>
 		</AppRail>
 	</svelte:fragment>
+	
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->
 	<!-- Router Slot -->
-	<slot />
+	<div  class="mb-16">
+		<slot/>
+	</div>
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="footer">
 		©2023 oro version {__APP_VERSION__}

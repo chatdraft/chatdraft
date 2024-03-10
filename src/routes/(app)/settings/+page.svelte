@@ -14,12 +14,14 @@
 </svelte:head>
 
 <div class="p-4">
-    <h1>Setup</h1>
+    <h1 class="h1">Settings</h1>
     <br/>
     
-    <h2>ChatDraftBot</h2>
+    <h2 class="h2">ChatDraftBot</h2>
     {#if data.botInChannel}
-        Have ChatDraftBot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
+        <p class="m-2">
+            Have ChatDraftBot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
+        </p>
         <form method="POST" action="?/part" use:enhance on:submit={invalidateAll}>
             <button class="btn btn-lg variant-filled-warning m-4">Leave channel</button>
         </form>
@@ -31,6 +33,6 @@
     {/if}
     <br/>
 
-    <h2>Browser Sources</h2>
-    <BrowserSources url_base="{data.url_base}" user="{data.user || ''}" previewMode={data.previewMode}/>
+    <h2 class="h2">Browser Sources</h2>
+    <BrowserSources user="{data.user || ''}" previewMode={data.previewMode}/>
 </div>
