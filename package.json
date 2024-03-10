@@ -1,6 +1,6 @@
 {
 	"name": "chatdraft",
-	"version": "0.0.19b_",
+	"version": "0.0.19c",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -14,7 +14,7 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"prodServer": "tsm ./prodServer.ts"
+		"prodServer": "node --loader tsm ./prodServer.ts"
 	},
 	"devDependencies": {
 		"@iarna/toml": "^2.2.5",
