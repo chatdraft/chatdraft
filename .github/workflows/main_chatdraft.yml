@@ -4,9 +4,8 @@
 name: Build and deploy Node.js app to Azure Web App - chatdraft
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
   workflow_dispatch:
 env:
   # Setting an environment variable with the value of a configuration variable
