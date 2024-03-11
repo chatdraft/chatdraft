@@ -1,3 +1,5 @@
+import { BrowserSourceUpdated } from "./webSocketUtils";
+
 interface IBrowserSourceInstances {
     full_sources: string[];
     deck_sources: string[];
@@ -23,6 +25,7 @@ export function CloseBrowserSource(channel_name: string, websocket_id: string) {
                 browserSourceStatuses.get(channel_name)?.choice_sources.splice(index, 1);
             }
         });
+        BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
     }
 }
 
@@ -33,6 +36,7 @@ export function RegisterFullBrowserSource(channel_name: string, websocket_id: st
     else {
         browserSourceStatuses.get(channel_name)!.full_sources.push(websocket_id);
     }
+    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
 }
 
 export function RegisterDeckBrowserSource(channel_name: string, websocket_id: string) {
@@ -45,6 +49,7 @@ export function RegisterDeckBrowserSource(channel_name: string, websocket_id: st
         }
         browserSourceStatuses.get(channel_name)!.deck_sources.push(websocket_id);
     }
+    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
 }
 
 export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: string) {
@@ -57,6 +62,7 @@ export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: 
         }
         browserSourceStatuses.get(channel_name)!.choice_sources.push(websocket_id);
     }
+    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
 }
 
 export function IsFullSourceConfigured(channel_name: string) {

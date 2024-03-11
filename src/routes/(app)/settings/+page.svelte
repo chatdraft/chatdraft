@@ -7,13 +7,50 @@
     
     export let data: PageData;
 
-    $: full_source_configured = data.full_source_configured;
-    $: split_sources_configured = data.split_sources_configured;
+    let full_source_configured = data.full_source_configured;
+    let split_sources_configured = data.split_sources_configured;
+
+	let webSocketEstablished = false;
+	let ws: WebSocket | null = null;
+
+    const establishWebSocket = async () => {
+		if (webSocketEstablished) return;
+		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
+		heartbeat();
+		ws.onmessage = async (event) => {
+			console.log('[websocket] message received', event);
+			await handleMessage(event.data)
+		};
+
+		ws.onclose = async () => { 
+			webSocketEstablished = false;
+			ws = null;
+			setTimeout(establishWebSocket, 5000);
+		};
+
+		webSocketEstablished = true;
+
+		return ws;
+	};
+
+	function heartbeat() {
+		setTimeout(heartbeat, 500);
+		if (!ws) return;
+		if (ws.readyState !== 1) return;
+		ws.send("ping");
+	}
+
+	const handleMessage = async(message: string) => {
+		if (message.startsWith('browserupdated')) {
+            const obj = JSON.parse(message.substring('browserupdated:'.length));
+            full_source_configured = obj.full_source_configured;
+            split_sources_configured = obj.split_sources_configured;
+        }
+	}
 
     onMount(() => {
-        setInterval(() => {
-            invalidateAll();
-        }, 2000);
+        establishWebSocket();
     })
 </script>
 

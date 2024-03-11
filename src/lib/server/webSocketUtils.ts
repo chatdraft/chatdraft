@@ -43,3 +43,7 @@ export const ChoiceOverride = async (player_channel: string, result: string) => 
 export const PreviewToggled = async(player_channel: string, previewStatus: boolean) => {
     SendMessage(player_channel, `previewtoggled:${previewStatus}`);
 }
+
+export const BrowserSourceUpdated = async(player_channel: string, full_source_configured: boolean, split_sources_configured: boolean) => {
+    SendMessage(player_channel, `browserupdated:${JSON.stringify({full_source_configured: full_source_configured, split_sources_configured: split_sources_configured})}`);
+}
