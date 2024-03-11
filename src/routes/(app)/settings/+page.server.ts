@@ -2,6 +2,7 @@ import TwitchBot from '$lib/server/twitchBot';
 import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandler';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { IsFullSourceConfigured, IsSplitSourceConfigured } from '$lib/server/browserSourceHandler';
 
 
 export const load = (async ({locals}) => {
@@ -9,11 +10,15 @@ export const load = (async ({locals}) => {
     const user = locals.user?.name;
     let botInChannel = false;
     let previewMode = false;
+    let full_source_configured = false;
+    let split_sources_configured = false;
     if (user) {
         botInChannel = await TwitchBot.IsBotInChannel(user);
         previewMode = GetPreviewStatus(user)
+        full_source_configured = IsFullSourceConfigured(user);
+        split_sources_configured = IsSplitSourceConfigured(user);
     }
-    return { user: user, botInChannel: botInChannel, previewMode: previewMode};
+    return { user: user, botInChannel: botInChannel, previewMode: previewMode, full_source_configured: full_source_configured, split_sources_configured: split_sources_configured};
 }) satisfies PageServerLoad;
 
 export const actions = {

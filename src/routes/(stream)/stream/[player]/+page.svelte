@@ -18,7 +18,7 @@
 	const establishWebSocket = async () => {
 		if (webSocketEstablished) return;
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}`);
+		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}?hide=${data.hide}`);
 		heartbeat();
 		ws.onmessage =  async (event) => {
 			if (event.data == 'pong') return;

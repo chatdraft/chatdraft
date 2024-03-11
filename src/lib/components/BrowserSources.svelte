@@ -5,6 +5,8 @@
 
     export let user: string | undefined;
     export let previewMode: boolean = false;
+    export let full_source_configured: boolean = false;
+    export let split_sources_configured: boolean = false;
     let togglePreviewSaveBtn: HTMLButtonElement;
     let splitView = false;
 </script>
@@ -33,6 +35,18 @@
                 <iconify-icon icon="clarity:copy-to-clipboard-line" width="24" height="24" flip="horizontal"></iconify-icon>
             </button>
         </div>
+        <hr class="m-8"/>
+        {#if full_source_configured}
+            <p>
+                Browser source connection detected
+                <iconify-icon icon="foundation:check" width="24" height="24" inline></iconify-icon>
+            </p>
+        {:else}
+            <p>
+                Waiting for browser source connection
+                <iconify-icon icon="line-md:loading-twotone-loop" width="24" height="24" inline></iconify-icon>
+            </p>
+        {/if}
     {:else}
         <h3 class="h3">Quick Setup - (OBS only)</h3>
         <p>Simply drag and drop both of these buttons into OBS.</p>
@@ -64,8 +78,16 @@
                 <iconify-icon icon="clarity:copy-to-clipboard-line" width="32" height="32" flip="horizontal"></iconify-icon>
             </button>
         </div>
+        <hr class="m-8"/>
+        {#if split_sources_configured}
+            Browser sources connection detected
+            <iconify-icon icon="foundation:check" width="24" height="24" inline></iconify-icon>
+        {:else}
+            Waiting for browser sources connection
+            <iconify-icon icon="line-md:loading-twotone-loop" width="24" height="24" inline></iconify-icon>
+        {/if}
     {/if}
-
+    <hr class="m-8"/>
     <h3 class="h3">Preview mode</h3>
     <p class="m-2">
         Preview mode fills the browser sources with an example draft that you can use

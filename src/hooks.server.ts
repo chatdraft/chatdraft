@@ -10,6 +10,8 @@ import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler
 import { building } from '$app/environment';
 import cookie from 'cookie';
 import { IsUserAuthorized } from '$lib/server/authorizationHandler';
+import { RegisterFullBrowserSource, RegisterDeckBrowserSource, RegisterChoiceBrowserSource, CloseBrowserSource } from '$lib/server/browserSourceHandler';
+
 
 const KV = new Map();
 
@@ -17,8 +19,6 @@ const auth_provider = new RefreshingAuthProvider({
 	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID,
 	clientSecret: privateenv.TWITCH_CLIENT_SECRET
 });
-
-
 
 let wssInitialized = false;
 export const startupWebsocketServer = () => {
@@ -35,14 +35,25 @@ export const startupWebsocketServer = () => {
 					ws.userId = session.user_id;
 					ws.sessionId = session_id;
 					const api = new ApiClient({ authProvider: auth_provider });
-					ws.player_channel = (await api.users.getUserById(session.user_id))?.name;
+					ws.player_channel = (await api.users.getUserById(session.user_id))!.name;
 				}
 			}
 
-			const url_components = request.url?.split('/')
+			const url = new URL(request.url!, `http://${request.headers.host}`);
+			const url_components = url.pathname.split('/');
 
 			if ((url_components) &&(url_components?.length > 2)) {
-				ws.player_channel = url_components[2]
+				ws.player_channel = url_components[2];
+				const hide = url.searchParams.get('hide');
+				if (!hide) {
+					RegisterFullBrowserSource(ws.player_channel, ws.socketId);
+				}
+				else if (hide == 'choice') {
+					RegisterDeckBrowserSource(ws.player_channel, ws.socketId);
+				}
+				else if (hide == 'deck') {
+					RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
+				}
 			}
 
 			// if (!session) ws.close(1008, 'User not authenticated');
@@ -51,6 +62,7 @@ export const startupWebsocketServer = () => {
 
 			ws.on('close', () => {
 				console.log(`[wss:kit] client disconnected (${ws.socketId})`);
+				CloseBrowserSource(ws.player_channel, ws.socketId);
 			});
 		});
 		wssInitialized = true;

@@ -2,9 +2,19 @@
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
+	import { onMount } from 'svelte';
     import type { PageData } from './$types';
     
     export let data: PageData;
+
+    $: full_source_configured = data.full_source_configured;
+    $: split_sources_configured = data.split_sources_configured;
+
+    onMount(() => {
+        setInterval(() => {
+            invalidateAll();
+        }, 2000);
+    })
 </script>
 
 
@@ -34,5 +44,5 @@
     <br/>
 
     <h2 class="h2">Browser Sources</h2>
-    <BrowserSources user="{data.user || ''}" previewMode={data.previewMode}/>
+    <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
 </div>
