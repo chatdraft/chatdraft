@@ -66,3 +66,4 @@ jobs:
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1DC3B1B471864C8D95E7C785491CA386 }}
+          clean: false
