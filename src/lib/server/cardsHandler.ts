@@ -16,3 +16,9 @@ export async function GetAllCards(): Promise<{all: {cardDefKey: string, variantK
 export async function UpdateCards(updatedCards: File) {
     await fs.writeFile(updatedCardFile, Buffer.from(await updatedCards.arrayBuffer()));
 }
+
+export async function ResetCards() {
+    if (existsSync(updatedCardFile)) {
+        await fs.rm(updatedCardFile)
+    }
+}

@@ -3,7 +3,7 @@ import { GetDrafts, GetPreviousDrafts } from '$lib/snap/draft';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { AddChannel, GetChannels, RemoveChannel } from '$lib/server/channelHandler';
-import { UpdateCards } from '$lib/server/cardsHandler';
+import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw redirect(302, '/')
@@ -64,6 +64,11 @@ export const actions = {
             await UpdateCards(cards);
         }
 
-        return { success: true };
+        return { updated: true };
+    },
+    resetcards: async ({locals}) => {
+        if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw error(403)
+        ResetCards();
+        return { reset: true };
     }
 } satisfies Actions

@@ -14,6 +14,13 @@
     let files: FileList;
 
 	export let form;
+
+	function ResetCards() {
+		if (!confirm("Are you sure you want to reset the card database to installed default?")) {
+            event?.preventDefault();
+            return false;
+        }
+	}
 </script>
 
 <svelte:head>
@@ -42,7 +49,7 @@
             </svelte:fragment>
         </FileDropzone>
         <button class="btn btn-md variant-filled-primary m-4" type="submit">Submit</button>
-        {#if form?.success}
+        {#if form?.updated}
             Successfully updated card database.
         {/if}
     </form>
@@ -50,6 +57,12 @@
         Check current card database
         <iconify-icon icon="fluent:window-new-16-filled" width="16" height="16"></iconify-icon>
     </a>
+    <form method="POST" action="?/resetcards" use:enhance on:submit={ResetCards}>
+        <button class="btn btn-md variant-outline-warning m-4" type="submit">Reset to default card database</button>
+        {#if form?.reset}
+            Successfully reset card database.
+        {/if}
+    </form>
     <hr class="m-4">
     <section>Admin Accounts:</section>
     <ul class="list-disc list-inside">
