@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
+	import { FileDropzone } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
     
     export let data: PageData;
@@ -9,6 +10,10 @@
     $: channels = data.channels;
     $: authorizedUsers = data.authorizedUsers;
     $: adminUsers = data.adminUsers;
+
+    let files: FileList;
+
+	export let form;
 </script>
 
 <svelte:head>
@@ -22,8 +27,30 @@
 <section class="p-4">
     <h1 class="h1">Admin</h1>
     <br/>
-    <button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}><iconify-icon icon="material-symbols:refresh"></iconify-icon></button>
+    <button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}><iconify-icon icon="material-symbols:refresh"></iconify-icon></button> Refresh
     <br/>
+    <hr class="m-4">
+    <form method="POST" action="?/updatecards" use:enhance enctype="multipart/form-data">
+        <h3 class="h3">Update card database</h3>
+        <FileDropzone name="files" bind:files class="m-4 w-1/3" multiple={false} accept=".json" required>
+            <svelte:fragment slot="message">
+                {#if files && files.length > 0}
+                    {files[0].name} selected.
+                {:else}
+                    Please select an updated cards.json file
+                {/if}
+            </svelte:fragment>
+        </FileDropzone>
+        <button class="btn btn-md variant-filled-primary m-4" type="submit">Submit</button>
+        {#if form?.success}
+            Successfully updated card database.
+        {/if}
+    </form>
+    <a class="anchor" href="api/v1/cards" target="#">
+        Check current card database
+        <iconify-icon icon="fluent:window-new-16-filled" width="16" height="16"></iconify-icon>
+    </a>
+    <hr class="m-4">
     <section>Admin Accounts:</section>
     <ul class="list-disc list-inside">
         {#each adminUsers as username}
@@ -31,6 +58,7 @@
         {/each}
     </ul>
     <br/>
+    <hr class="m-4">
     <section>Authorized Accounts:</section>
     <ul class="list-disc list-inside">
         {#each authorizedUsers as username}
@@ -48,6 +76,7 @@
         </form>
     </ul>
     <br/>
+    <hr class="m-4">
     <section>Chatbot is connected to:</section>
     <ul class="list-disc list-inside">
         {#each channels as channel}
@@ -69,6 +98,7 @@
         <button class="btn-icon btn-icon-sm variant-outline-primary"><iconify-icon icon="mdi:check-bold"></iconify-icon></button>
     </form>
     <br/>
+    <hr class="m-4">
 
     <section>Number of Active Drafts: {drafts.length}</section>
 
@@ -85,6 +115,7 @@
     </ul>
 
     <br/>
+    <hr class="m-4">
     <section>Number of Previous Drafts: {previousDrafts.length}</section>
     <ul class="list-disc list-inside">
         {#each previousDrafts as draft}
@@ -97,4 +128,5 @@
             </li>
         {/each}
     </ul>
+    <hr class="m-4">
 </section>

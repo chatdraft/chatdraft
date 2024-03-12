@@ -1,8 +1,9 @@
 import { AuthorizeUser, DeauthorizeUser, GetAdminUsers, GetAuthorizedUsers, IsUserAdmin } from '$lib/server/authorizationHandler';
 import { GetDrafts, GetPreviousDrafts } from '$lib/snap/draft';
-import { redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { AddChannel, GetChannels, RemoveChannel } from '$lib/server/channelHandler';
+import { UpdateCards } from '$lib/server/cardsHandler';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw redirect(302, '/')
@@ -23,32 +24,46 @@ export const load = (async ({locals}) => {
 
 
 export const actions = {
-    authorize: async ({request}) => {
+    authorize: async ({request, locals}) => {
+        if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw error(403)
         const data = await request.formData();
         const username = data.get("username");
         if (username) {
             AuthorizeUser(username.toString());
         }
     },
-    deauthorize: async ({request}) => {
+    deauthorize: async ({request, locals}) => {
+        if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw error(403)
         const data = await request.formData();
         const username = data.get("username");
         if (username) {
             DeauthorizeUser(username.toString());
         }
     },
-    joinchannel: async ({request}) => {
+    joinchannel: async ({request, locals}) => {
+        if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw error(403)
         const data = await request.formData();
         const username = data.get("username");
         if (username) {
             AddChannel(username.toString());
         }
     },
-    partchannel: async ({request}) => {
+    partchannel: async ({request, locals}) => {
+        if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw error(403)
         const data = await request.formData();
         const username = data.get("username");
         if (username) {
             RemoveChannel(username.toString());
         }
     },
+    updatecards: async ({request, locals}) => {
+        if (!locals.user || !(await IsUserAdmin(locals.user.name))) throw error(403)
+        const data = await request.formData();
+        const cards = data.get("files") as File;
+        if (cards) {
+            await UpdateCards(cards);
+        }
+
+        return { success: true };
+    }
 } satisfies Actions

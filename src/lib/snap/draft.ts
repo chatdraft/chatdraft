@@ -1,7 +1,7 @@
-import * as cards from '$lib/data/cards.json';
 import { EventEmitter, type EventHandler } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
+import { GetAllCards } from '../server/cardsHandler';
 
 const drafts = new Map<string, Draft>();
 const previousDrafts = new Map<string, Draft>();
@@ -22,11 +22,12 @@ export function GetPreviousDrafts() {
 	return idrafts;
 }
 
-export function GetPreviewDraft(): IDraft {
+export async function GetPreviewDraft(): Promise<IDraft> {
 	const total = Math.floor( Math.random() * 13 )
 
 	const deck: Card[] = [];
 	const shuffled: Card[] = [];
+	const cards = await GetAllCards();
 	cards.all.forEach(card => shuffled.push(card));
 	shuffle(shuffled);
 	for(let i = 0; i < total; i++) {
@@ -66,7 +67,7 @@ export function GetDraft(player: string) {
 }
 
 export function GetPreviousDraft(player: string) {
-	return previousDrafts.get(player) as IDraft;
+	return previousDrafts.get(player);
 }
 
 export function GetDeckCode(deck: Deck): string {
@@ -131,12 +132,12 @@ export class Draft extends EventEmitter implements IDraft {
 	onChoiceOverride = this.registerEvent<[player_channel: string, result: string]>();
 
 
-	public StartDraft(player: string) {
+	public async StartDraft(player: string) {
         this.emit(this.onDraftStarted, player)
 	
 		this.total = 0;
 		this.player = player;
-		this.currentChoice = this.NewChoice(),
+		this.currentChoice = await this.NewChoice(),
 		this.cards = []
 	
 		drafts.set(player, this);
@@ -158,12 +159,13 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 	}
 
-	public NewChoice(excluded: Card[] = []): Choice {
+	public async NewChoice(excluded: Card[] = []): Promise<Choice> {
 		if (this.voteTimer) {
 			clearTimeout(this.voteTimer);
 			this.voteTimer = undefined;
 		}
 
+		const cards = await GetAllCards();
 		const available = cards.all.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
 	
 		if (available.length < this.selections) {
@@ -241,19 +243,19 @@ export class Draft extends EventEmitter implements IDraft {
 		return { winner: winner, ties: ties.map((card) => card.name) };
 	}
 
-	public Choose(cardDefKey: string | undefined | null, override: boolean = false) {
+	public async Choose(cardDefKey: string | undefined | null, override: boolean = false) {
 		if (override) this.emit(this.onChoiceOverride, this.player, cardDefKey);
 		if (!cardDefKey) return;
 
 		if (!this.CanChoose(cardDefKey)) return;
 
-		this.cards.push(Draft.LookupCard(cardDefKey)!);
+		this.cards.push((await Draft.LookupCard(cardDefKey))!);
 		this.cards = this.cards.sort((a, b) => {
 			return a.cost - b.cost;
 		});
 		this.total++;
 
-		this.emit(this.onChoiceSelected, this.player, Draft.LookupCard(cardDefKey)!)
+		this.emit(this.onChoiceSelected, this.player, (await Draft.LookupCard(cardDefKey))!)
 
 		if (this.total == 12) {
 			this.deckName = ''; //cardDefKey;
@@ -263,11 +265,12 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 
 		
-		this.currentChoice = this.NewChoice(this.cards);
+		this.currentChoice = await this.NewChoice(this.cards);
 	}
 
-	private static LookupCard(cardDefKey: string | undefined | null) {
+	private static async LookupCard(cardDefKey: string | undefined | null) {
 		if (!cardDefKey) return undefined;
+		const cards = await GetAllCards();
 		return cards.all.find((card) => card.cardDefKey == cardDefKey);
 	}
 	

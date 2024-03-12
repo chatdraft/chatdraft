@@ -6,7 +6,6 @@
 	import { CodeBlock, RangeSlider, SlideToggle } from '@skeletonlabs/skeleton';
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { GetDeckCode } from '$lib/snap/draft.js';
 
 	export let data;
 	let now = Date.now();
@@ -59,6 +58,8 @@
 	$: votes = data.choice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 	$: grid_layout = gridcols[current_draft?.selections || 6];
+	$: current_deck_code = data.draft_deck_code;
+	$: previous_deck_code = data.prev_draft_deck_code;
 
 	onMount(() => {
 		setInterval(() => {
@@ -175,13 +176,13 @@
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
-		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(current_draft?.cards)}></CodeBlock>
+		<CodeBlock language="Deck Code" class="break-words" code={current_deck_code}></CodeBlock>
 		<SnapDeck cards={current_draft?.cards} />
 	{/if}
 	<br/>
 	{#if previous_draft?.cards}
 		<h2 class="h2">Previous Draft:</h2>
-		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(previous_draft.cards)}></CodeBlock>
+		<CodeBlock language="Deck Code" class="break-words" code={previous_deck_code}></CodeBlock>
 		<SnapDeck cards={previous_draft.cards} />
 	{/if}
 </div>
