@@ -14,13 +14,6 @@
     let files: FileList;
 
 	export let form;
-
-	function ResetCards() {
-		if (!confirm("Are you sure you want to reset the card database to installed default?")) {
-            event?.preventDefault();
-            return false;
-        }
-	}
 </script>
 
 <svelte:head>
@@ -57,7 +50,11 @@
         Check current card database
         <iconify-icon icon="fluent:window-new-16-filled" width="16" height="16"></iconify-icon>
     </a>
-    <form method="POST" action="?/resetcards" use:enhance on:submit={ResetCards}>
+    <form method="POST" action="?/resetcards" use:enhance={({cancel}) => {
+        if (!confirm("Are you sure you want to reset the card database to installed default?")) {
+            cancel();
+        }
+    }}>
         <button class="btn btn-md variant-outline-warning m-4" type="submit">Reset to default card database</button>
         {#if form?.reset}
             Successfully reset card database.
