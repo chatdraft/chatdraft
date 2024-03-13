@@ -3,6 +3,9 @@
 	import { invalidateAll } from '$app/navigation';
 	import { FileDropzone } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+
+    const toastStore = getToastStore();
     
     export let data: PageData;
     $: drafts = data.drafts;
@@ -30,7 +33,14 @@
     <button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}><iconify-icon icon="material-symbols:refresh"></iconify-icon></button> Refresh
     <br/>
     <hr class="m-4">
-    <form method="POST" action="?/updatecards" use:enhance enctype="multipart/form-data">
+    <form method="POST" action="?/updatecards" enctype="multipart/form-data" use:enhance={()=> {
+        return async ({result, update}) => {
+            if (result.type == "success") {
+                toastStore.trigger({message:"Card database successfully updated."});
+            }
+            update();
+        }
+    }}>
         <h3 class="h3">Update card database</h3>
         <FileDropzone name="files" bind:files class="m-4 w-1/3" multiple={false} accept=".json" required>
             <svelte:fragment slot="message">
@@ -53,6 +63,13 @@
     <form method="POST" action="?/resetcards" use:enhance={({cancel}) => {
         if (!confirm("Are you sure you want to reset the card database to installed default?")) {
             cancel();
+        }
+        
+        return async ({result, update}) => {
+            if (result.type == "success") {
+                toastStore.trigger({message:"Card database successfully reset to build settings."});
+            }
+            update();
         }
     }}>
         <button class="btn btn-md variant-outline-warning m-4" type="submit">Reset to default card database</button>

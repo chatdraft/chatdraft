@@ -4,6 +4,9 @@
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
 	import { onMount } from 'svelte';
     import type { PageData } from './$types';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+
+    const toastStore = getToastStore();
     
     export let data: PageData;
 
@@ -64,17 +67,31 @@
     <h1 class="h1">Settings</h1>
     <br/>
     
-    <h2 class="h2">ChatDraftBot</h2>
+    <h2 class="h2">Chat Draft Bot</h2>
     {#if data.botInChannel}
         <p class="m-2">
-            Have ChatDraftBot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
+            Have Chat Draft Bot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
         </p>
-        <form method="POST" action="?/part" use:enhance on:submit={invalidateAll}>
+        <form method="POST" action="?/part" on:submit={invalidateAll} use:enhance={()=> {
+            return async ({result, update}) => {
+                if (result.type == "success") {
+                    toastStore.trigger({message:"Bot successfully left your channel."});
+                }
+                update();
+            }
+        }}>
             <button class="btn btn-lg variant-filled-warning m-4">Leave channel</button>
         </form>
     {:else}
-        Have ChatDraftBot join your channel:
-        <form method="POST" action="?/join" use:enhance on:submit={invalidateAll}>
+        Have Chat Draft Bot join your channel:
+        <form method="POST" action="?/join" on:submit={invalidateAll} use:enhance={()=> {
+            return async ({result, update}) => {
+                if (result.type == "success") {
+                    toastStore.trigger({message:"Bot successfully joined your channel."});
+                }
+                update();
+            }
+        }}>
             <button class="btn btn-lg variant-filled-primary m-4">Join channel</button>
         </form>
     {/if}

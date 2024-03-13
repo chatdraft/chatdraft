@@ -303,8 +303,8 @@
             "url": "/cards/Cable/",
             "name": "Cable",
             "description": "<b>On Reveal:</b> Draw the top card of your opponent's deck.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cable-fea64c31d139448ca85d9636143922372c9c326c9875ae8991042792cb512257.webp",
-            "cost": 3
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cable-45da4b69106726887924f260665c524deabf9ac4a80bb3b6d164ae060ba4c54d.webp",
+            "cost": 2
         },
         {
             "cardDefKey": "Caiera",
@@ -627,8 +627,8 @@
             "url": "/cards/ElsaBloodstone/",
             "name": "Elsa Bloodstone",
             "description": "If you play another card to fill a location, give it +2 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ElsaBloodstone-8f0336722c9ca5768045092818c60a6eae098d174bf5e98f7553673df8d50e78.webp",
-            "cost": 2
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ElsaBloodstone-d39228e7311ed4b43cdd55a022d6a7f0c7238b13df07d3d4acb25685916fb18a.webp",
+            "cost": 3
         },
         {
             "cardDefKey": "Enchantress",
@@ -1130,7 +1130,7 @@
             "variantKey": null,
             "url": "/cards/Leech/",
             "name": "Leech",
-            "description": "At the start of turn 6, remove all abilities from cards in your\nopponent's hand.",
+            "description": "<b>On Reveal:</b> Remove the text from cards with <b>On Reveal</b> abilities in\nyour opponent's hand.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-649079ff46be73de7ae3428fc7d5d635d3f33e711bce21ab75b5220982147ad6.webp",
             "cost": 5
         },
@@ -1184,7 +1184,7 @@
             "variantKey": null,
             "url": "/cards/MBaku/",
             "name": "M'Baku",
-            "description": "If this is in your deck at the end of the game, it jumps to a random location.",
+            "description": "At the end of the game, this jumps from your deck to your lowest-Power location. <i>(that isn't full)</i>",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MBaku-a837756bc4036ef26ef44a2cbf317de0b2f2268eaa4b21ce1ef3fd99cef1d7ac.webp",
             "cost": 1
         },
@@ -1229,8 +1229,8 @@
             "variantKey": null,
             "url": "/cards/Mantis/",
             "name": "Mantis",
-            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, draw a card\nfrom <i>their</i> deck.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mantis-081981969bf20509bc44aceb33090eb7281ef4c6088eb1f020605fb34d806773.webp",
+            "description": "<b>On Reveal:</b> If your opponent played any cards here this turn, copy one of them into your hand.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mantis-5be6f06ee10cc91fc8dd2a1198806a725a0f7a14fbbca75b5db2b0e9edc330f8.webp",
             "cost": 2
         },
         {
@@ -1292,7 +1292,7 @@
             "variantKey": null,
             "url": "/cards/Miek/",
             "name": "Miek",
-            "description": "After each turn, if you discarded any cards, gain +1 Power for each\nand move.",
+            "description": "When you discard a card, this gains +1 Power and can move next turn.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Miek-e55826a3db08b3f4f9b12de4a1e5cd06d3ee9bd4baa82e8c0a8bd4417a8df345.webp",
             "cost": 1
         },
@@ -1358,6 +1358,15 @@
             "description": "<b>Ongoing:</b> Your Costs can't be increased. Your opponent's Costs can't be reduced.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MobiusMMobius-c9a11229825a727d11f1e23becb7154f20e50dc739d9a827c4526473607f8879.webp",
             "cost": 3
+        },
+        {
+            "cardDefKey": "Mockingbird",
+            "variantKey": null,
+            "url": "/cards/Mockingbird/",
+            "name": "Mockingbird",
+            "description": "Costs 1 less for each of your cards in play that didn't start in your deck.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mockingbird-7dde5d3ea472253ddf7d03ae4ea590c8280d3210ffa5439c8d0f03a8e201db7d.webp",
+            "cost": 5
         },
         {
             "cardDefKey": "Mojo",
@@ -2309,7 +2318,7 @@
             "variantKey": null,
             "url": "/cards/Yondu/",
             "name": "Yondu",
-            "description": "<b>On Reveal:</b> Destroy the top card of your opponent's deck.",
+            "description": "<b>On Reveal:</b> Destroy the lowest-Cost card in your opponent's deck.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yondu-539e7b8bc5cc63ef9c62c0a308161cbd52462584a514d2f9496e1a28b972a290.webp",
             "cost": 1
         },

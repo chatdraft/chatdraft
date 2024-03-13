@@ -2,7 +2,9 @@
 	import { invalidate, onNavigate } from '$app/navigation';
 	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import { env } from '$env/dynamic/public';
-	import '../../app.postcss';
+	import '../../app.postcss';import { Toast, initializeStores } from '@skeletonlabs/skeleton';
+
+	initializeStores();
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
@@ -24,8 +26,8 @@
 
 
 <a href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="absolute bottom-6 right-2 w-36"><img class="p-2" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
-	<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1"></iconify-icon>
 </a>
+<Toast position="t" />
 <AppShell slotSidebarLeft="bg-surface-500/5 text-center" slotFooter="bg-surface-700 text-center">
 	<svelte:fragment slot="header">
 		<AppBar gridColumns="grid-cols-2" slotDefault="place-self-start" slotTrail="place-content-end">

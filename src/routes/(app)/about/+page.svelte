@@ -36,11 +36,13 @@
 			used by the broadcaster and Twitch chat admins.
 		</li>
 		<li>
-			<b>!chatdraftdeck</b> - Re-displays the most recently drafted deck on stream
+			<b>!chatdraftdeck</b> - Re-displays the most recently drafted deck on stream.
+			This command has a global cooldown of 30 seconds and a 60 second per user cooldown.
 		</li>
 		<li>
 			<b>!chatdraftcode</b> - Provides the most recently drafted deck's code in chat
 			so a viewer can copy and paste and play along.
+			This command has a global cooldown of 30 seconds and a 60 second per user cooldown.
 		</li>
 	</ul>
 	<h2 class="h2">About Us</h2>

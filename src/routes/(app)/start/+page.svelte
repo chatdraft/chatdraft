@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { Step, Stepper } from '@skeletonlabs/skeleton';
+	import { Step, Stepper, getToastStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
-    
+
+    const toastStore = getToastStore();
+
     export let data: PageData;
 
     let full_source_configured = false;
@@ -73,7 +75,7 @@
     <Stepper buttonCompleteLabel="Start Drafting!" on:complete={onComplete}>
         <Step locked={data.user == undefined}>
             <svelte:fragment slot="header">
-                Log in with Twitch
+                Twitch Log In
             </svelte:fragment>
             Thanks for logging in. Please continue to invite the chat draft bot to your Twitch channel.
         </Step>
@@ -84,8 +86,15 @@
             {#if data.botInChannel}
                 The bot has successfully joined your channel! Please continue to setup your browser sources.
             {:else}
-                Next, invite the chat draft bot to your Twitch channel.
-                <form method="POST" action="/settings?/join" use:enhance><button class="btn btn-lg variant-filled-primary m-4">Join channel</button></form>
+                The chat draft bot needs to be added to your channel to interact with your viewers. Invite the chat draft bot to your Twitch channel. 
+                <form method="POST" action="/settings?/join" use:enhance={()=> {
+                    return async ({result, update}) => {
+                        if (result.type == "success") {
+                            toastStore.trigger({message:"Bot successfully joined your channel."});
+                        }
+                        update();
+                    }
+                }}><button class="btn btn-lg variant-filled-primary m-4">Join channel</button></form>
             {/if}
         </Step>
         <Step>
@@ -103,7 +112,7 @@
         </Step>
         <Step>
             <svelte:fragment slot="header">
-                Getting started - Setup complete!
+                Setup complete!
             </svelte:fragment>
             You have finished setup and are ready to draft!
         </Step>

@@ -101,13 +101,15 @@
 <div class="space-y-4 p-4">
 	<h1 class="h1">Draft</h1>
 	{#if (current_draft)}
-		<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
-			{#if current_draft.total < 12}
-				Cancel draft
-			{:else}
-				Finish draft
-			{/if}
-		</button>
+		<div class="text-right">
+			<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
+				{#if current_draft.total < 12}
+					Cancel draft
+				{:else}
+					Finish draft
+				{/if}
+			</button>
+		</div>
 	{:else}
 		{#if data.botstatus}
 			<div class="grid grid-cols-2">
