@@ -53,12 +53,12 @@
 			</AppRailAnchor>
 			<AppRailAnchor href="about">
 				<iconify-icon icon="material-symbols:info-outline" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('about')}>About</p>
+				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/about')}>About</p>
 			</AppRailAnchor>
 
 			<AppRailAnchor href="solodraft">
 				<iconify-icon icon="mdi:cards-outline" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('solodraft')}>Solo Draft</p>
+				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/solodraft')}>Solo Draft</p>
 			</AppRailAnchor>
 
 			{#if user}
@@ -69,12 +69,12 @@
 					</AppRailAnchor>
 					<AppRailAnchor href="draft">
 						<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
-						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('draft')}>Draft</p>
+						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/draft')}>Draft</p>
 					</AppRailAnchor>
 				{:else}
 					<AppRailAnchor href="start">
 						<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
-						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('start')}>Get Started</p>
+						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/start')}>Get Started</p>
 					</AppRailAnchor>
 				{/if}
 			{/if}
