@@ -1,91 +1,6 @@
-import { EventEmitter, type EventHandler } from '@d-fischer/typed-event-emitter';
+import { EventEmitter } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
-import { GetAllCards } from '../server/cardsHandler';
-
-const drafts = new Map<string, Draft>();
-const previousDrafts = new Map<string, Draft>();
-
-export function GetDrafts() {
-	const idrafts: IDraft[] = [];
-	drafts.forEach((draft => {
-		idrafts.push(draft.toIDraft())
-	}));
-	return idrafts;
-}
-
-export function GetPreviousDrafts() {
-	const idrafts: IDraft[] = [];
-	previousDrafts.forEach((draft => {
-		idrafts.push(draft.toIDraft());
-	}))
-	return idrafts;
-}
-
-export async function GetPreviewDraft(): Promise<IDraft> {
-	const total = Math.floor( Math.random() * 13 )
-
-	const deck: Card[] = [];
-	const shuffled: Card[] = [];
-	const cards = await GetAllCards();
-	cards.all.forEach(card => shuffled.push(card));
-	shuffle(shuffled);
-	for(let i = 0; i < total; i++) {
-		deck.push(shuffled.pop()!)
-	}
-
-	const player = 'preview';
-
-	const duration = 60;
-	const selections = 6
-	const currentChoice: Choice = {
-		cards: [],
-		votes: new Map<string, string>(),
-		voteCounts: [],
-		votes_closed: Date.now() + duration * 1000,
-	}
-
-	for (let i = 0; i < selections; i++) {
-		currentChoice.cards.push(shuffled.pop()!);
-		currentChoice.voteCounts.push(0);
-	}
-	const deckName = 'Preview';
-
-	return {
-		total: total,
-		cards: deck,
-		player: player,
-		currentChoice: currentChoice,
-		duration: duration,
-		selections: selections,
-		deckName: deckName
-	}
-}
-
-export function GetDraft(player: string) {
-	return drafts.get(player);
-}
-
-export function GetPreviousDraft(player: string) {
-	return previousDrafts.get(player);
-}
-
-export function GetDeckCode(deck: Deck): string {
-	type cardCode = { CardDefId: string }
-	const obj = {Cards: Array<cardCode>()}
-	deck.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
-	return btoa(JSON.stringify(obj))
-}
-
-export type DraftEvents = {
-	DraftStarted: EventHandler<[player_channel: string]>;
-	DraftCanceled: EventHandler<[player_channel: string]>;
-	NewChoice: EventHandler<[player_channel: string, choice: Choice]>;
-	ChoiceSelected: EventHandler<[player_channel: string, card: Card]>;
-	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
-	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
-	ChoiceOverride: EventHandler<[player_channel: string, result: string]>;
-}
 
 export default interface IDraft {
 	cards: Deck;
@@ -105,17 +20,20 @@ export class Draft extends EventEmitter implements IDraft {
 	public duration = 20;
 	public selections = 3;
 
-	public constructor(duration: number, selections: number, subsExtraVote = false) {
+	public constructor(player_channel: string, duration: number, selections: number, all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}, subsExtraVote = false) {
 		super();
+		this.player = player_channel;
 		this.duration = duration;
 		this.selections = selections;
 		this.subsExtraVote = subsExtraVote;
+		this.all_cards = all_cards;
 	}
 	cards: Deck = [];
 	total: number = 0;
 	player: string = '';
 	currentChoice: Choice | undefined;
 	subsExtraVote: boolean = false;
+	all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]};
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
 
@@ -132,30 +50,24 @@ export class Draft extends EventEmitter implements IDraft {
 	onChoiceOverride = this.registerEvent<[player_channel: string, result: string]>();
 
 
-	public async StartDraft(player: string) {
-        this.emit(this.onDraftStarted, player)
+	public async StartDraft() {
+		if (this.player != '') {
+        	this.emit(this.onDraftStarted, this.player)
+		}
 	
 		this.total = 0;
-		this.player = player;
 		this.currentChoice = await this.NewChoice(),
-		this.cards = []
-	
-		drafts.set(player, this);
+		this.cards = [];
 	}
 
 	public CancelDraft() {
-		drafts.delete(this.player);
-
 		if (this.voteTimer) {
 			clearTimeout(this.voteTimer);
 			this.voteTimer = undefined;
 		}
 
-		if (this.total < 12) {
+		if (this.total < 12 && this.player != '') {
 			this.emit(this.onDraftCanceled, this.player);
-		}
-		else {
-			previousDrafts.set(this.player, this)
 		}
 	}
 
@@ -165,8 +77,7 @@ export class Draft extends EventEmitter implements IDraft {
 			this.voteTimer = undefined;
 		}
 
-		const cards = await GetAllCards();
-		const available = cards.all.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
+		const available = this.all_cards.all.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
 	
 		if (available.length < this.selections) {
 			throw new Error('Not enough selectable cards to continue draft');
@@ -201,13 +112,15 @@ export class Draft extends EventEmitter implements IDraft {
 			votes_closed: Date.now() + voting_period_ms,
 		};
 	
-		this.emit(this.onNewChoice, this.player, newChoice);
-		this.voteTimer = setTimeout(() => {
-			const result = this.CloseVoting();
-			if (result && result.winner) {
-				this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties)
-			}
-		}, voting_period_ms);
+		if (this.player != '') {
+			this.emit(this.onNewChoice, this.player, newChoice);
+			this.voteTimer = setTimeout(() => {
+				const result = this.CloseVoting();
+				if (result && result.winner) {
+					this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties)
+				}
+			}, voting_period_ms);
+		}
 	
 		return newChoice;
 	}
@@ -244,34 +157,32 @@ export class Draft extends EventEmitter implements IDraft {
 	}
 
 	public async Choose(cardDefKey: string | undefined | null, override: boolean = false) {
-		if (override) this.emit(this.onChoiceOverride, this.player, cardDefKey);
+		if (override && this.player != '') this.emit(this.onChoiceOverride, this.player, cardDefKey);
 		if (!cardDefKey) return;
 
 		if (!this.CanChoose(cardDefKey)) return;
 
-		this.cards.push((await Draft.LookupCard(cardDefKey))!);
+		this.cards.push((await this.LookupCard(cardDefKey))!);
 		this.cards = this.cards.sort((a, b) => {
 			return a.cost - b.cost;
 		});
 		this.total++;
 
-		this.emit(this.onChoiceSelected, this.player, (await Draft.LookupCard(cardDefKey))!)
+		if (this.player != '') {
+			this.emit(this.onChoiceSelected, this.player, (await this.LookupCard(cardDefKey))!)
+		}
 
 		if (this.total == 12) {
 			this.deckName = ''; //cardDefKey;
 			this.currentChoice = undefined;
-			this.emit(this.onDraftComplete, this.player, this.cards);
+			if (this.player != '') {
+				this.emit(this.onDraftComplete, this.player, this.cards);
+			}
 			return;
 		}
 
 		
 		this.currentChoice = await this.NewChoice(this.cards);
-	}
-
-	private static async LookupCard(cardDefKey: string | undefined | null) {
-		if (!cardDefKey) return undefined;
-		const cards = await GetAllCards();
-		return cards.all.find((card) => card.cardDefKey == cardDefKey);
 	}
 	
 	private CanChoose(cardDefKey: string | undefined | null) {
@@ -279,7 +190,7 @@ export class Draft extends EventEmitter implements IDraft {
 	
 		if (!cardDefKey) return false;
 	
-		const card = Draft.LookupCard(cardDefKey);
+		const card = this.LookupCard(cardDefKey);
 	
 		if (!(card)) return false;
 	
@@ -293,8 +204,6 @@ export class Draft extends EventEmitter implements IDraft {
 
 
 	public Vote(user: string, choice: string, isSubscriber: boolean) {
-		if (!this.IsActive()) return;
-
 		if (!this.currentChoice) return;
 
 		let extraVotes = 0;
@@ -311,14 +220,14 @@ export class Draft extends EventEmitter implements IDraft {
 			this.currentChoice.voteCounts[oldVote - 1]-= 1 + extraVotes;
 		}
 
-		drafts.get(this.player)?.currentChoice?.votes.set(user, choice);
+		this.currentChoice?.votes.set(user, choice);
 
 		this.currentChoice.voteCounts[vote - 1]+= 1 + extraVotes;
 	}
 
-
-	public IsActive() {
-		return (drafts.has(this.player) && this.currentChoice);
+	private LookupCard(cardDefKey: string | undefined | null) {
+		if (!cardDefKey) return undefined;
+		return this.all_cards.all.find((card) => card.cardDefKey == cardDefKey);
 	}
 	
 	public toIDraft(): IDraft {
@@ -331,6 +240,13 @@ export class Draft extends EventEmitter implements IDraft {
 			selections: this.selections,
 			deckName: this.deckName,
 		});
+	}
+
+	public GetDeckCode(): string {
+		type cardCode = { CardDefId: string }
+		const obj = {Cards: Array<cardCode>()}
+		this.cards.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
+		return btoa(JSON.stringify(obj))
 	}
 }
 

@@ -1,5 +1,5 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GetDraft, GetPreviousDraft } from '$lib/snap/draft';
+import { GetDraft, GetPreviousDraft } from '$lib/server/draftHandler';
 import type IDraft from '$lib/snap/draft';
 
 export const GET: RequestHandler = async ({ params, url }) => {

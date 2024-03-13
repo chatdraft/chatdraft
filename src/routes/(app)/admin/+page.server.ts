@@ -1,5 +1,5 @@
 import { AuthorizeUser, DeauthorizeUser, GetAdminUsers, GetAuthorizedUsers, IsUserAdmin } from '$lib/server/authorizationHandler';
-import { GetDrafts, GetPreviousDrafts } from '$lib/snap/draft';
+import { GetDrafts, GetPreviousDrafts } from '$lib/server/draftHandler';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { AddChannel, GetChannels, RemoveChannel } from '$lib/server/channelHandler';

@@ -1,8 +1,8 @@
 import { error, json, type RequestHandler } from '@sveltejs/kit';
-import { GetDraft, GetPreviousDraft } from '$lib/snap/draft';
 import { ValidateSession } from '$lib/server/sessionHandler';
 import DraftFactory from '$lib/snap/draftFactory';
 import type IDraft from '$lib/snap/draft';
+import { EndDraft, GetDraft, GetPreviousDraft } from '$lib/server/draftHandler';
 
 export const GET: RequestHandler = async ({ locals, cookies, url }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
@@ -30,9 +30,9 @@ export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 	if (url.searchParams.has('selections')) selections = +url.searchParams.get('selections')!
 	if (url.searchParams.has('subsExtraVote')) subsExtraVote = url.searchParams.get('subsExtraVote') == 'true';
 
-	const draft = DraftFactory.CreateDraft(duration, selections, subsExtraVote)
+	const draft = await DraftFactory.CreateDraft(locals.user!.name, duration, selections, subsExtraVote)
 
-	draft.StartDraft(locals.user!.name);
+	draft.StartDraft();
 
 	return new Response(null, { status: 204 } );
 };
@@ -40,8 +40,7 @@ export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 export const DELETE: RequestHandler = async ({ cookies, locals }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
 
-	const draft = GetDraft(locals.user!.name);
-	draft?.CancelDraft();
+	EndDraft(locals.user!.name);
 
 	return new Response(null, { status: 204 } );
 }

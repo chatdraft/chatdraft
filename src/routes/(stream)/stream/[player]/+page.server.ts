@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { GetPreviewStatus } from '$lib/server/previewHandler';
-import { GetPreviewDraft } from '$lib/snap/draft';
+import { GetPreviewDraft } from '$lib/server/draftHandler';
 
 export const load = (async ( {params }) => {
     const player: string = params.player;

@@ -1,11 +1,17 @@
+import { GetAllCards } from "$lib/server/cardsHandler";
+import { drafts } from "$lib/server/draftHandler";
 import { ClearPreviewStatus } from "$lib/server/previewHandler";
 import TwitchBot from "$lib/server/twitchBot";
 import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStarted, NewChoice, VotingClosed } from "$lib/server/webSocketUtils";
 import { Draft } from "./draft";
 
 export default class DraftFactory {
-    public static CreateDraft(duration: number, selections: number, subsExtraVote: boolean = false) {
-        const draft = new Draft(duration, selections, subsExtraVote);
+    public static async CreateDraft(player_channel: string, duration: number, selections: number, subsExtraVote: boolean = false) {
+        const draft = new Draft(player_channel, duration, selections, await GetAllCards(), subsExtraVote);
+	
+		if (draft.player != '') {
+			drafts.set(draft.player, draft);
+		}
 
         draft.onDraftStarted(TwitchBot.DraftStarted);
         draft.onDraftStarted(DraftStarted);

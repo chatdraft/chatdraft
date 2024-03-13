@@ -1,5 +1,5 @@
 import { error, type RequestHandler } from '@sveltejs/kit';
-import { GetDraft } from '$lib/snap/draft';
+import { GetDraft } from '$lib/server/draftHandler';
 import { ValidateSession } from '$lib/server/sessionHandler';
 
 export const POST: RequestHandler = async ({ cookies, locals, params }) => {

@@ -106,8 +106,9 @@
             <hr class="m-4"/>
             <h3 class="h3">Preview Mode</h3>
             <p class="m-2">
+                When an draft isn't active, the browser sources will be completely transparent.
                 Preview mode fills the browser sources with an example draft that you can use
-                to adjust the browser source(s) to your stream layout without starting a real draft.
+                to adjust them to your stream layout without starting a real draft.
                 Once a real draft is started, preview mode will be automatically disabled.
             </p>
             <form method="post" use:enhance action="?/togglePreview" class="m-2">

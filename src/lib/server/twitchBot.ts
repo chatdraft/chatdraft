@@ -1,11 +1,12 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
-import { type Choice, type Card, type Deck, GetDraft, GetPreviousDraft, GetDeckCode } from '$lib/snap/draft';
+import type { Choice, Card, Deck } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
 import { AddChannel, GetChannels, RemoveChannel } from './channelHandler';
+import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 
 export default class TwitchBot {
 
@@ -40,15 +41,15 @@ export default class TwitchBot {
                             reply("No selection count specified.")
                         }
                         
-                        const draft = DraftFactory.CreateDraft(duration, selections);
+                        const draft = await DraftFactory.CreateDraft(broadcasterName, duration, selections);
                     
-                        draft.StartDraft(broadcasterName);
+                        draft.StartDraft();
                     }
                 }),
                 
                 createBotCommand('chatdraftcancel', async (_, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
-                        GetDraft(broadcasterName)?.CancelDraft();
+                        EndDraft(broadcasterName);
                     }
                 }),
 
@@ -62,7 +63,7 @@ export default class TwitchBot {
                 createBotCommand('chatdraftcode', async (_, {broadcasterName, reply}) => {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
-                        reply(GetDeckCode(previousDraft.cards));
+                        reply(previousDraft.GetDeckCode());
                     }
                 }, {globalCooldown: 30, userCooldown: 60})
             ]
@@ -75,7 +76,7 @@ export default class TwitchBot {
 
             if (!draft) return;
 
-            if (['1','2','3','4','5','6'].includes(text) && draft.IsActive()) {
+            if (['1','2','3','4','5','6'].includes(text) && IsActive(draft.player)) {
                 draft.Vote(user, text, msg.userInfo.isSubscriber);
                 SendMessage(channel, 'voteupdated');
             }
