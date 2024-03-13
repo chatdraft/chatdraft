@@ -57,7 +57,7 @@
         <div class="grid grid-cols-2">
             <RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
                 <div class="flex justify-between items-center">
-                    <div class="font-bold">Number of cards per vote</div>
+                    <div class="font-bold">Number of cards per round</div>
                     <div class="text-xs">{selectionCount}</div>
                 </div>
             </RangeSlider>
@@ -71,15 +71,14 @@
 		<h3 class="h3">Options:</h3>
 		Press Select to choose a card.
 		<section class="grid {grid_layout} justify-items-center">
-			{#each choices as choice}
-				<div class="p-4"><SnapCard card={choice} /></div>
-			{/each}
-
 			{#each choices as _choice, index}
 				<button
 					type="button"
 					class="btn btn-md variant-outline-primary p-4 w-1/2"
 					on:click={() => DraftCard(index)}>Select</button>
+			{/each}
+			{#each choices as choice}
+				<div class="p-4"><SnapCard card={choice} /></div>
 			{/each}
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
