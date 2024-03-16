@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
     import type { PageData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 
     const toastStore = getToastStore();
     
@@ -12,6 +13,9 @@
 
     let full_source_configured = data.full_source_configured;
     let split_sources_configured = data.split_sources_configured;
+
+    let skipSnapFan = false;
+    let snapFanApiKey = '';
 
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
@@ -99,4 +103,8 @@
 
     <h2 class="h2">Browser Sources</h2>
     <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
+    <br/>
+    
+    <h2 class="h2">Snap Collection / Snap.fan API</h2>
+    <SnapFanApiInput bind:skipSnapFan bind:snapFanApiKey />
 </div>

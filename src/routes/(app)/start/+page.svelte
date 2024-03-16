@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { Step, Stepper, getToastStore } from '@skeletonlabs/skeleton';
+	import { SlideToggle, Step, Stepper, getToastStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
 	import { enhance } from '$app/forms';
 	import { onMount } from 'svelte';
+	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 
     const toastStore = getToastStore();
 
@@ -12,6 +13,9 @@
 
     let full_source_configured = false;
     let split_sources_configured = false;
+
+    let skipSnapFan = false;
+    let snapFanApiKey = '';
 
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
@@ -109,6 +113,12 @@
                 <br/>
                 <BrowserSources user="{data.user}" previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
             </nav>
+        </Step>
+        <Step locked={!skipSnapFan && snapFanApiKey.length == 0}>
+            <svelte:fragment slot="header">
+                Collection set up
+            </svelte:fragment>
+            <SnapFanApiInput bind:skipSnapFan bind:snapFanApiKey />
         </Step>
         <Step>
             <svelte:fragment slot="header">
