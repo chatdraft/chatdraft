@@ -5,7 +5,7 @@ import type { Choice, Card, Deck } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
-import { AddChannel, GetChannels, RemoveChannel } from './channelHandler';
+import { DbAddChannel, DbGetChannels, DbRemoveChannel } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 
 export default class TwitchBot {
@@ -22,26 +22,31 @@ export default class TwitchBot {
         });
         this.chat.connect();
 
-        authProvider.addIntentsToUser(env.PUBLIC_TWITCH_USER_ID, ['chat']);
+        authProvider.addIntentsToUser(env.PUBLIC_TWITCH_USER_ID!, ['chat']);
 
         this.bot = new Bot({authProvider, channels: channels, 
             commands: [
                 createBotCommand('chatdraft', async (_,{say}) => 
                     await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`)),
-                createBotCommand('chatdraftstart', async (params, {broadcasterName, msg, reply}) => {
+                createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
-                        const duration = Number(params[0]);
+                        let duration = Number(params[0]);
                         if (!duration) {
-                            reply("No vote period specified.");
-                            return;
+                            duration = 90;
                         }
 
-                        const selections = Number(params[1]);
+                        let selections = Number(params[1]);
                         if (!selections) {
-                            reply("No selection count specified.")
+                            selections = 6
+                        }
+
+                        const subsBonusText = params[2];
+                        let subsBonus = false;
+                        if (subsBonusText) {
+                            subsBonus = subsBonusText == "true"
                         }
                         
-                        const draft = await DraftFactory.CreateDraft(broadcasterName, duration, selections);
+                        const draft = await DraftFactory.CreateDraft(broadcasterName, duration, selections, subsBonus);
                     
                         draft.StartDraft();
                     }
@@ -105,7 +110,7 @@ export default class TwitchBot {
 
     public static async getInstance(authProvider: RefreshingAuthProvider): Promise<TwitchBot> {
         if (!TwitchBot.instance) {
-            const channels = await GetChannels();
+            const channels = await DbGetChannels();
             TwitchBot.instance = new TwitchBot(authProvider, channels);
         }
 
@@ -152,17 +157,18 @@ export default class TwitchBot {
         return TwitchBot.instance.chat.currentChannels.includes(`#${player_channel}`);
     }
 
-    public static async JoinChannel(player_channel: string) {
+    public static async JoinChannel(player_channel: string, playerId: string) {
         if (!TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
-        await AddChannel(player_channel);
+        const user = await DbAddChannel(playerId);
+        console.log(user);
         return TwitchBot.instance.chat.join(player_channel)
     }
 
-    public static async PartChannel(player_channel: string) {
+    public static async PartChannel(player_channel: string, playerId: string) {
         if (!TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.leave(player_channel);
-        await RemoveChannel(player_channel);
+        await DbRemoveChannel(playerId);
         return TwitchBot.instance.chat.part(player_channel);
     }
 }

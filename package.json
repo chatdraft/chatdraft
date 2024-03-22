@@ -14,7 +14,8 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"prodServer": "node --loader tsm ./prodServer.ts"
+		"prodServer": "node --loader tsm ./prodServer.ts",
+		"seed": "node --loader tsm prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@iarna/toml": "^2.2.5",
@@ -39,6 +40,7 @@
 		"postcss": "8.4.31",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
+		"prisma": "^5.11.0",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
 		"tailwindcss": "3.3.3",
@@ -51,6 +53,7 @@
 	"type": "module",
 	"dependencies": {
 		"@floating-ui/dom": "1.5.3",
+		"@prisma/client": "^5.11.0",
 		"@twurple/api": "^7.0.3",
 		"@twurple/auth": "^7.0.3",
 		"@twurple/chat": "^7.0.3",

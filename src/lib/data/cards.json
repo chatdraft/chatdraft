@@ -24,7 +24,7 @@
             "url": "/cards/AdamWarlock/",
             "name": "Adam Warlock",
             "description": "After each turn, draw a card if you're winning here.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-04e94b9a6342db967a5e6466b627f5c40d0a2df5263a7ad25cb8024eaeef4f44.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-7b85387da0eb3dc57fcb8fabc7001050d0e638d9c3b055a2a86c68027e19415b.webp",
             "cost": 5
         },
         {
@@ -122,8 +122,8 @@
             "variantKey": null,
             "url": "/cards/Apocalypse/",
             "name": "Apocalypse",
-            "description": "When you discard this from your hand, put it back with +4 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Apocalypse-b5edc370bf1f4fbd129f6458baa90a33de44f5b4492b6a46fcdbfb41b210e0c2.webp",
+            "description": "When you discard this, put it back with +4 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Apocalypse-f792f4664912232d3bb5944c74aa6b80a5ce9837f32e8dcd0b35ba1c5d8ff9e4.webp",
             "cost": 6
         },
         {
@@ -316,6 +316,15 @@
             "cost": 3
         },
         {
+            "cardDefKey": "Cannonball",
+            "variantKey": null,
+            "url": "/cards/Cannonball/",
+            "name": "Cannonball",
+            "description": "<b>On Reveal:</b> Move the highest-Power enemy card here away. If you can't, destroy it with a Rock.\n<b><span style='color: #fad728'>AvX:</span></b> Once you play 4, <b><span style='color: #fad728'>X-Men</span></b> have +1 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cannonball-8257aa410f5fb14a2e8f0d2397a107318efa66d5c33fed49bc44e3376504fd2c.webp",
+            "cost": 5
+        },
+        {
             "cardDefKey": "CaptainAmerica",
             "variantKey": null,
             "url": "/cards/CaptainAmerica/",
@@ -330,7 +339,7 @@
             "url": "/cards/CaptainMarvel/",
             "name": "Captain Marvel",
             "description": "At the end of the game, move to a location that wins you the\ngame. (If possible)",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainMarvel-7bc692b4af5ec9f85b79113192e89e349d86e2e53d16026b623b57c834bf7055.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainMarvel-f2b084a1d53a8aebfc4416e3ed43bead3e8b2deb467151c74d6e2ca300db6641.webp",
             "cost": 4
         },
         {
@@ -581,8 +590,8 @@
             "variantKey": null,
             "url": "/cards/Drax/",
             "name": "Drax",
-            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Drax-d89c10bbc036e0d1f8ee5cbb49fe1b7825a350667e4f70d7ee61c554550314f9.webp",
+            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +4 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Drax-aabe453e6fc5d481cf253059d40580b85a79daa907184f713145a017392ac6ac.webp",
             "cost": 4
         },
         {
@@ -680,8 +689,8 @@
             "variantKey": null,
             "url": "/cards/Gamora/",
             "name": "Gamora",
-            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +5 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gamora-1498c9f845cc7c614ac3981e1ae2dc54e3c02a2eb34a49ff84212a4d2dbe7df9.webp",
+            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +4 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gamora-c4930a5932856b474b719c4c129d72732f1f7c63bace5105a2e26368b03f7ff9.webp",
             "cost": 5
         },
         {
@@ -761,8 +770,8 @@
             "variantKey": null,
             "url": "/cards/Groot/",
             "name": "Groot",
-            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Groot-d37a4162a0b4b14bd988267fc13310f0ab0c895f4c9a9eaddc8f4fdcda0bb72c.webp",
+            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +4 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Groot-c2fabdf16de2e746b8f4216ef6fafde905a14e4d5500c68989e112a924ae0c95.webp",
             "cost": 3
         },
         {
@@ -1626,7 +1635,7 @@
             "url": "/cards/Psylocke/",
             "name": "Psylocke",
             "description": "<b>On Reveal:</b> Next turn, you get +1 Energy.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Psylocke-a680c427b94b2f52c19717a933e6aa61244b6e0431a54a6dd02657bbdf724eaa.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Psylocke-0164fcbc9889c7414351a310e368ad7c3be512b886b49a1c07e45fdcf221d8f3.webp",
             "cost": 2
         },
         {
@@ -1706,8 +1715,8 @@
             "variantKey": null,
             "url": "/cards/RocketRaccoon/",
             "name": "Rocket Raccoon",
-            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +2 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketRaccoon-e52d6a150c5d5acd007d736b79c00a7ce9e2a6b73fa04f5a87d668a597e6c39f.webp",
+            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +4 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketRaccoon-7bffcef0de9afe0eda0773aedea06b40acb47f7f70c60db05836364a2e99a1dc.webp",
             "cost": 1
         },
         {
@@ -1976,7 +1985,7 @@
             "variantKey": null,
             "url": "/cards/Starlord/",
             "name": "Star-Lord",
-            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +3 Power.",
+            "description": "<b>On Reveal:</b> If your opponent played a card here this turn, +4 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Starlord-f8658cbc0a4a10fa0a23e0b9716c626476ad3d62fd3bbc168ace8b4522566b59.webp",
             "cost": 2
         },

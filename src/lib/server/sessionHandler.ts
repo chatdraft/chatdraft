@@ -2,7 +2,7 @@
 import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
-import type { HelixUser } from '@twurple/api';
+import type { User } from '@prisma/client';
 
 type TSessionID = string;
 
@@ -32,7 +32,7 @@ export function fetchSession(sessionId: TSessionID) {
     return sessionUsers.get(sessionId);
 }
 
-export function ValidateSession(cookies: Cookies, user: HelixUser | null | undefined, session_key: string) {
+export function ValidateSession(cookies: Cookies, user: User | null, session_key: string) {
 	const session_id = cookies.get(session_key);
 	if (!session_id || !user) {
 		throw error(401, 'Not logged in.');

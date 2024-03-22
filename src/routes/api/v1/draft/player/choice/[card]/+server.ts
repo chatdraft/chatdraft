@@ -5,7 +5,7 @@ import { ValidateSession } from '$lib/server/sessionHandler';
 export const POST: RequestHandler = async ({ cookies, locals, params }) => {
 	ValidateSession(cookies, locals.user, 'session_id')
 
-	const draft = GetDraft(locals.user!.name)
+	const draft = GetDraft(locals.user!.channelName!)
 	if (!draft || !draft.currentChoice) {
 		throw error(404);
 	}

@@ -3,43 +3,17 @@
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import type { Card } from '$lib/snap/draft.js';
+	import { establishWebSocket } from '$lib/websocket.js';
 	import { onMount } from 'svelte';
 
 	export let data;
 
 	let now = Date.now();
 
-	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
 
 	let showDeck = false;
 	let selectionCount = 3;
-
-	const establishWebSocket = async () => {
-		if (webSocketEstablished) return;
-		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-		ws = new WebSocket(`${protocol}//${window.location.host}/websocket/${data.player}?hide=${data.hide}`);
-		heartbeat();
-		ws.onmessage =  async (event) => {
-			if (event.data == 'pong') return;
-			console.log('[websocket] message received', event);
-			await handleMessage(event.data)
-		};
-		ws.onclose = async () => { 
-			webSocketEstablished = false;
-			ws = null;
-			setTimeout(establishWebSocket, 5000);
-		};
-
-		return ws;
-	};
-
-	function heartbeat() {
-		setTimeout(heartbeat, 500);
-		if (!ws) return;
-		if (ws.readyState !== 1) return;
-		ws.send("ping");
-	}
 
 	const handleMessage = async(message: string) => {
 		if (message == 'showdeck') {
@@ -106,7 +80,7 @@
 		setInterval(() => {
 			now = Date.now();
 		}, 100)
-		await establishWebSocket();
+		await establishWebSocket(handleMessage, data.draft?.player, data.hide);
 		if (data.draft) {
 			selectionCount = data.draft.selections;
 		}
@@ -124,7 +98,7 @@
 		<div class="text-white text-4xl rounded-sm font-snapa">
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
-				<div class="bg-purple-900 bg-opacity-70 text-white text-4xl rounded-lg">
+				<div class="bg-purple-900 bg-opacity-70 text-white text-4xl rounded-t-lg" class:rounded-b-lg={data.hide != 'deck'}>
 					<div class="flex items-center">
 						<h2 class="font-outline pl-4">
 							<span class="uppercase font-snapa font-outline shadow-black">Pick:</span>
@@ -175,7 +149,7 @@
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
-				<div class="bg-purple-900 bg-opacity-70 text-slate-200 text-2xl font-outline rounded-lg">
+				<div class="bg-purple-900 bg-opacity-70 text-slate-200 text-2xl font-outline rounded-t-lg">
 					<div class="flex justify-evenly items-center">
 					<h2 class="uppercase font-snapa font-outline shadow-black">
 						Drafted Cards
@@ -196,6 +170,7 @@
 					</div>
 				</div>
 			{/if}
+		<p class="bg-purple-900 bg-opacity-70 rounded-b-lg text-xl flex justify-center font-outline uppercase shadow-black font-snapa">To use Chat Draft, inquire at:&nbsp;<span class="anchor font-serif font-outline-0 normal-case relative bottom-[2px]">twitch.tv/jjrolk</span></p>
 		</div>
 	{:else}
 		{#if data.hide != 'deck'}

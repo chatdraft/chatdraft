@@ -1,18 +1,16 @@
-import type { HelixUser } from '@twurple/api';
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import type { ExtendedWebSocketServer } from '$lib/server/webSocketHandler';
+import type { User, UserPreference } from '@prisma/client'
 
 declare global {
 	namespace App {
 		interface Locals {
-			user: ?HelixUser;
+			user: User & { userPreferences: UserPreference | null } | null
 			session: ?{
 				id: string;
 			};
-			KV: Map<string, string>;
 			auth_provider: RefreshingAuthProvider;
 			wss?: ExtendedWebSocketServer;
-			user_authorized: boolean;
 		}
 		interface PublicEnv {
 			PUBLIC_TWITCH_OAUTH_CLIENT_ID: string;

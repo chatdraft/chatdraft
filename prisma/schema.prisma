@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("SQL_DB_URI")
+  shadowDatabaseUrl =  env("SQL_SHADOW_DB_URI")
+}
+
+model User {
+  id String @id @default(cuid())
+  channelName String @unique
+  displayName String?
+  isAdmin Boolean @default(false)
+  isAuthorized Boolean @default(false)
+  twitchID String? @unique
+  twitchProfilePictureURL String?
+  twitchToken Token?
+  initialSetupDone Boolean @default(false)
+  createdAt DateTime @default(now())
+  drafts Draft[]
+  userPreferences UserPreference?
+}
+
+model Token {
+  id String @id @default(cuid())
+  twitchID String @unique
+  twitchChannelName String
+  user User @relation(fields: [twitchID], references: [twitchID])
+  token String?
+}
+
+model UserPreference {
+  id String @id @default(cuid())
+  user User @relation(fields: [userId], references: [twitchID])
+  userId String @unique
+  draftRoundDuration Int @default(90)
+  cardsPerRound Int @default(6)
+  subsExtraVote Boolean @default(false)
+  botJoinsChannel Boolean @default(false)
+  snapFanApiKey String?
+}
+
+model Draft {
+  id String @id @default(cuid())
+  playerId String
+  player User @relation(fields: [playerId], references: [id])
+  cards String
+  createdAt DateTime @default(now())
+  finishedAt DateTime?
+  rounds Round[]
+}
+
+model Round {
+  id String @id @default(cuid())
+  draftId String
+  draft Draft @relation(fields: [draftId], references: [id])
+  winner String
+  votes VoteResult[]
+}
+
+model VoteResult {
+  id String @id @default(cuid())
+  roundId String
+  round Round @relation(fields: [roundId], references: [id])
+  cardDefKey String
+  votes Int
+}

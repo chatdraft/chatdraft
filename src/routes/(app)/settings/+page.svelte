@@ -6,6 +6,8 @@
     import type { PageData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
+	import { establishWebSocket } from '$lib/websocket';
+	import DraftPreferences from '$lib/components/DraftPreferences.svelte';
 
     const toastStore = getToastStore();
     
@@ -20,34 +22,6 @@
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
 
-    const establishWebSocket = async () => {
-		if (webSocketEstablished) return;
-		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
-		heartbeat();
-		ws.onmessage = async (event) => {
-			console.log('[websocket] message received', event);
-			await handleMessage(event.data)
-		};
-
-		ws.onclose = async () => { 
-			webSocketEstablished = false;
-			ws = null;
-			setTimeout(establishWebSocket, 5000);
-		};
-
-		webSocketEstablished = true;
-
-		return ws;
-	};
-
-	function heartbeat() {
-		setTimeout(heartbeat, 500);
-		if (!ws) return;
-		if (ws.readyState !== 1) return;
-		ws.send("ping");
-	}
-
 	const handleMessage = async(message: string) => {
 		if (message.startsWith('browserupdated')) {
             const obj = JSON.parse(message.substring('browserupdated:'.length));
@@ -56,8 +30,8 @@
         }
 	}
 
-    onMount(() => {
-        establishWebSocket();
+    onMount(async () => {
+        ws = await establishWebSocket(handleMessage);
     })
 </script>
 
@@ -70,7 +44,20 @@
 <div class="p-4">
     <h1 class="h1">Settings</h1>
     <br/>
-    
+    <form method="POST" action="?/updatePreferences" use:enhance={()=> {
+        return async ({result, update}) => {
+            if (result.type == "success") {
+                toastStore.trigger({message:"Settings updated successfully."});
+            }
+            //update();
+        }
+    }}>
+        <div class="card p-4 w-1/2">
+            <DraftPreferences duration={data.duration} selectionCount={data.selectionCount} subsExtraVote={data.subsExtraVote} />
+            <button class="btn btn-lg variant-filled-primary">Save Defaults</button><br/>
+        </div>
+    </form>
+    <br/><br/>
     <h2 class="h2">Chat Draft Bot</h2>
     {#if data.botInChannel}
         <p class="m-2">
@@ -104,7 +91,7 @@
     <h2 class="h2">Browser Sources</h2>
     <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
     <br/>
-    
+
     <h2 class="h2">Snap Collection / Snap.fan API</h2>
     <SnapFanApiInput bind:skipSnapFan bind:snapFanApiKey />
 </div>

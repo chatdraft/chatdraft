@@ -4,8 +4,8 @@ import { env as privateenv } from "$env/dynamic/private";
 import { env } from "$env/dynamic/public";
 import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
-import { saveToken } from '$lib/server/tokenHandler';
 import { ApiClient } from '@twurple/api';
+import { DbSaveToken } from '$lib/server/db'
 
 const authProvider = new RefreshingAuthProvider(
 	{
@@ -27,7 +27,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         const user_id = await authProvider.addUserForToken(tokenData);
 
         if(tokenData.scope.includes('chat:read') && tokenData.scope.includes('chat:edit')) {
-            await saveToken(user_id, tokenData);
+            await DbSaveToken(user_id, tokenData);
             authProvider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
             TwitchBot.getInstance(authProvider);
         }
@@ -36,11 +36,11 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
             authProvider.onRefresh(async (userId, newTokenData) => {
                 updateSession(session_id, newTokenData)
                 if (userId == env.PUBLIC_TWITCH_USER_ID) {
-                    await saveToken(user_id, tokenData);
+                    await DbSaveToken(user_id, tokenData);
                 }
             });
 
-            cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn! })
+            cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn!, sameSite: true })
         }
 
         // Create new session for the user

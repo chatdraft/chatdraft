@@ -2,7 +2,8 @@
 	import { invalidate, onNavigate } from '$app/navigation';
 	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import { env } from '$env/dynamic/public';
-	import '../../app.postcss';import { Toast, initializeStores } from '@skeletonlabs/skeleton';
+	import '../../app.postcss';
+	import { Toast, initializeStores } from '@skeletonlabs/skeleton';
 
 	initializeStores();
 
@@ -37,7 +38,7 @@
 			
 			<svelte:fragment slot="trail">
 				{#if user}
-					<Avatar width="w-12" src={user.profile_picture_url}></Avatar>
+					<Avatar width="w-12" src={ user.profile_picture_url || '' }></Avatar>
 				{:else}
 					<a class="btn btn-md variant-outline-primary" href={twitch_login_uri}>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1"></iconify-icon></a>
 				{/if}

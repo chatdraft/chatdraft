@@ -5,19 +5,15 @@ import { env as privateenv } from '$env/dynamic/private';
 import { env } from '$env/dynamic/public';
 import { RefreshingAuthProvider } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
-import { existsToken, loadToken } from '$lib/server/tokenHandler';
+import { DbLoadToken, DbUpdateUser } from '$lib/server/db';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
 import { building } from '$app/environment';
 import cookie from 'cookie';
-import { IsUserAuthorized } from '$lib/server/authorizationHandler';
 import { RegisterFullBrowserSource, RegisterDeckBrowserSource, RegisterChoiceBrowserSource, CloseBrowserSource } from '$lib/server/browserSourceHandler';
 
-
-const KV = new Map();
-
 const auth_provider = new RefreshingAuthProvider({
-	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID,
-	clientSecret: privateenv.TWITCH_CLIENT_SECRET
+	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID!,
+	clientSecret: privateenv.TWITCH_CLIENT_SECRET!
 });
 
 let wssInitialized = false;
@@ -70,8 +66,6 @@ export const startupWebsocketServer = () => {
 };
 
 export const handle: Handle = async ({ event, resolve }) => {
-	event.locals.KV = KV;
-
 	event.locals.auth_provider = auth_provider;
 	startupWebsocketServer();
 	// Skip WebSocket server when pre-rendering pages
@@ -82,11 +76,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
-
-	if (!auth_provider.hasUser(env.PUBLIC_TWITCH_USER_ID) && existsToken(env.PUBLIC_TWITCH_USER_ID)) {
-		const tokenData = await loadToken(env.PUBLIC_TWITCH_USER_ID);
-		auth_provider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read', 'chat:edit']);
-		TwitchBot.getInstance(auth_provider);
+	if (!auth_provider.hasUser(env.PUBLIC_TWITCH_USER_ID!)) {
+		const tokenData = await DbLoadToken(env.PUBLIC_TWITCH_USER_ID!);
+		if (tokenData) {
+			auth_provider.addUser(env.PUBLIC_TWITCH_USER_ID!, tokenData, ['chat:read', 'chat:edit']);
+			TwitchBot.getInstance(auth_provider);
+		}
 	}
 
 	const session_id = event.cookies.get('session_id');
@@ -103,17 +98,18 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 			const api = new ApiClient({ authProvider: auth_provider });
 
-			// Get the user's data using the access token
-			event.locals.user = await api.users.getAuthenticatedUser(session.user_id);
-			event.locals.user_authorized = await IsUserAuthorized(event.locals.user.name);
+			// Get the user's data using the access token and upsert to db
+			const twitch_user = await api.users.getAuthenticatedUser(session.user_id);
 
+			if (twitch_user) {
+				event.locals.user = await DbUpdateUser(twitch_user);
+			}
 			return await resolve(event);
 		}
 	}
 
 	event.locals.session = null;
 	event.locals.user = null;
-	event.locals.user_authorized = false;
 	
 	const response = await resolve(event, {
 		filterSerializedResponseHeaders: name => name === 'content-type',

@@ -1,24 +1,21 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import TwitchBot from '$lib/server/twitchBot';
 import { GetDraft, GetPreviousDraft } from '$lib/server/draftHandler';
 
 export const load = (async ({locals}) => {
-    if (locals.user && !locals.user_authorized) throw redirect(302, '/');
+    if (locals.user && !locals.user.isAuthorized) throw redirect(302, '/');
 
-    if (locals.user?.name) {
-        const botstatus = await TwitchBot.IsBotInChannel(locals.user?.name);
-        
-        const draft = GetDraft(locals.user?.name);
+    if (locals.user?.channelName) {
+        const draft = GetDraft(locals.user?.channelName);
         if (draft) {
-            return { draft: draft.toIDraft(), choice: draft.currentChoice, draft_deck_code: draft.GetDeckCode(), botstatus: botstatus, player: draft.player };
+            return { draft: draft.toIDraft(), choice: draft.currentChoice, draft_deck_code: draft.GetDeckCode(), botstatus: locals.user.userPreferences?.botJoinsChannel, player: draft.player, duration: locals.user.userPreferences?.draftRoundDuration, selectionCount: locals.user.userPreferences?.cardsPerRound, subsExtraVote: locals.user.userPreferences?.subsExtraVote };
         }
 
-        const prevdraft = GetPreviousDraft(locals.user.name);
+        const prevdraft = GetPreviousDraft(locals.user.channelName);
         if (prevdraft) {
-            return { draft: undefined, choice: undefined, botstatus: botstatus, player: prevdraft.player, previous_draft: prevdraft.toIDraft(), prev_draft_deck_code: prevdraft.GetDeckCode() }
+            return { draft: undefined, choice: undefined, botstatus: locals.user?.userPreferences?.botJoinsChannel, player: prevdraft.player, previous_draft: prevdraft.toIDraft(), prev_draft_deck_code: prevdraft.GetDeckCode(), duration: locals.user.userPreferences?.draftRoundDuration, selectionCount: locals.user.userPreferences?.cardsPerRound, subsExtraVote: locals.user.userPreferences?.subsExtraVote  }
         }
 
-        return { draft: null, choice: null, botstatus: botstatus, player: null };
+        return { draft: null, choice: null, botstatus: locals.user?.userPreferences?.botJoinsChannel, player: null, duration: locals.user.userPreferences?.draftRoundDuration, selectionCount: locals.user.userPreferences?.cardsPerRound, subsExtraVote: locals.user.userPreferences?.subsExtraVote };
     }
 }) satisfies PageServerLoad;

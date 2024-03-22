@@ -6,44 +6,16 @@
 	import { CodeBlock, RangeSlider, SlideToggle } from '@skeletonlabs/skeleton';
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { establishWebSocket } from '$lib/websocket.js';
+	import type { PageData } from './$types';
 
-	export let data;
+	export let data: PageData;
 	let now = Date.now();
-	let duration = 90;
-	let selectionCount = 6;
-	let subsExtraVote = false;
+	let duration = data.duration || 90;
+	let selectionCount = data.selectionCount || 6;
+	let subsExtraVote = data.subsExtraVote;
 
-
-	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
-
-	const establishWebSocket = async () => {
-		if (webSocketEstablished) return;
-		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
-		heartbeat();
-		ws.onmessage = async (event) => {
-			console.log('[websocket] message received', event);
-			await handleMessage(event.data)
-		};
-
-		ws.onclose = async () => { 
-			webSocketEstablished = false;
-			ws = null;
-			setTimeout(establishWebSocket, 5000);
-		};
-
-		webSocketEstablished = true;
-
-		return ws;
-	};
-
-	function heartbeat() {
-		setTimeout(heartbeat, 500);
-		if (!ws) return;
-		if (ws.readyState !== 1) return;
-		ws.send("ping");
-	}
 
 	const handleMessage = async(message: string) => {
 		if (message == 'pong') return;
@@ -61,14 +33,14 @@
 	$: current_deck_code = data.draft_deck_code;
 	$: previous_deck_code = data.prev_draft_deck_code;
 
-	onMount(() => {
+	onMount(async () => {
 		setInterval(() => {
 			now = Date.now();
 		}, 100)
 		if (data.draft) {
 			selectionCount = data.draft.selections;
 		}
-		establishWebSocket();
+		ws = await establishWebSocket(handleMessage);
 	});
 
 	onDestroy(() => {
@@ -79,7 +51,6 @@
 	async function NewDraft() {
 		const ret = await fetch(`/api/v1/draft/player?duration=${duration}&selections=${selectionCount}&subsExtraVote=${subsExtraVote}`, { method: 'POST' });
 		invalidateAll();
-		establishWebSocket();
 	}
 
 	async function DraftCard(cardNumber: number) {
@@ -111,29 +82,35 @@
 			</button>
 		</div>
 	{:else}
-		{#if data.botstatus}
-			<div class="grid grid-cols-2">
-				<RangeSlider name="duration-range" bind:value={duration} min={30} max={180} ticked step={30}>
-					<div class="flex justify-between items-center">
-						<div class="font-bold">Voting period</div>
-						<div class="text-xs">{(Math.floor(duration/60)).toLocaleString(undefined, {maximumFractionDigits: 0})}:{(duration%60).toLocaleString(undefined, {minimumIntegerDigits: 2})}</div>
-					</div>
-				</RangeSlider>
-				<div/>
-			</div>
-			<div class="grid grid-cols-2">
-				<RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
-					<div class="flex justify-between items-center">
-						<div class="font-bold">Number of cards per vote</div>
-						<div class="text-xs">{selectionCount}</div>
-					</div>
-				</RangeSlider>
-				<div/>
-			</div>
-			<div>
-				<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to Subscriber votes</SlideToggle>
-			</div>
-			<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New draft</button><br/>
+		{#if data.user?.initialSetupDone}
+			{#if data.botstatus }
+				<div class="grid grid-cols-2">
+					<RangeSlider name="duration-range" bind:value={duration} min={30} max={180} ticked step={30}>
+						<div class="flex justify-between items-center">
+							<div class="font-bold">Voting period</div>
+							<div class="text-xs">{(Math.floor(duration/60)).toLocaleString(undefined, {maximumFractionDigits: 0})}:{(duration%60).toLocaleString(undefined, {minimumIntegerDigits: 2})}</div>
+						</div>
+					</RangeSlider>
+					<div/>
+				</div>
+				<div class="grid grid-cols-2">
+					<RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
+						<div class="flex justify-between items-center">
+							<div class="font-bold">Number of cards per vote</div>
+							<div class="text-xs">{selectionCount}</div>
+						</div>
+					</RangeSlider>
+					<div/>
+				</div>
+				<div>
+					<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to Subscriber votes</SlideToggle>
+				</div>
+				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New draft</button><br/>
+			{:else}
+				The bot isn't set up to join your Twitch channel. This is required
+				to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot
+				or you can run a <a href="/solodraft" class="anchor">Solo Draft</a>.
+			{/if}
 		{:else}
 			If this is your first time here, please go to
 			<a class="anchor" href="/start">Getting Started</a>. 

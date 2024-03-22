@@ -9,10 +9,10 @@ export const GET: RequestHandler = async ({ locals, cookies, url }) => {
 
 	let draft: IDraft | undefined;
 	if (url.searchParams.get('previous')) {
-		draft = GetPreviousDraft(locals.user?.name || '');
+		draft = GetPreviousDraft(locals.user?.channelName || '');
 	}
 	else {
-		draft = GetDraft(locals.user?.name || '');
+		draft = GetDraft(locals.user?.channelName || '');
 	}
 	if (!draft) throw error(404);
 
@@ -30,7 +30,7 @@ export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 	if (url.searchParams.has('selections')) selections = +url.searchParams.get('selections')!
 	if (url.searchParams.has('subsExtraVote')) subsExtraVote = url.searchParams.get('subsExtraVote') == 'true';
 
-	const draft = await DraftFactory.CreateDraft(locals.user!.name, duration, selections, subsExtraVote)
+	const draft = await DraftFactory.CreateDraft(locals.user!.channelName!, duration, selections, subsExtraVote)
 
 	draft.StartDraft();
 
@@ -40,7 +40,7 @@ export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 export const DELETE: RequestHandler = async ({ cookies, locals }) => {
 	ValidateSession(cookies, locals.user, 'session_id');
 
-	EndDraft(locals.user!.name);
+	EndDraft(locals.user!.channelName!);
 
 	return new Response(null, { status: 204 } );
 }
