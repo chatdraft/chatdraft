@@ -3,11 +3,13 @@
 	import { twitch_login_uri } from '$lib/api/twitch/client';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { CodeBlock, RangeSlider, SlideToggle } from '@skeletonlabs/skeleton';
+	import { CodeBlock, SlideToggle } from '@skeletonlabs/skeleton';
 	import { onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { establishWebSocket } from '$lib/websocket.js';
 	import type { PageData } from './$types';
+	import DurationSlider from '$lib/components/DurationSlider.svelte';
+	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 
 	export let data: PageData;
 	let now = Date.now();
@@ -86,21 +88,11 @@
 		{#if data.user?.initialSetupDone}
 			{#if data.botstatus }
 				<div class="grid grid-cols-2">
-					<RangeSlider name="duration-range" bind:value={duration} min={30} max={180} ticked step={30}>
-						<div class="flex justify-between items-center">
-							<div class="font-bold">Voting period</div>
-							<div class="text-xs">{(Math.floor(duration/60)).toLocaleString(undefined, {maximumFractionDigits: 0})}:{(duration%60).toLocaleString(undefined, {minimumIntegerDigits: 2})}</div>
-						</div>
-					</RangeSlider>
+					<DurationSlider bind:duration />
 					<div/>
 				</div>
 				<div class="grid grid-cols-2">
-					<RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
-						<div class="flex justify-between items-center">
-							<div class="font-bold">Number of cards per voting round</div>
-							<div class="text-xs">{selectionCount}</div>
-						</div>
-					</RangeSlider>
+					<SelectionCountSlider bind:selectionCount />
 					<div/>
 				</div>
 				<div>

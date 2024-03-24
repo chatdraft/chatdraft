@@ -11,6 +11,7 @@
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { AppBar, AppRail, AppRailAnchor, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
+	import AppRailIcon from '$lib/components/AppRailIcon.svelte';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
     export let data;
@@ -51,41 +52,48 @@
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail class="text-center overflow-x-hidden">
 			<AppRailAnchor href="/">
-					<iconify-icon icon="material-symbols:home" width="28" height="28"></iconify-icon>
-					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id == '/(app)'}>Home</p>
+				<AppRailIcon pageRouteId={$page.route.id} routeId='/(app)' icon='material-symbols:home'>
+					Home
+				</AppRailIcon>
 			</AppRailAnchor>
 			<AppRailAnchor href="/about">
-				<iconify-icon icon="material-symbols:info-outline" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/about')}>About</p>
+				<AppRailIcon pageRouteId={$page.route.id} routeId='/about' icon='material-symbols:info-outline'>
+					About
+				</AppRailIcon>
 			</AppRailAnchor>
 
 			<AppRailAnchor href="/solodraft" class="hidden">
-				<iconify-icon icon="mdi:cards-outline" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/solodraft')}>Solo Draft</p>
+				<AppRailIcon pageRouteId={$page.route.id} routeId='/solodraft' icon='mdi:cards-outline'>
+					Solo Draft
+				</AppRailIcon>
 			</AppRailAnchor>
 
 			{#if user}
 				{#if user.initialSetupDone}
 					<AppRailAnchor href="/settings">
-						<iconify-icon icon="mdi:gear" width="28" height="28"></iconify-icon>
-						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('settings')}>Settings</p>
+						<AppRailIcon pageRouteId={$page.route.id} routeId='/settings' icon='mdi:gear'>
+							Settings
+						</AppRailIcon>
 					</AppRailAnchor>
 					<AppRailAnchor href="/draft">
-						<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
-						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/draft')}>Draft</p>
+						<AppRailIcon pageRouteId={$page.route.id} routeId='/draft' icon='mdi:cards'>
+							Draft
+						</AppRailIcon>
 					</AppRailAnchor>
 				{:else}
 					<AppRailAnchor href="/start">
-						<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
-						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/start')}>Get Started</p>
+						<AppRailIcon pageRouteId={$page.route.id} routeId='/start' icon='ion:rocket-sharp'>
+							Get Started
+						</AppRailIcon>
 					</AppRailAnchor>
 				{/if}
 			{/if}
 
 			{#if user && user.admin}
 			<AppRailAnchor href="/admin">
-				<iconify-icon icon="mdi:administrator" width="28" height="28"></iconify-icon>
-				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('admin')}>Admin</p>
+				<AppRailIcon pageRouteId={$page.route.id} routeId='/admin' icon='mdi:administrator'>
+					Admin
+				</AppRailIcon>
 			</AppRailAnchor>
 			{/if}
 

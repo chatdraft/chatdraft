@@ -2,8 +2,9 @@
     import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { Draft } from '$lib/snap/draft.js';
-    import { CodeBlock, RangeSlider } from '@skeletonlabs/skeleton';
+    import { CodeBlock } from '@skeletonlabs/skeleton';
     import cards from '$lib/data/cards.json';
+	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
     
 	let selectionCount = 6;
     const gridcols = ['','','','grid-cols-3','grid-cols-4','grid-cols-5','grid-cols-6']
@@ -56,12 +57,7 @@
 		</div>
 	{:else}
         <div class="grid grid-cols-2">
-            <RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
-                <div class="flex justify-between items-center">
-                    <div class="font-bold">Number of cards per round</div>
-                    <div class="text-xs">{selectionCount}</div>
-                </div>
-            </RangeSlider>
+            <SelectionCountSlider bind:selectionCount />
             <div/>
         </div>
         <button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
