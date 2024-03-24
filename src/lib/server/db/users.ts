@@ -175,6 +175,24 @@ export async function updateUserCollection(prisma: PrismaClient, twitchId: strin
     }
 }
 
+export async function resetUserCollection(prisma: PrismaClient, twitchId: string) {
+    try {
+        await prisma.userPreference.update({
+            where: {
+                userId: twitchId,
+            },
+            data: {
+                collection: null,
+            }
+        })
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
+}
+
 export async function getUserCollection(prisma: PrismaClient, twitchId: string) {
     try {
         const data = await prisma.userPreference.findFirst({

@@ -3,7 +3,7 @@ import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandle
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { IsFullSourceConfigured, IsSplitSourceConfigured } from '$lib/server/browserSourceHandler';
-import { DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
+import { DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
 
 
 export const load = (async ({locals}) => {
@@ -20,7 +20,8 @@ export const load = (async ({locals}) => {
     const duration = locals.user.userPreferences?.draftRoundDuration || 90;
     const selectionCount = locals.user.userPreferences?.cardsPerRound || 6;
     const subsExtraVote = locals.user.userPreferences?.subsExtraVote || false;
-    return { user: user, botInChannel: locals.user.userPreferences?.botJoinsChannel, previewMode: previewMode, full_source_configured: full_source_configured, split_sources_configured: split_sources_configured, duration: duration, selectionCount: selectionCount, subsExtraVote: subsExtraVote};
+    const collectionComplete = locals.user.userPreferences?.collection == null;
+    return { user: user, botInChannel: locals.user.userPreferences?.botJoinsChannel, previewMode: previewMode, full_source_configured: full_source_configured, split_sources_configured: split_sources_configured, duration: duration, selectionCount: selectionCount, subsExtraVote: subsExtraVote, collectionComplete: collectionComplete};
 }) satisfies PageServerLoad;
 
 export const actions = {
@@ -63,6 +64,11 @@ export const actions = {
                 }
             }
 
+        }
+    },
+    resetCollection: async ({locals}) => {
+        if (locals.user && locals.user.twitchID) {
+            DbResetUserCollection(locals.user.twitchID);
         }
     }
 } satisfies Actions

@@ -95,13 +95,13 @@
 
     <h2 class="h2">Snap Collection</h2>
     <form method="post" action="?/uploadCollection" enctype="multipart/form-data" use:enhance={()=> {
-        return async ({result}) => {
+        return async ({result, update}) => {
             if (result.type == "success") {
                 toastStore.trigger({message:"Collection state updated successfully."});
             }
-            //update();
+            update();
         }
     }}>
-        <CollectionState/>
+        <CollectionState collectionComplete={data.collectionComplete}/>
     </form>
 </div>
