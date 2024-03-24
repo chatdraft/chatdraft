@@ -62,6 +62,7 @@ jobs:
 
       - name: Apply database migration and database seed
         run: |
+          npm install
           npx prisma migrate deploy
           npm seed
         env: 
