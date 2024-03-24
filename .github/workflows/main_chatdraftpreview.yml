@@ -65,7 +65,7 @@ jobs:
           npm run db:migrate
           npm run seed
         env: 
-          SQL_DB_URI: ${{ vars.SQL_DB_URI }}
+          SQL_DB_URI: ${{ secrets.SQL_DB_URI }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
