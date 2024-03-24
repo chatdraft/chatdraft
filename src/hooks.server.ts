@@ -1,11 +1,10 @@
 import { fetchSession } from '$lib/server/sessionHandler';
 import type { Handle } from '@sveltejs/kit';
-import { ApiClient } from '@twurple/api';
 import { env as privateenv } from '$env/dynamic/private';
 import { env } from '$env/dynamic/public';
 import { RefreshingAuthProvider } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
-import { DbLoadToken, DbUpdateUser } from '$lib/server/db';
+import { DbLoadToken } from '$lib/server/db';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
 import { building } from '$app/environment';
 import cookie from 'cookie';
@@ -27,11 +26,10 @@ export const startupWebsocketServer = () => {
 			if (cookies.session_id) {
 				const session_id = cookies.session_id;
 				const session = fetchSession(session_id);
-				if (session) {
-					ws.userId = session.user_id;
+				if (session && session.user) {
+					ws.userId = session.user.id;
 					ws.sessionId = session_id;
-					const api = new ApiClient({ authProvider: auth_provider });
-					ws.player_channel = (await api.users.getUserById(session.user_id))!.name;
+					ws.player_channel = session.user.channelName;
 				}
 			}
 
@@ -92,18 +90,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (session) {
 			event.locals.session = { id: session_id };
 
-			if (!auth_provider.hasUser(session.user_id)) {
-				auth_provider.addUser(session.user_id, session.token);
+			if (session.user && !auth_provider.hasUser(session.user)) {
+				auth_provider.addUser(session.user, session.token);
 			}
 
-			const api = new ApiClient({ authProvider: auth_provider });
-
-			// Get the user's data using the access token and upsert to db
-			const twitch_user = await api.users.getAuthenticatedUser(session.user_id);
-
-			if (twitch_user) {
-				event.locals.user = await DbUpdateUser(twitch_user);
-			}
+			event.locals.user = session.user;
+			
 			return await resolve(event);
 		}
 	}

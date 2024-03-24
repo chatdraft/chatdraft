@@ -1,6 +1,8 @@
 import type { PrismaClient } from "@prisma/client";
 import type { HelixUser } from "@twurple/api";
 
+export type User = ({ userPreferences: { id: string; userId: string; draftRoundDuration: number; cardsPerRound: number; subsExtraVote: boolean; botJoinsChannel: boolean; snapFanApiKey: string | null; collection: string | null; } | null; } & { id: string; channelName: string; displayName: string | null; isAdmin: boolean; isAuthorized: boolean; twitchID: string | null; twitchProfilePictureURL: string | null; initialSetupDone: boolean; createdAt: Date; } | null)
+
 export async function getAuthorizedUsers(prisma: PrismaClient) {
     try {
         const users = await prisma.user.findMany({

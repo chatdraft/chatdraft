@@ -2,20 +2,20 @@
 import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
-import type { User } from '@prisma/client';
+import type { User } from '$lib/server/db/users'
 
 type TSessionID = string;
 
-const sessionUsers = new Map<TSessionID, {token: AccessToken, user_id: string}>();
+const sessionUsers = new Map<TSessionID, {token: AccessToken, user: User | null}>();
 const sessionUserTimeouts = new Map<TSessionID, NodeJS.Timeout>();
 const sessionTimeout = 1000 * 60 * 60 // 60 minutes
 
-export function setSession(accessToken: AccessToken, user_id: string) {
+export function setSession(accessToken: AccessToken, user: User | null) {
 
     // Creating a new session ID that will be used as a cookie to authenticate the user in 
     const newSessionID: TSessionID = crypto.randomBytes(32).toString('hex');
 
-    sessionUsers.set(newSessionID, {token: accessToken, user_id: user_id});
+    sessionUsers.set(newSessionID, {token: accessToken, user: user});
 
     const timeout = setTimeout(() => {
         deleteSession(newSessionID)
@@ -39,7 +39,7 @@ export function ValidateSession(cookies: Cookies, user: User | null, session_key
 	}
 	
 	const session = fetchSession(session_id);
-	if (session?.user_id != user?.twitchID) {
+	if (session?.user?.twitchID != user?.twitchID) {
 		throw error(403, 'Not authorized.');
 	}
 }
@@ -62,8 +62,8 @@ export function deleteSession(sessionId: TSessionID) {
 
 export function updateSession(sessionId: TSessionID, accessToken: AccessToken) {
     refreshTimeout(sessionId);
-    const user_id = sessionUsers.get(sessionId)?.user_id || '';
-    sessionUsers.set(sessionId, {token: accessToken, user_id: user_id });
+    const user = sessionUsers.get(sessionId)?.user;
+    if (user) sessionUsers.set(sessionId, {token: accessToken, user: user });
 
     return sessionId as TSessionID;
 }

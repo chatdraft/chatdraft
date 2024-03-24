@@ -1,11 +1,11 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import type { ExtendedWebSocketServer } from '$lib/server/webSocketHandler';
-import type { User, UserPreference } from '@prisma/client'
+import type { User } from '$lib/server/db/users';
 
 declare global {
 	namespace App {
 		interface Locals {
-			user: User & { userPreferences: UserPreference | null } | null
+			user: User | null
 			session: ?{
 				id: string;
 			};

@@ -5,7 +5,7 @@ import { env } from "$env/dynamic/public";
 import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
 import { ApiClient } from '@twurple/api';
-import { DbSaveToken } from '$lib/server/db'
+import { DbSaveToken, DbUpdateUser } from '$lib/server/db'
 
 const authProvider = new RefreshingAuthProvider(
 	{
@@ -31,32 +31,24 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
             authProvider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
             TwitchBot.getInstance(authProvider);
         }
-        else {
-            const session_id = setSession(tokenData, user_id);
-            authProvider.onRefresh(async (userId, newTokenData) => {
-                updateSession(session_id, newTokenData)
-                if (userId == env.PUBLIC_TWITCH_USER_ID) {
-                    await DbSaveToken(user_id, tokenData);
-                }
-            });
 
-            cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn!, sameSite: true })
-        }
+        // Optionally, you can upsert the user in the DB here
+        const api = new ApiClient({ authProvider });
+
+        // Get the user's data using the access token and upsert to db
+        const twitch_user = await api.users.getAuthenticatedUser(user_id);
+        const user = await DbUpdateUser(twitch_user);
 
         // Create new session for the user
-        const session_id = setSession(tokenData, user_id);
+        const session_id = setSession(tokenData, user);
         authProvider.onRefresh(async (_userId, newTokenData) => {
             updateSession(session_id, newTokenData)
         });
 
-        // Optionally, you can upsert the user in the DB here
-
         // set the session cookie
         cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn! })
 
-        const api = new ApiClient({authProvider});
-        const user = await api.users.getUserById(user_id);
-        if ((user) && !(await TwitchBot.IsBotInChannel(user.name))) {
+        if ((user) && !user.initialSetupDone) {
             redirect_uri = '/start';
         }
         else {
