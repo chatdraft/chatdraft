@@ -158,7 +158,7 @@ export default class TwitchBot {
     }
 
     public static async JoinChannel(player_channel: string, playerId: string) {
-        if (!TwitchBot.instance.chat) return false;
+        if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
         const user = await DbAddChannel(playerId);
         console.log(user);

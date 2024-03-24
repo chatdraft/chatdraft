@@ -59,7 +59,7 @@
 				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/about')}>About</p>
 			</AppRailAnchor>
 
-			<AppRailAnchor href="/solodraft">
+			<AppRailAnchor href="/solodraft" class="hidden">
 				<iconify-icon icon="mdi:cards-outline" width="28" height="28"></iconify-icon>
 				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/solodraft')}>Solo Draft</p>
 			</AppRailAnchor>

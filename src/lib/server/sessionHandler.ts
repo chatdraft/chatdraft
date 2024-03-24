@@ -39,7 +39,7 @@ export function ValidateSession(cookies: Cookies, user: User | null, session_key
 	}
 	
 	const session = fetchSession(session_id);
-	if (session?.user_id != user?.id) {
+	if (session?.user_id != user?.twitchID) {
 		throw error(403, 'Not authorized.');
 	}
 }
