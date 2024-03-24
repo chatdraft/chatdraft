@@ -30,7 +30,9 @@ export const POST: RequestHandler = async ({ locals, cookies, url }) => {
 	if (url.searchParams.has('selections')) selections = +url.searchParams.get('selections')!
 	if (url.searchParams.has('subsExtraVote')) subsExtraVote = url.searchParams.get('subsExtraVote') == 'true';
 
-	const draft = await DraftFactory.CreateDraft(locals.user!.channelName!, duration, selections, subsExtraVote)
+	const collection = locals.user?.userPreferences?.collection ? JSON.parse(locals.user?.userPreferences.collection) : null;
+
+	const draft = await DraftFactory.CreateDraft(locals.user!.channelName!, duration, selections, subsExtraVote, collection)
 
 	draft.StartDraft();
 

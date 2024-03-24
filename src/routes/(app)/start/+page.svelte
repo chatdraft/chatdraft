@@ -103,17 +103,13 @@
                         <BrowserSources user={data.user} previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
                     </nav>
                 </Step>
-                <Step locked={!skipSnapFan && snapFanApiKey.length == 0}>
-                    <svelte:fragment slot="header">
-                        Collection set up
-                    </svelte:fragment>
-                    <SnapFanApiInput bind:skipSnapFan bind:snapFanApiKey />
-                </Step>
                 <Step>
                     <svelte:fragment slot="header">
                         Setup complete!
                     </svelte:fragment>
                     You have finished setup and are ready to draft!
+                    You may modify your setup in Settings after this.
+                    Please press Finish Setup to finish initial setup.
                 </Step>
             </Stepper>
         </form>

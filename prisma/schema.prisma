@@ -47,6 +47,7 @@ model UserPreference {
   subsExtraVote Boolean @default(false)
   botJoinsChannel Boolean @default(false)
   snapFanApiKey String?
+  collection String? @db.NText
 }
 
 model Draft {

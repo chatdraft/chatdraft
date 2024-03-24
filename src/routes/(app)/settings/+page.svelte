@@ -8,6 +8,7 @@
 	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 	import { establishWebSocket } from '$lib/websocket';
 	import DraftPreferences from '$lib/components/DraftPreferences.svelte';
+	import CollectionState from '$lib/components/CollectionState.svelte';
 
     const toastStore = getToastStore();
     
@@ -45,7 +46,7 @@
     <h1 class="h1">Settings</h1>
     <br/>
     <form method="POST" action="?/updatePreferences" use:enhance={()=> {
-        return async ({result, update}) => {
+        return async ({result}) => {
             if (result.type == "success") {
                 toastStore.trigger({message:"Settings updated successfully."});
             }
@@ -92,6 +93,15 @@
     <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
     <br/>
 
-    <h2 class="h2">Snap Collection / Snap.fan API</h2>
-    <SnapFanApiInput bind:skipSnapFan bind:snapFanApiKey />
+    <h2 class="h2">Snap Collection</h2>
+    <form method="post" action="?/uploadCollection" enctype="multipart/form-data" use:enhance={()=> {
+        return async ({result}) => {
+            if (result.type == "success") {
+                toastStore.trigger({message:"Collection state updated successfully."});
+            }
+            //update();
+        }
+    }}>
+        <CollectionState/>
+    </form>
 </div>

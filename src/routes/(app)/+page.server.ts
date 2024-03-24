@@ -5,12 +5,17 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({locals}) => {
     const drafts = GetDrafts();
     const api = new ApiClient({authProvider: locals.auth_provider});
-    const streams = await api.streams.getStreamsByUserNames(drafts.map(draft => draft.player));
-    const activeStreams = streams.filter(stream => drafts.some(draft => stream.userName == draft.player));
+    // const streams = await api.streams.getStreamsByUserNames(drafts.map(draft => draft.player));
+    // const activeStreams = streams.filter(stream => drafts.some(draft => stream.userName == draft.player));
 
-    // const activeStreams = (await api.streams.getStreams({game: "1743359147"})).data
+    const activeStreams = (await api.streams.getStreams({game: "1743359147"})).data
 
-    const activeDrafts = activeStreams.map(stream => { return {channel: stream.userName, thumbnailUrl: stream.thumbnailUrl}});
+    const activeDraftStreams = activeStreams.map(stream => {
+        return {
+            channel: stream.userName,
+            thumbnailUrl: stream.thumbnailUrl,
+            draft: drafts.find((draft) => draft.player == stream.userName) || {total: 1 + Math.floor(Math.random() * 11)}
+        }}).sort(((a, b) => a.draft.total - b.draft.total));
 
-    return { activeDrafts: activeDrafts, user_unauthorized: locals.user && !locals.user.isAuthorized};
+    return { activeDrafts: activeDraftStreams, user_unauthorized: locals.user && !locals.user.isAuthorized};
 }) satisfies PageServerLoad;

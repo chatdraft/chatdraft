@@ -11,8 +11,8 @@
     $: drafts = data.drafts;
     $: previousDrafts = data.previousDrafts;
     $: channels = data.channels;
-    $: authorizedUsers = data.authorizedUsers;
-    $: adminUsers = data.adminUsers;
+    $: authorizedUsers = data.authorizedUsers!;
+    $: adminUsers = data.adminUsers!;
 
     let files: FileList;
 

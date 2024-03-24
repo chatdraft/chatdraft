@@ -148,3 +148,79 @@ export async function updateUserPreferences(prisma: PrismaClient, twitchId: stri
         console.log(message);
     }
 }
+
+export async function updateUserCollection(prisma: PrismaClient, twitchId: string, cards: string[]) {
+    try {
+        await prisma.userPreference.upsert({
+            where: {
+                userId: twitchId
+            },
+            update: {
+                collection: JSON.stringify(cards)
+            },
+            create: {
+                collection: JSON.stringify(cards),
+                user: {
+                    connect: {
+                        twitchID: twitchId
+                    }
+                }
+            }
+        })
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
+}
+
+export async function getUserCollection(prisma: PrismaClient, twitchId: string) {
+    try {
+        const data = await prisma.userPreference.findFirst({
+            where: {
+                userId: twitchId
+            },
+            select: {
+                collection: true
+            }
+        });
+
+        if (data && data.collection) {
+            return JSON.parse(data.collection) as string[]
+        }
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
+    return [];
+}
+
+export async function getUserPreferences(prisma: PrismaClient, twitchName: string) {
+    try {
+        return await prisma.userPreference.findFirst({
+            where: {
+                user: {
+                    channelName: twitchName
+                }
+            },
+            select: {
+                botJoinsChannel: true,
+                cardsPerRound: true,
+                collection: true,
+                draftRoundDuration: true,
+                snapFanApiKey: true,
+                subsExtraVote: true,
+                userId: true
+            }
+        })
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
+    return null;
+}

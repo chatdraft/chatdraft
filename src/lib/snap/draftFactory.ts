@@ -6,8 +6,8 @@ import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStar
 import { Draft } from "./draft";
 
 export default class DraftFactory {
-    public static async CreateDraft(player_channel: string, duration: number, selections: number, subsExtraVote: boolean = false) {
-        const draft = new Draft(player_channel, duration, selections, await GetAllCards(), subsExtraVote);
+    public static async CreateDraft(player_channel: string, duration: number, selections: number, subsExtraVote: boolean = false, playerCollection: string[] | null) {
+        const draft = new Draft(player_channel, duration, selections, await GetAllCards(), subsExtraVote, playerCollection);
 	
 		if (draft.player != '') {
 			drafts.set(draft.player, draft);

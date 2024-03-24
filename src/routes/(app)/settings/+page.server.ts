@@ -3,7 +3,7 @@ import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandle
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { IsFullSourceConfigured, IsSplitSourceConfigured } from '$lib/server/browserSourceHandler';
-import { DbUpdateUserPreferences } from '$lib/server/db';
+import { DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
 
 
 export const load = (async ({locals}) => {
@@ -48,6 +48,21 @@ export const actions = {
                 const subsExtraVote = Boolean(data.get("subsExtraVote")?.toString());
                 DbUpdateUserPreferences(locals.user.twitchID, duration, selectionCount, subsExtraVote);
             }
+        }
+    },
+    uploadCollection: async ({locals, request}) => {
+        if (locals.user && locals.user.twitchID) {
+            const formData = await request.formData();
+            const collection = formData.get("collection") as File;
+            console.log(collection);
+            const collectionData = JSON.parse(await collection.text());
+            if (collectionData) {
+                const cards: string[] = collectionData.ServerState.Cards.map((card: { CardDefId: string; }) => card.CardDefId).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index)
+                if (cards) {
+                    DbUpdateUserCollection(locals.user.twitchID, cards);
+                }
+            }
+
         }
     }
 } satisfies Actions

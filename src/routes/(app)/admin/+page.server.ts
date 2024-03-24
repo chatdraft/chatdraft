@@ -10,8 +10,8 @@ export const load = (async ({locals}) => {
     const channels = await DbGetChannels();
     const drafts = GetDrafts();
     const previousDrafts = GetPreviousDrafts();
-    const authorizedUsers = await DbGetAuthorizedUsers();
-    const adminUsers = await DbGetAdminUsers();
+    const authorizedUsers = await DbGetAuthorizedUsers() || [];
+    const adminUsers = await DbGetAdminUsers() || [];
 
     return {
         channels: channels,

@@ -5,7 +5,7 @@ import type { Choice, Card, Deck } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
-import { DbAddChannel, DbGetChannels, DbRemoveChannel } from './db';
+import { DbAddChannel, DbGetChannels, DbGetUserPreferences, DbRemoveChannel } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 
 export default class TwitchBot {
@@ -30,14 +30,15 @@ export default class TwitchBot {
                     await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`)),
                 createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
+                        const preferences = await DbGetUserPreferences(broadcasterName);
                         let duration = Number(params[0]);
                         if (!duration) {
-                            duration = 90;
+                            duration = preferences ? preferences.draftRoundDuration : 90;
                         }
 
                         let selections = Number(params[1]);
                         if (!selections) {
-                            selections = 6
+                            selections = preferences ? preferences.cardsPerRound : 6
                         }
 
                         const subsBonusText = params[2];
@@ -45,8 +46,13 @@ export default class TwitchBot {
                         if (subsBonusText) {
                             subsBonus = subsBonusText == "true"
                         }
+                        else {
+                            subsBonus = preferences ? preferences.subsExtraVote : false;
+                        }
+
+                        const collection = preferences?.collection ? JSON.parse(preferences?.collection) : null
                         
-                        const draft = await DraftFactory.CreateDraft(broadcasterName, duration, selections, subsBonus);
+                        const draft = await DraftFactory.CreateDraft(broadcasterName, duration, selections, subsBonus, collection);
                     
                         draft.StartDraft();
                     }

@@ -20,20 +20,24 @@ export class Draft extends EventEmitter implements IDraft {
 	public duration = 20;
 	public selections = 3;
 
-	public constructor(player_channel: string, duration: number, selections: number, all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}, subsExtraVote = false) {
+	public constructor(player_channel: string, duration: number, selections: number, all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}, subsExtraVote = false, collection: string[] | null) {
 		super();
 		this.player = player_channel;
 		this.duration = duration;
 		this.selections = selections;
 		this.subsExtraVote = subsExtraVote;
-		this.all_cards = all_cards;
+		this.all_cards = all_cards.all;
+
+		if (collection) {
+			this.all_cards = all_cards.all.filter(card => collection.includes(card.cardDefKey));
+		}
 	}
 	cards: Deck = [];
 	total: number = 0;
 	player: string = '';
 	currentChoice: Choice | undefined;
 	subsExtraVote: boolean = false;
-	all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]};
+	all_cards: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[];
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
 
@@ -77,7 +81,7 @@ export class Draft extends EventEmitter implements IDraft {
 			this.voteTimer = undefined;
 		}
 
-		const available = this.all_cards.all.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
+		const available = this.all_cards.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
 	
 		if (available.length < this.selections) {
 			throw new Error('Not enough selectable cards to continue draft');
@@ -227,7 +231,7 @@ export class Draft extends EventEmitter implements IDraft {
 
 	private LookupCard(cardDefKey: string | undefined | null) {
 		if (!cardDefKey) return undefined;
-		return this.all_cards.all.find((card) => card.cardDefKey == cardDefKey);
+		return this.all_cards.find((card) => card.cardDefKey == cardDefKey);
 	}
 	
 	public toIDraft(): IDraft {
