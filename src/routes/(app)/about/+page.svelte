@@ -26,16 +26,16 @@
 			<b>!chatdraft</b> - Provides a basic explanation of chat draft and how to use it
 		</li>
 		<li>
-			<b>!chatdraftstart</b> - Starts a new chat draft. This command can only be used by
-			the broadcaster and Twitch chat admins. It also accepts optional parameters for the duration and
+			<b>!chatdraftstart</b> - Starts a new chat draft.. It also accepts optional parameters for the duration and
 			number of cards per round and bonus to subscriber votes. If the parameters are not specified, your
-			default draft preferences will be used.
+			default draft preferences will be used. This command can only be used by
+			the broadcaster and Twitch chat mods.
 			Example: <code class="code">!chatdraftstart 90 6 true</code>
 			starts a draft with 90 seconds and 6 card choices per round and gives a bonus vote to subscribers.
 		</li>
 		<li>
 			<b>!chatdraftcancel</b> - Cancels the current chat draft. This command can only be
-			used by the broadcaster and Twitch chat admins.
+			used by the broadcaster and Twitch chat mods.
 		</li>
 		<li>
 			<b>!chatdraftdeck</b> - Re-displays the most recently drafted deck on stream.
@@ -56,4 +56,6 @@
 			<b><a href="https://twitch.tv/jjrolk" class="anchor">jjrolk</a></b> - Executive producer, designer, testing, support, promotion
 		</li>
 	</ul>
+	<br/>
+	Special thanks to Snap.fan for their API and card database.
 </div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import StreamList from "$lib/components/StreamList.svelte";
+
 	export let data;
 </script>
 
@@ -9,12 +11,32 @@
 	<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
 </svelte:head>
 
-<div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-5">
+<div class="container h-full mx-auto">
+	<!-- <div class="space-y-5">
 		<h1 class="h1 px-4 font-snapa uppercase text-6xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone">Oro Chat Draft</h1>
 		<p>(Coming Soon!)</p>
 		{#if data.user_unauthorized}
 			<p>Thanks for your interest! Participation is currently available only to invited users. Please check back soon!</p>
 		{/if}
+	</div> -->
+	<div class="m-4">
+		<h1 class="h1">
+			Home
+		</h1>
+		<p class="m-4">
+			Welcome to Oro Chat Draft, an app so that Twitch chat can draft a deck for a streamer to play!
+		</p>
+		{#if data.user_unauthorized}
+			<p class="p-4">
+				Thanks for your interest! Streamer participation is currently available 
+				only to invited users. Please contact
+				<a href="https://twitch.tv/jjrolk" class="anchor">jjrolk</a>!
+			</p>
+		{/if}
+		<br/><br/>
+		<h2 class="h2">
+			Live Chat Drafts
+		</h2>
+		<StreamList activeDrafts={data.activeDrafts}/>
 	</div>
 </div>

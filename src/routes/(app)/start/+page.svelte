@@ -55,7 +55,7 @@
         <h1 class="h1">Getting Started</h1>
         <br/>
         <form method="POST" action="?/completeSetup" bind:this={setupForm}>
-            <Stepper buttonCompleteLabel="Start Drafting!" on:complete={onComplete}>
+            <Stepper buttonCompleteLabel="Finish Setup" on:complete={onComplete}>
                 <Step locked={data.user == undefined}>
                     <svelte:fragment slot="header">
                         Twitch Log In
@@ -67,7 +67,8 @@
                         Invite bot
                     </svelte:fragment>
                     {#if data.botInChannel}
-                        The bot has successfully joined your channel!
+                        Bot successfully joined your channel!
+                        <br/><br/>
                         It is recommended that you give the bot VIP status
                         in your channel so it will still work in follower/subscriber
                         only mode. You can do this by typing <code class="code">/vip chatdraftbot</code> command into

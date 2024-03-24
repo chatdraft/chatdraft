@@ -20,7 +20,7 @@
 <div class="p-4">
     <RangeSlider name="selectionCount" bind:value={selectionCount} min={3} max={6} ticked step={1}>
         <div class="flex justify-between items-center">
-            <div class="font-bold">Number of cards per vote</div>
+            <div class="font-bold">Number of cards per voting round</div>
             <div class="text-xs">{selectionCount}</div>
         </div>
     </RangeSlider>

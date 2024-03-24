@@ -71,7 +71,7 @@
                 update();
             }
         }}>
-            <button class="btn btn-lg variant-filled-warning m-4">Leave channel</button>
+            <button class="btn btn-lg variant-filled-warning m-4">Leave Channel</button>
         </form>
     {:else}
         Have Chat Draft Bot join your channel:
@@ -83,7 +83,7 @@
                 update();
             }
         }}>
-            <button class="btn btn-lg variant-filled-primary m-4">Join channel</button>
+            <button class="btn btn-lg variant-filled-primary m-4">Join Channel</button>
         </form>
     {/if}
     <br/>

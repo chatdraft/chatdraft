@@ -71,8 +71,9 @@
 
 <div class="space-y-4 p-4">
 	<h1 class="h1">Draft</h1>
+	<br/>
 	{#if (current_draft)}
-		<div class="text-right">
+		<div class="absolute right-10 top-20">
 			<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 				{#if current_draft.total < 12}
 					Cancel draft
@@ -96,16 +97,16 @@
 				<div class="grid grid-cols-2">
 					<RangeSlider name="selection-count" bind:value={selectionCount} min={3} max={6} ticked step={1}>
 						<div class="flex justify-between items-center">
-							<div class="font-bold">Number of cards per vote</div>
+							<div class="font-bold">Number of cards per voting round</div>
 							<div class="text-xs">{selectionCount}</div>
 						</div>
 					</RangeSlider>
 					<div/>
 				</div>
 				<div>
-					<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to Subscriber votes</SlideToggle>
+					<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to subscriber votes</SlideToggle>
 				</div>
-				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>New draft</button><br/>
+				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
 			{:else}
 				The bot isn't set up to join your Twitch channel. This is required
 				to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot

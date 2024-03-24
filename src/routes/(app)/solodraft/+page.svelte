@@ -43,8 +43,9 @@
 
 <div class="space-y-4 p-4">
 	<h1 class="h1">Solo Draft</h1>
+	<br/>
 	{#if (current_draft)}
-		<div class="text-right">
+		<div class="absolute right-10 top-20">
 			<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 				{#if current_draft.total < 12}
 					Cancel draft
@@ -63,9 +64,8 @@
             </RangeSlider>
             <div/>
         </div>
-        <button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start draft</button><br/>
+        <button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
 	{/if}
-	<br/>
 
 	{#if (choices && choices.length > 0)}
 		<h3 class="h3">Options:</h3>
