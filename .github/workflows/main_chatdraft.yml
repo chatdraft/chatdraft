@@ -57,7 +57,7 @@ jobs:
 
       - name: Apply database migration and database seed
         run: |
-          npx run migrate deploy
+          npx prisma migrate deploy
           npm seed
         env: 
           SQL_DB_URI: ${{ vars.SQL_DB_URI }}
