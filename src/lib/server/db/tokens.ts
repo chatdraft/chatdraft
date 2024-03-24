@@ -19,7 +19,15 @@ export async function saveToken(prisma: PrismaClient, user_id: string, token_dat
 }
 
 export async function loadToken(prisma: PrismaClient, user_id: string) {
-    const data = await prisma.token.findUnique({where: {twitchID: user_id}})
+    let data = null;
+    try {
+        data = await prisma.token.findUnique({where: {twitchID: user_id}})
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
     if (data && data.token) {
         const tokenData = await JSON.parse(data.token);
         return tokenData as AccessToken;
