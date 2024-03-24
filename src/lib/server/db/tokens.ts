@@ -3,19 +3,26 @@ import type { AccessToken } from '@twurple/auth';
 import type { PrismaClient } from "@prisma/client";
 
 export async function saveToken(prisma: PrismaClient, user_id: string, token_data: AccessToken) {
-    await prisma.token.upsert({
-        where: {
-            twitchID: user_id
-        },
-        update: {
-            token: JSON.stringify(token_data)
-        },
-        create: {
-            twitchID: user_id,
-            twitchChannelName: user_id,
-            token: JSON.stringify(token_data),
-        }
-    })
+    try {
+        await prisma.token.upsert({
+            where: {
+                twitchID: user_id
+            },
+            update: {
+                token: JSON.stringify(token_data)
+            },
+            create: {
+                twitchID: user_id,
+                twitchChannelName: user_id,
+                token: JSON.stringify(token_data),
+            }
+        })
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
 }
 
 export async function loadToken(prisma: PrismaClient, user_id: string) {
