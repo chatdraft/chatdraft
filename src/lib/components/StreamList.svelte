@@ -10,16 +10,16 @@
 </script>
 
 <div class="m-4 max-h-max">
-    {activeDrafts.length} drafts currently active.
-    <div class="grid grid-cols-3 w-max h-screen overflow-y-auto">
+    {activeDrafts.length} Live Twitch Channels Chat Drafting
+    <div class="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-w-max h-screen">
         {#each activeDrafts as draft}
-            <div class="group">
-                <div class="relative group card m-2">
-                    <a href="https://www.twitch.tv/{draft.channel}" target="_blank" class="anchor">
+            <div class="group w-fit">
+                <div class="relative group-hover:outline outline-1 outline-offset-4 outline-white card m-2">
+                    <a href="https://www.twitch.tv/{draft.channel}" target="_blank" class="anchor w-full">
                         <img src="{draft.thumbnailUrl.replace("{width}", "320").replace("{height}", "180")}" alt="{draft.channel}'s stream" class="p-2">
                         <iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1 invisible group-hover:visible group-focus:visible"/>
-                        <div class="absolute top-4 left-4 font-bold text-2xl font-outline shadow-black text-white font-snapa uppercase">{draft.channel}</div>
-                        <div class="absolute bottom-2 right-4 font-bold text-xl font-outline shadow-black text-white font-snapa uppercase">Round: <span class="font-snapn text-2xl">{draft.draft.total}</span></div>
+                        <p class="absolute top-4 left-4 font-bold text-4xl font-outline shadow-black text-white font-snapa uppercase truncate w-64 text-center backdrop-blur-md bg-white/30 text-center rounded-md">{draft.channel}</p>
+                        <div class="absolute bottom-2 right-4 font-bold text-3xl font-outline shadow-black text-white font-snapa uppercase backdrop-blur-md bg-white/30 text-center rounded-md px-2">Pick <span class="font-snapn text-4xl font-outline shadow-black">{draft.draft.total}</span></div>
                     </a>
                 </div>
             </div>

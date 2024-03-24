@@ -123,7 +123,7 @@
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->
 	<!-- Router Slot -->
-	<div  class="mb-16">
+	<div class="mb-16">
 		<slot/>
 	</div>
 	<!-- ---- / ---- -->
