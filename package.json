@@ -15,7 +15,8 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"prodServer": "node --loader tsm ./prodServer.ts",
-		"seed": "node --loader tsm prisma/seed.ts"
+		"seed": "node --loader tsm prisma/seed.ts",
+		"db:migrate": "node node_modules/prisma/build/index.js migrate deploy"
 	},
 	"devDependencies": {
 		"@iarna/toml": "^2.2.5",
