@@ -55,6 +55,13 @@ jobs:
         with:
           name: node-app
 
+      - name: Apply database migration and database seed
+        run: |
+          npx run migrate deploy
+          npm seed
+        env: 
+          SQL_DB_URI: ${{ vars.SQL_DB_URI }}
+
       - name: Unzip artifact for deployment
         run: unzip release.zip
       

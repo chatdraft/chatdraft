@@ -8,9 +8,16 @@ on:
     branches:
       - main
   workflow_dispatch:
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs:
   build:
+    env:
+      PUBLIC_TWITCH_OAUTH_CLIENT_ID: ${{ vars.PUBLIC_TWITCH_OAUTH_CLIENT_ID }}
+      PUBLIC_TWITCH_USER_ID: ${{ vars.PUBLIC_TWITCH_USER_ID }}
+      PUBLIC_TWITCH_REDIRECT_URI: ${{ vars.PUBLIC_TWITCH_REDIRECT_URI }}
     runs-on: ubuntu-latest
 
     steps:
@@ -48,6 +55,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+
+      - name: Apply database migration and database seed
+        run: |
+          npx run migrate deploy
+          npm seed
+        env: 
+          SQL_DB_URI: ${{ vars.SQL_DB_URI }}
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
