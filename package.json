@@ -16,7 +16,7 @@
 		"test:unit": "vitest",
 		"prodServer": "node --loader tsm ./prodServer.ts",
 		"seed": "node --loader tsm prisma/seed.ts",
-		"db:migrate": "npx prisma migrate deploy"
+		"db:migrate": "node node_modules/prisma/build/index.js migrate deploy"
 	},
 	"devDependencies": {
 		"@iarna/toml": "^2.2.5",
