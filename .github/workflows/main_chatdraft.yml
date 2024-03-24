@@ -55,15 +55,15 @@ jobs:
         with:
           name: node-app
 
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
+
       - name: Apply database migration and database seed
         run: |
           npx prisma migrate deploy
           npm seed
         env: 
           SQL_DB_URI: ${{ vars.SQL_DB_URI }}
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
       
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
