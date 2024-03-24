@@ -54,28 +54,28 @@
 					<iconify-icon icon="material-symbols:home" width="28" height="28"></iconify-icon>
 					<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id == '/(app)'}>Home</p>
 			</AppRailAnchor>
-			<AppRailAnchor href="about">
+			<AppRailAnchor href="/about">
 				<iconify-icon icon="material-symbols:info-outline" width="28" height="28"></iconify-icon>
 				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/about')}>About</p>
 			</AppRailAnchor>
 
-			<AppRailAnchor href="solodraft">
+			<AppRailAnchor href="/solodraft">
 				<iconify-icon icon="mdi:cards-outline" width="28" height="28"></iconify-icon>
 				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/solodraft')}>Solo Draft</p>
 			</AppRailAnchor>
 
 			{#if user}
 				{#if user.initialSetupDone}
-					<AppRailAnchor href="settings">
+					<AppRailAnchor href="/settings">
 						<iconify-icon icon="mdi:gear" width="28" height="28"></iconify-icon>
 						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('settings')}>Settings</p>
 					</AppRailAnchor>
-					<AppRailAnchor href="draft">
+					<AppRailAnchor href="/draft">
 						<iconify-icon icon="mdi:cards" width="28" height="28"></iconify-icon>
 						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/draft')}>Draft</p>
 					</AppRailAnchor>
 				{:else}
-					<AppRailAnchor href="start">
+					<AppRailAnchor href="/start">
 						<iconify-icon icon="ion:rocket-sharp" width="28" height="28"></iconify-icon>
 						<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('/start')}>Get Started</p>
 					</AppRailAnchor>
@@ -83,7 +83,7 @@
 			{/if}
 
 			{#if user && user.admin}
-			<AppRailAnchor href="admin">
+			<AppRailAnchor href="/admin">
 				<iconify-icon icon="mdi:administrator" width="28" height="28"></iconify-icon>
 				<p class="mr-2 w-full" class:underline={$page.route.id && $page.route.id.includes('admin')}>Admin</p>
 			</AppRailAnchor>
@@ -101,7 +101,7 @@
 					<p class="mr-2 w-full">Log in</p>
 				</AppRailAnchor>
 			{:else}
-				<AppRailAnchor href="logout" data-sveltekit-preload-data="tap" data-sveltekit-reload>
+				<AppRailAnchor href="/logout" data-sveltekit-preload-data="tap" data-sveltekit-reload>
 					<iconify-icon icon="material-symbols:logout" width="28" height="28"></iconify-icon>
 					<p class="mr-2 w-full">Logout</p>
 				</AppRailAnchor>
