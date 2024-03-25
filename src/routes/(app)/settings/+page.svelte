@@ -58,6 +58,9 @@
         <h2 class="h2">
             Default Draft Preferences
         </h2>
+        <p class="m-4">
+            Set your default preferences for starting a draft from the chat command.
+        </p>
         <div class="grid grid-cols-2">
             <DurationSlider duration={data.duration} />
         </div>
