@@ -4,11 +4,13 @@
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
 	import { onMount } from 'svelte';
     import type { PageData } from './$types';
-	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { SlideToggle, getToastStore } from '@skeletonlabs/skeleton';
 	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 	import { establishWebSocket } from '$lib/websocket';
 	import DraftPreferences from '$lib/components/DraftPreferences.svelte';
 	import CollectionState from '$lib/components/CollectionState.svelte';
+	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
+	import DurationSlider from '$lib/components/DurationSlider.svelte';
 
     const toastStore = getToastStore();
     
@@ -53,15 +55,25 @@
             //update();
         }
     }}>
-        <div class="card p-4 w-1/2">
-            <DraftPreferences duration={data.duration} selectionCount={data.selectionCount} subsExtraVote={data.subsExtraVote} />
-            <button class="btn btn-lg variant-filled-primary">Save Defaults</button><br/>
+        <h2 class="h2">
+            Default Draft Preferences
+        </h2>
+        <div class="grid grid-cols-2">
+            <DurationSlider duration={data.duration} />
         </div>
+        <div class="grid grid-cols-2">
+            <SelectionCountSlider selectionCount={data.selectionCount} />
+        </div>
+        <div class="align-super">
+            <span class="font-bold inline-block align-top mt-1">Subscriber votes +1:</span>
+            <SlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
+        </div>
+        <button class="btn btn-lg variant-filled-primary mt-2">Save Defaults</button><br/>
     </form>
     <br/><br/>
     <h2 class="h2">Chat Draft Bot</h2>
     {#if data.botInChannel}
-        <p class="m-2">
+        <p class="m-4">
             Have Chat Draft Bot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
         </p>
         <form method="POST" action="?/part" on:submit={invalidateAll} use:enhance={()=> {

@@ -95,8 +95,9 @@
 					<SelectionCountSlider bind:selectionCount />
 					<div/>
 				</div>
-				<div>
-					<SlideToggle name="subs-bonus" bind:checked={subsExtraVote} active="bg-primary-500">+1 to subscriber votes</SlideToggle>
+				<div class="align-super">
+					<span class="font-bold inline-block align-top mt-1">Subscriber votes +1:</span>
+					<SlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
 				</div>
 				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
 			{:else}

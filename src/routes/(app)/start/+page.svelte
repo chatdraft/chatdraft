@@ -105,14 +105,6 @@
                         Browser Source Set Up
                     </svelte:fragment>
                     <nav class="list-nav">
-                        <p>
-                            The chat draft overlay is provided via browser source. 
-                            The overlay has been designed pseudo responsive and 
-                            will appear differently at different resolutions. 
-                            Additionally, the overlay can be presented as 
-                            combined (simple) or separate (advanced).
-                        </p>
-                        <br/>
                         <BrowserSources user={data.user} previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
                     </nav>
                 </Step>

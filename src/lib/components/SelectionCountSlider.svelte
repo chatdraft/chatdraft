@@ -6,11 +6,24 @@
     export let maxSelectionCount = 6;
 </script>
 
-<RangeSlider class="relative mb-6" name="selectionCount" bind:value={selectionCount} min={minSelectionCount} max={maxSelectionCount} ticked step={1}>
-    <div class="flex justify-between items-center">
-        <div class="font-bold">Number of cards per voting round:
-        <span class="font-normal pl-2 text-2xl">{selectionCount}</span></div>
-        <div class="absolute -bottom-6">{minSelectionCount}</div>
-        <div class="absolute -bottom-6 right-0">{maxSelectionCount}</div>
+<div class="flex justify-between items-center">
+    <div class="font-bold">
+        Choices per Voting Period: {selectionCount}
     </div>
-</RangeSlider>
+</div>
+<br/>
+<div class="flex pt-4">
+    <div class="w-1/12 pl-4">
+        {minSelectionCount}
+    </div>
+    <div class="w-10/12">
+        <RangeSlider
+            class="relative mb-6" label="selectionCount" name="selectionCount" 
+            bind:value={selectionCount} min={minSelectionCount} 
+            max={maxSelectionCount} ticked step={1}>
+        </RangeSlider>
+    </div>
+    <div class="w-min pl-2">
+        {maxSelectionCount}
+    </div>
+</div>

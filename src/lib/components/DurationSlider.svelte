@@ -6,12 +6,21 @@
     export let maxDuration = 180;
 </script>
 
-<RangeSlider class="relative mb-6" label="duration" name="duration" bind:value={duration} min={minDuration} max={maxDuration} ticked step={30}>
-    <div class="flex justify-between items-center">
-        <div class="font-bold">
-            Voting period:
-            <span class="font-normal pl-2 text-2xl">{duration} s</span></div>
-            <div class="absolute -bottom-6">{minDuration}</div>
-            <div class="absolute -bottom-6 right-0">{maxDuration}</div>
+<div class="flex justify-between items-center pt-2">
+    <div class="font-bold">
+        Voting period: {duration} s
     </div>
-</RangeSlider>
+</div>
+<br/>
+<div class="flex pt-4">
+    <div class="w-1/12 pl-4">{minDuration}
+    </div>
+    <div class="w-10/12">
+        <RangeSlider class="relative mb-6" label="duration" name="duration" bind:value={duration} min={minDuration} max={maxDuration} ticked step={30}>
+            
+        </RangeSlider>
+    </div>
+    <div class="w-1/12 pl-2">
+        {maxDuration}
+    </div>
+</div>

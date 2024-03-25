@@ -12,6 +12,13 @@
     let tabSet: number = 0;
 </script>
 
+<p class="m-4">
+    The chat draft overlay is provided via browser source. 
+    The overlay has been designed pseudo responsive and 
+    will appear differently at different resolutions. 
+    Additionally, the overlay can be presented as 
+    combined (simple) or separate (advanced).
+</p>
 <TabGroup>
     <Tab bind:group={tabSet} name="combinedTab" value={0}>
         <span>Combined</span>
