@@ -1,7 +1,7 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import { ChatClient } from '@twurple/chat';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
-import type { Choice, Card, Deck } from '$lib/snap/draft';
+import type { Choice, Card, Deck, Draft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
@@ -141,8 +141,8 @@ export default class TwitchBot {
         TwitchBot.Say(player_channel, `The completed deck has been drafted: ${deck.map((card) => card.name).join(', ')}.`);
     }
 
-    public static async DraftCanceled(player_channel: string) {
-        TwitchBot.Say(player_channel, 'The draft has been canceled.')
+    public static async DraftCanceled(draft: Draft) {
+        TwitchBot.Say(draft.player, 'The draft has been canceled.')
     }
 
     public static async VotingClosed(player_channel: string, result: string, ties: string[]) {

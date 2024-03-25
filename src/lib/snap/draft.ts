@@ -1,7 +1,6 @@
 import { EventEmitter } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
-import { SetPreviousDraft } from '$lib/server/draftHandler';
 
 export default interface IDraft {
 	cards: Deck;
@@ -48,9 +47,11 @@ export class Draft extends EventEmitter implements IDraft {
 
     onChoiceSelected = this.registerEvent<[player_channel: string, card: Card]>();
 
-    onDraftComplete = this.registerEvent<[player_channel: string, deck: Deck]>();
+    onDraftComplete = this.registerEvent<[draft: Draft]>();
 
-    onDraftCanceled = this.registerEvent<[player_channel: string]>();
+    onDraftCanceled = this.registerEvent<[draft: Draft]>();
+
+    onDraftFinished = this.registerEvent<[draft: Draft]>();
 
 	onChoiceOverride = this.registerEvent<[player_channel: string, result: string]>();
 
@@ -72,10 +73,10 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 
 		if (this.total < 12 && this.player != '') {
-			this.emit(this.onDraftCanceled, this.player);
+			this.emit(this.onDraftCanceled, this);
 		}
 		else {
-			SetPreviousDraft(this);
+			this.emit(this.onDraftFinished, this);
 		}
 	}
 
@@ -184,7 +185,7 @@ export class Draft extends EventEmitter implements IDraft {
 			this.deckName = ''; //cardDefKey;
 			this.currentChoice = undefined;
 			if (this.player != '') {
-				this.emit(this.onDraftComplete, this.player, this.cards);
+				this.emit(this.onDraftComplete, this);
 			}
 			return;
 		}

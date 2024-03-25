@@ -1,5 +1,5 @@
 import { GetAllCards } from "$lib/server/cardsHandler";
-import { drafts } from "$lib/server/draftHandler";
+import { SetPreviousDraft, drafts } from "$lib/server/draftHandler";
 import { ClearPreviewStatus } from "$lib/server/previewHandler";
 import TwitchBot from "$lib/server/twitchBot";
 import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStarted, NewChoice, VotingClosed } from "$lib/server/webSocketUtils";
@@ -30,12 +30,13 @@ export default class DraftFactory {
         //draft.onChoiceSelected(TwitchBot.ChoiceSelected);
         draft.onChoiceSelected(ChoiceSelected);
 
-        draft.onDraftComplete(async (player_channel, deck) => {
+        draft.onDraftComplete(async (draft) => {
             await new Promise(f=> setTimeout(f,2000));
-            TwitchBot.DraftComplete(player_channel, deck)
-            DraftComplete(player_channel, deck);
+            TwitchBot.DraftComplete(draft.player, draft.cards)
+            DraftComplete(draft.player, draft.cards);
             await new Promise(f=> setTimeout(f,duration*2*1000))
             draft.CancelDraft();
+            SetPreviousDraft(draft)
         });
 
         draft.onVotingClosed(TwitchBot.VotingClosed)

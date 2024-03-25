@@ -1,4 +1,4 @@
-import type { Choice, Card, Deck } from "$lib/snap/draft";
+import type { Choice, Card, Deck, Draft } from "$lib/snap/draft";
 import { type ExtendedGlobal, GlobalThisWSS } from "./webSocketHandler";
 
 export function SendMessage(player_channel: string, message: string) {
@@ -28,8 +28,8 @@ export const DraftComplete = async (player_channel: string, deck: Deck) => {
     SendMessage(player_channel, `draftcomplete:${JSON.stringify(deck)}`);
 }
 
-export const DraftCanceled = async (player_channel: string) => {
-    SendMessage(player_channel, `draftcanceled`);
+export const DraftCanceled = async (draft: Draft) => {
+    SendMessage(draft.player, `draftcanceled`);
 }
 
 export const VotingClosed = async (player_channel: string) => {
