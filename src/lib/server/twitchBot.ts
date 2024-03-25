@@ -5,7 +5,7 @@ import type { Choice, Card, Deck } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
-import { DbAddChannel, DbGetChannels, DbGetUserPreferences, DbRemoveChannel } from './db';
+import { DbGetChannels, DbGetUserPreferences } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 
 export default class TwitchBot {
@@ -163,18 +163,15 @@ export default class TwitchBot {
         return TwitchBot.instance.chat.currentChannels.includes(`#${player_channel}`);
     }
 
-    public static async JoinChannel(player_channel: string, playerId: string) {
+    public static async JoinChannel(player_channel: string) {
         if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
-        const user = await DbAddChannel(playerId);
-        console.log(user);
         return TwitchBot.instance.chat.join(player_channel)
     }
 
-    public static async PartChannel(player_channel: string, playerId: string) {
+    public static async PartChannel(player_channel: string) {
         if (!TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.leave(player_channel);
-        await DbRemoveChannel(playerId);
         return TwitchBot.instance.chat.part(player_channel);
     }
 }

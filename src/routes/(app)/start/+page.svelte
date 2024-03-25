@@ -55,35 +55,45 @@
         <h1 class="h1">Getting Started</h1>
         <br/>
         <form method="POST" action="?/completeSetup" bind:this={setupForm}>
-            <Stepper buttonCompleteLabel="Finish Setup" on:complete={onComplete}>
+            <Stepper buttonCompleteLabel="Finish Set Up" on:complete={onComplete}>
                 <Step locked={data.user == undefined}>
                     <svelte:fragment slot="header">
-                        Twitch Log In
+                        Oro Chat Draft Log In by Twitch Authentication
                     </svelte:fragment>
-                    Thanks for logging in. Please continue to invite the chat draft bot to your Twitch channel.
+                    <p>
+                        Successfully authenticated with Twitch and logged into Oro Chat Draft!
+                    </p>
+                    <br/>
+                    <p>
+                        Click ‘Next’ to invite the chat draft bot to your Twitch channel.
+                    </p>
                 </Step>
                 <Step locked={!data.botInChannel}>
                     <svelte:fragment slot="header">
-                        Invite bot
+                        Invite Chat Draft Bot
                     </svelte:fragment>
                     {#if data.botInChannel}
-                        Bot successfully joined your channel!
-                        <br/><br/>
-                        It is recommended that you give the bot VIP status
-                        in your channel so it will still work in follower/subscriber
-                        only mode. You can do this by typing <code class="code">/vip chatdraftbot</code> command into
-                        your Twitch chat channel or by visiting the
-                        <a class="anchor" href="https://dashboard.twitch.tv/u/{data.user}/community/roles" target="_blank">
-                            Twitch Community Manager
-                            <iconify-icon icon="fluent:window-new-16-filled" width="16" height="16" />
-                        </a>.
-                         Please continue to setup your browser sources.
+                        ✅ Bot successfully joined your channel!
+                        <br/>
+                        <p>
+                            Recommendation: Provide chat draft bot with VIP status 
+                            - type <code class="code">/vip chatdraftbot</code> into 
+                            your Twitch chat. VIP status allows bot to function 
+                            with follower/subscriber only mode enabled.
+                        </p>
+                        <br/>
+                        Click ‘Next’ to set up your browser source(s).
                     {:else}
-                        The chat draft bot needs to be added to your channel to interact with your viewers. Invite the chat draft bot to your Twitch channel. 
+                    <p>
+                        The chat draft bot needs to be added to your Twitch 
+                        channel. Click the link “Join Channel” button to invite 
+                        the bot.
+                    </p>
+                    
                         <form method="POST" action="/settings?/join" use:enhance={()=> {
                             return async ({result, update}) => {
                                 if (result.type == "success") {
-                                    toastStore.trigger({message:"Bot successfully joined your channel."});
+                                    toastStore.trigger({message:"✅ Bot successfully joined your channel."});
                                 }
                                 update();
                             }
@@ -92,12 +102,15 @@
                 </Step>
                 <Step>
                     <svelte:fragment slot="header">
-                        Browser source set up
+                        Browser Source Set Up
                     </svelte:fragment>
                     <nav class="list-nav">
                         <p>
-                            TODO: insert explanation of setting up browser sources and the choice between combined or separate sources
-                            and screenshots showing the difference.
+                            The chat draft overlay is provided via browser source. 
+                            The overlay has been designed pseudo responsive and 
+                            will appear differently at different resolutions. 
+                            Additionally, the overlay can be presented as 
+                            combined (simple) or separate (advanced).
                         </p>
                         <br/>
                         <BrowserSources user={data.user} previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
@@ -107,9 +120,13 @@
                     <svelte:fragment slot="header">
                         Setup complete!
                     </svelte:fragment>
-                    You have finished setup and are ready to draft!
-                    You may modify your setup in Settings after this.
-                    Please press Finish Setup to finish initial setup.
+                    <p>
+                        Congratulations! You have successfully configured Oro Chat Draft!
+                    </p>
+                    <br/>
+                    <p>
+                        Click ‘Finish Setup’ to complete Getting Started.
+                    </p>
                 </Step>
             </Stepper>
         </form>

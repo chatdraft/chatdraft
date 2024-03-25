@@ -15,7 +15,7 @@ export const DbSaveToken = (user_id: string, token_data: AccessToken) => saveTok
 export const DbLoadToken = (user_id: string) => loadToken(prisma, user_id);
 
 export const DbUpdateUser = (twitch_user: HelixUser) => updateUser(prisma, twitch_user);
-export const DbUpdateUserAuthorization = (username: string, isAuthorized: boolean) => updateUserAuthorization(prisma, username, isAuthorized);
+export const DbUpdateUserAuthorization = (user: HelixUser, isAuthorized: boolean) => updateUserAuthorization(prisma, user, isAuthorized);
 export const DbGetAuthorizedUsers = () => getAuthorizedUsers(prisma)
 export const DbGetAdminUsers = () => getAdminUsers(prisma)
 export const DbUpdateUserSetupCompleteStatus = (username: string, isComplete: boolean) => updateUserSetupCompleteStatus(prisma, username, isComplete)

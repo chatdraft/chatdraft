@@ -1,11 +1,11 @@
 import type { PrismaClient } from "@prisma/client";
 
 export async function AddChannel(prisma: PrismaClient, userId: string) {
-    UpdateChannel(prisma, userId, true);
+    return await UpdateChannel(prisma, userId, true);
 }
 
 export async function RemoveChannel(prisma: PrismaClient, userId: string) {
-    UpdateChannel(prisma, userId, false);
+    return await UpdateChannel(prisma, userId, false);
 }
 
 export async function GetChannels(prisma: PrismaClient) {

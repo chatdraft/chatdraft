@@ -3,7 +3,7 @@ import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandle
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { IsFullSourceConfigured, IsSplitSourceConfigured } from '$lib/server/browserSourceHandler';
-import { DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
+import { DbAddChannel, DbRemoveChannel, DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
 
 
 export const load = (async ({locals}) => {
@@ -27,12 +27,18 @@ export const load = (async ({locals}) => {
 export const actions = {
     join: async ({locals}) => {
         if (locals.user) {
-            await TwitchBot.JoinChannel(locals.user.channelName!, locals.user.twitchID!);
+            if (await TwitchBot.JoinChannel(locals.user.channelName!)) {
+                const userPreferences = await DbAddChannel(locals.user.channelName);
+                if (userPreferences) locals.user.userPreferences = userPreferences
+            }
         }
     },
     part: async ({locals}) => {
         if (locals.user) {
-            await TwitchBot.PartChannel(locals.user.channelName!, locals.user.twitchID!);
+            if (await TwitchBot.PartChannel(locals.user.channelName!)) {
+                const userPreferences = await DbRemoveChannel(locals.user.channelName);
+                if (userPreferences) locals.user.userPreferences = userPreferences;
+            }
         }
     },
     togglePreview: async ({locals}) => {

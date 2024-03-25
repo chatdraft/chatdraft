@@ -77,20 +77,32 @@ export async function updateUser(prisma: PrismaClient, twitch_user: HelixUser) {
     return null
 }
 
-export async function updateUserAuthorization(prisma: PrismaClient, username: string, isAuthorized: boolean) {
+export async function updateUserAuthorization(prisma: PrismaClient, user: HelixUser, isAuthorized: boolean) {
     try {
-        await prisma.user.upsert({
+        const db_user = await prisma.user.upsert({
             where: {
-                channelName: username,
+                channelName: user.name,
             },
             update: {
                 isAuthorized: isAuthorized
             },
             create: {
-                channelName: username,
+                channelName: user.name,
+                displayName: user.displayName,
                 isAuthorized: isAuthorized,
+                initialSetupDone: false,
+                twitchID: user.id,
+                twitchProfilePictureURL: user.profilePictureUrl,
+                userPreferences: {
+                    create: {
+                        cardsPerRound: 6,
+                        draftRoundDuration: 90,
+                        subsExtraVote: false,
+                    }
+                }
             }
         })
+        return db_user;
     }
     catch (error) {
         let message = 'Unknown Error';

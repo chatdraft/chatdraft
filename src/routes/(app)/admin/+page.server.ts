@@ -30,7 +30,9 @@ export const actions = {
         const data = await request.formData();
         const username = data.get("username")?.toString();
         if (username) {
-            DbUpdateUserAuthorization(username, true);
+            const api = new ApiClient({authProvider: locals.auth_provider});
+            const user = await api.users.getUserByName(username);
+            if (user) DbUpdateUserAuthorization(user, true);
         }
     },
     deauthorize: async ({request, locals}) => {
@@ -38,7 +40,9 @@ export const actions = {
         const data = await request.formData();
         const username = data.get("username")?.toString();
         if (username) {
-            DbUpdateUserAuthorization(username, false);
+            const api = new ApiClient({authProvider: locals.auth_provider});
+            const user = await api.users.getUserByName(username);
+            if (user) DbUpdateUserAuthorization(user, false);
         }
     },
     joinchannel: async ({request, locals}) => {
