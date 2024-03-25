@@ -78,9 +78,9 @@
 		<div class="absolute right-10 top-20">
 			<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 				{#if current_draft.total < 12}
-					Cancel draft
+					Cancel Draft
 				{:else}
-					Finish draft
+					Finish Draft
 				{/if}
 			</button>
 		</div>
