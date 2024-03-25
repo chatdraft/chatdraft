@@ -101,7 +101,7 @@ export async function updateUserAuthorization(prisma: PrismaClient, username: st
 
 export async function updateUserSetupCompleteStatus(prisma: PrismaClient, username: string, isComplete: boolean) {
     try {
-        await prisma.user.upsert({
+        const user = await prisma.user.upsert({
             where: {
                 channelName: username,
             },
@@ -113,6 +113,7 @@ export async function updateUserSetupCompleteStatus(prisma: PrismaClient, userna
                 initialSetupDone: isComplete,
             }
         })
+        return user;
     }
     catch (error) {
         let message = 'Unknown Error';
@@ -123,7 +124,7 @@ export async function updateUserSetupCompleteStatus(prisma: PrismaClient, userna
 
 export async function updateUserPreferences(prisma: PrismaClient, twitchId: string, duration: number, selectionCount: number, subsExtraVote: boolean) {
     try {
-        await prisma.userPreference.upsert({
+        const user = await prisma.userPreference.upsert({
             where: {
                 userId: twitchId
             },
@@ -143,6 +144,7 @@ export async function updateUserPreferences(prisma: PrismaClient, twitchId: stri
                 }
             }
         })
+        return user;
     }
     catch (error) {
         let message = 'Unknown Error';
@@ -153,7 +155,7 @@ export async function updateUserPreferences(prisma: PrismaClient, twitchId: stri
 
 export async function updateUserCollection(prisma: PrismaClient, twitchId: string, cards: string[]) {
     try {
-        await prisma.userPreference.upsert({
+        const userPreference = await prisma.userPreference.upsert({
             where: {
                 userId: twitchId
             },
@@ -169,6 +171,7 @@ export async function updateUserCollection(prisma: PrismaClient, twitchId: strin
                 }
             }
         })
+        return userPreference;
     }
     catch (error) {
         let message = 'Unknown Error';
@@ -179,7 +182,7 @@ export async function updateUserCollection(prisma: PrismaClient, twitchId: strin
 
 export async function resetUserCollection(prisma: PrismaClient, twitchId: string) {
     try {
-        await prisma.userPreference.update({
+        const userPreference = await prisma.userPreference.update({
             where: {
                 userId: twitchId,
             },
@@ -187,6 +190,7 @@ export async function resetUserCollection(prisma: PrismaClient, twitchId: string
                 collection: null,
             }
         })
+        return userPreference;
     }
     catch (error) {
         let message = 'Unknown Error';

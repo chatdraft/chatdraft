@@ -47,7 +47,8 @@ export const actions = {
                 const duration = Number(data.get("duration")?.toString());
                 const selectionCount = Number(data.get("selectionCount")?.toString());
                 const subsExtraVote = Boolean(data.get("subsExtraVote")?.toString());
-                DbUpdateUserPreferences(locals.user.twitchID, duration, selectionCount, subsExtraVote);
+                const userPreferences = await DbUpdateUserPreferences(locals.user.twitchID, duration, selectionCount, subsExtraVote);
+                if (userPreferences) locals.user.userPreferences = userPreferences;
             }
         }
     },
@@ -60,7 +61,8 @@ export const actions = {
             if (collectionData) {
                 const cards: string[] = collectionData.ServerState.Cards.map((card: { CardDefId: string; }) => card.CardDefId).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index)
                 if (cards) {
-                    DbUpdateUserCollection(locals.user.twitchID, cards);
+                    const userPreference = await DbUpdateUserCollection(locals.user.twitchID, cards);
+                    if (userPreference) locals.user.userPreferences = userPreference;
                 }
             }
 
@@ -68,7 +70,8 @@ export const actions = {
     },
     resetCollection: async ({locals}) => {
         if (locals.user && locals.user.twitchID) {
-            DbResetUserCollection(locals.user.twitchID);
+            const userPreference = await DbResetUserCollection(locals.user.twitchID);
+            if (userPreference) locals.user.userPreferences = userPreference;
         }
     }
 } satisfies Actions

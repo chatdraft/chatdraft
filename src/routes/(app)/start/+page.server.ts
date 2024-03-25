@@ -23,7 +23,8 @@ export const actions = {
     },
     completeSetup: async ({locals}) => {
         if (locals.user) {
-            DbUpdateUserSetupCompleteStatus(locals.user.channelName, true);
+            const user = await DbUpdateUserSetupCompleteStatus(locals.user.channelName, true);
+            if (user) locals.user.initialSetupDone = user.initialSetupDone;
         }
     }
 } satisfies Actions
