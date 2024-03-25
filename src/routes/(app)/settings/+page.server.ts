@@ -62,7 +62,6 @@ export const actions = {
         if (locals.user && locals.user.twitchID) {
             const formData = await request.formData();
             const collection = formData.get("collection") as File;
-            console.log(collection);
             const collectionData = JSON.parse(await collection.text());
             if (collectionData) {
                 const cards: string[] = collectionData.ServerState.Cards.map((card: { CardDefId: string; }) => card.CardDefId).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index)

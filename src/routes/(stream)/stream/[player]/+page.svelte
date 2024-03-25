@@ -16,6 +16,9 @@
 	let selectionCount = 3;
 
 	const handleMessage = async(message: string) => {
+		if (message.startsWith("Hello")) {
+			ws?.send(`bs:${data.hide}`);
+		}
 		if (message == 'showdeck') {
 			if (current_draft) return;
 
@@ -80,11 +83,18 @@
 		setInterval(() => {
 			now = Date.now();
 		}, 100)
-		await establishWebSocket(handleMessage, data.draft?.player, data.hide);
+		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
+		
 		if (data.draft) {
 			selectionCount = data.draft.selections;
 		}
 	});
+	window.onbeforeunload = function() {
+		if (ws) {
+			ws.onclose = function () {}; // disable onclose handler first
+			ws.close();
+		}
+	};
 </script>
 
 <svelte:head>

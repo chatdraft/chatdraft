@@ -5,6 +5,7 @@ import type WebSocketBase from 'ws';
 import type { IncomingMessage } from 'http';
 import type { Duplex } from 'stream';
 import { refreshTimeout } from './sessionHandler';
+import { CloseBrowserSource, RegisterChoiceBrowserSource, RegisterDeckBrowserSource, RegisterFullBrowserSource } from './browserSourceHandler';
 
 export const GlobalThisWSS = Symbol.for('sveltekit.wss');
 
@@ -47,11 +48,26 @@ export const createWSSGlobalInstance = () => {
 
 		ws.on('close', () => {
 			console.log(`[wss:global] client disconnected (${ws.socketId})`);
+			CloseBrowserSource(ws.player_channel, ws.socketId);
 		});
 		ws.on('message', (event) => {
 			refreshTimeout(ws.sessionId);
-			if (event.toString() == 'ping') {
+			const message = event.toString();
+			if (message == 'ping') {
 				ws.send('pong');
+			}
+
+			if (message.startsWith("bs:")) {
+				const hide = message.split(':')[1];
+				if (!hide) {
+					RegisterFullBrowserSource(ws.player_channel, ws.socketId);
+				}
+				else if (hide == 'choice') {
+					RegisterDeckBrowserSource(ws.player_channel, ws.socketId);
+				}
+				else if (hide == 'deck') {
+					RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
+				}
 			}
 		})
 	});
