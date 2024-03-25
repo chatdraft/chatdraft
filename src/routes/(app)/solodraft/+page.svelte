@@ -43,19 +43,21 @@
 </script>
 
 <div class="space-y-4 p-4">
-	<h1 class="h1">Solo Draft</h1>
-	<br/>
 	{#if (current_draft)}
-		<div class="absolute right-10 top-20">
-			<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
-				{#if current_draft.total < 12}
-					Cancel draft
-				{:else}
-					Finish draft
-				{/if}
-			</button>
+		<div class="grid grid-cols-2">
+			<h1 class="h1">Solo Draft</h1>
+			<div class="grid justify-items-end">
+				<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
+					{#if current_draft.total < 12}
+						Cancel Draft
+					{:else}
+						Finish Draft
+					{/if}
+				</button>
+			</div>
 		</div>
 	{:else}
+		<h1 class="h1">Solo Draft</h1>
         <div class="grid grid-cols-2">
             <SelectionCountSlider bind:selectionCount />
             <div/>
