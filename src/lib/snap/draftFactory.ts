@@ -35,8 +35,8 @@ export default class DraftFactory {
             TwitchBot.DraftComplete(draft.player, draft.cards)
             DraftComplete(draft.player, draft.cards);
             await new Promise(f=> setTimeout(f,duration*2*1000))
+            SetPreviousDraft(draft);
             draft.CancelDraft();
-            SetPreviousDraft(draft)
         });
 
         draft.onVotingClosed(TwitchBot.VotingClosed)
