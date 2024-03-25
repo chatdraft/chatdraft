@@ -104,8 +104,7 @@
 				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
 			{:else}
 				The bot isn't set up to join your Twitch channel. This is required
-				to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot
-				or you can run a <a href="/solodraft" class="anchor">Solo Draft</a>.
+				to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot.
 			{/if}
 		{:else}
 			If this is your first time here, please go to
