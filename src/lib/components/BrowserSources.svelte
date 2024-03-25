@@ -33,7 +33,7 @@
                     <div class="w-1/2">
                         <h3 class="h3">Quick Setup (OBS only)</h3>
                         <p>Simply drag and drop this button into OBS.</p>
-                        <a class="btn btn-sm variant-filled-secondary browser-drag-item cursor-move w-min m-2" on:click|preventDefault draggable="true" href="{`${$page.url.origin}/stream/${user}?layer-name=Oro%20Chat%20Draft&layer-height=1080&layer-width=640`}">
+                        <a class="btn btn-sm variant-filled-secondary browser-drag-item cursor-move w-min m-2" data-sveltekit-preload-data="false" on:click|preventDefault draggable="true" href="{`${$page.url.origin}/stream/${user}?layer-name=Oro%20Chat%20Draft&layer-height=1080&layer-width=640`}">
                             Drag and drop to OBS
                             <iconify-icon icon="clarity:drag-handle-line" width="36" height="36"></iconify-icon>
                         </a>
@@ -67,11 +67,11 @@
                     <div class="w-1/2">
                         <h3 class="h3">Quick Setup (OBS only)</h3>
                         <p>Simply drag and drop both of these buttons into OBS.</p>
-                        <a class="btn btn-sm variant-filled-secondary browser-drag-item cursor-move w-min m-2" on:click|preventDefault draggable="true" href="{`${$page.url.origin}/stream/${user}?hide=deck&layer-name=Oro%20Chat%20Draft%20Choices&layer-height=410&layer-width=500`}">
+                        <a class="btn btn-sm variant-filled-secondary browser-drag-item cursor-move w-min m-2" data-sveltekit-preload-data="false" on:click|preventDefault draggable="true" href="{`${$page.url.origin}/stream/${user}?hide=deck&layer-name=Oro%20Chat%20Draft%20Choices&layer-height=410&layer-width=500`}">
                             Choices - Drag and drop to OBS
                             <iconify-icon icon="clarity:drag-handle-line" width="36" height="36"></iconify-icon>
                         </a>
-                        <a class="btn btn-sm variant-filled-secondary browser-drag-item cursor-move w-min m-2" on:click|preventDefault draggable="true" href="{`${$page.url.origin}/stream/${user}?hide=choice&layer-name=Oro%20Chat%20Draft%20Deck&layer-height=445&layer-width=500`}">
+                        <a class="btn btn-sm variant-filled-secondary browser-drag-item cursor-move w-min m-2" data-sveltekit-preload-data="false" on:click|preventDefault draggable="true" href="{`${$page.url.origin}/stream/${user}?hide=choice&layer-name=Oro%20Chat%20Draft%20Deck&layer-height=445&layer-width=500`}">
                             Deck - Drag and drop to OBS
                             <iconify-icon icon="clarity:drag-handle-line" width="36" height="36"></iconify-icon>
                         </a>
