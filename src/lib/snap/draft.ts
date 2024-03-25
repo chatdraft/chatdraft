@@ -1,6 +1,7 @@
 import { EventEmitter } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
+import { SetPreviousDraft } from '$lib/server/draftHandler';
 
 export default interface IDraft {
 	cards: Deck;
@@ -72,6 +73,9 @@ export class Draft extends EventEmitter implements IDraft {
 
 		if (this.total < 12 && this.player != '') {
 			this.emit(this.onDraftCanceled, this.player);
+		}
+		else {
+			SetPreviousDraft(this);
 		}
 	}
 

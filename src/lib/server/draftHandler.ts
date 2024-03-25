@@ -15,6 +15,10 @@ export function GetDrafts() {
 	return idrafts;
 }
 
+export function SetPreviousDraft(draft: Draft) {
+	previousDrafts.set(draft.player, draft);
+}
+
 export function GetPreviousDrafts() {
 	const idrafts: IDraft[] = [];
 	previousDrafts.forEach((draft => {
