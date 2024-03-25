@@ -34,7 +34,7 @@ export async function GetChannels(prisma: PrismaClient) {
 
 async function UpdateChannel(prisma: PrismaClient, userId: string, botJoinsChannel: boolean) {
     try {
-        return await prisma.userPreference.upsert({
+        const userPreference = await prisma.userPreference.upsert({
             where: {
                 userId: userId
             },
@@ -44,12 +44,13 @@ async function UpdateChannel(prisma: PrismaClient, userId: string, botJoinsChann
             create: {
                 user: {
                     connect: {
-                        twitchID: userId
+                        twitchID: userId    
                     }
                 },
                 botJoinsChannel: botJoinsChannel
             }
         });
+        return userPreference;
     }
     catch (error) {
         let message = 'Unknown Error';

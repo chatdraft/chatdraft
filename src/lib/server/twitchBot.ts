@@ -166,12 +166,14 @@ export default class TwitchBot {
     public static async JoinChannel(player_channel: string) {
         if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
-        return TwitchBot.instance.chat.join(player_channel)
+        await TwitchBot.instance.chat.join(player_channel);
+        return true;
     }
 
     public static async PartChannel(player_channel: string) {
         if (!TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.leave(player_channel);
-        return TwitchBot.instance.chat.part(player_channel);
+        await TwitchBot.instance.chat.part(player_channel);
+        return true;
     }
 }

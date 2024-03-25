@@ -28,7 +28,7 @@ export const actions = {
     join: async ({locals}) => {
         if (locals.user) {
             if (await TwitchBot.JoinChannel(locals.user.channelName!)) {
-                const userPreferences = await DbAddChannel(locals.user.channelName);
+                const userPreferences = await DbAddChannel(locals.user.twitchID!);
                 if (userPreferences) locals.user.userPreferences = userPreferences
             }
         }
@@ -36,7 +36,7 @@ export const actions = {
     part: async ({locals}) => {
         if (locals.user) {
             if (await TwitchBot.PartChannel(locals.user.channelName!)) {
-                const userPreferences = await DbRemoveChannel(locals.user.channelName);
+                const userPreferences = await DbRemoveChannel(locals.user.twitchID!);
                 if (userPreferences) locals.user.userPreferences = userPreferences;
             }
         }
