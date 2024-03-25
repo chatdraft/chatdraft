@@ -6,9 +6,10 @@ interface IBrowserSourceInstances {
     choice_sources: string[];
 }
 
-const browserSourceStatuses = new Map<string, IBrowserSourceInstances>();
+export const browserSourceStatuses = new Map<string, IBrowserSourceInstances>();
 
 export function CloseBrowserSource(channel_name: string, websocket_id: string) {
+    console.log("CloseBrowserSource")
     if (browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.get(channel_name)?.full_sources.forEach((ws_id, index) => {
             if (ws_id == websocket_id) {
@@ -25,7 +26,7 @@ export function CloseBrowserSource(channel_name: string, websocket_id: string) {
                 browserSourceStatuses.get(channel_name)?.choice_sources.splice(index, 1);
             }
         });
-        BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
+        BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
     }
 }
 
@@ -34,9 +35,10 @@ export function RegisterFullBrowserSource(channel_name: string, websocket_id: st
         browserSourceStatuses.set(channel_name, { full_sources: [websocket_id], deck_sources: [], choice_sources: [] })
     }
     else {
+        console.log(channel_name)
         browserSourceStatuses.get(channel_name)!.full_sources.push(websocket_id);
     }
-    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
+    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
 }
 
 export function RegisterDeckBrowserSource(channel_name: string, websocket_id: string) {
@@ -49,11 +51,11 @@ export function RegisterDeckBrowserSource(channel_name: string, websocket_id: st
         }
         browserSourceStatuses.get(channel_name)!.deck_sources.push(websocket_id);
     }
-    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
+    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
 }
 
 export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: string) {
-    if (browserSourceStatuses.has(channel_name)) {
+    if (!browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.set(channel_name, { full_sources: [], deck_sources: [], choice_sources: [websocket_id] })
     }
     else {
@@ -62,17 +64,26 @@ export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: 
         }
         browserSourceStatuses.get(channel_name)!.choice_sources.push(websocket_id);
     }
-    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsSplitSourceConfigured(channel_name));
+    BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
 }
 
 export function IsFullSourceConfigured(channel_name: string) {
-    return ((browserSourceStatuses.has(channel_name)) && (browserSourceStatuses.get(channel_name)!.full_sources.length > 0))
+    console.log("FullBrowserSource")
+    console.log(browserSourceStatuses);
+    return ((browserSourceStatuses.has(channel_name)) &&
+        (browserSourceStatuses.get(channel_name)!.full_sources.length > 0))
 }
 
-export function IsSplitSourceConfigured(channel_name: string) {
+export function IsDeckSourceConfigured(channel_name: string) {
     return (
         (browserSourceStatuses.has(channel_name)) &&
-        (browserSourceStatuses.get(channel_name)!.deck_sources.length > 0) &&
+        (browserSourceStatuses.get(channel_name)!.deck_sources.length > 0)
+    )
+}
+
+export function IsChoiceSourceConfigured(channel_name: string) {
+    return (
+        (browserSourceStatuses.has(channel_name)) &&
         (browserSourceStatuses.get(channel_name)!.choice_sources.length > 0)
     )
 }

@@ -13,7 +13,8 @@
     export let data: PageData;
 
     let full_source_configured = false;
-    let split_sources_configured = false;
+    let deck_sources_configured = false;
+    let choices_sources_configured = false;
 
     let skipSnapFan = false;
     let snapFanApiKey = '';
@@ -24,7 +25,8 @@
 		if (message.startsWith('browserupdated')) {
             const obj = JSON.parse(message.substring('browserupdated:'.length));
             full_source_configured = obj.full_source_configured;
-            split_sources_configured = obj.split_sources_configured;
+            deck_sources_configured = obj.deck_sources_configured;
+            choices_sources_configured = obj.choice_sources_configured;
         }
 	}
 
@@ -105,7 +107,7 @@
                         Browser Source Set Up
                     </svelte:fragment>
                     <nav class="list-nav">
-                        <BrowserSources user={data.user} previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
+                        <BrowserSources user={data.user} previewMode={data.previewMode} {full_source_configured} {deck_sources_configured} {choices_sources_configured}/>
                     </nav>
                 </Step>
                 <Step>

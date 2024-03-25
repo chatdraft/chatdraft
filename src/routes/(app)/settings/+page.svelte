@@ -17,7 +17,8 @@
     export let data: PageData;
 
     let full_source_configured = data.full_source_configured;
-    let split_sources_configured = data.split_sources_configured;
+    let deck_sources_configured = data.deck_sources_configured;
+    let choices_sources_configured = data.choice_sources_configured;
 
     let skipSnapFan = false;
     let snapFanApiKey = '';
@@ -29,7 +30,8 @@
 		if (message.startsWith('browserupdated')) {
             const obj = JSON.parse(message.substring('browserupdated:'.length));
             full_source_configured = obj.full_source_configured;
-            split_sources_configured = obj.split_sources_configured;
+            deck_sources_configured = obj.deck_sources_configured;
+            choices_sources_configured = obj.choice_sources_configured;
         }
 	}
 
@@ -105,7 +107,7 @@
     <br/>
 
     <h2 class="h2">Browser Sources</h2>
-    <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {split_sources_configured}/>
+    <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {deck_sources_configured} {choices_sources_configured}/>
     <br/>
 
     <h2 class="h2">Snap Collection</h2>

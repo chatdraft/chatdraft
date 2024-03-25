@@ -2,7 +2,7 @@ import TwitchBot from '$lib/server/twitchBot';
 import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandler';
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { IsFullSourceConfigured, IsSplitSourceConfigured } from '$lib/server/browserSourceHandler';
+import { IsChoiceSourceConfigured, IsDeckSourceConfigured, IsFullSourceConfigured } from '$lib/server/browserSourceHandler';
 import { DbAddChannel, DbRemoveChannel, DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
 
 
@@ -11,17 +11,19 @@ export const load = (async ({locals}) => {
     const user = locals.user?.channelName;
     let previewMode = false;
     let full_source_configured = false;
-    let split_sources_configured = false;
+    let deck_sources_configured = false;
+    let choice_sources_configured = false;
     if (user) {
         previewMode = GetPreviewStatus(user)
         full_source_configured = IsFullSourceConfigured(user);
-        split_sources_configured = IsSplitSourceConfigured(user);
+        deck_sources_configured = IsDeckSourceConfigured(user);
+        choice_sources_configured = IsChoiceSourceConfigured(user);
     }
     const duration = locals.user.userPreferences?.draftRoundDuration || 90;
     const selectionCount = locals.user.userPreferences?.cardsPerRound || 6;
     const subsExtraVote = locals.user.userPreferences?.subsExtraVote || false;
     const collectionComplete = locals.user.userPreferences?.collection == null;
-    return { user: user, botInChannel: locals.user.userPreferences?.botJoinsChannel, previewMode: previewMode, full_source_configured: full_source_configured, split_sources_configured: split_sources_configured, duration: duration, selectionCount: selectionCount, subsExtraVote: subsExtraVote, collectionComplete: collectionComplete};
+    return { user: user, botInChannel: locals.user.userPreferences?.botJoinsChannel, previewMode: previewMode, full_source_configured: full_source_configured, deck_sources_configured: deck_sources_configured, choice_sources_configured: choice_sources_configured, duration: duration, selectionCount: selectionCount, subsExtraVote: subsExtraVote, collectionComplete: collectionComplete};
 }) satisfies PageServerLoad;
 
 export const actions = {

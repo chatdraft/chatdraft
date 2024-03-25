@@ -320,7 +320,7 @@
             "variantKey": null,
             "url": "/cards/Cannonball/",
             "name": "Cannonball",
-            "description": "<b>On Reveal:</b> Move the highest-Power enemy card here away. If you can't, destroy it with a Rock.\n<b><span style='color: #fad728'>AvX:</span></b> Once you play 4, <b><span style='color: #fad728'>X-Men</span></b> have +1 Power.",
+            "description": "<b>On Reveal:</b> Move the highest-Power enemy card here away. If you can't, destroy it with a Rock.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cannonball-8257aa410f5fb14a2e8f0d2397a107318efa66d5c33fed49bc44e3376504fd2c.webp",
             "cost": 5
         },

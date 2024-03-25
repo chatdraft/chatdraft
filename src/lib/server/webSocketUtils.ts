@@ -44,6 +44,6 @@ export const PreviewToggled = async(player_channel: string, previewStatus: boole
     SendMessage(player_channel, `previewtoggled:${previewStatus}`);
 }
 
-export const BrowserSourceUpdated = async(player_channel: string, full_source_configured: boolean, split_sources_configured: boolean) => {
-    SendMessage(player_channel, `browserupdated:${JSON.stringify({full_source_configured: full_source_configured, split_sources_configured: split_sources_configured})}`);
+export const BrowserSourceUpdated = async(player_channel: string, full_source_configured: boolean, deck_sources_configured: boolean, choice_sources_configured: boolean) => {
+    SendMessage(player_channel, `browserupdated:${JSON.stringify({full_source_configured: full_source_configured, deck_sources_configured: deck_sources_configured, choice_sources_configured: choice_sources_configured})}`);
 }

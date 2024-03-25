@@ -17,6 +17,7 @@
 
 	const handleMessage = async(message: string) => {
 		if (message.startsWith("Hello")) {
+			ws?.send(`channel:${data.player}`)
 			ws?.send(`bs:${data.hide}`);
 		}
 		if (message == 'showdeck') {

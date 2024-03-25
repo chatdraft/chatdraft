@@ -8,6 +8,7 @@ import { DbLoadToken } from '$lib/server/db';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
 import { building } from '$app/environment';
 import cookie from 'cookie';
+import { CloseBrowserSource, RegisterFullBrowserSource, RegisterDeckBrowserSource, RegisterChoiceBrowserSource } from '$lib/server/browserSourceHandler';
 
 const auth_provider = new RefreshingAuthProvider({
 	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID!,
@@ -37,6 +38,27 @@ export const startupWebsocketServer = () => {
 			ws.send(`Hello from SvelteKit ${new Date().toLocaleString()} (${ws.socketId})]`);
 			ws.on('close', () => {
 				console.log(`[wss:kit] client disconnected (${ws.socketId}, ${ws.player_channel})`);
+				CloseBrowserSource(ws.player_channel, ws.socketId);
+			});
+			ws.on('message', (event) => {
+				const message = event.toString();
+				if (message.startsWith("bs:")) {
+					const hide = message.split(':')[1];
+					if (hide == '') {
+						console.log(`player channel: ${ws.player_channel}`);
+						RegisterFullBrowserSource(ws.player_channel, ws.socketId);
+					}
+					else if (hide == 'choice') {
+						RegisterDeckBrowserSource(ws.player_channel, ws.socketId);
+					}
+					else if (hide == 'deck') {
+						RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
+					}
+				}
+				if (message.startsWith("channel:")) {
+					const channel = message.split(':')[1];
+					ws.player_channel = channel;
+				}
 			});
 		});
 
