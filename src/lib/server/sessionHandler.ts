@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
 import type { User } from '$lib/server/db/users'
-import { sessionTimout_ms } from '$lib/constants';
+import { sessionTimout_ms } from '../constants';
 
 type TSessionID = string;
 
