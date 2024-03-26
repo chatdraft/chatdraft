@@ -9,7 +9,6 @@ interface IBrowserSourceInstances {
 export const browserSourceStatuses = new Map<string, IBrowserSourceInstances>();
 
 export function CloseBrowserSource(channel_name: string, websocket_id: string) {
-    console.log("CloseBrowserSource")
     if (browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.get(channel_name)?.full_sources.forEach((ws_id, index) => {
             if (ws_id == websocket_id) {
@@ -68,8 +67,6 @@ export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: 
 }
 
 export function IsFullSourceConfigured(channel_name: string) {
-    console.log("FullBrowserSource")
-    console.log(browserSourceStatuses);
     return ((browserSourceStatuses.has(channel_name)) &&
         (browserSourceStatuses.get(channel_name)!.full_sources.length > 0))
 }

@@ -45,7 +45,6 @@ export const startupWebsocketServer = () => {
 				if (message.startsWith("bs:")) {
 					const hide = message.split(':')[1];
 					if (hide == '') {
-						console.log(`player channel: ${ws.player_channel}`);
 						RegisterFullBrowserSource(ws.player_channel, ws.socketId);
 					}
 					else if (hide == 'choice') {
