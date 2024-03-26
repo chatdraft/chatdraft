@@ -2224,6 +2224,15 @@
             "cost": 3
         },
         {
+            "cardDefKey": "WarMachine",
+            "variantKey": null,
+            "url": "/cards/WarMachine/",
+            "name": "War Machine",
+            "description": "<b>On Reveal:</b> Until the end of next turn, nothing can stop you from playing cards anywhere.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WarMachine-c9c781db4cd49b478a5c4fd3dda50f00a3fdeb8aff44306e93084b4d759e9665.webp",
+            "cost": 4
+        },
+        {
             "cardDefKey": "Warpath",
             "variantKey": null,
             "url": "/cards/Warpath/",
