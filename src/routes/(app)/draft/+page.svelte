@@ -4,7 +4,7 @@
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { CodeBlock, SlideToggle } from '@skeletonlabs/skeleton';
-	import { onDestroy, onMount } from 'svelte';
+	import { getContext, onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { establishWebSocket } from '$lib/websocket.js';
 	import type { PageData } from './$types';
@@ -50,7 +50,10 @@
 		ws = null;
 	});
 
+	const { ResetTimeout } = getContext<{ResetTimeout: () => void}>('ResetTimer');
+
 	async function NewDraft() {
+		ResetTimeout();
 		const ret = await fetch(`/api/v1/draft/player?duration=${duration}&selections=${selectionCount}&subsExtraVote=${subsExtraVote}`, { method: 'POST' });
 		invalidateAll();
 	}

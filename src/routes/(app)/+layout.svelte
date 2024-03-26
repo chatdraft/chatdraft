@@ -12,7 +12,7 @@
 	import { AppBar, AppRail, AppRailAnchor, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import AppRailIcon from '$lib/components/AppRailIcon.svelte';
-	import { onMount } from 'svelte';
+	import { onMount, setContext } from 'svelte';
 	import { sessionTimout_ms } from '$lib/constants';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
@@ -41,6 +41,8 @@
 		clearTimeout(timeoutTimer);
 		StartIdleTimer();
 	}
+
+	setContext('ResetTimer', {ResetTimeout})
 
 	onNavigate(async () => {
 		invalidate('chatdraft:auth');
