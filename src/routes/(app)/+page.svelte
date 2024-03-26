@@ -11,7 +11,7 @@
 
 	onMount(() => {
 		if ($page.url.searchParams.get("timedout")) {
-			toastStore.trigger({message: "You have been logged after 60 minutes of inactivity.", autohide: false, background: 'variant-filled-warning' } )
+			toastStore.trigger({message: "You have been logged out after 60 minutes of inactivity.", autohide: false, background: 'variant-filled-warning' } )
 			invalidate('chatdraft:auth');
 		}
 	})
