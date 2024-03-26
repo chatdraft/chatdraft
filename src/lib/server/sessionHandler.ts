@@ -3,12 +3,13 @@ import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
 import type { User } from '$lib/server/db/users'
+import { sessionTimout_ms } from '$lib/constants';
 
 type TSessionID = string;
 
 const sessionUsers = new Map<TSessionID, {token: AccessToken, user: User | null}>();
 const sessionUserTimeouts = new Map<TSessionID, NodeJS.Timeout>();
-const sessionTimeout = 1000 * 60 * 60 // 60 minutes
+const sessionTimeout = sessionTimout_ms;
 
 export function setSession(accessToken: AccessToken, user: User | null) {
 

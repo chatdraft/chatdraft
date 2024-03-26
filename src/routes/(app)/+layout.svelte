@@ -12,13 +12,39 @@
 	import { AppBar, AppRail, AppRailAnchor, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import AppRailIcon from '$lib/components/AppRailIcon.svelte';
+	import { onMount } from 'svelte';
+	import { sessionTimout_ms } from '$lib/constants';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
     export let data;
     $: user = data.user;
 
+	let timeoutTimer: NodeJS.Timeout
+
+	onMount(() => {
+		StartIdleTimer();
+	})
+
+	async function StartIdleTimer() {
+		if (data.user) {
+			timeoutTimer = setTimeout(IdleTimeout, sessionTimout_ms + 500)
+		}
+	}
+
+	async function IdleTimeout() {
+		console.log("idle timeout")
+		invalidate('chatdraft:auth');
+		window.location.href = "/?timedout=true";
+	}
+
+	async function ResetTimeout() {
+		clearTimeout(timeoutTimer);
+		StartIdleTimer();
+	}
+
 	onNavigate(async () => {
 		invalidate('chatdraft:auth');
+		ResetTimeout();
 	});
 </script>
 

@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>oro's chat draft</title>
+	<title>oro's chat draft - About</title>
 	<meta name="Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 
