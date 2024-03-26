@@ -2,30 +2,28 @@
 const options = {
     root: null,
     rootMargin: "0px",
-    threshold: 0
+    threshold: 0.25
 }
 
 export const lazyLoad = (image: HTMLImageElement, src: string) => {
     const loaded = () => {
-        //image.classList.add('visible')                          // doesn't work in REPL
-			  image.style.opacity = "1"                                 // REPL hack to apply loading animation
+		image.style.opacity = "1"
     }
     const observer = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting) {
-					  console.log('an image has loaded')                  // console log for REPL
-            image.src = src                                     // replace placeholder src with the image src on observe
-            if (image.complete) {                               // check if instantly loaded
+            image.src = src
+            if (image.complete) {
                 loaded()        
             } else {
-                image.addEventListener('load', loaded)          // if the image isn't loaded yet, add an event listener
+                image.addEventListener('load', loaded)
             }
         }
     }, options)
-    observer.observe(image)                                     // intersection observer
+    observer.observe(image)
 
     return {
         destroy() {
-            image.removeEventListener('load', loaded)           // clean up the event listener
+            image.removeEventListener('load', loaded)
         }
     }
 }
