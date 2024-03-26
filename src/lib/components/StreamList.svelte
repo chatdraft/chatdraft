@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type IDraft from "$lib/snap/draft";
-    import { shuffle } from "$lib/snap/utils";
 
     export let activeDrafts: {
         channel: string
@@ -18,8 +17,8 @@
                     <a href="https://www.twitch.tv/{draft.channel}" target="_blank" class="anchor w-full">
                         <img src="{draft.thumbnailUrl.replace("{width}", "320").replace("{height}", "180")}" alt="{draft.channel}'s stream" class="p-2">
                         <iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1 invisible group-hover:visible group-focus:visible"/>
-                        <p class="absolute top-4 left-4 font-bold text-4xl font-outline shadow-black text-white font-snapa uppercase truncate w-64 text-center backdrop-blur-md bg-white/30 text-center rounded-md">{draft.channel}</p>
-                        <div class="absolute bottom-2 left-4 font-bold text-4xl font-outline shadow-black text-white font-snapn uppercase backdrop-blur-md bg-white/30 text-center rounded-md px-2">Pick <span class="font-snapn text-4xl font-outline shadow-black">{draft.draft.total}</span></div>
+                        <p class="absolute top-4 left-4 font-bold text-4xl font-outline shadow-black text-white font-snapa uppercase truncate w-64 text-center backdrop-blur-md bg-white/30 rounded-md">{draft.channel}</p>
+                        <div class="absolute bottom-2 right-4 font-bold text-4xl font-outline shadow-black text-white font-snapn uppercase backdrop-blur-md bg-white/30 text-center rounded-md px-2">Pick <span class="font-snapn text-4xl font-outline shadow-black">{draft.draft.total}</span></div>
                     </a>
                 </div>
             </div>

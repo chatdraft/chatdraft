@@ -27,7 +27,7 @@ export default class TwitchBot {
         this.bot = new Bot({authProvider, channels: channels, 
             commands: [
                 createBotCommand('chatdraft', async (_,{say}) => 
-                    await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote!`)),
+                    await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote! To use Chat Draft, inquire at twitch.tv/jjrolk`)),
                 createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
                         const preferences = await DbGetUserPreferences(broadcasterName);
