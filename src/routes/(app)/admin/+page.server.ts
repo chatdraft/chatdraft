@@ -28,7 +28,7 @@ export const actions = {
     authorize: async ({request, locals}) => {
         if (!locals.user || !(locals.user.isAdmin)) throw error(403)
         const data = await request.formData();
-        const username = data.get("username")?.toString();
+        const username = data.get("username")?.toString().toLowerCase();
         if (username) {
             const api = new ApiClient({authProvider: locals.auth_provider});
             const user = await api.users.getUserByName(username);
@@ -38,7 +38,7 @@ export const actions = {
     deauthorize: async ({request, locals}) => {
         if (!locals.user || !(locals.user.isAdmin)) throw error(403)
         const data = await request.formData();
-        const username = data.get("username")?.toString();
+        const username = data.get("username")?.toString().toLowerCase();
         if (username) {
             const api = new ApiClient({authProvider: locals.auth_provider});
             const user = await api.users.getUserByName(username);
@@ -48,11 +48,11 @@ export const actions = {
     joinchannel: async ({request, locals}) => {
         if (!locals.user || !(locals.user.isAdmin)) throw error(403)
         const data = await request.formData();
-        const username = data.get("username");
+        const username = data.get("username")?.toString().toLowerCase();
         if (username) {
             const authProvider = locals.auth_provider;
             const api = new ApiClient({authProvider});
-            const user = await api.users.getUserByName(username.toString());
+            const user = await api.users.getUserByName(username);
             if (user) {
                 DbAddChannel(user.id);
             }
@@ -61,11 +61,11 @@ export const actions = {
     partchannel: async ({request, locals}) => {
         if (!locals.user || !(locals.user.isAdmin)) throw error(403)
         const data = await request.formData();
-        const username = data.get("username");
+        const username = data.get("username")?.toString().toLowerCase();
         if (username) {
             const authProvider = locals.auth_provider;
             const api = new ApiClient({authProvider});
-            const user = await api.users.getUserByName(username.toString());
+            const user = await api.users.getUserByName(username);
             if (user) {
                 DbRemoveChannel(user.id);
             }
