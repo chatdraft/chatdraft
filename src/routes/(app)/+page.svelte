@@ -24,7 +24,7 @@
 	<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
 </svelte:head>
 
-<div class="container">
+<div class="md:container">
 	<div class="m-4">
 		<h1 class="h1">
 			Home

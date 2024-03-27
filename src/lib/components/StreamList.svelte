@@ -13,7 +13,7 @@
     <p class="mt-4">
         {activeDrafts.length} Live Twitch Channels Chat Drafting
     </p>
-    <div class="md:grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-w-max h-screen">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-w-max h-screen justify-center">
         {#each activeDrafts as draft}
             <div class="group w-fit">
                 <div class="relative group-hover:outline outline-1 outline-offset-4 outline-white card m-2">
