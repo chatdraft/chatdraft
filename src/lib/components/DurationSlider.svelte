@@ -8,12 +8,12 @@
 
 <div class="flex justify-between items-center pt-2">
     <div class="font-bold">
-        Voting period: {duration} s
+        Voting Period (seconds): {duration}
     </div>
 </div>
 <br/>
 <div class="flex pt-4">
-    <div class="w-1/12 pl-4">{minDuration}
+    <div class="mx-2">{minDuration}
     </div>
     <div class="w-10/12">
         <RangeSlider class="relative mb-6" label="duration" name="duration" bind:value={duration} min={minDuration} max={maxDuration} ticked step={30}>

@@ -3,13 +3,14 @@
 	import { twitch_login_uri } from '$lib/api/twitch/client';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { CodeBlock, SlideToggle } from '@skeletonlabs/skeleton';
+	import { CodeBlock } from '@skeletonlabs/skeleton';
 	import { getContext, onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { establishWebSocket } from '$lib/websocket.js';
 	import type { PageData } from './$types';
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
+	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 
 	export let data: PageData;
 	let now = Date.now();
@@ -100,10 +101,7 @@
 					<SelectionCountSlider bind:selectionCount />
 					<div/>
 				</div>
-				<div class="align-super">
-					<span class="font-bold inline-block align-top mt-1">Subscriber votes +1:</span>
-					<SlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
-				</div>
+				<ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
 				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
 			{:else}
 				The bot isn't set up to join your Twitch channel. This is required

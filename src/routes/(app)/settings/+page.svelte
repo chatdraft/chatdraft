@@ -4,13 +4,14 @@
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
 	import { onMount } from 'svelte';
     import type { PageData } from './$types';
-	import { SlideToggle, getToastStore } from '@skeletonlabs/skeleton';
+	import { getToastStore } from '@skeletonlabs/skeleton';
 	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 	import { establishWebSocket } from '$lib/websocket';
 	import DraftPreferences from '$lib/components/DraftPreferences.svelte';
 	import CollectionState from '$lib/components/CollectionState.svelte';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
+	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 
     const toastStore = getToastStore();
     
@@ -58,10 +59,10 @@
         }
     }}>
         <h2 class="h2">
-            Default Draft Preferences
+            Draft Defaults
         </h2>
-        <p class="m-4">
-            Set your default preferences for starting a draft from the chat command.
+        <p class="mt-4">
+            Set your default preferences for starting a draft.
         </p>
         <div class="grid grid-cols-2">
             <DurationSlider duration={data.duration} />
@@ -69,16 +70,13 @@
         <div class="grid grid-cols-2">
             <SelectionCountSlider selectionCount={data.selectionCount} />
         </div>
-        <div class="align-super">
-            <span class="font-bold inline-block align-top mt-1">Subscriber votes +1:</span>
-            <SlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
-        </div>
+        <ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
         <button class="btn btn-lg variant-filled-primary mt-2">Save Defaults</button><br/>
     </form>
     <br/><br/>
     <h2 class="h2">Chat Draft Bot</h2>
     {#if data.botInChannel}
-        <p class="m-4">
+        <p class="mt-4">
             Have Chat Draft Bot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
         </p>
         <form method="POST" action="?/part" on:submit={invalidateAll} use:enhance={()=> {
@@ -89,7 +87,7 @@
                 update();
             }
         }}>
-            <button class="btn btn-lg variant-filled-warning m-4">Leave Channel</button>
+            <button class="btn btn-lg variant-filled-warning mt-2">Leave Channel</button>
         </form>
     {:else}
         Have Chat Draft Bot join your channel:
@@ -101,13 +99,14 @@
                 update();
             }
         }}>
-            <button class="btn btn-lg variant-filled-primary m-4">Join Channel</button>
+            <button class="btn btn-lg variant-filled-primary mt-2">Join Channel</button>
         </form>
     {/if}
     <br/>
+    <br/>
 
     <h2 class="h2">Browser Sources</h2>
-    <BrowserSources user="{data.user || ''}" previewMode={data.previewMode} {full_source_configured} {deck_sources_configured} {choices_sources_configured}/>
+    <BrowserSources user={data.user || ''} previewMode={data.previewMode} {full_source_configured} {deck_sources_configured} {choices_sources_configured}/>
     <br/>
 
     <h2 class="h2">Snap Collection</h2>

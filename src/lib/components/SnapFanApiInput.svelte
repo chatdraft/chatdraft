@@ -1,5 +1,5 @@
 <script>
-	import { SlideToggle } from "@skeletonlabs/skeleton";
+	import ChatDraftSlideToggle from "./ChatDraftSlideToggle.svelte";
 
     export let skipSnapFan = false;
     export let snapFanApiKey = '';
@@ -19,7 +19,7 @@
         <h4 class="h4 pb-4">
             Full Collection / Skip setting up Snap.fan
         </h4>
-        <SlideToggle name="skipSnapFan" bind:checked={skipSnapFan} active="bg-primary-500">Skip Snap.fan setup</SlideToggle>
+        <ChatDraftSlideToggle name="skipSnapFan" bind:checked={skipSnapFan} active="bg-primary-500" label="Skip Snap.fan setup" />
     </div>
     <div class="min-h-fit w-[1px] mx-4 bg-surface-600"/>
     <div class="w-1/2">

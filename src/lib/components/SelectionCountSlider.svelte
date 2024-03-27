@@ -13,7 +13,7 @@
 </div>
 <br/>
 <div class="flex pt-4">
-    <div class="w-1/12 pl-4">
+    <div class="mx-3">
         {minSelectionCount}
     </div>
     <div class="w-10/12">

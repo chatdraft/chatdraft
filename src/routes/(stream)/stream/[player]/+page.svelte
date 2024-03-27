@@ -156,7 +156,7 @@
 				</div>
 			{/if}
 			{#if data.hide != 'choice' && data.hide != 'deck'}
-				<div class="mt-4 bg-transparent"></div>
+				<div class="mt-2 bg-transparent"></div>
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
@@ -167,14 +167,14 @@
 					</h2>
 					</div>
 					<!-- Grid of Cards -->
-					<div class="grid grid-cols-4 gap-2 [text-shadow:2px_-2px_-2px_var(--tw-shadow-color)] shadow-black">
+					<div class="grid grid-cols-4 [text-shadow:2px_-2px_-2px_var(--tw-shadow-color)] shadow-black">
 						{#each Array(12) as _, i}
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
 								{#if current_draft?.cards[i]}
-									<img src="{current_draft?.cards[i].displayImageUrl}" alt="{current_draft?.cards[i].name}" />
+									<div class="bg-contain bg-no-repeat bg-center w-44 h-44" style="background-image: url({current_draft?.cards[i].displayImageUrl})"></div>
 								{:else}
-									<img src="/Placeholder.webp" alt="Placeholder card" />
+									<div class="bg-contain bg-no-repeat bg-center w-44 h-44" style="background-image: url(/Placeholder.webp)" ></div>
 								{/if}
 							</div>
 						{/each}
