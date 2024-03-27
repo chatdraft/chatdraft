@@ -60,7 +60,7 @@
             <Stepper buttonCompleteLabel="Finish Set Up" on:complete={onComplete}>
                 <Step locked={data.user == undefined}>
                     <svelte:fragment slot="header">
-                        Oro Chat Draft Log In by Twitch Authentication
+                        User Registration
                     </svelte:fragment>
                     <p>
                         Successfully authenticated with Twitch and logged into Oro Chat Draft!
@@ -80,7 +80,7 @@
                         <p>
                             Recommendation: Provide chat draft bot with VIP status 
                             - type <code class="code">/vip chatdraftbot</code> into 
-                            your Twitch chat. VIP status allows bot to function 
+                            your Twitch chat. VIP status allows the bot to function 
                             with follower/subscriber only mode enabled.
                         </p>
                         <br/>

@@ -65,15 +65,15 @@
     <svelte:fragment slot="panel">
         <div class="card p-2">
             {#if tabSet === 0}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}`} layerName='Oro%20Chat%20Draft' height={1080} width={640}>
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}`} layerName='Oro%20Chat%20Draft' height={940} width={470}>
                     TODO: insert Screenshot of Options & Deck and recommended browser resolution
                 </BrowserSourceComponent>
             {:else if tabSet === 1}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=deck`} layerName='Oro%20Chat%20Draft' height={410} width={500}>
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=deck`} layerName='Oro%20Chat%20Draft' height={420} width={470}>
                     TODO: insert Screenshot of Options only and recommended browser resolution
                 </BrowserSourceComponent>
             {:else if tabSet === 2}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=choices`} layerName='Oro%20Chat%20Draft' height={445} width={500}>
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=choice`} layerName='Oro%20Chat%20Draft' height={580} width={470}>
                     TODO: insert Screenshot of Deck only and recommended browser resolution
                 </BrowserSourceComponent>
             {/if}

@@ -11,7 +11,7 @@
 	{/if}
 	<section>
 		{#if card.displayImageUrl}
-			<img src={card.displayImageUrl} alt="{card.name}'s card" />
+			<img src={card.displayImageUrl} alt="{card.name}'s card" {...$$restProps} />
 		{/if}
 	</section>
 	{#if !hideText}

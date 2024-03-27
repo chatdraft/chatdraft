@@ -147,7 +147,7 @@
 										</div>
 
 										<!-- Card Image -->
-										<div><SnapCard hideText={true} card={choice} /></div>
+										<div><SnapCard hideText={true} card={choice} height='198' width='198' /></div>
 
 									</div>
 								{/each}
@@ -172,9 +172,9 @@
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
 								{#if current_draft?.cards[i]}
-									<div class="bg-contain bg-no-repeat bg-center w-44 h-44" style="background-image: url({current_draft?.cards[i].displayImageUrl})"></div>
+									<div class="bg-contain bg-no-repeat bg-center w-40 h-40 -mx-4" style="background-image: url({current_draft?.cards[i].displayImageUrl})"></div>
 								{:else}
-									<div class="bg-contain bg-no-repeat bg-center w-44 h-44" style="background-image: url(/Placeholder.webp)" ></div>
+									<div class="bg-contain bg-no-repeat bg-center w-40 h-40 -mx-4" style="background-image: url(/Placeholder.webp)" ></div>
 								{/if}
 							</div>
 						{/each}
@@ -186,11 +186,16 @@
 	{:else}
 		{#if data.hide != 'deck'}
 			<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
-			<div class="min-h-screen flex flex-row bg-black/70 text-white">
+			<div class="flex flex-row bg-black/70 text-white bg-purple-900 bg-opacity-70 text-4xl rounded-t-lg">
 				<div class="flex flex-shrink flex-col">
-					<SnapDeck cards={current_draft?.cards || []} cols={4} />
+					{#if data.hide == ''}
+						<SnapDeck cards={current_draft?.cards || []} cols={3} />
+					{:else}
+						<SnapDeck cards={current_draft?.cards || []} cols={4} />
+					{/if}
 				</div>
 			</div>
+			<p class="bg-purple-900 bg-opacity-70 rounded-b-lg text-xl flex justify-center font-outline uppercase shadow-black text-white font-snapa">To use Chat Draft, inquire at:&nbsp;<span class="anchor font-serif font-outline-0 normal-case relative bottom-[2px]">twitch.tv/jjrolk</span></p>
 		{/if}
 	{/if}
 {/if}
