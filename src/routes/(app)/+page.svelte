@@ -40,9 +40,9 @@
 			</p>
 		{/if}
 		{#if data.activeDrafts}
-		<h2 class="h2 pt-2">
-			Active Chat Drafts
-		</h2>
+			<h2 class="h2 pt-2">
+				Active Chat Drafts
+			</h2>
 			<StreamList activeDrafts={data.activeDrafts}/>
 		{/if}
 	</div>

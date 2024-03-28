@@ -12,7 +12,7 @@
     }
 </script>
 
-Click this button to copy the default directory on Windows for Snap's game state files:
+Click this button to copy the default directory on Windows for Marvel Snap's game state files:
 <button class="btn btn-icon variant-filled-primary" on:click|preventDefault use:clipboard={gameStateDir}>
     <iconify-icon icon="clarity:copy-to-clipboard-line" width="24" height="24" flip="horizontal"></iconify-icon>
 </button>

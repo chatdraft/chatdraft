@@ -77,7 +77,7 @@
     <h2 class="h2">Chat Draft Bot</h2>
     {#if data.botInChannel}
         <p class="mt-4">
-            Have Chat Draft Bot leave your channel. Note that you will be unable to use Chat Draft without the bot in your channel.
+            Have chat draft Bot leave your channel.
         </p>
         <form method="POST" action="?/part" on:submit={invalidateAll} use:enhance={()=> {
             return async ({result, update}) => {
@@ -89,8 +89,13 @@
         }}>
             <button class="btn btn-lg variant-filled-warning mt-2">Leave Channel</button>
         </form>
+        <p class="mt-4">
+            Note: chat draft will not work without the bot in your channel.
+        </p>
     {:else}
-        Have Chat Draft Bot join your channel:
+        <p class="mt-4">
+            Have chat draft Bot join your channel:
+        </p>
         <form method="POST" action="?/join" on:submit={invalidateAll} use:enhance={()=> {
             return async ({result, update}) => {
                 if (result.type == "success") {

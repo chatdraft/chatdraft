@@ -31,7 +31,7 @@
             <slot />
         </p>
         <div class="flex mb-4 p-2">
-            <span class="font-bold pt-6">Browser Source URL:</span>
+            <span class="font-bold pt-6">URL:</span>
             <div data-clipboard="OptionsAndDeckView" class="m-4 whitespace-nowrap border p-2 w-104">
                 {url}
             </div>

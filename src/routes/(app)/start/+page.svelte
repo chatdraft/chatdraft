@@ -57,13 +57,14 @@
         <h1 class="h1">Getting Started</h1>
         <br/>
         <form method="POST" action="?/completeSetup" bind:this={setupForm}>
-            <Stepper buttonCompleteLabel="Finish Set Up" on:complete={onComplete}>
+            <Stepper buttonCompleteLabel="Finish" on:complete={onComplete}>
                 <Step locked={data.user == undefined}>
                     <svelte:fragment slot="header">
                         User Registration
                     </svelte:fragment>
                     <p>
-                        Successfully authenticated with Twitch and logged into Oro Chat Draft!
+                        <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
+                        Successfully authenticated with Twitch! Now logged into Oro Chat Draft!
                     </p>
                     <br/>
                     <p>
@@ -75,7 +76,8 @@
                         Invite Chat Draft Bot
                     </svelte:fragment>
                     {#if data.botInChannel}
-                        ✅ Bot successfully joined your channel!
+                        <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
+                        Bot successfully joined your channel!
                         <br/>
                         <p>
                             Recommendation: Provide chat draft bot with VIP status 
@@ -88,18 +90,18 @@
                     {:else}
                     <p>
                         The chat draft bot needs to be added to your Twitch 
-                        channel. Click the link “Join Channel” button to invite 
+                        channel. Click the “Join Channel” button to invite 
                         the bot.
                     </p>
                     
                         <form method="POST" action="/settings?/join" use:enhance={()=> {
                             return async ({result, update}) => {
                                 if (result.type == "success") {
-                                    toastStore.trigger({message:"✅ Bot successfully joined your channel."});
+                                    toastStore.trigger({message:"Bot successfully joined your channel."});
                                 }
                                 update();
                             }
-                        }}><button class="btn btn-lg variant-filled-primary m-4">Join channel</button></form>
+                        }}><button class="btn btn-lg variant-filled-primary">Join Channel</button></form>
                     {/if}
                 </Step>
                 <Step>
@@ -112,14 +114,14 @@
                 </Step>
                 <Step>
                     <svelte:fragment slot="header">
-                        Setup complete!
+                        Setup Complete!
                     </svelte:fragment>
                     <p>
                         Congratulations! You have successfully configured Oro Chat Draft!
                     </p>
                     <br/>
                     <p>
-                        Click ‘Finish Setup’ to complete Getting Started.
+                        Click ‘Finish' to complete Getting Started.
                     </p>
                 </Step>
             </Stepper>

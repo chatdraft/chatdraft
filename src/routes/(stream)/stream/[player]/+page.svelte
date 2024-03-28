@@ -128,7 +128,7 @@
 						</div>
 					</div>
 					<!-- Grid of Cards -->
-					<div class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
+					<div class="grid grid-cols-3 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
 						{#if (choices && choices.length > 0)}
 								{#each choices as choice, index}
 									<div class="border-white bg-black bg-opacity-70 border-2 rounded-lg shadow-md shadow-black/100 relative" class:blur="{winningCard && winningCard.cardDefKey != choice.cardDefKey}">
@@ -147,7 +147,7 @@
 										</div>
 
 										<!-- Card Image -->
-										<div><SnapCard hideText={true} card={choice} height='198' width='198' /></div>
+										<div><SnapCard hideText={true} card={choice} /></div>
 
 									</div>
 								{/each}
@@ -172,9 +172,9 @@
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
 								{#if current_draft?.cards[i]}
-									<div class="bg-contain bg-no-repeat bg-center w-40 h-40 -mx-4" style="background-image: url({current_draft?.cards[i].displayImageUrl})"></div>
+									<SnapCard hideText={true} card={current_draft?.cards[i]} />
 								{:else}
-									<div class="bg-contain bg-no-repeat bg-center w-40 h-40 -mx-4" style="background-image: url(/Placeholder.webp)" ></div>
+									<img src='/Placeholder.webp' alt="Placeholder card" />
 								{/if}
 							</div>
 						{/each}

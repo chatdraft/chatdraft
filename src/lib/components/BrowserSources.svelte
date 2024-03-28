@@ -23,35 +23,6 @@
     combined (simple) or separate (advanced).
 </p>
 
-<div class="grid grid-cols-3 mb-4 mt-2">
-    <p class="text-center">
-        {#if full_source_configured}
-            Combined source connected!
-            <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
-        {:else}
-            Combined source not connected
-            <iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
-        {/if}
-    </p>
-    <p class="text-center">
-        {#if choices_sources_configured}
-            Choices source connected!
-            <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
-        {:else}
-            Choices source not connected
-            <iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
-        {/if}
-    </p>
-    <p class="text-center">
-        {#if deck_sources_configured}
-            Deck source connected!
-            <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
-        {:else}
-            Deck source not connected
-            <iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
-        {/if}
-    </p>
-</div>
 <TabGroup>
     <Tab bind:group={tabSet} name="combinedTab" value={0}>
         <span>Combined</span>
@@ -80,13 +51,40 @@
         </div>
     </svelte:fragment>
 </TabGroup>
-
+<div class="grid grid-cols-3 mb-4 mt-2">
+    <p class="text-center">
+        {#if full_source_configured}
+            <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
+            Combined connected!
+        {:else}
+            <iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
+            Combined not connected
+        {/if}
+    </p>
+    <p class="text-center">
+        {#if choices_sources_configured}
+            <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
+            Choices connected!
+        {:else}
+            <iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
+            Choices not connected
+        {/if}
+    </p>
+    <p class="text-center">
+        {#if deck_sources_configured}
+            <iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
+            Deck connected!
+        {:else}
+            <iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
+            Deck not connected
+        {/if}
+    </p>
+</div>
 <div class="m-4">
     <h3 class="h3">Preview Mode</h3>
     <p class="mt-2">
-        When an draft isn't active, the browser sources will be completely transparent.
-        Preview mode fills the browser sources with an example draft that you can use
-        to adjust them to your stream layout without starting a real draft.
+        When a draft is not active, the browser sources will be completely transparent.
+        Preview mode fills the browser sources with an example draft.
         Once a real draft is started, preview mode will be automatically disabled.
     </p>
     <form method="post" use:enhance action="?/togglePreview" class="m-2">
