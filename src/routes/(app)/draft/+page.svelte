@@ -110,17 +110,23 @@
           ><br />
         </form>
       {:else}
-        The bot isn't set up to join your Twitch channel. This is required to do
-        a Twitch Chat Draft. Please go to <a href="/settings" class="anchor"
-          >Settings</a> to invite the bot.
+        <div class="mt-4">
+          The bot isn't set up to join your Twitch channel. This is required to
+          do a Twitch Chat Draft. Please go to <a
+            href="/settings"
+            class="anchor">Settings</a> to invite the bot.
+        </div>
       {/if}
+    {:else if $page.data.user}
+      <div class="mt-4">
+        If this is your first time here, please go to
+        <a class="anchor" href="/start">Getting Started</a>.
+      </div>
     {:else}
-      If this is your first time here, please go to
-      <a class="anchor" href="/start">Getting Started</a>.
-      {#if !$page.data.user}
-        Otherwise, please
+      <div class="mt-4">
+        Please
         <a class="anchor" href={twitch_login_uri}>Login with Twitch</a>
-      {/if}
+      </div>
     {/if}
   {/if}
   <br />
