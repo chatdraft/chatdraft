@@ -11,6 +11,7 @@
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
+	import { enhance } from '$app/forms';
 
 	export let data: PageData;
 	let now = Date.now();
@@ -52,22 +53,6 @@
 	});
 
 	const { ResetTimeout } = getContext<{ResetTimeout: () => void}>('ResetTimer');
-
-	async function NewDraft() {
-		ResetTimeout();
-		const ret = await fetch(`/api/v1/draft/player?duration=${duration}&selections=${selectionCount}&subsExtraVote=${subsExtraVote}`, { method: 'POST' });
-		invalidateAll();
-	}
-
-	async function DraftCard(cardNumber: number) {
-		const ret = await fetch(`/api/v1/draft/player/choice/${cardNumber}`, { method: 'POST' });
-		invalidateAll();
-	}
-
-	async function CancelDraft() {
-		const ret = await fetch('/api/v1/draft/player', { method: 'DELETE' });
-		invalidateAll();
-	}
 </script>
 
 <svelte:head>
@@ -80,29 +65,33 @@
 		<div class="grid grid-cols-2">
 			<h1 class="h1">Draft</h1>
 			<div class="grid justify-items-end">
-				<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
-					{#if current_draft.total < 12}
-						Cancel Draft
-					{:else}
-						Finish Draft
-					{/if}
-				</button>
+				<form method='post' action='?/cancelDraft' use:enhance>
+					<button class="btn btn-lg variant-outline-warning">
+						{#if current_draft.total < 12}
+							Cancel Draft
+						{:else}
+							Finish Draft
+						{/if}
+					</button>
+				</form>
 			</div>
 		</div>
 	{:else}
 		<h1 class="h1">Draft</h1>
 		{#if data.user?.initialSetupDone}
 			{#if data.botstatus }
-				<div class="grid grid-cols-2">
-					<DurationSlider bind:duration />
-					<div/>
-				</div>
-				<div class="grid grid-cols-2">
-					<SelectionCountSlider bind:selectionCount />
-					<div/>
-				</div>
-				<ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
-				<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>Start Draft</button><br/>
+				<form method='post' action='?/newDraft' use:enhance>
+					<div class="grid grid-cols-2">
+						<DurationSlider bind:duration />
+						<div/>
+					</div>
+					<div class="grid grid-cols-2">
+						<SelectionCountSlider bind:selectionCount />
+						<div/>
+					</div>
+					<ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
+					<button class="btn btn-lg variant-filled-primary" on:click={ResetTimeout}>Start Draft</button><br/>
+				</form>
 			{:else}
 				The bot isn't set up to join your Twitch channel. This is required
 				to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot.
@@ -135,19 +124,22 @@
 		<h3 class="h3">Options:</h3>
 		Press Select to override the votes and force choose a particular card.
 		<section class="grid {grid_layout} justify-items-center">
-			{#each choices as choice}
-				<div class="p-4"><SnapCard card={choice} /></div>
-			{/each}
-			{#each votes as vote}
-				<div>{vote} votes</div>
-			{/each}
-			{#each choices as _choice, index}
-				<button
-					type="button"
-					class="btn btn-md variant-outline-primary p-4 w-1/2"
-					on:click={() => DraftCard(index)}>Select</button
-				>
-			{/each}
+				{#each choices as choice}
+					<div class="p-4"><SnapCard card={choice} /></div>
+				{/each}
+				{#each votes as vote}
+					<div>{vote} votes</div>
+				{/each}
+				{#each choices as choice}
+					<form method='post' action='?/draftCard' use:enhance>
+						<div>
+							<input type='hidden' value={choice.cardDefKey} name='selection'>
+							<button
+								class="btn btn-md variant-outline-primary p-4 w-1/2">Select</button
+							>
+						</div>
+					</form>
+				{/each}
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}

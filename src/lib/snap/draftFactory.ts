@@ -1,5 +1,5 @@
 import { GetAllCards } from "$lib/server/cardsHandler";
-import { SetPreviousDraft, drafts } from "$lib/server/draftHandler";
+import { GetDraft, SetPreviousDraft, drafts } from "$lib/server/draftHandler";
 import { ClearPreviewStatus } from "$lib/server/previewHandler";
 import TwitchBot from "$lib/server/twitchBot";
 import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStarted, NewChoice, VotingClosed } from "$lib/server/webSocketUtils";
@@ -7,6 +7,9 @@ import { Draft } from "./draft";
 
 export default class DraftFactory {
     public static async CreateDraft(player_channel: string, duration: number, selections: number, subsExtraVote: boolean = false, playerCollection: string[] | null) {
+        const currentDraft = GetDraft(player_channel);
+        if (currentDraft) return currentDraft;
+
         const draft = new Draft(player_channel, duration, selections, await GetAllCards(), subsExtraVote, playerCollection);
 	
 		if (draft.player != '') {

@@ -9,7 +9,6 @@
 
 	const establishWebSocket = () => {
 		if (webSocketEstablished) return;
-		console.log('1')
 		const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 		ws = new WebSocket(`${protocol}//${window.location.host}/websocket`);
 		heartbeat();

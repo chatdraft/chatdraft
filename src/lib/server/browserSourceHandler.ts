@@ -34,7 +34,6 @@ export function RegisterFullBrowserSource(channel_name: string, websocket_id: st
         browserSourceStatuses.set(channel_name, { full_sources: [websocket_id], deck_sources: [], choice_sources: [] })
     }
     else {
-        console.log(channel_name)
         browserSourceStatuses.get(channel_name)!.full_sources.push(websocket_id);
     }
     BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));

@@ -34,7 +34,6 @@
 	}
 
 	async function IdleTimeout() {
-		console.log("idle timeout")
 		invalidate('chatdraft:auth');
 		window.location.href = "/?timedout=true";
 	}

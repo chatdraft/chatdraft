@@ -38,6 +38,7 @@ export class Draft extends EventEmitter implements IDraft {
 	currentChoice: Choice | undefined;
 	subsExtraVote: boolean = false;
 	all_cards: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[];
+	started: boolean = false;
 
     onDraftStarted = this.registerEvent<[player_channel: string]>();
 
@@ -57,6 +58,8 @@ export class Draft extends EventEmitter implements IDraft {
 
 
 	public async StartDraft() {
+		if (this.started) return;
+		this.started = true;
 		if (this.player != '') {
         	this.emit(this.onDraftStarted, this.player)
 		}
