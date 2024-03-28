@@ -69,8 +69,8 @@
         {/if}
       </svelte:fragment>
     </FileDropzone>
-    <button class="btn btn-md variant-filled-primary m-4" type="submit"
-      >Submit</button>
+    <button class="btn btn-md variant-filled-primary m-4" type="submit">
+      Submit</button>
     {#if form?.updated}
       Successfully updated card database.
     {/if}
@@ -100,8 +100,8 @@
         update();
       };
     }}>
-    <button class="btn btn-md variant-outline-warning m-4" type="submit"
-      >Reset to default card database</button>
+    <button class="btn btn-md variant-outline-warning m-4" type="submit">
+      Reset to default card database</button>
     {#if form?.reset}
       Successfully reset card database.
     {/if}
@@ -136,8 +136,9 @@
         name="username"
         placeholder="Username"
         class="text-black" />
-      <button class="btn-icon btn-icon-sm variant-outline-primary"
-        ><iconify-icon icon="mdi:check-bold" /></button>
+      <button class="btn-icon btn-icon-sm variant-outline-primary">
+        <iconify-icon icon="mdi:check-bold" />
+      </button>
     </form>
   </ul>
   <br />
@@ -164,8 +165,9 @@
       name="username"
       placeholder="Username"
       class="text-black" />
-    <button class="btn-icon btn-icon-sm variant-outline-primary"
-      ><iconify-icon icon="mdi:check-bold" /></button>
+    <button class="btn-icon btn-icon-sm variant-outline-primary">
+      <iconify-icon icon="mdi:check-bold" />
+    </button>
   </form>
   <br />
   <hr class="m-4" />

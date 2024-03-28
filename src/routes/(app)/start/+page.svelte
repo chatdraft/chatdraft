@@ -117,8 +117,9 @@
                   update();
                 };
               }}>
-              <button class="btn btn-lg variant-filled-primary"
-                >Join Channel</button>
+              <button class="btn btn-lg variant-filled-primary">
+                Join Channel
+              </button>
             </form>
           {/if}
         </Step>

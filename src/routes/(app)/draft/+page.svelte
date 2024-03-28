@@ -106,8 +106,8 @@
             label="Subscriber votes +1" />
           <button
             class="btn btn-lg variant-filled-primary"
-            on:click={ResetTimeout}>Start Draft</button
-          ><br />
+            on:click={ResetTimeout}>Start Draft</button>
+          <br />
         </form>
       {:else}
         <div class="mt-4">
@@ -161,8 +161,9 @@
         <form method="post" action="?/draftCard" use:enhance>
           <div>
             <input type="hidden" value={choice.cardDefKey} name="selection" />
-            <button class="btn btn-md variant-outline-primary p-4 w-1/2"
-              >Select</button>
+            <button class="btn btn-md variant-outline-primary p-4 w-1/2">
+              Select
+            </button>
           </div>
         </form>
       {/each}
