@@ -58,13 +58,12 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-        
 
       - name: Apply database migration and database seed
         run: |
           npm run db:migrate
           npm run seed
-        env: 
+        env:
           SQL_DB_URI: ${{ secrets.SQL_DB_URI }}
 
       - name: 'Deploy to Azure Web App'

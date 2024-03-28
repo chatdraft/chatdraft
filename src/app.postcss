@@ -5,44 +5,44 @@
 
 /* rocket theme */
 @font-face {
-	font-family: 'Space Grotesk';
-	src: url('/fonts/SpaceGrotesk.ttf');
-	font-display: swap;
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk.ttf');
+  font-display: swap;
 }
 
 @font-face {
-	font-family: 'CCElephantmenTall';
-	src: url('/fonts/cc-elephantman-tall-italic.ttf');
-	font-display: swap;
+  font-family: 'CCElephantmenTall';
+  src: url('/fonts/cc-elephantman-tall-italic.ttf');
+  font-display: swap;
 }
 
 @font-face {
-	font-family: 'CCUltimatumBold';
-	src: url('/fonts/cc-ultimatum-bold.otf');
-	font-display: swap;
+  font-family: 'CCUltimatumBold';
+  src: url('/fonts/cc-ultimatum-bold.otf');
+  font-display: swap;
 }
 
 html,
 body {
-	@apply h-full overflow-hidden;
+  @apply h-full overflow-hidden;
 }
 
 @layer base {
-    /* TODO: Create custom varialbe for text stroke color /
+  /* TODO: Create custom varialbe for text stroke color /
     / NOTES: Font Outline reuses shadow color - Stroke and Shadow cannot be set independently */
-    .font-outline-0 {
-        -webkit-text-stroke: 0px var(--tw-shadow-color);
-    }
-    .font-outline {
-        -webkit-text-stroke: 1px var(--tw-shadow-color);
-    }
-    .font-outline-2 {
-        -webkit-text-stroke: 2px var(--tw-shadow-color);
-    }
-    .font-outline-4 {
-        -webkit-text-stroke: 4px var(--tw-shadow-color);
-    }
-    .w-104 {
-        width: 26rem;
-    }
+  .font-outline-0 {
+    -webkit-text-stroke: 0px var(--tw-shadow-color);
+  }
+  .font-outline {
+    -webkit-text-stroke: 1px var(--tw-shadow-color);
+  }
+  .font-outline-2 {
+    -webkit-text-stroke: 2px var(--tw-shadow-color);
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 4px var(--tw-shadow-color);
+  }
+  .w-104 {
+    width: 26rem;
+  }
 }

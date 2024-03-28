@@ -9,53 +9,62 @@ import { refreshTimeout } from './sessionHandler';
 export const GlobalThisWSS = Symbol.for('sveltekit.wss');
 
 declare class ExtendedWebSocket extends WebSocketBase {
-	socketId: string;
-	userId: string;
-	sessionId: string;
-	player_channel: string;
+  socketId: string;
+  userId: string;
+  sessionId: string;
+  player_channel: string;
 }
 
 export type { ExtendedWebSocket };
 
-export type ExtendedWebSocketServer = WebSocketBase.Server<typeof ExtendedWebSocket>;
+export type ExtendedWebSocketServer = WebSocketBase.Server<
+  typeof ExtendedWebSocket
+>;
 
 export type ExtendedGlobal = typeof globalThis & {
-	[GlobalThisWSS]: ExtendedWebSocketServer;
+  [GlobalThisWSS]: ExtendedWebSocketServer;
 };
 
-export const onHttpServerUpgrade = (req: IncomingMessage, sock: Duplex, head: Buffer) => {
-	const pathname = req.url ? parse(req.url).pathname : null;
-	if (!pathname?.startsWith('/websocket')) return;
+export const onHttpServerUpgrade = (
+  req: IncomingMessage,
+  sock: Duplex,
+  head: Buffer
+) => {
+  const pathname = req.url ? parse(req.url).pathname : null;
+  if (!pathname?.startsWith('/websocket')) return;
 
-	const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
+  const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
 
-	wss.handleUpgrade(req, sock, head, (ws) => {
-		console.log('[handleUpgrade] creating new connecttion');
-		
-		wss.emit('connection', ws, req);
-	});
+  wss.handleUpgrade(req, sock, head, (ws) => {
+    console.log('[handleUpgrade] creating new connecttion');
+
+    wss.emit('connection', ws, req);
+  });
 };
 
 export const createWSSGlobalInstance = () => {
-	const wss = new WebSocketServer({ noServer: true, perMessageDeflate: false }) as unknown as ExtendedWebSocketServer;
+  const wss = new WebSocketServer({
+    noServer: true,
+    perMessageDeflate: false,
+  }) as unknown as ExtendedWebSocketServer;
 
-	(globalThis as ExtendedGlobal)[GlobalThisWSS] = wss;
+  (globalThis as ExtendedGlobal)[GlobalThisWSS] = wss;
 
-	wss.on('connection', (ws: ExtendedWebSocket) => {
-		ws.socketId = nanoid();
-		console.log(`[wss:global] client connected (${ws.socketId})`);
+  wss.on('connection', (ws: ExtendedWebSocket) => {
+    ws.socketId = nanoid();
+    console.log(`[wss:global] client connected (${ws.socketId})`);
 
-		ws.on('close', () => {
-			console.log(`[wss:global] client disconnected (${ws.socketId})`);
-		});
-		ws.on('message', (event) => {
-			refreshTimeout(ws.sessionId);
-			const message = event.toString();
-			if (message == 'ping') {
-				ws.send('pong');
-			}
-		})
-	});
+    ws.on('close', () => {
+      console.log(`[wss:global] client disconnected (${ws.socketId})`);
+    });
+    ws.on('message', (event) => {
+      refreshTimeout(ws.sessionId);
+      const message = event.toString();
+      if (message == 'ping') {
+        ws.send('pong');
+      }
+    });
+  });
 
-	return wss;
+  return wss;
 };

@@ -4,17 +4,31 @@ import type { PageLoad } from './$types';
 export const ssr = false;
 
 export const load: PageLoad = async ({ fetch, params, url, data }) => {
-	let hide = url.searchParams.get('hide');
-	if ((hide != 'choice') && (hide != 'deck')) {
-		hide = '';
-	}
+  let hide = url.searchParams.get('hide');
+  if (hide != 'choice' && hide != 'deck') {
+    hide = '';
+  }
 
-	const player: string = params.player;
-	const ret = await fetch(`/api/v1/draft/player/${player}`);
-	if (ret.ok) {
-		const draft: IDraft = await ret.json();
-		return { draft: draft, choice: draft.currentChoice, player: player, hide: hide, previewStatus: data.previewStatus, previewDraft: data.previewDraft};
-	}
+  const player: string = params.player;
+  const ret = await fetch(`/api/v1/draft/player/${player}`);
+  if (ret.ok) {
+    const draft: IDraft = await ret.json();
+    return {
+      draft: draft,
+      choice: draft.currentChoice,
+      player: player,
+      hide: hide,
+      previewStatus: data.previewStatus,
+      previewDraft: data.previewDraft,
+    };
+  }
 
-	return { draft: null, choice: null, player: player, hide: hide, previewStatus: data.previewStatus, previewDraft: data.previewDraft};
-}
+  return {
+    draft: null,
+    choice: null,
+    player: player,
+    hide: hide,
+    previewStatus: data.previewStatus,
+    previewDraft: data.previewDraft,
+  };
+};

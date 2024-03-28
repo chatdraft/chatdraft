@@ -48,7 +48,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -63,9 +63,9 @@ jobs:
           npm install
           npm run db:migrate
           npm run seed
-        env: 
+        env:
           SQL_DB_URI: ${{ secrets.SQL_DB_URI }}
-      
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
