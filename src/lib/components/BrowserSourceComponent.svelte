@@ -27,10 +27,7 @@
     </div>
     <div class="p-4">
         <h3 class="h3">Manual Setup</h3>
-        <p>
-            <slot />
-        </p>
-        <div class="flex mb-4 p-2">
+        <div class="flex p-2">
             <span class="font-bold pt-6">URL:</span>
             <div data-clipboard="OptionsAndDeckView" class="m-4 whitespace-nowrap border p-2 w-104">
                 {url}
@@ -39,5 +36,7 @@
                 <iconify-icon icon="clarity:copy-to-clipboard-line" width="24" height="24" flip="horizontal"></iconify-icon>
             </button>
         </div>
+            <b>Width:</b> {width}px<br/>
+            <b>Height:</b> {height}px
     </div>
 </div>

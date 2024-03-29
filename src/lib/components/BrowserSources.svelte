@@ -36,17 +36,11 @@
     <svelte:fragment slot="panel">
         <div class="card p-2">
             {#if tabSet === 0}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}`} layerName='Oro%20Chat%20Draft' height={854} width={500}>
-                    Combined recommended browser source Width: 500px, Height: 854px
-                </BrowserSourceComponent>
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}`} layerName='Oro%20Chat%20Draft' height={854} width={500} />
             {:else if tabSet === 1}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=deck`} layerName='Oro%20Chat%20Draft' height={439} width={500}>
-                    Choices recommended browser source Width: 500px, Height: 439px
-                </BrowserSourceComponent>
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=deck`} layerName='Oro%20Chat%20Draft' height={439} width={500} />
             {:else if tabSet === 2}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=choice`} layerName='Oro%20Chat%20Draft' height={475} width={500}>
-                    Deck recommended browser source Width: 500px, Height: 475px
-                </BrowserSourceComponent>
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=choice`} layerName='Oro%20Chat%20Draft' height={475} width={500} />
             {/if}
         </div>
     </svelte:fragment>
