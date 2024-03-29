@@ -152,7 +152,7 @@
     Press Select to override the votes and force choose a particular card.
     <section class="grid {grid_layout} justify-items-center">
       {#each choices as choice}
-        <div class="p-4 m-4 card"><SnapCard card={choice} /></div>
+        <div class="p-4"><SnapCard card={choice} /></div>
       {/each}
       {#each votes as vote}
         <div>{vote} votes</div>
@@ -161,7 +161,9 @@
         <form method="post" action="?/draftCard" use:enhance>
           <div>
             <input type="hidden" value={choice.cardDefKey} name="selection" />
-            <button class="btn btn-md variant-outline-primary"> Select </button>
+            <button class="btn btn-md variant-outline-primary p-4 w-1/2">
+              Select
+            </button>
           </div>
         </form>
       {/each}
