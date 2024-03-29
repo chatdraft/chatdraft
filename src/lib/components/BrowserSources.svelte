@@ -87,7 +87,7 @@
         Preview mode fills the browser sources with an example draft.
         Once a real draft is started, preview mode will be automatically disabled.
     </p>
-    <form method="post" use:enhance action="?/togglePreview" class="m-2">
+    <form method="post" use:enhance action="?/togglePreview" class="mt-2">
         <ChatDraftSlideToggle label="Preview Mode" name="previewmode" bind:checked={previewMode} on:change={() => togglePreviewSaveBtn.click()} active="bg-primary-500" />
         <button bind:this={togglePreviewSaveBtn} class="hidden collapse">
             Submit

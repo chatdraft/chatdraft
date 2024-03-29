@@ -79,6 +79,9 @@ export function GetPreviousDraft(player: string) {
 export function EndDraft(player: string) {
     const draft = drafts.get(player);
     if (draft) {
+		if (draft.total >= 12) {
+			previousDrafts.set(player, draft);
+		}
         draft.CancelDraft();
 		drafts.delete(player);
     }

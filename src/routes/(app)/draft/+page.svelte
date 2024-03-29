@@ -23,6 +23,13 @@
 
 	const handleMessage = async(message: string) => {
 		if (message == 'pong') return;
+
+		if (message.startsWith('draftcomplete')) {
+			setTimeout(() => {
+				current_draft = null;
+			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
+			invalidateAll();
+		}
 		invalidateAll();
 	}
 
