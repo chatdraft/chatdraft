@@ -128,7 +128,7 @@
 						</div>
 					</div>
 					<!-- Grid of Cards -->
-					<div class="grid grid-cols-3 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
+					<div class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
 						{#if (choices && choices.length > 0)}
 								{#each choices as choice, index}
 									<div class="border-white bg-black bg-opacity-70 border-2 rounded-lg shadow-md shadow-black/100 relative" class:blur="{winningCard && winningCard.cardDefKey != choice.cardDefKey}">

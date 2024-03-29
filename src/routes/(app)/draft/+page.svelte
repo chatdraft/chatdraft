@@ -93,16 +93,20 @@
 					<button class="btn btn-lg variant-filled-primary" on:click={ResetTimeout}>Start Draft</button><br/>
 				</form>
 			{:else}
-				The bot isn't set up to join your Twitch channel. This is required
-				to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot.
+				<div class="mt-4">
+					The bot isn't set up to join your Twitch channel. This is required
+					to do a Twitch Chat Draft. Please go to <a href="/settings" class="anchor">Settings</a> to invite the bot.
+				</div>
 			{/if}
+		{:else if $page.data.user}
+			<div class="mt-4">
+				If this is your first time here, please go to
+				<a class="anchor" href="/start">Getting Started</a>. 
+			</div>
 		{:else}
-			If this is your first time here, please go to
-			<a class="anchor" href="/start">Getting Started</a>. 
-			{#if !($page.data.user)}
-				Otherwise, please
-				<a class="anchor" href="{twitch_login_uri}">Login with Twitch</a>
-			{/if}
+			<div class="mt-4">
+				Please <a class="anchor" href="{twitch_login_uri}">Login with Twitch</a>
+			</div>
 		{/if}
 	{/if}
 	<br/>
@@ -125,7 +129,7 @@
 		Press Select to override the votes and force choose a particular card.
 		<section class="grid {grid_layout} justify-items-center">
 				{#each choices as choice}
-					<div class="p-4"><SnapCard card={choice} /></div>
+					<div class="p-4 card m-4"><SnapCard card={choice} /></div>
 				{/each}
 				{#each votes as vote}
 					<div>{vote} votes</div>
@@ -134,9 +138,7 @@
 					<form method='post' action='?/draftCard' use:enhance>
 						<div>
 							<input type='hidden' value={choice.cardDefKey} name='selection'>
-							<button
-								class="btn btn-md variant-outline-primary p-4 w-1/2">Select</button
-							>
+							<button class="btn btn-md variant-outline-primary">Select</button>
 						</div>
 					</form>
 				{/each}

@@ -5,7 +5,7 @@
 	export let hideText: boolean = false;
 </script>
 
-<div class="card h-full">
+<div class="h-full">
 	{#if !hideText || !(card.displayImageUrl)}
 		<header class="card-header text-center"><b>{card.name}</b></header>
 	{/if}
