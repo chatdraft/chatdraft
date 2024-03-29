@@ -94,9 +94,8 @@
           update();
         };
       }}>
-      <button class="btn btn-lg variant-filled-warning mt-2">
-        Leave Channel
-      </button>
+      <button class="btn btn-lg variant-filled-warning mt-2"
+        >Leave Channel</button>
     </form>
     <p class="mt-4">
       Note: chat draft will not work without the bot in your channel.
@@ -117,9 +116,8 @@
           update();
         };
       }}>
-      <button class="btn btn-lg variant-filled-primary mt-2">
-        Join Channel
-      </button>
+      <button class="btn btn-lg variant-filled-primary mt-2"
+        >Join Channel</button>
     </form>
   {/if}
   <br />
