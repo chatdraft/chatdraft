@@ -188,6 +188,11 @@
 			<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
 			<div class="flex flex-row bg-black/70 text-white bg-purple-900 bg-opacity-70 text-4xl rounded-t-lg">
 				<div class="flex flex-shrink flex-col">
+					<div class="flex justify-evenly items-center">
+						<h2 class="uppercase font-snapa font-outline shadow-black text-slate-200 text-2xl">
+							Drafted Deck
+						</h2>
+					</div>
 					{#if data.hide == ''}
 						<SnapDeck cards={current_draft?.cards || []} cols={3} />
 					{:else}

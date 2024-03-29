@@ -26,9 +26,9 @@
 
 		if (message.startsWith('draftcomplete')) {
 			setTimeout(() => {
-				current_draft = null;
+				invalidateAll();
 			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
-			invalidateAll();
+			
 		}
 		invalidateAll();
 	}
@@ -85,6 +85,11 @@
 		</div>
 	{:else}
 		<h1 class="h1">Draft</h1>
+		<p class="mt-4">
+			Set the time duration for each Voting Period, the number of 
+			card choices, and subscriber bonuses. ‘Start Draft’ button launches 
+			the Oro Chat Draft application.
+		</p>
 		{#if data.user?.initialSetupDone}
 			{#if data.botstatus }
 				<form method='post' action='?/newDraft' use:enhance>
@@ -120,7 +125,7 @@
 	{#if current_draft?.currentChoice?.votes_closed}
 		<section class="text-center text-2xl">
 			{#if time_remaining > 0}
-					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}
+					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}
 				{:else}
 					Tallying Final Votes...
 				{/if}
@@ -132,8 +137,9 @@
 	{/if}
 
 	{#if (choices && choices.length > 0)}
-		<h3 class="h3">Options:</h3>
-		Press Select to override the votes and force choose a particular card.
+		<p class="mt-4">
+			‘Select’ button overrides chat votes. ‘Cancel Draft’ button aborts the current draft.
+		</p>
 		<section class="grid {grid_layout} justify-items-center">
 				{#each choices as choice}
 					<div class="p-4 card m-4"><SnapCard card={choice} /></div>
@@ -152,12 +158,20 @@
 		</section>
 		<SnapDeck cards={current_draft?.cards || []} />
 	{:else if current_draft?.cards}
+		<p class="mt-4">
+			Deck code can be copied and pasted directly into Marvel Snap deck builder. 
+			‘Finish Draft’ button completes the draft and allows a new draft to be started.
+		</p>
 		<CodeBlock language="Deck Code" class="break-words" code={current_deck_code}></CodeBlock>
 		<SnapDeck cards={current_draft?.cards} />
 	{/if}
 	<br/>
 	{#if previous_draft?.cards}
 		<h2 class="h2">Previous Draft:</h2>
+		<p class="mt-4">
+			Last completed draft deck code can be copied and pasted directly into 
+			Marvel Snap deck builder.
+		</p>
 		<CodeBlock language="Deck Code" class="break-words" code={previous_deck_code}></CodeBlock>
 		<SnapDeck cards={previous_draft.cards} />
 	{/if}

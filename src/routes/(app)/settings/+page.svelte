@@ -49,6 +49,9 @@
 
 <div class="p-4">
     <h1 class="h1">Settings</h1>
+	<p class="mt-4">
+		Oro Chat Draft user options and configurations.
+	</p>
     <br/>
     <form method="POST" action="?/updatePreferences" use:enhance={()=> {
         return async ({result}) => {
@@ -77,7 +80,7 @@
     <h2 class="h2">Chat Draft Bot</h2>
     {#if data.botInChannel}
         <p class="mt-4">
-            Have chat draft Bot leave your channel.
+            Have chat draft bot leave your channel.
         </p>
         <form method="POST" action="?/part" on:submit={invalidateAll} use:enhance={()=> {
             return async ({result, update}) => {
@@ -90,11 +93,11 @@
             <button class="btn btn-lg variant-filled-warning mt-2">Leave Channel</button>
         </form>
         <p class="mt-4">
-            Note: chat draft will not work without the bot in your channel.
+            Note: Chat draft will not work without the bot in your channel.
         </p>
     {:else}
         <p class="mt-4">
-            Have chat draft Bot join your channel:
+            Have chat draft bot join your channel:
         </p>
         <form method="POST" action="?/join" on:submit={invalidateAll} use:enhance={()=> {
             return async ({result, update}) => {
