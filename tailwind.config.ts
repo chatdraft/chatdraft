@@ -5,43 +5,41 @@ import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 
 export default {
-  darkMode: 'class',
-  content: [
-    './src/**/*.{html,js,svelte,ts}',
-    join(
-      require.resolve('@skeletonlabs/skeleton'),
-      '../**/*.{html,js,svelte,ts}'
-    ),
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        snapa: ['CCElephantmenTall'],
-        snapn: ['CCUltimatumBold'],
-      },
-    },
-  },
-  plugins: [
-    forms,
-    typography,
-    skeleton({
-      themes: {
-        preset: [
-          {
-            name: 'wintry',
-            enhancements: true,
-          },
-          {
-            name: 'rocket',
-            enhancements: true,
-          },
-        ],
-      },
-    }),
-  ],
-  safelist: [
-    {
-      pattern: /grid-cols-+/,
-    },
-  ],
+	darkMode: 'class',
+	content: [
+		'./src/**/*.{html,js,svelte,ts}',
+		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
+	],
+	theme: {
+		extend:
+		{
+			fontFamily: {
+				'snapa': ['CCElephantmenTall'],
+				'snapn': ['CCUltimatumBold']
+			}
+		},
+	},
+	plugins: [
+		forms,
+		typography,
+		skeleton({
+			themes: {
+				preset: [
+					{
+						name: 'wintry',
+						enhancements: true
+					},
+					{
+						name: 'rocket',
+						enhancements: true
+					}
+				]
+			}
+		})
+	],
+	safelist: [
+		{
+			pattern: /grid-cols-+/,
+		}
+	]
 } satisfies Config;

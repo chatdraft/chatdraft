@@ -1,74 +1,70 @@
+
 import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
-import type { User } from '$lib/server/db/users';
+import type { User } from '$lib/server/db/users'
 import { sessionTimout_ms } from '../constants';
 
 type TSessionID = string;
 
-const sessionUsers = new Map<
-  TSessionID,
-  { token: AccessToken; user: User | null }
->();
+const sessionUsers = new Map<TSessionID, {token: AccessToken, user: User | null}>();
 const sessionUserTimeouts = new Map<TSessionID, NodeJS.Timeout>();
 const sessionTimeout = sessionTimout_ms;
 
 export function setSession(accessToken: AccessToken, user: User | null) {
-  // Creating a new session ID that will be used as a cookie to authenticate the user in
-  const newSessionID: TSessionID = crypto.randomBytes(32).toString('hex');
 
-  sessionUsers.set(newSessionID, { token: accessToken, user: user });
+    // Creating a new session ID that will be used as a cookie to authenticate the user in 
+    const newSessionID: TSessionID = crypto.randomBytes(32).toString('hex');
 
-  const timeout = setTimeout(() => {
-    deleteSession(newSessionID);
-  }, sessionTimeout);
+    sessionUsers.set(newSessionID, {token: accessToken, user: user});
 
-  sessionUserTimeouts.set(newSessionID, timeout);
+    const timeout = setTimeout(() => {
+        deleteSession(newSessionID)
+    }, sessionTimeout);
 
-  return newSessionID as TSessionID;
+    sessionUserTimeouts.set(newSessionID, timeout);
+
+    return newSessionID as TSessionID;
 }
 
 export function fetchSession(sessionId: TSessionID) {
-  refreshTimeout(sessionId);
+    refreshTimeout(sessionId);
 
-  return sessionUsers.get(sessionId);
+    return sessionUsers.get(sessionId);
 }
 
-export function ValidateSession(
-  cookies: Cookies,
-  user: User | null,
-  session_key: string
-) {
-  const session_id = cookies.get(session_key);
-  if (!session_id || !user) {
-    throw error(401, 'Not logged in.');
-  }
-
-  const session = fetchSession(session_id);
-  if (session?.user?.twitchID != user?.twitchID) {
-    throw error(403, 'Not authorized.');
-  }
+export function ValidateSession(cookies: Cookies, user: User | null, session_key: string) {
+	const session_id = cookies.get(session_key);
+	if (!session_id || !user) {
+		throw error(401, 'Not logged in.');
+	}
+	
+	const session = fetchSession(session_id);
+	if (session?.user?.twitchID != user?.twitchID) {
+		throw error(403, 'Not authorized.');
+	}
 }
 
 export function refreshTimeout(sessionId: string) {
-  if (sessionUserTimeouts.has(sessionId)) {
-    sessionUserTimeouts.get(sessionId)?.refresh();
-  } else {
-    const timeout = setTimeout(() => {
-      deleteSession(sessionId);
-    }, sessionTimeout);
-    sessionUserTimeouts.set(sessionId, timeout);
-  }
+    if (sessionUserTimeouts.has(sessionId)) {
+        sessionUserTimeouts.get(sessionId)?.refresh();
+    }
+    else {
+        const timeout = setTimeout(() => {
+            deleteSession(sessionId);
+        }, sessionTimeout);
+        sessionUserTimeouts.set(sessionId, timeout);
+    }
 }
 
 export function deleteSession(sessionId: TSessionID) {
-  sessionUsers.delete(sessionId);
+    sessionUsers.delete(sessionId);
 }
 
 export function updateSession(sessionId: TSessionID, accessToken: AccessToken) {
-  refreshTimeout(sessionId);
-  const user = sessionUsers.get(sessionId)?.user;
-  if (user) sessionUsers.set(sessionId, { token: accessToken, user: user });
+    refreshTimeout(sessionId);
+    const user = sessionUsers.get(sessionId)?.user;
+    if (user) sessionUsers.set(sessionId, {token: accessToken, user: user });
 
-  return sessionId as TSessionID;
+    return sessionId as TSessionID;
 }

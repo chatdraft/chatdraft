@@ -30,14 +30,14 @@ TBD
 
 ## Authors
 
-- **oro** - _Initial author_ -
-  [ssbm-oro](https://github.com/ssbm-oro)
-- **jjrolk** - _Interface design and testing_ - [jjrolk](https://github.com/jjrolk)
+- **oro** - *Initial author* -
+    [ssbm-oro](https://github.com/ssbm-oro)
+- **jjrolk** - *Interface design and testing* - [jjrolk](https://github.com/jjrolk)
 
 ## Acknowledgements
 
-- **Billie Thompson** - _Provided README Template_ -
-  [PurpleBooth](https://github.com/PurpleBooth)
+- **Billie Thompson** - *Provided README Template* -
+    [PurpleBooth](https://github.com/PurpleBooth)
 
 ### Alpha Testers
 
