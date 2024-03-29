@@ -146,7 +146,7 @@
           </div>
           <!-- Grid of Cards -->
           <div
-            class="grid grid-cols-3 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
+            class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
             {#if choices && choices.length > 0}
               {#each choices as choice, index}
                 <div
