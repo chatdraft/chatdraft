@@ -102,7 +102,7 @@
 						<div/>
 					</div>
 					<ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber Votes +1" />
-					<button class="btn btn-lg variant-filled-primary" on:click={ResetTimeout}>Start Draft</button><br/>
+					<button class="btn btn-lg variant-filled-primary mt-2" on:click={ResetTimeout}>Start Draft</button><br/>
 				</form>
 			{:else}
 				<div class="mt-4">

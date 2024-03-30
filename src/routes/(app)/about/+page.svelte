@@ -8,11 +8,11 @@
 	<p class="mt-4">
 		Oro Chat Draft Beta is targeted for Twitch Streamers playing Marvel Snap. The streamer
 		(or moderator) can launch a chat draft and then the program will run
-		without requiring any focus or interaction by the streamer — intent is
-		to have no downtime while being live. Twitch chat is presented with 3–6
-		random cards and votes to select which card is added to the deck. After
-		12 cards are selected, a deck code is created and the streamer can simply
-		copy paste to create the drafted deck in the game client.
+		without requiring any focus or interaction by the streamer —  no downtime 
+		while being live. Twitch chat is presented with 3–6 random cards and votes 
+		to select which card is added to the deck. After 12 cards are selected, a 
+		deck code is created and the streamer can simply copy paste to create the 
+		drafted deck in the game client.
 	</p>
 	<h2 class="h2">Twitch Chat Commands</h2>
 	<p class="mt-4">

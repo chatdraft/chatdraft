@@ -27,7 +27,7 @@
     </div>
     <div class="p-4">
         <h3 class="h3">Manual Setup</h3>
-        <p class="mt-4">
+        <p>
             Recommended properties.
         </p>
         <div class="flex p-2">
