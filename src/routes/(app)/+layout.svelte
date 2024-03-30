@@ -62,7 +62,7 @@
 
 <a href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="absolute bottom-6 right-2 w-48 xl:w-64 anchor group z-50">
 	<img class="p-2" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
-	<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-2 -right-1 invisible group-hover:visible group-focus:visible"></iconify-icon>
+	<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-1.5 right-1.5 invisible group-hover:visible group-focus:visible"></iconify-icon>
 </a>
 <Toast position="t" />
 <Drawer width="w-20">

@@ -7,9 +7,9 @@
 	<h1 class="h1">About Oro Chat Draft</h1>
 	<p class="mt-4">
 		Oro Chat Draft Beta is targeted for Twitch Streamers playing Marvel Snap. The streamer
-		(or moderator) can launch a Chat Draft and then the program will run
-		without requiring any focus or interaction by the streamer - intent is
-		to have no downtime while being live. Twitch chat is presented with 3-6
+		(or moderator) can launch a chat draft and then the program will run
+		without requiring any focus or interaction by the streamer — intent is
+		to have no downtime while being live. Twitch chat is presented with 3–6
 		random cards and votes to select which card is added to the deck. After
 		12 cards are selected, a deck code is created and the streamer can simply
 		copy paste to create the drafted deck in the game client.
@@ -24,10 +24,10 @@
 			<b>!chatdraft</b> – Provide a basic explanation of chat draft and how to use it.
 		</li>
 		<li>
-			<b>!chatdraftdeck</b> – Display the last complete draft in browser source overlay (30s global cooldown, 60s user cooldown).
+			<b>!chatdraftdeck</b> – Display the last complete draft in browser source overlay. (30s global cooldown, 60s user cooldown)
 		</li>
 		<li>
-			<b>!chatdraftcode</b> – Provide the Marvel Snap Deck Code for last complete draft in chat. (30s global cooldown, 60s user cooldown).
+			<b>!chatdraftcode</b> – Provide the Marvel Snap Deck Code for last complete draft in chat. (30s global cooldown, 60s user cooldown)
 		</li>
 	</ul>
 	<h3 class="h3">Moderators</h3>

@@ -27,6 +27,9 @@
     </div>
     <div class="p-4">
         <h3 class="h3">Manual Setup</h3>
+        <p class="mt-4">
+            Recommended properties.
+        </p>
         <div class="flex p-2">
             <span class="font-bold pt-6">URL:</span>
             <div data-clipboard="OptionsAndDeckView" class="m-4 whitespace-nowrap border p-2 w-104">

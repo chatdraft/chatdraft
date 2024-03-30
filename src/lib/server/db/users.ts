@@ -40,6 +40,47 @@ export async function getAdminUsers(prisma: PrismaClient) {
     return undefined;
 }
 
+export async function getSetupCompleteUsers(prisma: PrismaClient) {
+    try {
+        const users = await prisma.user.findMany({
+            where: {
+                initialSetupDone: true
+            }
+        });
+
+        return users.map((user) => user.channelName)
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
+
+    return undefined;
+}
+
+export async function resetSetupComplete(prisma: PrismaClient, username: string) {
+    try {
+        const user = await prisma.user.update({
+            where: {
+                channelName: username
+            },
+            data: {
+                initialSetupDone: false
+            }
+        });
+
+        return user;
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
+
+    return undefined;
+}
+
 export async function updateUser(prisma: PrismaClient, twitch_user: HelixUser) {
     try {
         const user = await prisma.user.upsert({

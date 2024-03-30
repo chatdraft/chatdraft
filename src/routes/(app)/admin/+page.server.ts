@@ -2,23 +2,25 @@ import { GetDrafts, GetPreviousDrafts } from '$lib/server/draftHandler';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
-import { DbAddChannel, DbUpdateUserAuthorization, DbGetChannels, DbRemoveChannel, DbGetAuthorizedUsers, DbGetAdminUsers } from '$lib/server/db';
+import { DbAddChannel, DbUpdateUserAuthorization, DbGetChannels, DbRemoveChannel, DbGetAuthorizedUsers, DbGetAdminUsers, DbGetSetupCompleteUsers, DbResetSetupComplete } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(locals.user.isAdmin)) throw redirect(302, '/')
-    const channels = await DbGetChannels();
+    const channels = DbGetChannels();
     const drafts = GetDrafts();
     const previousDrafts = GetPreviousDrafts();
-    const authorizedUsers = await DbGetAuthorizedUsers() || [];
-    const adminUsers = await DbGetAdminUsers() || [];
+    const authorizedUsers = DbGetAuthorizedUsers() || [];
+    const adminUsers = DbGetAdminUsers() || [];
+    const setupCompleteUsers = DbGetSetupCompleteUsers() || [];
 
     return {
         channels: channels,
         drafts: drafts,
         previousDrafts: previousDrafts,
         authorizedUsers: authorizedUsers,
-        adminUsers: adminUsers
+        adminUsers: adminUsers,
+        setupCompleteUsers: setupCompleteUsers
     };
 }) satisfies PageServerLoad;
 
@@ -84,6 +86,17 @@ export const actions = {
     resetcards: async ({locals}) => {
         if (!locals.user || !(locals.user.isAdmin)) throw error(403)
         ResetCards();
+        return { reset: true };
+    },
+    resetsetup: async ({request, locals}) => {
+        if (!locals.user || !(locals.user.isAdmin)) throw error(403);
+        const data = await request.formData();
+        const user = data.get("username")?.toString();
+        if (user)
+        {
+            await DbResetSetupComplete(user);
+        }
+
         return { reset: true };
     }
 } satisfies Actions

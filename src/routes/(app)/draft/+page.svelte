@@ -86,7 +86,7 @@
 	{:else}
 		<h1 class="h1">Draft</h1>
 		<p class="mt-4">
-			Set the time duration for each Voting Period, the number of 
+			Set the time duration for each voting period, the number of 
 			card choices, and subscriber bonuses. ‘Start Draft’ button launches 
 			the Oro Chat Draft application.
 		</p>
@@ -101,7 +101,7 @@
 						<SelectionCountSlider bind:selectionCount />
 						<div/>
 					</div>
-					<ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber votes +1" />
+					<ChatDraftSlideToggle name="subsExtraVote" checked={data.subsExtraVote} active="bg-primary-500" label="Subscriber Votes +1" />
 					<button class="btn btn-lg variant-filled-primary" on:click={ResetTimeout}>Start Draft</button><br/>
 				</form>
 			{:else}
@@ -121,9 +121,11 @@
 			</div>
 		{/if}
 	{/if}
-	<br/>
 	{#if current_draft?.currentChoice?.votes_closed}
-		<section class="text-center text-2xl">
+		<p>
+			‘Select’ buttons override chat votes. ‘Cancel Draft’ button aborts the current draft.
+		</p>
+		<section class="text-center text-2xl mt-0">
 			{#if time_remaining > 0}
 					Time Remaining: {time_remaining.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}
 				{:else}
@@ -137,9 +139,6 @@
 	{/if}
 
 	{#if (choices && choices.length > 0)}
-		<p class="mt-4">
-			‘Select’ button overrides chat votes. ‘Cancel Draft’ button aborts the current draft.
-		</p>
 		<section class="grid {grid_layout} justify-items-center">
 				{#each choices as choice}
 					<div class="p-4 card m-4"><SnapCard card={choice} /></div>
@@ -165,7 +164,6 @@
 		<CodeBlock language="Deck Code" class="break-words" code={current_deck_code}></CodeBlock>
 		<SnapDeck cards={current_draft?.cards} />
 	{/if}
-	<br/>
 	{#if previous_draft?.cards}
 		<h2 class="h2">Previous Draft:</h2>
 		<p class="mt-4">

@@ -13,6 +13,7 @@
     $: channels = data.channels;
     $: authorizedUsers = data.authorizedUsers!;
     $: adminUsers = data.adminUsers!;
+	$: setupCompleteUsers = data.setupCompleteUsers;
 
     let files: FileList;
 
@@ -125,6 +126,23 @@
         <button class="btn-icon btn-icon-sm variant-outline-primary"><iconify-icon icon="mdi:check-bold"></iconify-icon></button>
     </form>
     <br/>
+	<hr class="m-4">
+	<section>Getting started complete for:</section>
+	<ul class="list-disc list-inside">
+		{#if setupCompleteUsers}
+			{#each setupCompleteUsers as user}
+			<form method="POST" action="?/resetsetup" use:enhance>
+				<li>
+					<button class="btn-icon btn-icon-sm variant-outline-error">
+						<iconify-icon icon="mdi:remove-bold"></iconify-icon>
+					</button>
+					{user}
+					<input type="hidden" id="username" name="username" value="{user}">
+				</li>
+			</form>
+			{/each}
+		{/if}
+	</ul>
     <hr class="m-4">
 
     <section>Number of Active Drafts: {drafts.length}</section>

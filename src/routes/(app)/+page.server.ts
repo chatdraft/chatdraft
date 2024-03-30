@@ -6,10 +6,10 @@ import { deleteSession } from '$lib/server/sessionHandler';
 export const load = (async ({locals, request}) => {
     const drafts = GetDrafts();
     const api = new ApiClient({authProvider: locals.auth_provider});
-    // const streams = await api.streams.getStreamsByUserNames(drafts.map(draft => draft.player));
-    // const activeStreams = streams.filter(stream => drafts.some(draft => stream.userName == draft.player));
+    const streams = await api.streams.getStreamsByUserNames(drafts.map(draft => draft.player));
+    const activeStreams = streams.filter(stream => drafts.some(draft => stream.userName == draft.player));
 
-    const activeStreams = (await api.streams.getStreams({game: "1743359147"})).data
+    // const activeStreams = (await api.streams.getStreams({game: "1743359147"})).data
 
     const activeDraftStreams = activeStreams.map(stream => {
         return {
