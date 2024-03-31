@@ -3,7 +3,7 @@ import { ApiClient } from '@twurple/api';
 import type { PageServerLoad } from './$types';
 import { deleteSession } from '$lib/server/sessionHandler';
 
-export const load = (async ({locals, request}) => {
+export const load = (async ({locals, request, cookies}) => {
     const drafts = GetDrafts();
     const api = new ApiClient({authProvider: locals.auth_provider});
     const streams = await api.streams.getStreamsByUserNames(drafts.map(draft => draft.player));
@@ -15,11 +15,12 @@ export const load = (async ({locals, request}) => {
         return {
             channel: stream.userName,
             thumbnailUrl: stream.thumbnailUrl,
-            draft: drafts.find((draft) => draft.player == stream.userName) || {total: 1 + Math.floor(Math.random() * 11)}
-        }}).sort(((a, b) => a.draft.total - b.draft.total));
+            draft: drafts.find((draft) => draft.player == stream.userName) || {total: 12}}})
+                .sort(((a, b) => a.draft.total - b.draft.total));
 
     if (new URL(request.url).searchParams.get("timedout")) {
         if (locals.session) {
+            cookies.delete('session_id', {path: '/', httpOnly: true });
             deleteSession(locals.session.id);
             locals.user = null;
         }
