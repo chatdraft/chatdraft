@@ -105,6 +105,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.session = null;
 	event.locals.user = null;
 	
+	event.cookies.delete('session_id', {path: '/', httpOnly: true });
+	
 	const response = await resolve(event, {
 		filterSerializedResponseHeaders: name => name === 'content-type',
 	});
