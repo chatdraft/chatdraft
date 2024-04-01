@@ -35,7 +35,7 @@
             <div data-clipboard="OptionsAndDeckView" class="m-4 whitespace-nowrap border p-2 w-104">
                 {url}
             </div>
-            <button class="btn-icon btn-icon-md variant-filled-secondary h-min place-self-center" use:clipboard={{ element: 'OptionsAndDeckView' }}>
+            <button class="btn-icon btn-icon-md variant-filled-secondary h-min place-self-center" on:click|preventDefault use:clipboard={{ element: 'OptionsAndDeckView' }}>
                 <iconify-icon icon="clarity:copy-to-clipboard-line" width="24" height="24" flip="horizontal"></iconify-icon>
             </button>
         </div>

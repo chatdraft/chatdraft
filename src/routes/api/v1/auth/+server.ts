@@ -46,7 +46,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         });
 
         // set the session cookie
-        cookies.set('session_id', session_id, {path: '/', httpOnly: true, secure:true, maxAge: tokenData.expiresIn! })
+        cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn! })
 
         if ((user) && !user.initialSetupDone) {
             redirect_uri = '/start';
