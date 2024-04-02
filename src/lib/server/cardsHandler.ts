@@ -1,7 +1,7 @@
 import * as install_cards from '$lib/data/cards.json';
 import { existsSync, promises as fs } from 'fs';
 
-const updatedCardFile = `./cards.json`;
+const updatedCardFile = `~/cards.json`;
 
 export async function GetAllCards(): Promise<{all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number }[]}> {
     if (existsSync(updatedCardFile)) {

@@ -163,6 +163,15 @@
             "cost": 2
         },
         {
+            "cardDefKey": "BaronZemo",
+            "variantKey": null,
+            "url": "/cards/BaronZemo/",
+            "name": "Baron Zemo",
+            "description": "<b>On Reveal:</b> Recruit the lowest-Cost card from your opponent's deck to your side of this location.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BaronZemo-a82705e36b5b2b42de01547e564b3f9fc19826d225fac6996a60ee29c1faf7f2.webp",
+            "cost": 3
+        },
+        {
             "cardDefKey": "Bast",
             "variantKey": null,
             "url": "/cards/Bast/",
@@ -1682,6 +1691,15 @@
             "description": "<b>Ongoing:</b> Your cards with 1 or less Power cost 1 less. <i>(minimum 1)</i>",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RavonnaRenslayer-7fe5ca5e4dae475fed7417b3650b6e27bdec45eb65d3455a13386e349330a5a4.webp",
             "cost": 3
+        },
+        {
+            "cardDefKey": "RedHulk",
+            "variantKey": null,
+            "url": "/cards/RedHulk/",
+            "name": "Red Hulk",
+            "description": "When your opponent ends a turn with unspent Energy, +4 Power.\n<i>(if in hand or in play)</i>",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedHulk-b954774fb64d1457bc1f96a5b8f5507f8284281403df8aecb7db339b60ca6b90.webp",
+            "cost": 6
         },
         {
             "cardDefKey": "RedSkull",
