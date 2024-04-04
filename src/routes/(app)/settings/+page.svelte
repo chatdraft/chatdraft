@@ -3,7 +3,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import BrowserSources from '$lib/components/BrowserSources.svelte';
 	import { onMount } from 'svelte';
-    import type { PageData } from './$types';
+    import type { ActionData, PageData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 	import { establishWebSocket } from '$lib/websocket';
@@ -12,10 +12,13 @@
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
+	import BgOpacitySlider from '$lib/components/BgOpacitySlider.svelte';
 
     const toastStore = getToastStore();
     
     export let data: PageData;
+
+    export let form: ActionData;
 
     let full_source_configured = data.full_source_configured;
     let deck_sources_configured = data.deck_sources_configured;
@@ -115,6 +118,21 @@
 
     <h2 class="h2">Browser Sources</h2>
     <BrowserSources user={data.user || ''} previewMode={data.previewMode} {full_source_configured} {deck_sources_configured} {choices_sources_configured}/>
+    <div class="m-4">
+        <form method="post" action="?/updateOpacity" use:enhance={() => {
+            return async ({result, update}) => {
+                if (result.type == "success") {
+                    toastStore.trigger({message: "Opacity updated successfully."})
+                }
+            }
+        }}>
+        <BgOpacitySlider bgOpacity={data.bgOpacity} />
+        <button class="btn btn-md variant-filled-primary">Save Opacity</button>
+        {#if form?.success}
+            <p class="mt-4">Please refresh your browser source(s).</p>
+        {/if}
+        </form>
+    </div>
     <br/>
 
     <h2 class="h2">Snap Collection</h2>

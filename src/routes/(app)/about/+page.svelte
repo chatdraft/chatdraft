@@ -1,6 +1,7 @@
 <svelte:head>
 	<title>oro's chat draft - About</title>
-	<meta name="Marvel Snap Twitch Chat Draft" />
+	<meta name="description"
+		content="About Oro Chat Draft, a fun app for letting Twitch Chat draft a Marvel Snap Deck for a streamer to play." />
 </svelte:head>
 
 <div class="space-y-4 p-4">

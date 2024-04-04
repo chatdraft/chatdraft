@@ -40,6 +40,9 @@ export default {
 	safelist: [
 		{
 			pattern: /grid-cols-+/,
+		},
+		{
+			pattern: /bg-opacity-+/,
 		}
 	]
 } satisfies Config;

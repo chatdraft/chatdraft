@@ -3,7 +3,7 @@ import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandle
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { IsChoiceSourceConfigured, IsDeckSourceConfigured, IsFullSourceConfigured } from '$lib/server/browserSourceHandler';
-import { DbAddChannel, DbRemoveChannel, DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserPreferences } from '$lib/server/db';
+import { DbAddChannel, DbRemoveChannel, DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserOpacity, DbUpdateUserPreferences } from '$lib/server/db';
 
 
 export const load = (async ({locals}) => {
@@ -19,11 +19,13 @@ export const load = (async ({locals}) => {
         deck_sources_configured = IsDeckSourceConfigured(user);
         choice_sources_configured = IsChoiceSourceConfigured(user);
     }
+
     const duration = locals.user.userPreferences?.draftRoundDuration || 90;
     const selectionCount = locals.user.userPreferences?.cardsPerRound || 6;
     const subsExtraVote = locals.user.userPreferences?.subsExtraVote || false;
     const collectionComplete = locals.user.userPreferences?.collection == null;
-    return { user: user, botInChannel: locals.user.userPreferences?.botJoinsChannel, previewMode: previewMode, full_source_configured: full_source_configured, deck_sources_configured: deck_sources_configured, choice_sources_configured: choice_sources_configured, duration: duration, selectionCount: selectionCount, subsExtraVote: subsExtraVote, collectionComplete: collectionComplete};
+    const bgOpacity = locals.user.userPreferences ? locals.user.userPreferences.bgOpacity : 70;
+    return { user: user, botInChannel: locals.user.userPreferences?.botJoinsChannel, previewMode: previewMode, full_source_configured: full_source_configured, deck_sources_configured: deck_sources_configured, choice_sources_configured: choice_sources_configured, duration: duration, selectionCount: selectionCount, subsExtraVote: subsExtraVote, collectionComplete: collectionComplete, bgOpacity: bgOpacity};
 }) satisfies PageServerLoad;
 
 export const actions = {
@@ -79,6 +81,17 @@ export const actions = {
         if (locals.user && locals.user.twitchID) {
             const userPreference = await DbResetUserCollection(locals.user.twitchID);
             if (userPreference) locals.user.userPreferences = userPreference;
+        }
+    },
+    updateOpacity: async ({request, locals}) => {
+        if (locals.user && locals.user.twitchID) {
+            const formData = await request.formData();
+            const bgOpacity = Number(formData.get('bgOpacity')?.toString());
+            const userPreference = await DbUpdateUserOpacity(locals.user.twitchID, bgOpacity);
+            
+            if (userPreference) locals.user.userPreferences = userPreference;
+
+            return {success: true};
         }
     }
 } satisfies Actions

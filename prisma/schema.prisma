@@ -48,6 +48,7 @@ model UserPreference {
   botJoinsChannel Boolean @default(false)
   snapFanApiKey String?
   collection String? @db.NText
+  bgOpacity Int @default(70)
 }
 
 model Draft {

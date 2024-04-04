@@ -1,7 +1,7 @@
 import type { PrismaClient } from "@prisma/client";
 import type { HelixUser } from "@twurple/api";
 
-export type User = ({ userPreferences: { id: string; userId: string; draftRoundDuration: number; cardsPerRound: number; subsExtraVote: boolean; botJoinsChannel: boolean; snapFanApiKey: string | null; collection: string | null; } | null; } & { id: string; channelName: string; displayName: string | null; isAdmin: boolean; isAuthorized: boolean; twitchID: string | null; twitchProfilePictureURL: string | null; initialSetupDone: boolean; createdAt: Date; } | null)
+export type User = ({ userPreferences: { id: string; userId: string; draftRoundDuration: number; cardsPerRound: number; subsExtraVote: boolean; botJoinsChannel: boolean; snapFanApiKey: string | null; collection: string | null; bgOpacity: number; } | null; } & { id: string; channelName: string; displayName: string | null; isAdmin: boolean; isAuthorized: boolean; twitchID: string | null; twitchProfilePictureURL: string | null; initialSetupDone: boolean; createdAt: Date; } | null)
 
 export async function getAuthorizedUsers(prisma: PrismaClient) {
     try {
@@ -290,7 +290,8 @@ export async function getUserPreferences(prisma: PrismaClient, twitchName: strin
                 draftRoundDuration: true,
                 snapFanApiKey: true,
                 subsExtraVote: true,
-                userId: true
+                userId: true,
+                bgOpacity: true
             }
         })
     }
@@ -300,4 +301,31 @@ export async function getUserPreferences(prisma: PrismaClient, twitchName: strin
         console.log(message);
     }
     return null;
+}
+
+export async function updateUserBgOpacity(prisma: PrismaClient, twitchId: string, opacity: number) {
+    try {
+        const user = await prisma.userPreference.upsert({
+            where: {
+                userId: twitchId
+            },
+            update: {
+                bgOpacity: opacity,
+            },
+            create: {
+                bgOpacity: opacity,
+                user: {
+                    connect: {
+                        twitchID: twitchId
+                    }
+                }
+            }
+        })
+        return user;
+    }
+    catch (error) {
+        let message = 'Unknown Error';
+        if (error instanceof Error) message = error.message;
+        console.log(message);
+    }
 }

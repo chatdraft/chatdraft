@@ -3,7 +3,7 @@ import { AddChannel, RemoveChannel, GetChannels } from './db/channels'
 import { saveToken, loadToken } from './db/tokens';
 import type { AccessToken } from '@twurple/auth';
 import type { HelixUser } from '@twurple/api';
-import { updateUser, updateUserAuthorization, getAuthorizedUsers, getAdminUsers, updateUserSetupCompleteStatus, updateUserPreferences, updateUserCollection, getUserPreferences, resetUserCollection, getSetupCompleteUsers, resetSetupComplete } from './db/users';
+import { updateUser, updateUserAuthorization, getAuthorizedUsers, getAdminUsers, updateUserSetupCompleteStatus, updateUserPreferences, updateUserCollection, getUserPreferences, resetUserCollection, getSetupCompleteUsers, resetSetupComplete, updateUserBgOpacity } from './db/users';
 
 const prisma = new PrismaClient()
 
@@ -25,3 +25,4 @@ export const DbUpdateUserPreferences = (twitchId: string, duration: number, sele
 export const DbUpdateUserCollection = (twitchId: string, cards: string[]) => updateUserCollection(prisma, twitchId, cards)
 export const DbResetUserCollection = (twitchId: string) => resetUserCollection(prisma, twitchId)
 export const DbGetUserPreferences = (twitchName: string) => getUserPreferences(prisma, twitchName);
+export const DbUpdateUserOpacity = (twitchId: string, opacity: number) => updateUserBgOpacity(prisma, twitchId, opacity);

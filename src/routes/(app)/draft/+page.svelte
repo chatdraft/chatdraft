@@ -64,7 +64,8 @@
 
 <svelte:head>
 	<title>oro's chat draft - Draft</title>
-	<meta name="Marvel Snap Twitch Chat Draft" />
+	<meta name="description"
+		content="Start a Marvel Snap Oro Chat Draft on Twitch" />
 </svelte:head>
 
 <div class="space-y-4 p-4">
