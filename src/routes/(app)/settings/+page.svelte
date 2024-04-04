@@ -18,8 +18,6 @@
     
     export let data: PageData;
 
-    export let form: ActionData;
-
     let full_source_configured = data.full_source_configured;
     let deck_sources_configured = data.deck_sources_configured;
     let choices_sources_configured = data.choice_sources_configured;
@@ -122,15 +120,12 @@
         <form method="post" action="?/updateOpacity" use:enhance={() => {
             return async ({result, update}) => {
                 if (result.type == "success") {
-                    toastStore.trigger({message: "Opacity updated successfully."})
+                    toastStore.trigger({message: "Opacity updated successfully. Please refresh your browser source(s)."})
                 }
             }
         }}>
         <BgOpacitySlider bgOpacity={data.bgOpacity} />
         <button class="btn btn-md variant-filled-primary">Save Opacity</button>
-        {#if form?.success}
-            <p class="mt-4">Please refresh your browser source(s).</p>
-        {/if}
         </form>
     </div>
     <br/>

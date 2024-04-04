@@ -10,6 +10,14 @@ export default {
 		'./src/**/*.{html,js,svelte,ts}',
 		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
 	],
+	safelist: [
+		{
+			pattern: /grid-cols-+/,
+		},
+		{
+			pattern: /bg-opacity-(0|10|20|30|40|50|60|70|80|90|100)/,
+		},
+	],
 	theme: {
 		extend:
 		{
@@ -36,13 +44,5 @@ export default {
 				]
 			}
 		})
-	],
-	safelist: [
-		{
-			pattern: /grid-cols-+/,
-		},
-		{
-			pattern: /bg-opacity-+/,
-		}
 	]
 } satisfies Config;
