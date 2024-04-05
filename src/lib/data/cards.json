@@ -97,7 +97,7 @@
             "name": "Angela",
             "description": "After you play a card here,\n+1 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-ed4ad440b65bebca795f0acd3680a0d7cb2caa16fe37e2524315914ed17af95e.webp",
-            "cost": 1
+            "cost": 2
         },
         {
             "cardDefKey": "Annihilus",
