@@ -27,7 +27,7 @@ export default class TwitchBot {
         this.bot = new Bot({authProvider, channels: channels, 
             commands: [
                 createBotCommand('chatdraft', async (_,{say}) => 
-                    await say(`Help  draft a deck and I'll play it! A random choice of cards will be presented and chat will vote on which card gets added to the deck. Type the number to vote! To use Chat Draft, inquire at twitch.tv/jjrolk`)),
+                    await say(`Oro Chat Draft presents a random selection of cards for chat to vote on. Chat picks 12 unique cards, drafting a completed deck. To use Chat Draft, inquire at twitch.tv/jjrolk.`)),
                 createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
                         const preferences = await DbGetUserPreferences(broadcasterName);
@@ -72,9 +72,15 @@ export default class TwitchBot {
                 }, {globalCooldown: 30, userCooldown: 60}),
 
                 createBotCommand('chatdraftcode', async (_, {broadcasterName, reply}) => {
-                    const previousDraft = GetPreviousDraft(broadcasterName);
-                    if (previousDraft) {
-                        reply(previousDraft.GetDeckCode());
+                    const currentDraft = GetDraft(broadcasterName);
+                    if (currentDraft?.total == 12) {
+                        reply(currentDraft.GetDeckCode());
+                    }
+                    else {
+                        const previousDraft = GetPreviousDraft(broadcasterName);
+                        if (previousDraft) {
+                            reply(previousDraft.GetDeckCode());
+                        }
                     }
                 }, {globalCooldown: 30, userCooldown: 60})
             ]
