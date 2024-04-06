@@ -95,8 +95,8 @@
             "variantKey": null,
             "url": "/cards/Angela/",
             "name": "Angela",
-            "description": "After you play a card here,\n+1 Power.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-ed4ad440b65bebca795f0acd3680a0d7cb2caa16fe37e2524315914ed17af95e.webp",
+            "description": "After you play a card here,\n+2 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-e5202dee422ce864dddd8caf0478be8639152aab75d3c14d54e5535278c7613d.webp",
             "cost": 2
         },
         {
@@ -420,7 +420,7 @@
             "url": "/cards/Crossbones/",
             "name": "Crossbones",
             "description": "You can only play this at locations where you are winning.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crossbones-b1d1b294bd57cb8865d144e2be486723b0d3ab7599a40f7945e1b47694fbc876.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crossbones-984f415451538d54d48973019cfdc461b85bb410ccb7b47f0432e71907722aa4.webp",
             "cost": 4
         },
         {
@@ -1311,7 +1311,7 @@
             "url": "/cards/Miek/",
             "name": "Miek",
             "description": "When you discard a card, this gains +1 Power and can move next turn.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Miek-e55826a3db08b3f4f9b12de4a1e5cd06d3ee9bd4baa82e8c0a8bd4417a8df345.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Miek-3493fc690fa97dc3e30645edb50d4173d4a18bb528484848c1440a3b1f55c111.webp",
             "cost": 1
         },
         {
@@ -1770,7 +1770,7 @@
             "url": "/cards/Sabretooth/",
             "name": "Sabretooth",
             "description": "When this is destroyed, return it to your hand. It costs 0.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sabretooth-550882b8f6d9ed0b82d50696e1b148d8ead2a92809b30da53c2a8a4370db0de3.webp",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sabretooth-439cee7c750ac4b807ae62f04ec24a3caefe204e7b374ebf35c8c0082a414035.webp",
             "cost": 3
         },
         {
@@ -2102,7 +2102,7 @@
             "variantKey": null,
             "url": "/cards/Thanos/",
             "name": "Thanos",
-            "description": "At the start of the game, shuffle the six Infinity Stones into your deck.",
+            "description": "Starts in your opening hand and shuffles the six Infinity Stones into your deck.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thanos-82f8499e4d098da8e38c4ab2a8ec74e340ca9c61f16c04609e8b0f60d51a3001.webp",
             "cost": 6
         },
