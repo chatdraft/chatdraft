@@ -116,18 +116,6 @@
 
     <h2 class="h2">Browser Sources</h2>
     <BrowserSources user={data.user || ''} previewMode={data.previewMode} {full_source_configured} {deck_sources_configured} {choices_sources_configured}/>
-    <div class="m-4">
-        <form method="post" action="?/updateOpacity" use:enhance={() => {
-            return async ({result, update}) => {
-                if (result.type == "success") {
-                    toastStore.trigger({message: "Opacity updated successfully. Please refresh your browser source(s)."})
-                }
-            }
-        }}>
-        <BgOpacitySlider bgOpacity={data.bgOpacity} />
-        <button class="btn btn-md variant-filled-primary">Save Opacity</button>
-        </form>
-    </div>
     <br/>
 
     <h2 class="h2">Snap Collection</h2>

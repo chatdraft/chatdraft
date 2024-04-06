@@ -109,7 +109,7 @@
 		<div class="text-white text-4xl rounded-sm font-snapa">
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
-				<div class="bg-purple-900 text-white text-4xl rounded-t-lg" style="--tw-bg-opacity: {data.bgOpacity}%" class:rounded-b-lg={data.hide != 'deck'}>
+				<div class="bg-purple-900 text-white text-4xl rounded-t-lg bg-opacity-70" class:rounded-b-lg={data.hide != 'deck'}>
 					<div class="flex items-center">
 						<h2 class="font-outline pl-4">
 							<span class="uppercase font-snapa font-outline shadow-black">Pick:</span>
@@ -131,7 +131,7 @@
 					<div class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-2 font-snapn italic">
 						{#if (choices && choices.length > 0)}
 								{#each choices as choice, index}
-									<div class="border-white bg-black border-2 rounded-lg shadow-md shadow-black/100 relative"  style="--tw-bg-opacity: {data.bgOpacity}%" class:blur="{winningCard && winningCard.cardDefKey != choice.cardDefKey}">
+									<div class="border-white bg-black border-2 rounded-lg shadow-md shadow-black/100 relative bg-opacity-70" class:blur="{winningCard && winningCard.cardDefKey != choice.cardDefKey}">
 										<!-- Selection Value-->
 										<span class="font-bold text-8xl flex items-center absolute top-0 left-0 bottom-0 m-auto">
 											{index + 1}
@@ -160,7 +160,7 @@
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
-				<div class="bg-purple-900 text-slate-200 text-2xl font-outline rounded-t-lg" style="--tw-bg-opacity: {data.bgOpacity}%" >
+				<div class="bg-purple-900 text-slate-200 text-2xl font-outline rounded-t-lg bg-opacity-70">
 					<div class="flex justify-evenly items-center">
 					<h2 class="uppercase font-snapa font-outline shadow-black">
 						Drafted Cards
@@ -181,12 +181,12 @@
 					</div>
 				</div>
 			{/if}
-		<p class="bg-purple-900 rounded-b-lg text-xl flex justify-center font-outline uppercase shadow-black font-snapa" style="--tw-bg-opacity: {data.bgOpacity}%" >To use Chat Draft, inquire at:&nbsp;<span class="anchor font-serif font-outline-0 normal-case relative bottom-[2px]">twitch.tv/jjrolk</span></p>
+		<p class="bg-purple-900 rounded-b-lg text-xl flex justify-center font-outline uppercase shadow-black font-snapa bg-opacity-70">To use Chat Draft, inquire at:&nbsp;<span class="anchor font-serif font-outline-0 normal-case relative bottom-[2px]">twitch.tv/jjrolk</span></p>
 		</div>
 	{:else}
 		{#if data.hide != 'deck'}
 			<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
-			<div class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg" style="--tw-bg-opacity: {data.bgOpacity}%">
+			<div class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg bg-opacity-70">
 				<div class="flex flex-shrink flex-col">
 					<div class="flex justify-evenly items-center">
 						<h2 class="uppercase font-snapa font-outline shadow-black text-slate-200 text-2xl">
@@ -200,7 +200,7 @@
 					{/if}
 				</div>
 			</div>
-			<p class="bg-purple-900 rounded-b-lg text-xl flex justify-center font-outline uppercase shadow-black text-white font-snapa">To use Chat Draft, inquire at:&nbsp;<span class="anchor font-serif font-outline-0 normal-case relative bottom-[2px]"  style="--tw-bg-opacity: {data.bgOpacity}%" >twitch.tv/jjrolk</span></p>
+			<p class="bg-purple-900 rounded-b-lg text-xl flex justify-center font-outline uppercase shadow-black text-white font-snapa bg-opacity-70">To use Chat Draft, inquire at:&nbsp;<span class="anchor font-serif font-outline-0 normal-case relative bottom-[2px] bg-opacity-70">twitch.tv/jjrolk</span></p>
 		{/if}
 	{/if}
 {/if}
