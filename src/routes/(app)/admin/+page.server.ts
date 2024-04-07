@@ -7,12 +7,12 @@ import { ApiClient } from '@twurple/api';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(locals.user.isAdmin)) throw redirect(302, '/')
-    const channels = DbGetChannels();
-    const drafts = GetDrafts();
-    const previousDrafts = GetPreviousDrafts();
-    const authorizedUsers = DbGetAuthorizedUsers() || [];
-    const adminUsers = DbGetAdminUsers() || [];
-    const setupCompleteUsers = DbGetSetupCompleteUsers() || [];
+    const channels = await DbGetChannels();
+    const drafts = await GetDrafts();
+    const previousDrafts = await GetPreviousDrafts();
+    const authorizedUsers = await DbGetAuthorizedUsers() || [];
+    const adminUsers = await DbGetAdminUsers() || [];
+    const setupCompleteUsers = await DbGetSetupCompleteUsers() || [];
 
     return {
         channels: channels,

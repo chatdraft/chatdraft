@@ -80,9 +80,12 @@
 	$: votes = current_draft?.currentChoice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 
+	let wsStatus: number | undefined;
+
 	onMount(async () => {
 		setInterval(() => {
 			now = Date.now();
+			wsStatus = ws?.readyState;
 		}, 100)
 		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
 		
@@ -204,3 +207,24 @@
 		{/if}
 	{/if}
 {/if}
+
+<div class="absolute bottom-0 right-0">
+	{#if ws}
+		{#if wsStatus === ws?.OPEN}
+			<iconify-icon icon="foundation:check" width="24" height="24" style="color: green" inline></iconify-icon>
+			Websocket Connected
+		{:else if wsStatus === ws?.CLOSED}
+			<iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
+			Websocket Disconnected
+		{:else if wsStatus === ws?.CONNECTING}
+			<iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: yellow" inline></iconify-icon>
+			Websocket Connecting
+		{:else if wsStatus === ws?.CLOSING}
+			<iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: yellow" inline></iconify-icon>
+			Websocket Closing
+		{/if}
+		{:else}
+		<iconify-icon icon="material-symbols:circle" width="24" height="24" style="color: red" inline></iconify-icon>
+		Websocket null
+	{/if}
+</div>
