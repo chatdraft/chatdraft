@@ -14,7 +14,7 @@ export const establishWebSocket = async (handleMessage: (message: string) => Pro
     };
 
     ws.onclose = async () => { 
-        setTimeout(establishWebSocket, 5000);
+        setTimeout(async () => { await establishWebSocket(handleMessage) }, 5000);
     };
 
     return ws;
