@@ -6,15 +6,15 @@ export const establishWebSocket = async (handleMessage: (message: string) => Pro
     if (player && hide) {
         uri = `${protocol}//${window.location.host}/websocket/${player}?hide=${hide}`
     }
-    const ws = new WebSocket(uri);
-    heartbeat();
+    let ws = new WebSocket(uri);
+    heartbeat(ws);
     ws.onmessage = async (event) => {
-        console.log('[websocket] message received', event);
+        if (event.data != 'pong') console.log('[websocket] message received', event);
         await handleMessage(event.data)
     };
 
     ws.onclose = async () => { 
-        setTimeout(async () => { await establishWebSocket(handleMessage) }, 5000);
+        setTimeout(async () => { ws = await establishWebSocket(handleMessage) }, 5000);
     };
 
     return ws;
@@ -23,8 +23,8 @@ export const establishWebSocket = async (handleMessage: (message: string) => Pro
 
 
 function heartbeat(ws: WebSocket | null = null) {
-    setTimeout(heartbeat, 500);
+    setTimeout(() => heartbeat(ws), 500);
     if (!ws) return;
-    if (ws.readyState !== 1) return;
+    if (ws.readyState !== ws.OPEN) return;
     ws.send("ping");
 }
