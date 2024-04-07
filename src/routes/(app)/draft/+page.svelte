@@ -24,6 +24,7 @@
 	const handleMessage = async(message: string) => {
 		if (message == 'pong') return;
 
+		// TODO: Formalize WS messages
 		if (message.startsWith('draftcomplete')) {
 			setTimeout(() => {
 				invalidateAll();
@@ -46,6 +47,7 @@
 
 	onMount(async () => {
 		setInterval(() => {
+			// TODO: Replace this with server time
 			now = Date.now();
 		}, 100)
 		if (data.draft) {

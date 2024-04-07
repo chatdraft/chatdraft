@@ -7,6 +7,7 @@ import { ApiClient } from '@twurple/api';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(locals.user.isAdmin)) throw redirect(302, '/')
+    // TODO: Consolidate DB calls on admin page
     const channels = await DbGetChannels();
     const drafts = await GetDrafts();
     const previousDrafts = await GetPreviousDrafts();

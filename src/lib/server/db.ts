@@ -6,6 +6,7 @@ import type { HelixUser } from '@twurple/api';
 import { updateUser, updateUserAuthorization, getAuthorizedUsers, getAdminUsers, updateUserSetupCompleteStatus, updateUserPreferences, updateUserCollection, getUserPreferences, resetUserCollection, getSetupCompleteUsers, resetSetupComplete, updateUserBgOpacity } from './db/users';
 
 const prisma = new PrismaClient()
+// TODO: refactor below functions as prisma client extensions
 
 export const DbAddChannel = (userId: string) => AddChannel(prisma, userId);
 export const DbRemoveChannel = (userId: string) => RemoveChannel(prisma, userId);
