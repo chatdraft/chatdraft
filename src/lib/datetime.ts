@@ -1,4 +1,7 @@
 export const DatetimeNowUtc = () => {
-    const localToUtc = new Date().getTimezoneOffset() * 60;
-    return Date.now() + localToUtc;
+    const date = new Date();
+    const now_utc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
+                date.getUTCDate(), date.getUTCHours(),
+                date.getUTCMinutes(), date.getUTCSeconds());
+    return now_utc;
 }
