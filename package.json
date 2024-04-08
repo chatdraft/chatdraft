@@ -1,6 +1,6 @@
 {
 	"name": "chatdraft",
-	"version": "0.1.22c",
+	"version": "0.1.23",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
