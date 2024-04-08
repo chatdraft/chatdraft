@@ -17,8 +17,10 @@ export function GetDrafts() {
 }
 
 export function SetPreviousDraft(draft: Draft) {
-	previousDrafts.set(draft.player, draft);
-	drafts.delete(draft.player);
+	if (previousDrafts.get(draft.player) !== draft) {
+		previousDrafts.set(draft.player, draft);
+		drafts.delete(draft.player);
+	}
 }
 
 export function GetPreviousDrafts() {
