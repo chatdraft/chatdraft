@@ -2,13 +2,14 @@
 	import { invalidateAll } from '$app/navigation';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
+	import { DatetimeNowUtc } from '$lib/datetime.js';
 	import type { Card } from '$lib/snap/draft.js';
 	import { establishWebSocket } from '$lib/websocket.js';
 	import { onMount } from 'svelte';
 
 	export let data;
 
-	let now = Date.now();
+	let now = DatetimeNowUtc();
 
 	let ws: WebSocket | null = null;
 
@@ -81,7 +82,7 @@
 	onMount(async () => {
 		setInterval(() => {
 			// TODO: Replace this with server time
-			now = Date.now();
+			now = DatetimeNowUtc();
 		}, 100)
 		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
 		

@@ -12,9 +12,10 @@
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 	import { enhance } from '$app/forms';
+	import { DatetimeNowUtc } from '$lib/datetime';
 
 	export let data: PageData;
-	let now = Date.now();
+	let now = DatetimeNowUtc();
 	let duration = data.duration || 90;
 	let selectionCount = data.selectionCount || 6;
 	let subsExtraVote = data.subsExtraVote;
@@ -48,7 +49,7 @@
 	onMount(async () => {
 		setInterval(() => {
 			// TODO: Replace this with server time
-			now = Date.now();
+			now = DatetimeNowUtc();
 		}, 100)
 		if (data.draft) {
 			selectionCount = data.draft.selections;

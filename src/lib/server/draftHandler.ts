@@ -3,6 +3,7 @@ import type { Card, Choice, Deck, Draft } from "$lib/snap/draft";
 import { shuffle } from "$lib/snap/utils";
 import type { EventHandler } from '@d-fischer/typed-event-emitter';
 import { GetAllCards } from "./cardsHandler";
+import { DatetimeNowUtc } from "$lib/datetime";
 
 export const drafts = new Map<string, Draft>();
 export const previousDrafts = new Map<string, Draft>();
@@ -48,7 +49,7 @@ export async function GetPreviewDraft(): Promise<IDraft> {
 		cards: [],
 		votes: new Map<string, string>(),
 		voteCounts: [],
-		votes_closed: Date.now() + duration * 1000,
+		votes_closed: DatetimeNowUtc() + duration * 1000,
 	}
 
 	for (let i = 0; i < selections; i++) {

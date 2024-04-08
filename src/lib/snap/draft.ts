@@ -1,6 +1,7 @@
 import { EventEmitter } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
+import { DatetimeNowUtc } from '$lib/datetime';
 
 export default interface IDraft {
 	cards: Deck;
@@ -121,7 +122,7 @@ export class Draft extends EventEmitter implements IDraft {
 			cards: choices,
 			votes: new Map<string, string>(),
 			voteCounts: voteCounts,
-			votes_closed: Date.now() + voting_period_ms,
+			votes_closed: DatetimeNowUtc() + voting_period_ms,
 		};
 	
 		if (this.player != '') {
