@@ -31,10 +31,8 @@
 
 			showDeck = true;
 			setTimeout(() => {
-				if (showDeck) {
-					data.draft = null;
-					showDeck = false;
-				}
+				data.draft = null;
+				showDeck = false;
 			}, 30000)
 
 
