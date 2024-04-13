@@ -78,6 +78,7 @@
 		}
 
 		if (wsm.type == WebSocketMessageType.PreviewToggled) {
+			preview_mode = JSON.parse(wsm.message!);
 			invalidateAll();
 		}
 
@@ -91,6 +92,7 @@
 	$: choices = current_draft?.currentChoice?.cards!;
 	$: votes = current_draft?.currentChoice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
+	$: preview_mode = data.previewStatus;
 
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
@@ -114,7 +116,6 @@
 </svelte:head>
 
 <!--TODO: Separate components into Svelte components-->
-
 {#if current_draft}
 	{#if time_remaining }
 		<h1 class="text-black text-4xl flex justify-center uppercase font-outline-2 shadow-white font-snapa">Oro Chat Draft</h1>
@@ -123,6 +124,17 @@
 				<!-- Pick Number and Timer -->
 				<div class="bg-purple-900 text-white text-4xl rounded-t-lg bg-opacity-70" class:rounded-b-lg={data.hide != 'deck'}>
 					<div class="flex items-center">
+						{#if preview_mode}
+							<div class="h-full">
+								<div class="grid w-full h-full place-items-center absolute -top-20">
+									<div class="text-6xl text-center bg-stripes-yellow z-50 text-black">
+										Preview Mode
+										<br/>
+										Enabled
+									</div>
+								</div>
+							</div>
+						{/if}
 						<h2 class="font-outline pl-4">
 							<span class="uppercase font-snapa font-outline shadow-black">Pick:</span>
 							<span class="font-snapn font-outline shadow-black">{current_draft.total + 1}</span>
@@ -173,6 +185,17 @@
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
 				<div class="bg-purple-900 text-slate-200 text-2xl font-outline rounded-t-lg bg-opacity-70">
+					{#if preview_mode}
+						<div class="h-full">
+							<div class="grid w-full h-full place-items-center absolute -top-20">
+								<div class="text-6xl text-center bg-stripes-yellow z-50 text-black">
+									Preview Mode
+									<br/>
+									Enabled
+								</div>
+							</div>
+						</div>
+					{/if}
 					<div class="flex justify-evenly items-center">
 					<h2 class="uppercase font-snapa font-outline shadow-black">
 						Drafted Cards
