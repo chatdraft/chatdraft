@@ -9,6 +9,8 @@ import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler
 import { building } from '$app/environment';
 import cookie from 'cookie';
 import { CloseBrowserSource, RegisterFullBrowserSource, RegisterDeckBrowserSource, RegisterChoiceBrowserSource } from '$lib/server/browserSourceHandler';
+import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
+import { DatetimeNowUtc } from '$lib/datetime';
 
 const auth_provider = new RefreshingAuthProvider({
 	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID!,
@@ -35,15 +37,19 @@ export const startupWebsocketServer = () => {
 
 			// if (!session) ws.close(1008, 'User not authenticated');
 			// ws.userId = session.userId;
-			ws.send(`Hello from SvelteKit ${new Date().toLocaleString()} (${ws.socketId})]`);
+			const wsm : WebSocketMessage = {
+				type: WebSocketMessageType.Connect,
+				timestamp: DatetimeNowUtc(),
+			}
+			ws.send(JSON.stringify(wsm));
 			ws.on('close', () => {
 				console.log(`[wss:kit] client disconnected (${ws.socketId}, ${ws.player_channel})`);
 				CloseBrowserSource(ws.player_channel, ws.socketId);
 			});
 			ws.on('message', (event) => {
-				const message = event.toString();
-				if (message.startsWith("bs:")) {
-					const hide = message.split(':')[1];
+				const wsm : WebSocketMessage = JSON.parse(event.toString());
+				if (wsm.type == WebSocketMessageType.BrowserSource) {
+					const hide = wsm.message;
 					if (hide == '') {
 						RegisterFullBrowserSource(ws.player_channel, ws.socketId);
 					}
@@ -54,8 +60,8 @@ export const startupWebsocketServer = () => {
 						RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
 					}
 				}
-				if (message.startsWith("channel:")) {
-					const channel = message.split(':')[1];
+				if (wsm.type == WebSocketMessageType.Channel) {
+					const channel = wsm.message!;
 					ws.player_channel = channel;
 				}
 			});

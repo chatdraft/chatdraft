@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { DatetimeNowUtc } from "$lib/datetime";
+	import { WebSocketMessageType, type WebSocketMessage } from "$lib/websocket";
+
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
 	let log: string[] = [];
@@ -32,7 +35,11 @@
 		setTimeout(heartbeat, 500);
 		if (!ws) return;
 		if (ws.readyState !== 1) return;
-		ws.send("ping");
+		const wsm : WebSocketMessage = {
+			type: WebSocketMessageType.Ping,
+			timestamp: DatetimeNowUtc(),
+		}
+		ws.send(JSON.stringify(wsm));
 	}
 
 	const requestData = async () => {

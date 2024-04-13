@@ -13,6 +13,7 @@
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 	import BgOpacitySlider from '$lib/components/BgOpacitySlider.svelte';
+    import { type WebSocketMessage, WebSocketMessageType } from '$lib/websocket';
 
     const toastStore = getToastStore();
     
@@ -29,8 +30,9 @@
 	let ws: WebSocket | null = null;
 
 	const handleMessage = async(message: string) => {
-		if (message.startsWith('browserupdated')) {
-            const obj = JSON.parse(message.substring('browserupdated:'.length));
+        const wsm : WebSocketMessage = JSON.parse(message);
+		if (wsm.type == WebSocketMessageType.BrowserUpdated) {
+            const obj = JSON.parse(wsm.message!);
             full_source_configured = obj.full_source_configured;
             deck_sources_configured = obj.deck_sources_configured;
             choices_sources_configured = obj.choice_sources_configured;

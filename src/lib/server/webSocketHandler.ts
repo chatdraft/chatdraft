@@ -5,6 +5,8 @@ import type WebSocketBase from 'ws';
 import type { IncomingMessage } from 'http';
 import type { Duplex } from 'stream';
 import { refreshTimeout } from './sessionHandler';
+import { WebSocketMessageType, type WebSocketMessage } from '../websocket';
+import { DatetimeNowUtc } from '../datetime';
 
 export const GlobalThisWSS = Symbol.for('sveltekit.wss');
 
@@ -50,9 +52,13 @@ export const createWSSGlobalInstance = () => {
 		});
 		ws.on('message', (event) => {
 			refreshTimeout(ws.sessionId);
-			const message = event.toString();
-			if (message == 'ping') {
-				ws.send('pong');
+			const message : WebSocketMessage = JSON.parse(event.toString());
+			if (message.type == WebSocketMessageType.Ping) {
+				const wsm : WebSocketMessage = {
+					type: WebSocketMessageType.Pong,
+					timestamp: DatetimeNowUtc(),
+				}
+				ws.send(JSON.stringify(wsm));
 			}
 		})
 	});

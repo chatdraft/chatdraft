@@ -6,7 +6,7 @@
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 	import { getContext, onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { establishWebSocket } from '$lib/websocket.js';
+	import { establishWebSocket, WebSocketMessageType, type WebSocketMessage } from '$lib/websocket.js';
 	import type { PageData } from './$types';
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
@@ -23,10 +23,13 @@
 	let ws: WebSocket | null = null;
 
 	const handleMessage = async(message: string) => {
-		if (message == 'pong') return;
+		const wsm : WebSocketMessage = JSON.parse(message);
+		now = wsm.timestamp;
+		
+		if (wsm.type == WebSocketMessageType.Pong) return;
 
-		// TODO: Formalize WS messages
-		if (message.startsWith('draftcomplete')) {
+
+		if (wsm.type == WebSocketMessageType.DraftComplete) {
 			setTimeout(() => {
 				invalidateAll();
 			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
@@ -47,10 +50,6 @@
 	$: previous_deck_code = data.prev_draft_deck_code;
 
 	onMount(async () => {
-		setInterval(() => {
-			// TODO: Replace this with server time
-			now = DatetimeNowUtc();
-		}, 100)
 		if (data.draft) {
 			selectionCount = data.draft.selections;
 		}

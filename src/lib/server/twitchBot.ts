@@ -7,6 +7,8 @@ import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
 import { DbGetChannels, DbGetUserPreferences } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
+import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
+import { DatetimeNowUtc } from '$lib/datetime';
 
 export default class TwitchBot {
 
@@ -67,7 +69,11 @@ export default class TwitchBot {
                 createBotCommand('chatdraftdeck', async (_, {broadcasterName}) => {
                     const previousDraft = GetPreviousDraft(broadcasterName);
                     if (previousDraft) {
-                        SendMessage(broadcasterName, 'showdeck')
+                        const wsm : WebSocketMessage = {
+                            type: WebSocketMessageType.ShowDeck,
+                            timestamp: DatetimeNowUtc()
+                        }
+                        SendMessage(broadcasterName, wsm);
                     }
                 }, {globalCooldown: 30, userCooldown: 60}),
 
@@ -95,7 +101,11 @@ export default class TwitchBot {
 
             if (['1','2','3','4','5','6'].includes(text) && IsActive(draft.player)) {
                 draft.Vote(user, text, msg.userInfo.isSubscriber);
-                SendMessage(channel, 'voteupdated');
+                const wsm : WebSocketMessage = {
+                    type: WebSocketMessageType.VoteUpdated,
+                    timestamp: DatetimeNowUtc()
+                }
+                SendMessage(channel, wsm);
             }
         });
     }

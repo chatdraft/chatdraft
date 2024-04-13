@@ -4,7 +4,7 @@
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { DatetimeNowUtc } from '$lib/datetime.js';
 	import type { Card } from '$lib/snap/draft.js';
-	import { establishWebSocket } from '$lib/websocket.js';
+	import { establishWebSocket, type WebSocketMessage, WebSocketMessageType } from '$lib/websocket.js';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -17,11 +17,24 @@
 	let selectionCount = 3;
 
 	const handleMessage = async(message: string) => {
-		if (message.startsWith("Hello")) {
-			ws?.send(`channel:${data.player}`)
-			ws?.send(`bs:${data.hide}`);
+		const wsm : WebSocketMessage = JSON.parse(message);
+		now = wsm.timestamp;
+		if (wsm.type== WebSocketMessageType.Connect) {
+			const channelMsg : WebSocketMessage = {
+				type: WebSocketMessageType.Channel,
+				timestamp: DatetimeNowUtc(),
+				message: data.player
+			}
+			ws?.send(JSON.stringify(channelMsg));
+			const hideMsg : WebSocketMessage = {
+				type: WebSocketMessageType.BrowserSource,
+				timestamp: DatetimeNowUtc(),
+				message: data.hide
+			}
+			ws?.send(JSON.stringify(hideMsg));
 		}
-		if (message == 'showdeck') {
+
+		if (wsm.type == WebSocketMessageType.ShowDeck) {
 			if (current_draft) return;
 
 			const ret = await fetch(`/api/v1/draft/player/${data.player}?previous=true`)
@@ -40,31 +53,31 @@
 			return;
 		}
 
-		if (message.startsWith('draftcomplete')) {
+		if (wsm.type == WebSocketMessageType.DraftComplete) {
 			setTimeout(() => {
 				current_draft = null;
 			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
 			invalidateAll();
 		}
 
-		if (message.startsWith('choiceselected')) {
-			winningCard = JSON.parse(message.slice('choiceselected:'.length));
+		if (wsm.type == WebSocketMessageType.ChoiceSelected) {
+			winningCard = JSON.parse(wsm.message!);
 		}
 
-		if (message.startsWith('newchoice')) {
+		if (wsm.type == WebSocketMessageType.NewChoice) {
 			winningCard = undefined;
 			invalidateAll();
 		}
 		
-		if (message.startsWith('draftcanceled')) {
+		if (wsm.type == WebSocketMessageType.DraftCanceled) {
 			invalidateAll();
 		}
 
-		if (message.startsWith('voteupdated')) {
+		if (wsm.type == WebSocketMessageType.VoteUpdated) {
 			invalidateAll();
 		}
 
-		if (message.startsWith('previewtoggled')) {
+		if (wsm.type == WebSocketMessageType.PreviewToggled) {
 			invalidateAll();
 		}
 
@@ -80,10 +93,6 @@
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 
 	onMount(async () => {
-		setInterval(() => {
-			// TODO: Replace this with server time
-			now = DatetimeNowUtc();
-		}, 100)
 		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
 		
 		if (data.draft) {
