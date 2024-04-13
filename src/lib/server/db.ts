@@ -229,6 +229,23 @@ export const prisma = new PrismaClient().$extends({
             
                 return undefined;
             },
+
+            async GetAllUsers() {
+                try {
+                    return await prisma.user.findMany({
+                        include: {
+                            userPreferences: true
+                        }
+                    });
+                }
+                catch (error) {
+                    let message = 'Unknown Error';
+                    if (error instanceof Error) message = error.message;
+                    console.log(message);
+                }
+            
+                return undefined;
+            }
         },
         token: {
             async SaveToken(user_id: string, token_data: AccessToken) {

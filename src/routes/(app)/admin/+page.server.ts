@@ -7,13 +7,13 @@ import { ApiClient } from '@twurple/api';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(locals.user.isAdmin)) throw redirect(302, '/')
-    // TODO: Consolidate DB calls on admin page
-    const channels = await prisma.user.GetChannels();
+    const users = await prisma.user.GetAllUsers();
+    const channels = users?.filter((user) => user.userPreferences?.botJoinsChannel).map((user) => user.channelName)
     const drafts = await GetDrafts();
     const previousDrafts = await GetPreviousDrafts();
-    const authorizedUsers = await prisma.user.GetAuthorizedUsers() || [];
-    const adminUsers = await prisma.user.GetAdminUsers() || [];
-    const setupCompleteUsers = await prisma.user.GetSetupCompleteUsers() || [];
+    const authorizedUsers = users?.filter((user) => user.isAuthorized).map((user) => user.channelName);
+    const adminUsers = users?.filter((user) => user.isAdmin).map((user) => user.channelName);
+    const setupCompleteUsers = users?.filter((user) => user.initialSetupDone).map((user) => user.channelName);
 
     return {
         channels: channels,
