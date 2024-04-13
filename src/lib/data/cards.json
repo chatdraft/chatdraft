@@ -68,8 +68,8 @@
             "variantKey": null,
             "url": "/cards/Alioth/",
             "name": "Alioth",
-            "description": "<b>On Reveal:</b> Destroy ALL enemy cards played here this turn. <i>(including unrevealed cards)</i>",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-7069974edfc7a86fc8fdd0f2238cf2c4eeee7f0f51ce389a63588b93306174f1.webp",
+            "description": "<b>On Reveal:</b> Remove the text from all unrevealed enemy cards here.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-5edeb83a7b0f82ce19910d1dd8db6f3ef7bd72e01870dc63bcef80047034ae8a.webp",
             "cost": 6
         },
         {
@@ -997,7 +997,7 @@
             "name": "Jean Grey",
             "description": "<b>Ongoing:</b> Players must play their first card here each turn. <i>(if possible)</i>",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeanGrey-00cf36d7dea1530ad53a5129c64cd05ed23b4d0631e56460269663730e4f91f8.webp",
-            "cost": 2
+            "cost": 3
         },
         {
             "cardDefKey": "JeffTheBabyLandShark",
@@ -1121,8 +1121,8 @@
             "variantKey": null,
             "url": "/cards/LadyDeathstrike/",
             "name": "Lady Deathstrike",
-            "description": "<b>On Reveal:</b> Destroy each card here with less Power than this.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-8bbbdd174b65208605c4cef572cfa7bd828ab706d1725c9bfbeea7db59e0561b.webp",
+            "description": "<b>On Reveal:</b> Destroy each card here with 3 or less Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-034e0bb4bcc51390674cb938f270f75f8e1149f3b50f1998e5252ae0e031c7c4.webp",
             "cost": 5
         },
         {
@@ -1616,7 +1616,7 @@
             "variantKey": null,
             "url": "/cards/Pixie/",
             "name": "Pixie",
-            "description": "<b>On Reveal:</b> Shuffle the Costs of all cards in your deck that started there.",
+            "description": "<b>On Reveal:</b> Shuffle the base Costs of all cards in your deck that started there.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Pixie-df319bb05ecfbe1a31272cd19f9515d734d35dc88a615dba0182ca5d174920c5.webp",
             "cost": 2
         },
@@ -1778,8 +1778,8 @@
             "variantKey": null,
             "url": "/cards/Sandman/",
             "name": "Sandman",
-            "description": "<b>Ongoing:</b> Players can only play 1 card a turn.",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-28c18dbfebae114c568cd6b9dbf36710808f991549f69f7310f810c26f9e9903.webp",
+            "description": "<b>On Reveal:</b> Players can only play 1 card next turn.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-e6a81f63be1c10120d2e11d87eec44815356017e6d72c67c0727f529ce22ead3.webp",
             "cost": 5
         },
         {
@@ -1850,7 +1850,7 @@
             "variantKey": null,
             "url": "/cards/ShadowKing/",
             "name": "Shadow King",
-            "description": "<b>On Reveal:</b> Set all cards here to their original base Power.",
+            "description": "<b>On Reveal:</b> Set all cards here to their base Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-cb3e4b8db461ec40ed389f0803e02831b5a77276e3751c626a3fd7f1687cd35a.webp",
             "cost": 2
         },
@@ -2039,7 +2039,7 @@
             "variantKey": null,
             "url": "/cards/StrongGuy/",
             "name": "Strong Guy",
-            "description": "<b>Ongoing:</b> If your hand is empty, +6 Power.",
+            "description": "<b>Ongoing:</b> +6 Power if your hand has 1 or fewer cards.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/StrongGuy-23be235444f42389887351f27b885dd1533a2fa9d21e798ad6c4f0489f78c43a.webp",
             "cost": 3
         },
@@ -2177,6 +2177,15 @@
             "description": "<b>Ongoing:</b> Your other cards\nhave -1 Power.",
             "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TyphoidMary-67907153ba617f36b972f2bf6f9b015286378aea1af62ebd340fa811f2c28456.webp",
             "cost": 4
+        },
+        {
+            "cardDefKey": "USAgent",
+            "variantKey": null,
+            "url": "/cards/USAgent/USAgent/",
+            "name": "U.S. Agent",
+            "description": "<b>Ongoing:</b> 4, 5, and 6-Cost cards here have -3 Power.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/USAgent-97d3d929fc5f76dc1cb4bc80818fcaff03010077ef9fe481d10067220b4dddff.webp",
+            "cost": 2
         },
         {
             "cardDefKey": "Uatu",
@@ -2363,8 +2372,8 @@
             "variantKey": null,
             "url": "/cards/Zabu/",
             "name": "Zabu",
-            "description": "<b>Ongoing:</b> Your 4-Cost cards cost 1 less. <i>(minimum 1)</i>",
-            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zabu-c32913e6cd1deabd11178c2963b1103e9484de759cffc201fe454589f4d183ba.webp",
+            "description": "<b>On Reveal:</b> Until the end of next turn, your 4-Cost cards cost 1 less.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zabu-c498bfb5877dcdd565701e14e5771e088b585fdb4e42160e2b9db243537d82a3.webp",
             "cost": 2
         },
         {
