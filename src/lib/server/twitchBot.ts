@@ -5,7 +5,7 @@ import type { Choice, Card, Deck, Draft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
-import { DbGetChannels, DbGetUserPreferences } from './db';
+import { prisma } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
@@ -32,7 +32,7 @@ export default class TwitchBot {
                     await say(`Oro Chat Draft presents a random selection of cards for chat to vote on. Chat picks 12 unique cards, drafting a completed deck. To use Chat Draft, inquire at twitch.tv/jjrolk.`)),
                 createBotCommand('chatdraftstart', async (params, {broadcasterName, msg}) => {
                     if (msg.userInfo.isMod || msg.userInfo.isBroadcaster) {
-                        const preferences = await DbGetUserPreferences(broadcasterName);
+                        const preferences = await prisma.userPreference.GetUserPreference(broadcasterName);
                         let duration = Number(params[0]);
                         if (!duration) {
                             duration = preferences ? preferences.draftRoundDuration : 90;
@@ -132,7 +132,7 @@ export default class TwitchBot {
 
     public static async getInstance(authProvider: RefreshingAuthProvider): Promise<TwitchBot> {
         if (!TwitchBot.instance) {
-            const channels = await DbGetChannels();
+            const channels = await prisma.user.GetChannels();
             TwitchBot.instance = new TwitchBot(authProvider, channels);
         }
 

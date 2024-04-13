@@ -3,7 +3,7 @@ import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandle
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { IsChoiceSourceConfigured, IsDeckSourceConfigured, IsFullSourceConfigured } from '$lib/server/browserSourceHandler';
-import { DbAddChannel, DbRemoveChannel, DbResetUserCollection, DbUpdateUserCollection, DbUpdateUserOpacity, DbUpdateUserPreferences } from '$lib/server/db';
+import { prisma } from '$lib/server/db';
 
 
 export const load = (async ({locals}) => {
@@ -32,7 +32,7 @@ export const actions = {
     join: async ({locals}) => {
         if (locals.user) {
             if (await TwitchBot.JoinChannel(locals.user.channelName!)) {
-                const userPreferences = await DbAddChannel(locals.user.twitchID!);
+                const userPreferences = await prisma.user.AddChannel(locals.user.twitchID!);
                 if (userPreferences) locals.user.userPreferences = userPreferences
             }
         }
@@ -40,7 +40,7 @@ export const actions = {
     part: async ({locals}) => {
         if (locals.user) {
             if (await TwitchBot.PartChannel(locals.user.channelName!)) {
-                const userPreferences = await DbRemoveChannel(locals.user.twitchID!);
+                const userPreferences = await prisma.user.RemoveChannel(locals.user.twitchID!);
                 if (userPreferences) locals.user.userPreferences = userPreferences;
             }
         }
@@ -57,7 +57,7 @@ export const actions = {
                 const duration = Number(data.get("duration")?.toString());
                 const selectionCount = Number(data.get("selectionCount")?.toString());
                 const subsExtraVote = Boolean(data.get("subsExtraVote")?.toString());
-                const userPreferences = await DbUpdateUserPreferences(locals.user.twitchID, duration, selectionCount, subsExtraVote);
+                const userPreferences = await prisma.userPreference.UpdateUserPreferences(locals.user.twitchID, duration, selectionCount, subsExtraVote);
                 if (userPreferences) locals.user.userPreferences = userPreferences;
             }
         }
@@ -70,7 +70,7 @@ export const actions = {
             if (collectionData) {
                 const cards: string[] = collectionData.ServerState.Cards.map((card: { CardDefId: string; }) => card.CardDefId).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index)
                 if (cards) {
-                    const userPreference = await DbUpdateUserCollection(locals.user.twitchID, cards);
+                    const userPreference = await prisma.userPreference.UpdateUserCollection(locals.user.twitchID, cards);
                     if (userPreference) locals.user.userPreferences = userPreference;
                 }
             }
@@ -79,7 +79,7 @@ export const actions = {
     },
     resetCollection: async ({locals}) => {
         if (locals.user && locals.user.twitchID) {
-            const userPreference = await DbResetUserCollection(locals.user.twitchID);
+            const userPreference = await prisma.userPreference.ResetUserCollection(locals.user.twitchID);
             if (userPreference) locals.user.userPreferences = userPreference;
         }
     },
@@ -87,7 +87,7 @@ export const actions = {
         if (locals.user && locals.user.twitchID) {
             const formData = await request.formData();
             const bgOpacity = Number(formData.get('bgOpacity')?.toString());
-            const userPreference = await DbUpdateUserOpacity(locals.user.twitchID, bgOpacity);
+            const userPreference = await prisma.userPreference.UpdateUserBgOpacity(locals.user.twitchID, bgOpacity);
             
             if (userPreference) locals.user.userPreferences = userPreference;
 

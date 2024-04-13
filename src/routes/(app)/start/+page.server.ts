@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandler';
-import { DbUpdateUserSetupCompleteStatus } from '$lib/server/db';
+import { prisma } from '$lib/server/db';
 
 
 export const load = (async ({locals}) => {
@@ -23,7 +23,7 @@ export const actions = {
     },
     completeSetup: async ({locals}) => {
         if (locals.user) {
-            const user = await DbUpdateUserSetupCompleteStatus(locals.user.channelName, true);
+            const user = await prisma.user.UpdateUserSetupCompleteStatus(locals.user.channelName, true);
             if (user) locals.user.initialSetupDone = user.initialSetupDone;
         }
     }

@@ -5,7 +5,7 @@ import { env } from "$env/dynamic/public";
 import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
 import { ApiClient } from '@twurple/api';
-import { DbSaveToken, DbUpdateUser } from '$lib/server/db'
+import { prisma } from '$lib/server/db'
 
 const authProvider = new RefreshingAuthProvider(
 	{
@@ -27,7 +27,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         const user_id = await authProvider.addUserForToken(tokenData);
 
         if(tokenData.scope.includes('chat:read') && tokenData.scope.includes('chat:edit')) {
-            await DbSaveToken(user_id, tokenData);
+            await prisma.token.SaveToken(user_id, tokenData);
             authProvider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read','chat:edit']);
             TwitchBot.getInstance(authProvider);
         }
@@ -37,7 +37,7 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
 
         // Get the user's data using the access token and upsert to db
         const twitch_user = await api.users.getAuthenticatedUser(user_id);
-        const user = await DbUpdateUser(twitch_user);
+        const user = await prisma.user.UpdateUser(twitch_user);
 
         // Create new session for the user
         const session_id = setSession(tokenData, user);

@@ -2,18 +2,18 @@ import { GetDrafts, GetPreviousDrafts } from '$lib/server/draftHandler';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
-import { DbAddChannel, DbUpdateUserAuthorization, DbGetChannels, DbRemoveChannel, DbGetAuthorizedUsers, DbGetAdminUsers, DbGetSetupCompleteUsers, DbResetSetupComplete } from '$lib/server/db';
+import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
 
 export const load = (async ({locals}) => {
     if (!locals.user || !(locals.user.isAdmin)) throw redirect(302, '/')
     // TODO: Consolidate DB calls on admin page
-    const channels = await DbGetChannels();
+    const channels = await prisma.user.GetChannels();
     const drafts = await GetDrafts();
     const previousDrafts = await GetPreviousDrafts();
-    const authorizedUsers = await DbGetAuthorizedUsers() || [];
-    const adminUsers = await DbGetAdminUsers() || [];
-    const setupCompleteUsers = await DbGetSetupCompleteUsers() || [];
+    const authorizedUsers = await prisma.user.GetAuthorizedUsers() || [];
+    const adminUsers = await prisma.user.GetAdminUsers() || [];
+    const setupCompleteUsers = await prisma.user.GetSetupCompleteUsers() || [];
 
     return {
         channels: channels,
@@ -35,7 +35,7 @@ export const actions = {
         if (username) {
             const api = new ApiClient({authProvider: locals.auth_provider});
             const user = await api.users.getUserByName(username);
-            if (user) DbUpdateUserAuthorization(user, true);
+            if (user) prisma.user.UpdateUserAuthorization(user, true);
         }
     },
     deauthorize: async ({request, locals}) => {
@@ -45,7 +45,7 @@ export const actions = {
         if (username) {
             const api = new ApiClient({authProvider: locals.auth_provider});
             const user = await api.users.getUserByName(username);
-            if (user) DbUpdateUserAuthorization(user, false);
+            if (user) prisma.user.UpdateUserAuthorization(user, false);
         }
     },
     joinchannel: async ({request, locals}) => {
@@ -57,7 +57,7 @@ export const actions = {
             const api = new ApiClient({authProvider});
             const user = await api.users.getUserByName(username);
             if (user) {
-                DbAddChannel(user.id);
+                prisma.user.AddChannel(user.id);
             }
         }
     },
@@ -70,7 +70,7 @@ export const actions = {
             const api = new ApiClient({authProvider});
             const user = await api.users.getUserByName(username);
             if (user) {
-                DbRemoveChannel(user.id);
+                prisma.user.RemoveChannel(user.id);
             }
         }
     },
@@ -95,7 +95,7 @@ export const actions = {
         const user = data.get("username")?.toString();
         if (user)
         {
-            await DbResetSetupComplete(user);
+            await prisma.user.ResetSetupComplete(user);
         }
 
         return { reset: true };

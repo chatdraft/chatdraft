@@ -4,7 +4,7 @@ import { env as privateenv } from '$env/dynamic/private';
 import { env } from '$env/dynamic/public';
 import { RefreshingAuthProvider } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
-import { DbLoadToken } from '$lib/server/db';
+import { prisma } from '$lib/server/db';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
 import { building } from '$app/environment';
 import cookie from 'cookie';
@@ -83,7 +83,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	if (!auth_provider.hasUser(env.PUBLIC_TWITCH_USER_ID!)) {
-		const tokenData = await DbLoadToken(env.PUBLIC_TWITCH_USER_ID!);
+		const tokenData = await prisma.token.LoadToken(env.PUBLIC_TWITCH_USER_ID!);
 		if (tokenData) {
 			auth_provider.addUser(env.PUBLIC_TWITCH_USER_ID!, tokenData, ['chat:read', 'chat:edit']);
 			TwitchBot.getInstance(auth_provider);
