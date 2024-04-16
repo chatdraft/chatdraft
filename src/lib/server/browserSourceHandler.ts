@@ -6,8 +6,16 @@ interface IBrowserSourceInstances {
     choice_sources: string[];
 }
 
-export const browserSourceStatuses = new Map<string, IBrowserSourceInstances>();
+const browserSourceStatuses = new Map<string, IBrowserSourceInstances>();
 
+
+/**
+ * Register that the websocket connection has closed for the given websocket ID
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ * @param {string} websocket_id Websocket ID of the websocket
+ */
 export function CloseBrowserSource(channel_name: string, websocket_id: string) {
     if (browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.get(channel_name)?.full_sources.forEach((ws_id, index) => {
@@ -29,6 +37,13 @@ export function CloseBrowserSource(channel_name: string, websocket_id: string) {
     }
 }
 
+/**
+ * Register a Full Browser Source websocket connection has been created.
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ * @param {string} websocket_id Websocket ID of the websocket
+ */
 export function RegisterFullBrowserSource(channel_name: string, websocket_id: string) {
     if (!browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.set(channel_name, { full_sources: [websocket_id], deck_sources: [], choice_sources: [] })
@@ -39,6 +54,14 @@ export function RegisterFullBrowserSource(channel_name: string, websocket_id: st
     BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
 }
 
+
+/**
+ * Register a Deck Browser Source websocket connection has been created.
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ * @param {string} websocket_id Websocket ID of the websocket
+ */
 export function RegisterDeckBrowserSource(channel_name: string, websocket_id: string) {
     if (!browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.set(channel_name, { full_sources: [], deck_sources: [websocket_id], choice_sources: [] })
@@ -52,6 +75,13 @@ export function RegisterDeckBrowserSource(channel_name: string, websocket_id: st
     BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
 }
 
+/**
+ * Register a Choice Browser Source websocket connection has been created.
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ * @param {string} websocket_id Websocket ID of the websocket
+ */
 export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: string) {
     if (!browserSourceStatuses.has(channel_name)) {
         browserSourceStatuses.set(channel_name, { full_sources: [], deck_sources: [], choice_sources: [websocket_id] })
@@ -65,11 +95,23 @@ export function RegisterChoiceBrowserSource(channel_name: string, websocket_id: 
     BrowserSourceUpdated(channel_name, IsFullSourceConfigured(channel_name), IsDeckSourceConfigured(channel_name), IsChoiceSourceConfigured(channel_name));
 }
 
+/**
+ * Returns true if at least one full browser source is configured for the given channel.
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ */
 export function IsFullSourceConfigured(channel_name: string) {
     return ((browserSourceStatuses.has(channel_name)) &&
         (browserSourceStatuses.get(channel_name)!.full_sources.length > 0))
 }
 
+/**
+ * Returns true if at least one deck browser source is configured for the given channel.
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ */
 export function IsDeckSourceConfigured(channel_name: string) {
     return (
         (browserSourceStatuses.has(channel_name)) &&
@@ -77,6 +119,12 @@ export function IsDeckSourceConfigured(channel_name: string) {
     )
 }
 
+/**
+ * Returns true if at least one choices browser source is configured for the given channel.
+ *
+ * @export
+ * @param {string} channel_name Twitch channel name the websocket is associated with
+ */
 export function IsChoiceSourceConfigured(channel_name: string) {
     return (
         (browserSourceStatuses.has(channel_name)) &&

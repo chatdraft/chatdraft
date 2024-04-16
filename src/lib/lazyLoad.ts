@@ -5,6 +5,14 @@ const options = {
     threshold: 0.25
 }
 
+
+/**
+ * Adds Lazy loading to the given HTML Image
+ *
+ * @param {HTMLImageElement} image HTML Image Element to lazy load
+ * @param {string} src Image URL of the image to lazy load
+ * @returns {{ destroy(): void; }} Method to call upon destroying
+ */
 export const lazyLoad = (image: HTMLImageElement, src: string) => {
     const loaded = () => {
 		image.style.opacity = "1"

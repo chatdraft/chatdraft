@@ -1,3 +1,12 @@
+
+/**
+ * Shuffles the given array
+ *
+ * @export
+ * @template Type
+ * @param {Type[]} array Array to shuffle
+ * @returns {Type[]} Shuffled array
+ */
 export function shuffle<Type>(array: Type[]): Type[] {
 	let currentIndex = array.length,
 		randomIndex;

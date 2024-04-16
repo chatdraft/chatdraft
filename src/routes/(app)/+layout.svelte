@@ -88,7 +88,7 @@
 			
 			<svelte:fragment slot="trail">
 				{#if user}
-					<Avatar width="w-12" src={ user.profile_picture_url || '' }></Avatar>
+					<Avatar width="w-12" src={ user.twitchProfilePictureURL || '' }></Avatar>
 				{:else}
 					<a class="btn btn-md variant-outline-primary" href={twitch_login_uri}>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1"></iconify-icon></a>
 				{/if}

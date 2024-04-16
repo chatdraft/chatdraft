@@ -8,6 +8,13 @@ import { DatetimeNowUtc } from "$lib/datetime";
 export const drafts = new Map<string, Draft>();
 export const previousDrafts = new Map<string, Draft>();
 
+
+/**
+ * Returns a list of currently active Drafts
+ *
+ * @export
+ * @returns {IDraft[]} List of currently active drafts.
+ */
 export function GetDrafts() {
 	const idrafts: IDraft[] = [];
 	drafts.forEach((draft => {
@@ -16,6 +23,14 @@ export function GetDrafts() {
 	return idrafts;
 }
 
+
+/**
+ * Sets the given draft to be the Previous Draft. The user is inferred from
+ * the draft object.
+ *
+ * @export
+ * @param {Draft} draft Previous draft to be set
+ */
 export function SetPreviousDraft(draft: Draft) {
 	if (previousDrafts.get(draft.player) !== draft) {
 		previousDrafts.set(draft.player, draft);
@@ -23,6 +38,13 @@ export function SetPreviousDraft(draft: Draft) {
 	}
 }
 
+
+/**
+ * Gets a list of all previous drafts run for all users.
+ *
+ * @export
+ * @returns {IDraft[]} List of previous drafts.
+ */
 export function GetPreviousDrafts() {
 	const idrafts: IDraft[] = [];
 	previousDrafts.forEach((draft => {
@@ -31,6 +53,13 @@ export function GetPreviousDrafts() {
 	return idrafts;
 }
 
+/**
+ * Generates a random mid-draft state.
+ *
+ * @export
+ * @async
+ * @returns {Promise<IDraft>}
+ */
 export async function GetPreviewDraft(): Promise<IDraft> {
 	const total = Math.floor( Math.random() * 13 )
 
@@ -71,14 +100,36 @@ export async function GetPreviewDraft(): Promise<IDraft> {
 	}
 }
 
+
+/**
+ * Gets the current draft for the given player.
+ *
+ * @export
+ * @param {string} player Twitch channel name of the draft to get
+ * @returns {Draft | undefined} The player's draft
+ */
 export function GetDraft(player: string) {
 	return drafts.get(player);
 }
 
+/**
+ * Gets the previous draft for the given player.
+ *
+ * @export
+ * @param {string} player Twitch channel name of the draft to get
+ * @returns {Draft | undefined} The player's previous draft
+ */
 export function GetPreviousDraft(player: string) {
 	return previousDrafts.get(player);
 }
 
+/**
+ * Ends the current draft for the given player.
+ *
+ * @export
+ * @param {string} player Twitch channel name of the draft to get
+ * @returns {*}
+ */
 export function EndDraft(player: string) {
     const draft = drafts.get(player);
     if (draft) {
@@ -90,6 +141,14 @@ export function EndDraft(player: string) {
     }
 }
 
+
+/**
+ * Gets the status of the draft for the given player
+ *
+ * @export
+ * @param {string} player Twitch channel name of the draft to get
+ * @returns {boolean} Whether the player has an active current draft.
+ */
 export function IsActive(player: string) {
     return (drafts.has(player) && drafts.get(player)!.currentChoice);
 }

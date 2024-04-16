@@ -4,15 +4,9 @@
 	import { AppRail, AppRailAnchor } from "@skeletonlabs/skeleton";
 	import { env } from '$env/dynamic/public';
 	import AppRailIcon from "./AppRailIcon.svelte";
+	import type { User } from "@prisma/client";
 
-    export let user: {
-        id: string | null;
-        display_name: string | null;
-        profile_picture_url: string | null;
-        name: string;
-        initialSetupDone: boolean;
-        admin: boolean;
-    } | null;
+    export let user: User | null;
 
 </script>
 
@@ -56,7 +50,7 @@
         {/if}
     {/if}
 
-    {#if user && user.admin}
+    {#if user && user.isAdmin}
     <AppRailAnchor href="/admin">
         <AppRailIcon pageRouteId={$page.route.id} routeId='/admin' icon='mdi:administrator'>
             Admin

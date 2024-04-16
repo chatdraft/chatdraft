@@ -10,12 +10,26 @@ import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
 
+/**
+ * Represents the singleton instance of the Chat Draft Twitch Bot
+ *
+ * @export
+ * @class TwitchBot
+ * @typedef {TwitchBot}
+ */
 export default class TwitchBot {
-
     private static instance: TwitchBot;
     private chat: ChatClient | undefined;
     private bot: Bot | undefined;
 
+    /**
+     * Creates an instance of TwitchBot.
+     *
+     * @constructor
+     * @private
+     * @param {RefreshingAuthProvider} authProvider The refreshing auth provider used to connect to Twitch Chat
+     * @param {string[]} channels List of channels to connect to
+     */
     private constructor(authProvider: RefreshingAuthProvider, channels: string[]) {
         this.chat = new ChatClient({
             authProvider,
@@ -110,26 +124,71 @@ export default class TwitchBot {
         });
     }
 
+    /**
+     * Checks if the Twitch Bot is healthy
+     *
+     * @public
+     * @returns {boolean} True if the bot exists and is connected to Twitch Chat
+     */
     public IsHealthy() {
         return (this.chat && this.chat.isConnected)
     }
 
+    /**
+     * Checks if the Twitch Bot is initialized
+     *
+     * @public
+     * @static
+     * @returns {boolean} True if the bot instance exists and has a chat instance
+     */
     public static IsInitialized() {
         return (this.instance && this.instance.chat)
     }
 
+    /**
+     * Checks if the Twitch Bot is connected
+     *
+     * @public
+     * @static
+     * @returns {boolean} True if the bot instance exists and has a chat instance and the chat instance is connected.
+     */
     public static IsConnected() {
         return (this.instance && this.instance.chat && this.instance.chat.isConnected)
     }
 
+    /**
+     * Say the given text in the given channel
+     *
+     * @public
+     * @static
+     * @param {string} player_channel Twitch channel to say the message
+     * @param {string} text Message to say
+     */
     public static Say(player_channel: string, text: string) {
         if (TwitchBot.instance.chat) TwitchBot.instance.chat.say(player_channel, text);
     }
 
+    /**
+     * Act the given text in the given channel (appears italicized in Twitch chat)
+     *
+     * @public
+     * @static
+     * @param {string} player_channel Twitch channel to act the message
+     * @param {string} text Message to act
+     */
     public static Action(player_channel: string, text: string) {
         if (TwitchBot.instance.chat) TwitchBot.instance.chat.action(player_channel, text);
     }
 
+    /**
+     * Gets or creates the Twitch Bot instance
+     *
+     * @public
+     * @static
+     * @async
+     * @param {RefreshingAuthProvider} authProvider Twitch Bot auth credentials
+     * @returns {Promise<TwitchBot>} Twitch Bot Instance
+     */
     public static async getInstance(authProvider: RefreshingAuthProvider): Promise<TwitchBot> {
         if (!TwitchBot.instance) {
             const channels = await prisma.user.GetChannels();
@@ -139,28 +198,87 @@ export default class TwitchBot {
         return TwitchBot.instance;
     }
 
+    /**
+     * Announces that a new draft has started in the given channel.
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to say the message
+     * @returns {*}
+     */
     public static async DraftStarted(player_channel: string) {
         TwitchBot.Say(player_channel, "A new draft has started! Type the number to vote for the card you want to draft!");
     }
 
+    /**
+     * Announces that a new choice is available in the given channel
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to say the message
+     * @param {Choice} choice The current choice of the draft
+     * @returns {*}
+     */
     public static async NewChoice(player_channel: string, choice: Choice) {
         let expression = "Vote ";
         choice.cards.forEach((card, index) => expression += `(${index + 1}) ${card.name} `)
         TwitchBot.Say(player_channel, expression);
     }
 
+    /**
+     * Announces which card has been selected in the draft's vote.
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to say the message
+     * @param {Card} card The winning card
+     * @returns {*}
+     */
     public static async ChoiceSelected(player_channel: string, card: Card) {
         TwitchBot.Action(player_channel, `${card.name} has been selected!`);
     }
 
+    /**
+     * Announces when the draft has been completed.
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to say the message
+     * @param {Deck} deck The completed deck
+     * @returns {*}
+     */
     public static async DraftComplete(player_channel: string, deck: Deck) {
         TwitchBot.Say(player_channel, `The completed deck has been drafted: ${deck.map((card) => card.name).join(', ')}.`);
     }
 
+    /**
+     * Announces that the draft has been canceled
+     *
+     * @public
+     * @static
+     * @async
+     * @param {Draft} draft The draft that was canceled (twitch channel is inferred from this)
+     * @returns {*}
+     */
     public static async DraftCanceled(draft: Draft) {
         TwitchBot.Say(draft.player, 'The draft has been canceled.')
     }
 
+    /**
+     * Announces that voting has closed for the given player's draft.
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to say the message
+     * @param {string} result The name of the card that won
+     * @param {string[]} ties The list of ties (if any)
+     * @returns {*}
+     */
     public static async VotingClosed(player_channel: string, result: string, ties: string[]) {
         if (ties.length > 1) {
             TwitchBot.Action(player_channel, `${result} chosen after tie between ${ties.join(', ')}.`);
@@ -170,15 +288,43 @@ export default class TwitchBot {
         }
     }
 
+    /**
+     * Announces that the player has overrided chat's vote and selected a card
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to say the message
+     * @param {string} result The card that was selected
+     * @returns {*}
+     */
     public static async ChoiceOverride(player_channel: string, result: string) {
         TwitchBot.Say(player_channel, `${player_channel} overrode the vote and selected ${result}!`)
     }
 
+    /**
+     * Checks whether the bot is currently connected to the given player's channel
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to check
+     * @returns {boolean} False if the instance is not connected to twitch, or if it is not connected to the channel
+     */
     public static async IsBotInChannel(player_channel: string) {
         if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
         return TwitchBot.instance.chat.currentChannels.includes(`#${player_channel}`);
     }
 
+    /**
+     * Instructs the bot to join the given player channel
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to join
+     * @returns {boolean} True if the channel was successfully joined.
+     */
     public static async JoinChannel(player_channel: string) {
         if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
@@ -186,6 +332,15 @@ export default class TwitchBot {
         return true;
     }
 
+    /**
+     * Instructs the bot to part the given player channel.
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel Twitch channel to part
+     * @returns {boolean} True if the channel was successfully joined.
+     */
     public static async PartChannel(player_channel: string) {
         if (!TwitchBot.instance.chat) return false;
         if (TwitchBot.instance.bot) TwitchBot.instance.bot.leave(player_channel);

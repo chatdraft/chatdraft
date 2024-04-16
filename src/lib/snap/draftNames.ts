@@ -1,5 +1,12 @@
 import type { Deck } from "./draft";
 
+
+/**
+ * Gets a random deck name
+ *
+ * @param {Deck} deck
+ * @returns {string}
+ */
 export const getRandomDeckName = (deck: Deck) => {
     const descriptors = [
         'Bronze',

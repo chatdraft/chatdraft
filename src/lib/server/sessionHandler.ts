@@ -2,16 +2,17 @@
 import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
-import type { User } from '$lib/server/db/users'
 import { sessionTimout_ms } from '../constants';
+import type { FullUser } from './db';
+
 
 type TSessionID = string;
 
-const sessionUsers = new Map<TSessionID, {token: AccessToken, user: User | null}>();
+const sessionUsers = new Map<TSessionID, {token: AccessToken, user: FullUser}>();
 const sessionUserTimeouts = new Map<TSessionID, NodeJS.Timeout>();
 const sessionTimeout = sessionTimout_ms;
 
-export function setSession(accessToken: AccessToken, user: User | null) {
+export function setSession(accessToken: AccessToken, user: FullUser) {
 
     // Creating a new session ID that will be used as a cookie to authenticate the user in 
     const newSessionID: TSessionID = crypto.randomBytes(32).toString('hex');
@@ -33,7 +34,7 @@ export function fetchSession(sessionId: TSessionID) {
     return sessionUsers.get(sessionId);
 }
 
-export function ValidateSession(cookies: Cookies, user: User | null, session_key: string) {
+export function ValidateSession(cookies: Cookies, user: FullUser, session_key: string) {
 	const session_id = cookies.get(session_key);
 	if (!session_id || !user) {
 		throw error(401, 'Not logged in.');

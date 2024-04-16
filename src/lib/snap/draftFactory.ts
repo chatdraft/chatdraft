@@ -5,7 +5,29 @@ import TwitchBot from "$lib/server/twitchBot";
 import { ChoiceOverride, ChoiceSelected, DraftCanceled, DraftComplete, DraftStarted, NewChoice, VotingClosed } from "$lib/server/webSocketUtils";
 import { Draft } from "./draft";
 
+
+/**
+ * DraftFactory creates drafts and manages linking all the events and signals
+ * coming from the drafts
+ *
+ * @export
+ * @class DraftFactory
+ * @typedef {DraftFactory}
+ */
 export default class DraftFactory {
+    /**
+     * Creates an instance of a draft
+     *
+     * @public
+     * @static
+     * @async
+     * @param {string} player_channel The Twitch channel for the chat draft
+     * @param {number} duration The duration of each voting period
+     * @param {number} selections The number of selections per voting period
+     * @param {boolean} [subsExtraVote=false] Whether subscribers get +1 added to their vote
+     * @param {(string[] | null)} playerCollection List of cardDefKeys in the players collection or empty array if complete.
+     * @returns {Draft} The new draft.
+     */
     public static async CreateDraft(player_channel: string, duration: number, selections: number, subsExtraVote: boolean = false, playerCollection: string[] | null) {
         const currentDraft = GetDraft(player_channel);
         if (currentDraft) return currentDraft;

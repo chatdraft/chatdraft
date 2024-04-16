@@ -3,6 +3,14 @@ import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
 import { DatetimeNowUtc } from '$lib/datetime';
 
+
+/**
+ * Represents a serializable instance of a running or previous draft
+ *
+ * @export
+ * @interface IDraft
+ * @typedef {IDraft}
+ */
 export default interface IDraft {
 	cards: Deck;
 	total: number;
@@ -13,6 +21,16 @@ export default interface IDraft {
 	deckName: string;
 }
 
+
+/**
+ * Represents an instance of an active or previous Oro Chat Draft
+ *
+ * @export
+ * @class Draft
+ * @typedef {Draft}
+ * @extends {EventEmitter}
+ * @implements {IDraft}
+ */
 export class Draft extends EventEmitter implements IDraft {
 	
 	private voteTimer: NodeJS.Timeout | undefined;
@@ -21,6 +39,19 @@ export class Draft extends EventEmitter implements IDraft {
 	public duration = 20;
 	public selections = 3;
 
+	
+	/**
+	 * Creates an instance of Draft.
+	 *
+	 * @constructor
+	 * @public
+	 * @param {string} player_channel The Twitch User channel that is associated with this draft
+	 * @param {number} duration The duration that voters have to decide
+	 * @param {number} selections The number of selections per voting period
+	 * @param {{all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}} all_cards The list of cards to use for the draft
+	 * @param {boolean} [subsExtraVote=false] Whether subscribers get +1 extra vote added
+	 * @param {(string[] | null)} collection The users available collection.
+	 */
 	public constructor(player_channel: string, duration: number, selections: number, all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}, subsExtraVote = false, collection: string[] | null) {
 		super();
 		this.player = player_channel;
@@ -58,6 +89,13 @@ export class Draft extends EventEmitter implements IDraft {
 	onChoiceOverride = this.registerEvent<[player_channel: string, result: string]>();
 
 
+	/**
+	 * Starts this draft. Emits the onDraftStarted event and creates a New Choice.
+	 *
+	 * @public
+	 * @async
+	 * @returns {*}
+	 */
 	public async StartDraft() {
 		if (this.started) return;
 		this.started = true;
@@ -70,6 +108,12 @@ export class Draft extends EventEmitter implements IDraft {
 		this.cards = [];
 	}
 
+	
+	/**
+	 * Cancels this draft
+	 *
+	 * @public
+	 */
 	public CancelDraft() {
 		if (this.voteTimer) {
 			clearTimeout(this.voteTimer);
@@ -84,6 +128,15 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 	}
 
+	
+	/**
+	 * Creates a new choice for the draft
+	 *
+	 * @public
+	 * @async
+	 * @param {Card[]} [excluded=[]] A list of cards to exclude (cards previously selected)
+	 * @returns {Promise<Choice>}
+	 */
 	public async NewChoice(excluded: Card[] = []): Promise<Choice> {
 		if (this.voteTimer) {
 			clearTimeout(this.voteTimer);
@@ -138,6 +191,13 @@ export class Draft extends EventEmitter implements IDraft {
 		return newChoice;
 	}
 
+	
+	/**
+	 * Closes voting, determines the winner, runs tiebreaker if any
+	 *
+	 * @private
+	 * @returns {{ winner: any; ties: any; }}
+	 */
 	private CloseVoting() {
 		let ties: Card[] = [];
 		let winner = undefined;
@@ -169,6 +229,16 @@ export class Draft extends EventEmitter implements IDraft {
 		return { winner: winner, ties: ties.map((card) => card.name) };
 	}
 
+	
+	/**
+	 * Choose a given card in the draft
+	 *
+	 * @public
+	 * @async
+	 * @param {(string | undefined | null)} cardDefKey Card chosen
+	 * @param {boolean} [override=false] Whether the choice was via voting or overriden
+	 * @returns {*}
+	 */
 	public async Choose(cardDefKey: string | undefined | null, override: boolean = false) {
 		if (override && this.player != '') this.emit(this.onChoiceOverride, this.player, cardDefKey);
 		if (!cardDefKey) return;
@@ -198,6 +268,14 @@ export class Draft extends EventEmitter implements IDraft {
 		this.currentChoice = await this.NewChoice(this.cards);
 	}
 	
+	
+	/**
+	 * Returns whether the given card can be chosen in this draft
+	 *
+	 * @private
+	 * @param {(string | undefined | null)} cardDefKey Card to be chosen
+	 * @returns {boolean}
+	 */
 	private CanChoose(cardDefKey: string | undefined | null) {
 		if (this.total == 12) return false;
 	
@@ -215,7 +293,15 @@ export class Draft extends EventEmitter implements IDraft {
 		return validChoice && !alreadyDrafted;
 	}
 
-
+	
+	/**
+	 * Adds or updates a user's vote in the draft
+	 *
+	 * @public
+	 * @param {string} user Twitch name of the voter
+	 * @param {string} choice The card voted for
+	 * @param {boolean} isSubscriber If the voter is a subscriber
+	 */
 	public Vote(user: string, choice: string, isSubscriber: boolean) {
 		if (!this.currentChoice) return;
 
@@ -238,11 +324,26 @@ export class Draft extends EventEmitter implements IDraft {
 		this.currentChoice.voteCounts[vote - 1]+= 1 + extraVotes;
 	}
 
+	
+	/**
+	 * Returns the Card for a given cardDefKey
+	 *
+	 * @private
+	 * @param {(string | undefined | null)} cardDefKey The cardDefKey
+	 * @returns {Card} The Card
+	 */
 	private LookupCard(cardDefKey: string | undefined | null) {
 		if (!cardDefKey) return undefined;
 		return this.all_cards.find((card) => card.cardDefKey == cardDefKey);
 	}
 	
+	
+	/**
+	 * Converts this into a serializable IDraft
+	 *
+	 * @public
+	 * @returns {IDraft}
+	 */
 	public toIDraft(): IDraft {
 		return ({
 			cards: this.cards,
@@ -255,6 +356,13 @@ export class Draft extends EventEmitter implements IDraft {
 		});
 	}
 
+	
+	/**
+	 * Gets the deck code of the finished draft.
+	 *
+	 * @public
+	 * @returns {string}
+	 */
 	public GetDeckCode(): string {
 		type cardCode = { CardDefId: string }
 		const obj = {Cards: Array<cardCode>()}

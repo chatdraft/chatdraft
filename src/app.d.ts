@@ -1,11 +1,11 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import type { ExtendedWebSocketServer } from '$lib/server/webSocketHandler';
-import type { User } from '$lib/server/db/users';
+import type { FullUser } from '$lib/server/db';
 
 declare global {
 	namespace App {
 		interface Locals {
-			user: User | null
+			user: FullUser | null
 			session: ?{
 				id: string;
 			};

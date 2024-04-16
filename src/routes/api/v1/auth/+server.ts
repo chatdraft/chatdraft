@@ -39,20 +39,22 @@ export const GET: RequestHandler = async ( { cookies, url } ) => {
         const twitch_user = await api.users.getAuthenticatedUser(user_id);
         const user = await prisma.user.UpdateUser(twitch_user);
 
-        // Create new session for the user
-        const session_id = setSession(tokenData, user);
-        authProvider.onRefresh(async (_userId, newTokenData) => {
-            updateSession(session_id, newTokenData)
-        });
+        if (user) {
+            // Create new session for the user
+            const session_id = setSession(tokenData, user);
+            authProvider.onRefresh(async (_userId, newTokenData) => {
+                updateSession(session_id, newTokenData)
+            });
 
-        // set the session cookie
-        cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn! })
+            // set the session cookie
+            cookies.set('session_id', session_id, {path: '/', httpOnly: true, maxAge: tokenData.expiresIn! })
 
-        if ((user) && !user.initialSetupDone) {
-            redirect_uri = '/start';
-        }
-        else if (user) {
-            redirect_uri = '/draft';
+            if (!user.initialSetupDone) {
+                redirect_uri = '/start';
+            }
+            else {
+                redirect_uri = '/draft';
+            }
         }
 
     } catch (error) {
