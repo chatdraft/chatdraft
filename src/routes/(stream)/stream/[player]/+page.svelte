@@ -1,5 +1,5 @@
 <script lang="ts">
-  	import CardChoice from '$lib/components/CardChoice.svelte';
+	import CardChoice from '$lib/components/CardChoice.svelte';
 	import PreviewModeLabel from '$lib/components/PreviewModeLabel.svelte';
 	import CountdownTimer from '$lib/components/CountdownTimer.svelte';
 	import { invalidateAll } from '$app/navigation';
@@ -7,7 +7,11 @@
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { DatetimeNowUtc } from '$lib/datetime.js';
 	import type { Card } from '$lib/snap/draft.js';
-	import { establishWebSocket, type WebSocketMessage, WebSocketMessageType } from '$lib/websocket.js';
+	import {
+		establishWebSocket,
+		type WebSocketMessage,
+		WebSocketMessageType
+	} from '$lib/websocket.js';
 	import { onMount } from 'svelte';
 	import BrowserSourceFooter from '$lib/components/BrowserSourceFooter.svelte';
 	import BrowserSourceHeader from '$lib/components/BrowserSourceHeader.svelte';
@@ -21,28 +25,28 @@
 	let showDeck = false;
 	let selectionCount = 3;
 
-	const handleMessage = async(message: string) => {
-		const wsm : WebSocketMessage = JSON.parse(message);
+	const handleMessage = async (message: string) => {
+		const wsm: WebSocketMessage = JSON.parse(message);
 		now = wsm.timestamp;
-		if (wsm.type== WebSocketMessageType.Connect) {
-			const channelMsg : WebSocketMessage = {
+		if (wsm.type == WebSocketMessageType.Connect) {
+			const channelMsg: WebSocketMessage = {
 				type: WebSocketMessageType.Channel,
 				timestamp: DatetimeNowUtc(),
 				message: data.player
-			}
+			};
 			ws?.send(JSON.stringify(channelMsg));
-			const hideMsg : WebSocketMessage = {
+			const hideMsg: WebSocketMessage = {
 				type: WebSocketMessageType.BrowserSource,
 				timestamp: DatetimeNowUtc(),
 				message: data.hide
-			}
+			};
 			ws?.send(JSON.stringify(hideMsg));
 		}
 
 		if (wsm.type == WebSocketMessageType.ShowDeck) {
 			if (current_draft) return;
 
-			const ret = await fetch(`/api/v1/draft/player/${data.player}?previous=true`)
+			const ret = await fetch(`/api/v1/draft/player/${data.player}?previous=true`);
 			if (!ret.ok) return;
 
 			data.draft = await ret.json();
@@ -52,8 +56,7 @@
 			setTimeout(() => {
 				data.draft = null;
 				showDeck = false;
-			}, 30000)
-
+			}, 30000);
 
 			return;
 		}
@@ -61,7 +64,7 @@
 		if (wsm.type == WebSocketMessageType.DraftComplete) {
 			setTimeout(() => {
 				current_draft = null;
-			}, (current_draft ? current_draft.duration : 30) * 2 * 1000)
+			}, (current_draft ? current_draft.duration : 30) * 2 * 1000);
 			invalidateAll();
 		}
 
@@ -73,7 +76,7 @@
 			winningCard = undefined;
 			invalidateAll();
 		}
-		
+
 		if (wsm.type == WebSocketMessageType.DraftCanceled) {
 			invalidateAll();
 		}
@@ -89,7 +92,7 @@
 
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
-	}
+	};
 
 	let winningCard: Card | undefined = undefined;
 
@@ -101,15 +104,15 @@
 
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
-		
+
 		if (data.draft) {
 			selectionCount = data.draft.selections;
 		}
 	});
-	window.onbeforeunload = function() {
+	window.onbeforeunload = function () {
 		if (ws) {
 			// disable onclose handler first
-			ws.onclose = function () {}; 
+			ws.onclose = function () {};
 			ws.close();
 		}
 	};
@@ -121,35 +124,47 @@
 </svelte:head>
 
 {#if current_draft}
-	{#if time_remaining }
+	{#if time_remaining}
 		<BrowserSourceHeader />
 		<div class="text-white text-4xl rounded-sm font-snapa">
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
-				<div class="bg-purple-900 text-white text-4xl rounded-t-lg bg-opacity-70" class:rounded-b-lg={data.hide != 'deck'}>
+				<div
+					class="bg-purple-900 text-white text-4xl rounded-t-lg bg-opacity-70"
+					class:rounded-b-lg={data.hide != 'deck'}
+				>
 					<div class="flex items-center">
 						{#if preview_mode}
 							<PreviewModeLabel />
 						{/if}
 						<h2 class="font-outline pl-4">
 							<span class="uppercase font-snapa font-outline font-outline-black">Pick:</span>
-							<span class="font-snapn font-outline font-outline-black">{current_draft.total + 1}</span>
+							<span class="font-snapn font-outline font-outline-black"
+								>{current_draft.total + 1}</span
+							>
 						</h2>
 						<!-- Countdown Timer Icon & Seconds -->
-						<CountdownTimer {time_remaining} defaultDuration={current_draft.duration}></CountdownTimer>
+						<CountdownTimer {time_remaining} defaultDuration={current_draft.duration} />
 					</div>
 					<!-- Grid of Cards -->
-					<div class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-black font-outline-2 font-snapn italic">
-						{#if (choices && choices.length > 0)}
-								{#each choices as choice, index}
-									<CardChoice blur={winningCard != undefined && winningCard.cardDefKey != choice.cardDefKey} {choice} {index} votes={votes[index]}></CardChoice>
-								{/each}
+					<div
+						class="grid grid-cols-3 gap-2 p-2 pt-0 [text-shadow:-2px_2px_2px_var(--tw-shadow-color)] shadow-black font-outline-black font-outline-2 font-snapn italic"
+					>
+						{#if choices && choices.length > 0}
+							{#each choices as choice, index}
+								<CardChoice
+									blur={winningCard != undefined && winningCard.cardDefKey != choice.cardDefKey}
+									{choice}
+									{index}
+									votes={votes[index]}
+								/>
+							{/each}
 						{/if}
 					</div>
 				</div>
 			{/if}
 			{#if data.hide != 'choice' && data.hide != 'deck'}
-				<div class="mt-2 bg-transparent"></div>
+				<div class="mt-2 bg-transparent" />
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
@@ -158,19 +173,19 @@
 						<PreviewModeLabel />
 					{/if}
 					<div class="flex justify-evenly items-center">
-					<h2 class="uppercase font-snapa font-outline font-outline-black">
-						Drafted Cards
-					</h2>
+						<h2 class="uppercase font-snapa font-outline font-outline-black">Drafted Cards</h2>
 					</div>
 					<!-- Grid of Cards -->
-					<div class="grid grid-cols-4 [text-shadow:2px_-2px_-2px_var(--tw-shadow-color)] shadow-black">
+					<div
+						class="grid grid-cols-4 [text-shadow:2px_-2px_-2px_var(--tw-shadow-color)] shadow-black"
+					>
 						{#each Array(12) as _, i}
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
 								{#if current_draft?.cards[i]}
 									<SnapCard hideText={true} card={current_draft?.cards[i]} />
 								{:else}
-									<img src='/Placeholder.webp' alt="Placeholder card" />
+									<img src="/Placeholder.webp" alt="Placeholder card" />
 								{/if}
 							</div>
 						{/each}
@@ -179,24 +194,24 @@
 			{/if}
 			<BrowserSourceFooter />
 		</div>
-	{:else}
-		{#if data.hide != 'deck'}
-			<BrowserSourceHeader />
-			<div class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg bg-opacity-70">
-				<div class="flex flex-shrink flex-col">
-					<div class="flex justify-evenly items-center">
-						<h2 class="uppercase font-snapa font-outline font-outline-black text-slate-200 text-2xl">
-							Drafted Deck
-						</h2>
-					</div>
-					{#if data.hide == ''}
-						<SnapDeck cards={current_draft?.cards || []} cols={3} />
-					{:else}
-						<SnapDeck cards={current_draft?.cards || []} cols={4} />
-					{/if}
+	{:else if data.hide != 'deck'}
+		<BrowserSourceHeader />
+		<div
+			class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg bg-opacity-70"
+		>
+			<div class="flex flex-shrink flex-col">
+				<div class="flex justify-evenly items-center">
+					<h2 class="uppercase font-snapa font-outline font-outline-black text-slate-200 text-2xl">
+						Drafted Deck
+					</h2>
 				</div>
+				{#if data.hide == ''}
+					<SnapDeck cards={current_draft?.cards || []} cols={3} />
+				{:else}
+					<SnapDeck cards={current_draft?.cards || []} cols={4} />
+				{/if}
 			</div>
-			<BrowserSourceFooter />
-		{/if}
+		</div>
+		<BrowserSourceFooter />
 	{/if}
 {/if}

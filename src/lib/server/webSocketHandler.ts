@@ -33,13 +33,16 @@ export const onHttpServerUpgrade = (req: IncomingMessage, sock: Duplex, head: Bu
 
 	wss.handleUpgrade(req, sock, head, (ws) => {
 		console.log('[handleUpgrade] creating new connecttion');
-		
+
 		wss.emit('connection', ws, req);
 	});
 };
 
 export const createWSSGlobalInstance = () => {
-	const wss = new WebSocketServer({ noServer: true, perMessageDeflate: false }) as unknown as ExtendedWebSocketServer;
+	const wss = new WebSocketServer({
+		noServer: true,
+		perMessageDeflate: false
+	}) as unknown as ExtendedWebSocketServer;
 
 	(globalThis as ExtendedGlobal)[GlobalThisWSS] = wss;
 
@@ -52,15 +55,15 @@ export const createWSSGlobalInstance = () => {
 		});
 		ws.on('message', (event) => {
 			refreshTimeout(ws.sessionId);
-			const message : WebSocketMessage = JSON.parse(event.toString());
+			const message: WebSocketMessage = JSON.parse(event.toString());
 			if (message.type == WebSocketMessageType.Ping) {
-				const wsm : WebSocketMessage = {
+				const wsm: WebSocketMessage = {
 					type: WebSocketMessageType.Pong,
-					timestamp: DatetimeNowUtc(),
-				}
+					timestamp: DatetimeNowUtc()
+				};
 				ws.send(JSON.stringify(wsm));
 			}
-		})
+		});
 	});
 
 	return wss;

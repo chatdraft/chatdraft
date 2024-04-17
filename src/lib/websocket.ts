@@ -1,5 +1,4 @@
-import { DatetimeNowUtc } from "./datetime";
-
+import { DatetimeNowUtc } from './datetime';
 
 /**
  * Establishes a websocket connection. Typically this will be called\
@@ -11,23 +10,29 @@ import { DatetimeNowUtc } from "./datetime";
  * @param {(string | undefined)} [hide=undefined] Which parts of the draft this websocket connection is hiding if any
  * @returns {Promise<void>, player?: string, hide?: string) => unknown}
  */
-export const establishWebSocket = async (handleMessage: (message: string) => Promise<void>, player: string | undefined = undefined, hide: string | undefined = undefined) => {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    let uri = `${protocol}//${window.location.host}/websocket`;
-    if (player && hide) {
-        uri = `${protocol}//${window.location.host}/websocket/${player}?hide=${hide}`
-    }
-    let ws = new WebSocket(uri);
-    heartbeat(ws);
-    ws.onmessage = async (event) => {
-        await handleMessage(event.data)
-    };
+export const establishWebSocket = async (
+	handleMessage: (message: string) => Promise<void>,
+	player: string | undefined = undefined,
+	hide: string | undefined = undefined
+) => {
+	const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+	let uri = `${protocol}//${window.location.host}/websocket`;
+	if (player && hide) {
+		uri = `${protocol}//${window.location.host}/websocket/${player}?hide=${hide}`;
+	}
+	let ws = new WebSocket(uri);
+	heartbeat(ws);
+	ws.onmessage = async (event) => {
+		await handleMessage(event.data);
+	};
 
-    ws.onclose = async () => { 
-        setTimeout(async () => { ws = await establishWebSocket(handleMessage) }, 5000);
-    };
+	ws.onclose = async () => {
+		setTimeout(async () => {
+			ws = await establishWebSocket(handleMessage);
+		}, 5000);
+	};
 
-    return ws;
+	return ws;
 };
 
 /**
@@ -36,15 +41,15 @@ export const establishWebSocket = async (handleMessage: (message: string) => Pro
  * @param {(WebSocket | null)} [ws=null] Websocket to start a heartbeat on
  */
 function heartbeat(ws: WebSocket | null = null) {
-    setTimeout(() => heartbeat(ws), 500);
-    if (!ws) return;
-    if (ws.readyState !== ws.OPEN) return;
+	setTimeout(() => heartbeat(ws), 500);
+	if (!ws) return;
+	if (ws.readyState !== ws.OPEN) return;
 
-    const wsm : WebSocketMessage = {
-        type: WebSocketMessageType.Ping,
-        timestamp: DatetimeNowUtc(),
-    }
-    ws.send(JSON.stringify(wsm));
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.Ping,
+		timestamp: DatetimeNowUtc()
+	};
+	ws.send(JSON.stringify(wsm));
 }
 
 /**
@@ -54,10 +59,10 @@ function heartbeat(ws: WebSocket | null = null) {
  * @typedef {WebSocketMessage}
  */
 export type WebSocketMessage = {
-    type: WebSocketMessageType;
-    timestamp: number;
-    message?: string;
-}
+	type: WebSocketMessageType;
+	timestamp: number;
+	message?: string;
+};
 
 /**
  * Websocket message type
@@ -66,20 +71,20 @@ export type WebSocketMessage = {
  * @enum {string}
  */
 export enum WebSocketMessageType {
-    Ping = "ping",
-    Pong = "pong",
-    Connect = "connect",
-    Channel = "channel",
-    BrowserSource = "browsersource",
-    DraftStarted = "draftstarted",
-    NewChoice = "newchoice",
-    ChoiceSelected = "choiceselected",
-    DraftComplete = "draftcomplete",
-    DraftCanceled = "draftcanceled",
-    VotingClosed = "votingclosed",
-    ChoiceOverride = "choiceoverride",
-    PreviewToggled = "previewtoggled",
-    BrowserUpdated = "browserupdated",
-    ShowDeck = "showdeck",
-    VoteUpdated = "voteupdated",
+	Ping = 'ping',
+	Pong = 'pong',
+	Connect = 'connect',
+	Channel = 'channel',
+	BrowserSource = 'browsersource',
+	DraftStarted = 'draftstarted',
+	NewChoice = 'newchoice',
+	ChoiceSelected = 'choiceselected',
+	DraftComplete = 'draftcomplete',
+	DraftCanceled = 'draftcanceled',
+	VotingClosed = 'votingclosed',
+	ChoiceOverride = 'choiceoverride',
+	PreviewToggled = 'previewtoggled',
+	BrowserUpdated = 'browserupdated',
+	ShowDeck = 'showdeck',
+	VoteUpdated = 'voteupdated'
 }

@@ -1,13 +1,12 @@
-import type IDraft from "$lib/snap/draft";
-import type { Card, Choice, Deck, Draft } from "$lib/snap/draft";
-import { shuffle } from "$lib/snap/utils";
+import type IDraft from '$lib/snap/draft';
+import type { Card, Choice, Deck, Draft } from '$lib/snap/draft';
+import { shuffle } from '$lib/snap/utils';
 import type { EventHandler } from '@d-fischer/typed-event-emitter';
-import { GetAllCards } from "./cardsHandler";
-import { DatetimeNowUtc } from "$lib/datetime";
+import { GetAllCards } from './cardsHandler';
+import { DatetimeNowUtc } from '$lib/datetime';
 
 export const drafts = new Map<string, Draft>();
 export const previousDrafts = new Map<string, Draft>();
-
 
 /**
  * Returns a list of currently active Drafts
@@ -17,12 +16,11 @@ export const previousDrafts = new Map<string, Draft>();
  */
 export function GetDrafts() {
 	const idrafts: IDraft[] = [];
-	drafts.forEach((draft => {
-		idrafts.push(draft.toIDraft())
-	}));
+	drafts.forEach((draft) => {
+		idrafts.push(draft.toIDraft());
+	});
 	return idrafts;
 }
-
 
 /**
  * Sets the given draft to be the Previous Draft. The user is inferred from
@@ -38,7 +36,6 @@ export function SetPreviousDraft(draft: Draft) {
 	}
 }
 
-
 /**
  * Gets a list of all previous drafts run for all users.
  *
@@ -47,9 +44,9 @@ export function SetPreviousDraft(draft: Draft) {
  */
 export function GetPreviousDrafts() {
 	const idrafts: IDraft[] = [];
-	previousDrafts.forEach((draft => {
+	previousDrafts.forEach((draft) => {
 		idrafts.push(draft.toIDraft());
-	}))
+	});
 	return idrafts;
 }
 
@@ -61,27 +58,27 @@ export function GetPreviousDrafts() {
  * @returns {Promise<IDraft>}
  */
 export async function GetPreviewDraft(): Promise<IDraft> {
-	const total = Math.floor( Math.random() * 13 )
+	const total = Math.floor(Math.random() * 13);
 
 	const deck: Card[] = [];
 	const shuffled: Card[] = [];
 	const cards = await GetAllCards();
-	cards.all.forEach(card => shuffled.push(card));
+	cards.all.forEach((card) => shuffled.push(card));
 	shuffle(shuffled);
-	for(let i = 0; i < total; i++) {
-		deck.push(shuffled.pop()!)
+	for (let i = 0; i < total; i++) {
+		deck.push(shuffled.pop()!);
 	}
 
 	const player = 'preview';
 
 	const duration = 60;
-	const selections = 6
+	const selections = 6;
 	const currentChoice: Choice = {
 		cards: [],
 		votes: new Map<string, string>(),
 		voteCounts: [],
-		votes_closed: DatetimeNowUtc() + duration * 1000,
-	}
+		votes_closed: DatetimeNowUtc() + duration * 1000
+	};
 
 	for (let i = 0; i < selections; i++) {
 		currentChoice.cards.push(shuffled.pop()!);
@@ -97,9 +94,8 @@ export async function GetPreviewDraft(): Promise<IDraft> {
 		duration: duration,
 		selections: selections,
 		deckName: deckName
-	}
+	};
 }
-
 
 /**
  * Gets the current draft for the given player.
@@ -131,16 +127,15 @@ export function GetPreviousDraft(player: string) {
  * @returns {*}
  */
 export function EndDraft(player: string) {
-    const draft = drafts.get(player);
-    if (draft) {
+	const draft = drafts.get(player);
+	if (draft) {
 		if (draft.total >= 12) {
 			previousDrafts.set(player, draft);
 		}
-        draft.CancelDraft();
+		draft.CancelDraft();
 		drafts.delete(player);
-    }
+	}
 }
-
 
 /**
  * Gets the status of the draft for the given player
@@ -150,7 +145,7 @@ export function EndDraft(player: string) {
  * @returns {boolean} Whether the player has an active current draft.
  */
 export function IsActive(player: string) {
-    return (drafts.has(player) && drafts.get(player)!.currentChoice);
+	return drafts.has(player) && drafts.get(player)!.currentChoice;
 }
 
 export type DraftEvents = {
@@ -161,4 +156,4 @@ export type DraftEvents = {
 	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
 	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
 	ChoiceOverride: EventHandler<[player_channel: string, result: string]>;
-}
+};

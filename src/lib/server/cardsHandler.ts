@@ -3,7 +3,6 @@ import { existsSync, promises as fs } from 'fs';
 
 const updatedCardFile = `/home/cards.json`;
 
-
 /**
  * Returns all cards available on the system currently, either from the installed
  * card database or an updated card file if one is available.
@@ -12,16 +11,25 @@ const updatedCardFile = `/home/cards.json`;
  * @async
  * @returns {Promise<{all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number }[]}>}
  */
-export async function GetAllCards(): Promise<{all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number }[]}> {
-    if (existsSync(updatedCardFile)) {
-        const updatedCardContents = await fs.readFile(updatedCardFile, 'utf-8');
-        const updatedCards = JSON.parse(updatedCardContents);
-        return updatedCards;
-    }
+export async function GetAllCards(): Promise<{
+	all: {
+		cardDefKey: string;
+		variantKey: null;
+		url: string;
+		name: string;
+		description: string;
+		displayImageUrl: string;
+		cost: number;
+	}[];
+}> {
+	if (existsSync(updatedCardFile)) {
+		const updatedCardContents = await fs.readFile(updatedCardFile, 'utf-8');
+		const updatedCards = JSON.parse(updatedCardContents);
+		return updatedCards;
+	}
 
-    return install_cards;
+	return install_cards;
 }
-
 
 /**
  * Updates the list of available cards on the server to the given card database.
@@ -32,9 +40,8 @@ export async function GetAllCards(): Promise<{all: {cardDefKey: string, variantK
  * @returns {*}
  */
 export async function UpdateCards(updatedCards: File) {
-    await fs.writeFile(updatedCardFile, Buffer.from(await updatedCards.arrayBuffer()));
+	await fs.writeFile(updatedCardFile, Buffer.from(await updatedCards.arrayBuffer()));
 }
-
 
 /**
  * Resets the list of available cards on the server to the base installed data
@@ -44,7 +51,7 @@ export async function UpdateCards(updatedCards: File) {
  * @returns {*}
  */
 export async function ResetCards() {
-    if (existsSync(updatedCardFile)) {
-        await fs.rm(updatedCardFile)
-    }
+	if (existsSync(updatedCardFile)) {
+		await fs.rm(updatedCardFile);
+	}
 }

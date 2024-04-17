@@ -5,7 +5,7 @@ import type { FullUser } from '$lib/server/db';
 declare global {
 	namespace App {
 		interface Locals {
-			user: FullUser | null
+			user: FullUser | null;
 			session: ?{
 				id: string;
 			};

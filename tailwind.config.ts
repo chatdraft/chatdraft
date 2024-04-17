@@ -13,21 +13,20 @@ export default {
 	],
 	safelist: [
 		{
-			pattern: /grid-cols-+/,
+			pattern: /grid-cols-+/
 		},
 		{
-			pattern: /bg-opacity-(0|10|20|30|40|50|60|70|80|90|100)/,
-		},
+			pattern: /bg-opacity-(0|10|20|30|40|50|60|70|80|90|100)/
+		}
 	],
 	theme: {
-		extend:
-		{
+		extend: {
 			fontFamily: {
-				'normal': ['Space Grotesk'],
-				'snapa': ['CCElephantmenTall'],
-				'snapn': ['CCUltimatumBold']
+				normal: ['Space Grotesk'],
+				snapa: ['CCElephantmenTall'],
+				snapn: ['CCUltimatumBold']
 			}
-		},
+		}
 	},
 	plugins: [
 		forms,
@@ -46,7 +45,7 @@ export default {
 				]
 			}
 		}),
-		plugin(({addUtilities, theme}) => {
+		plugin(({ addUtilities, theme }) => {
 			const fontOutlineUtilities = {};
 			const colors = theme('colors');
 			for (const color in colors) {
@@ -56,14 +55,13 @@ export default {
 							'--tw-font-outline-color': colors[color][shade]
 						};
 					}
-				}
-				else {
+				} else {
 					fontOutlineUtilities[`.font-outline-${color}`] = {
 						'--tw-font-outline-color': color
-					}
+					};
 				}
 			}
-			addUtilities(fontOutlineUtilities)
+			addUtilities(fontOutlineUtilities);
 		})
 	]
 } satisfies Config;

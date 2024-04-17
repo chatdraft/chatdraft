@@ -10,7 +10,14 @@
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	import { AppBar, AppRail, AppRailAnchor, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
+	import {
+		AppBar,
+		AppRail,
+		AppRailAnchor,
+		AppShell,
+		Avatar,
+		storePopup
+	} from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import AppRailIcon from '$lib/components/AppRailIcon.svelte';
 	import { onMount, setContext } from 'svelte';
@@ -18,24 +25,24 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
-    export let data;
-    $: user = data.user;
+	export let data;
+	$: user = data.user;
 
-	let timeoutTimer: NodeJS.Timeout
+	let timeoutTimer: NodeJS.Timeout;
 
 	onMount(() => {
 		StartIdleTimer();
-	})
+	});
 
 	async function StartIdleTimer() {
 		if (data.user) {
-			timeoutTimer = setTimeout(IdleTimeout, sessionTimout_ms + 500)
+			timeoutTimer = setTimeout(IdleTimeout, sessionTimout_ms + 500);
 		}
 	}
 
 	async function IdleTimeout() {
-		document.cookie = "session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-		window.location.href = "/?timedout=true";
+		document.cookie = 'session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+		window.location.href = '/?timedout=true';
 	}
 
 	async function ResetTimeout() {
@@ -43,7 +50,7 @@
 		StartIdleTimer();
 	}
 
-	setContext('ResetTimer', {ResetTimeout})
+	setContext('ResetTimer', { ResetTimeout });
 
 	onNavigate(async () => {
 		invalidate('chatdraft:auth');
@@ -56,13 +63,25 @@
 </script>
 
 <svelte:head>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </svelte:head>
 
-
-<a href="https://www.buymeacoffee.com/oro.lol" target="_blank" class="absolute bottom-6 right-2 w-48 xl:w-64 anchor group z-50">
-	<img class="p-2" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
-	<iconify-icon icon="fluent:window-new-16-filled" width="24" height="24" class="absolute top-1.5 right-1.5 invisible group-hover:visible group-focus:visible"></iconify-icon>
+<a
+	href="https://www.buymeacoffee.com/oro.lol"
+	target="_blank"
+	class="absolute bottom-6 right-2 w-48 xl:w-64 anchor group z-50"
+>
+	<img
+		class="p-2"
+		src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+		alt="Buy Me A Coffee"
+	/>
+	<iconify-icon
+		icon="fluent:window-new-16-filled"
+		width="24"
+		height="24"
+		class="absolute top-1.5 right-1.5 invisible group-hover:visible group-focus:visible"
+	/>
 </a>
 <Toast position="t" />
 <Drawer width="w-20">
@@ -81,16 +100,20 @@
 						</svg>
 					</span>
 				</button>
-				<div class="font-snapa uppercase text-2xl md:text-4xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone px-2 flex-initial w-auto flex-shrink-0">
+				<div
+					class="font-snapa uppercase text-2xl md:text-4xl bg-gradient-to-br from-primary-500 to-secondary-300 bg-clip-text text-transparent box-decoration-clone px-2 flex-initial w-auto flex-shrink-0"
+				>
 					Oro Chat Draft
 				</div>
 			</div>
-			
+
 			<svelte:fragment slot="trail">
 				{#if user}
-					<Avatar width="w-12" src={ user.twitchProfilePictureURL || '' }></Avatar>
+					<Avatar width="w-12" src={user.twitchProfilePictureURL || ''} />
 				{:else}
-					<a class="btn btn-md variant-outline-primary" href={twitch_login_uri}>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1"></iconify-icon></a>
+					<a class="btn btn-md variant-outline-primary" href={twitch_login_uri}
+						>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1" /></a
+					>
 				{/if}
 			</svelte:fragment>
 		</AppBar>
@@ -101,12 +124,12 @@
 			<Navigation {user} />
 		</div>
 	</svelte:fragment>
-	
+
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->
 	<!-- Router Slot -->
 	<div class="mb-16">
-		<slot/>
+		<slot />
 	</div>
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="footer">

@@ -1,4 +1,3 @@
-
 /**
  * Shuffles the given array
  *

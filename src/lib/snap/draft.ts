@@ -3,7 +3,6 @@ import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
 import { DatetimeNowUtc } from '$lib/datetime';
 
-
 /**
  * Represents a serializable instance of a running or previous draft
  *
@@ -21,7 +20,6 @@ export default interface IDraft {
 	deckName: string;
 }
 
-
 /**
  * Represents an instance of an active or previous Oro Chat Draft
  *
@@ -32,14 +30,12 @@ export default interface IDraft {
  * @implements {IDraft}
  */
 export class Draft extends EventEmitter implements IDraft {
-	
 	private voteTimer: NodeJS.Timeout | undefined;
 	public deckName: string = '';
 
 	public duration = 20;
 	public selections = 3;
 
-	
 	/**
 	 * Creates an instance of Draft.
 	 *
@@ -52,7 +48,24 @@ export class Draft extends EventEmitter implements IDraft {
 	 * @param {boolean} [subsExtraVote=false] Whether subscribers get +1 extra vote added
 	 * @param {(string[] | null)} collection The users available collection.
 	 */
-	public constructor(player_channel: string, duration: number, selections: number, all_cards: {all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}, subsExtraVote = false, collection: string[] | null) {
+	public constructor(
+		player_channel: string,
+		duration: number,
+		selections: number,
+		all_cards: {
+			all: {
+				cardDefKey: string;
+				variantKey: null;
+				url: string;
+				name: string;
+				description: string;
+				displayImageUrl: string;
+				cost: number;
+			}[];
+		},
+		subsExtraVote = false,
+		collection: string[] | null
+	) {
 		super();
 		this.player = player_channel;
 		this.duration = duration;
@@ -61,7 +74,7 @@ export class Draft extends EventEmitter implements IDraft {
 		this.all_cards = all_cards.all;
 
 		if (collection) {
-			this.all_cards = all_cards.all.filter(card => collection.includes(card.cardDefKey));
+			this.all_cards = all_cards.all.filter((card) => collection.includes(card.cardDefKey));
 		}
 	}
 	cards: Deck = [];
@@ -69,25 +82,32 @@ export class Draft extends EventEmitter implements IDraft {
 	player: string = '';
 	currentChoice: Choice | undefined;
 	subsExtraVote: boolean = false;
-	all_cards: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[];
+	all_cards: {
+		cardDefKey: string;
+		variantKey: null;
+		url: string;
+		name: string;
+		description: string;
+		displayImageUrl: string;
+		cost: number;
+	}[];
 	started: boolean = false;
 
-    onDraftStarted = this.registerEvent<[player_channel: string]>();
+	onDraftStarted = this.registerEvent<[player_channel: string]>();
 
-    onNewChoice = this.registerEvent<[player_channel: string, choice: Choice]>();
+	onNewChoice = this.registerEvent<[player_channel: string, choice: Choice]>();
 
-	onVotingClosed = this.registerEvent<[player_channel: string, result: string, ties: string[]]>()
+	onVotingClosed = this.registerEvent<[player_channel: string, result: string, ties: string[]]>();
 
-    onChoiceSelected = this.registerEvent<[player_channel: string, card: Card]>();
+	onChoiceSelected = this.registerEvent<[player_channel: string, card: Card]>();
 
-    onDraftComplete = this.registerEvent<[draft: Draft]>();
+	onDraftComplete = this.registerEvent<[draft: Draft]>();
 
-    onDraftCanceled = this.registerEvent<[draft: Draft]>();
+	onDraftCanceled = this.registerEvent<[draft: Draft]>();
 
-    onDraftFinished = this.registerEvent<[draft: Draft]>();
+	onDraftFinished = this.registerEvent<[draft: Draft]>();
 
 	onChoiceOverride = this.registerEvent<[player_channel: string, result: string]>();
-
 
 	/**
 	 * Starts this draft. Emits the onDraftStarted event and creates a New Choice.
@@ -100,15 +120,13 @@ export class Draft extends EventEmitter implements IDraft {
 		if (this.started) return;
 		this.started = true;
 		if (this.player != '') {
-        	this.emit(this.onDraftStarted, this.player)
+			this.emit(this.onDraftStarted, this.player);
 		}
-	
+
 		this.total = 0;
-		this.currentChoice = await this.NewChoice(),
-		this.cards = [];
+		(this.currentChoice = await this.NewChoice()), (this.cards = []);
 	}
 
-	
 	/**
 	 * Cancels this draft
 	 *
@@ -122,13 +140,11 @@ export class Draft extends EventEmitter implements IDraft {
 
 		if (this.total < 12 && this.player != '') {
 			this.emit(this.onDraftCanceled, this);
-		}
-		else {
+		} else {
 			this.emit(this.onDraftFinished, this);
 		}
 	}
 
-	
 	/**
 	 * Creates a new choice for the draft
 	 *
@@ -143,31 +159,32 @@ export class Draft extends EventEmitter implements IDraft {
 			this.voteTimer = undefined;
 		}
 
-		const available = this.all_cards.filter((c) => excluded.every((e) => e.cardDefKey != c.cardDefKey));
-	
+		const available = this.all_cards.filter((c) =>
+			excluded.every((e) => e.cardDefKey != c.cardDefKey)
+		);
+
 		if (available.length < this.selections) {
 			throw new Error('Not enough selectable cards to continue draft');
 		}
 
 		const voting_period_ms = (this.duration + 5) * 1000; // voting period + 5 seconds after votes open
-	
+
 		const deck = shuffle(available);
-		const choices : Card[] = Array(this.selections);
-		const voteCounts : number[] = Array(this.selections);
+		const choices: Card[] = Array(this.selections);
+		const voteCounts: number[] = Array(this.selections);
 
 		for (let i = 0; i < this.selections; i++) {
 			if (this.total < 12) {
 				choices[i] = deck.pop()!;
-			}
-			else {
-				const name = getRandomDeckName(this.cards)
+			} else {
+				const name = getRandomDeckName(this.cards);
 				choices[i] = {
 					cardDefKey: name,
 					displayImageUrl: '',
 					name: name,
 					description: '',
 					cost: 0
-				}
+				};
 			}
 			voteCounts[i] = 0;
 		}
@@ -175,23 +192,22 @@ export class Draft extends EventEmitter implements IDraft {
 			cards: choices,
 			votes: new Map<string, string>(),
 			voteCounts: voteCounts,
-			votes_closed: DatetimeNowUtc() + voting_period_ms,
+			votes_closed: DatetimeNowUtc() + voting_period_ms
 		};
-	
+
 		if (this.player != '') {
 			this.emit(this.onNewChoice, this.player, newChoice);
 			this.voteTimer = setTimeout(() => {
 				const result = this.CloseVoting();
 				if (result && result.winner) {
-					this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties)
+					this.emit(this.onVotingClosed, this.player, result.winner?.name, result.ties);
 				}
 			}, voting_period_ms);
 		}
-	
+
 		return newChoice;
 	}
 
-	
 	/**
 	 * Closes voting, determines the winner, runs tiebreaker if any
 	 *
@@ -211,25 +227,23 @@ export class Draft extends EventEmitter implements IDraft {
 					ties = [this.currentChoice?.cards[index]];
 					winner = this.currentChoice?.cards[index];
 				}
-			}
-			else if (vote == highVote) {
+			} else if (vote == highVote) {
 				if (this.currentChoice?.cards[index]) {
-					ties.push(this.currentChoice?.cards[index])
+					ties.push(this.currentChoice?.cards[index]);
 					winner = undefined;
 				}
 			}
-		})
+		});
 
 		if (!winner) {
-			winner = ties[Math.floor(Math.random() * ties.length)]
+			winner = ties[Math.floor(Math.random() * ties.length)];
 		}
-		
-		this.Choose(winner.cardDefKey)
+
+		this.Choose(winner.cardDefKey);
 
 		return { winner: winner, ties: ties.map((card) => card.name) };
 	}
 
-	
 	/**
 	 * Choose a given card in the draft
 	 *
@@ -252,7 +266,7 @@ export class Draft extends EventEmitter implements IDraft {
 		this.total++;
 
 		if (this.player != '') {
-			this.emit(this.onChoiceSelected, this.player, (await this.LookupCard(cardDefKey))!)
+			this.emit(this.onChoiceSelected, this.player, (await this.LookupCard(cardDefKey))!);
 		}
 
 		if (this.total == 12) {
@@ -264,11 +278,9 @@ export class Draft extends EventEmitter implements IDraft {
 			return;
 		}
 
-		
 		this.currentChoice = await this.NewChoice(this.cards);
 	}
-	
-	
+
 	/**
 	 * Returns whether the given card can be chosen in this draft
 	 *
@@ -278,22 +290,21 @@ export class Draft extends EventEmitter implements IDraft {
 	 */
 	private CanChoose(cardDefKey: string | undefined | null) {
 		if (this.total == 12) return false;
-	
+
 		if (!cardDefKey) return false;
-	
+
 		const card = this.LookupCard(cardDefKey);
-	
+
 		if (card === undefined) return false;
-	
+
 		const validChoice =
 			this.currentChoice && this.currentChoice.cards.some((card) => card.cardDefKey == cardDefKey);
-	
+
 		const alreadyDrafted = this.cards.some((c) => c.cardDefKey == cardDefKey);
-	
+
 		return validChoice && !alreadyDrafted;
 	}
 
-	
 	/**
 	 * Adds or updates a user's vote in the draft
 	 *
@@ -312,19 +323,18 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 
 		const vote = Number(choice);
-		if ((vote < 1) || (vote > this.selections)) return;
+		if (vote < 1 || vote > this.selections) return;
 
 		const oldVote = Number(this.currentChoice?.votes.get(user));
-		if ((oldVote >= 1) && (oldVote <= 6)) {
-			this.currentChoice.voteCounts[oldVote - 1]-= 1 + extraVotes;
+		if (oldVote >= 1 && oldVote <= 6) {
+			this.currentChoice.voteCounts[oldVote - 1] -= 1 + extraVotes;
 		}
 
 		this.currentChoice?.votes.set(user, choice);
 
-		this.currentChoice.voteCounts[vote - 1]+= 1 + extraVotes;
+		this.currentChoice.voteCounts[vote - 1] += 1 + extraVotes;
 	}
 
-	
 	/**
 	 * Returns the Card for a given cardDefKey
 	 *
@@ -336,8 +346,7 @@ export class Draft extends EventEmitter implements IDraft {
 		if (!cardDefKey) return undefined;
 		return this.all_cards.find((card) => card.cardDefKey == cardDefKey);
 	}
-	
-	
+
 	/**
 	 * Converts this into a serializable IDraft
 	 *
@@ -345,18 +354,17 @@ export class Draft extends EventEmitter implements IDraft {
 	 * @returns {IDraft}
 	 */
 	public toIDraft(): IDraft {
-		return ({
+		return {
 			cards: this.cards,
 			total: this.total,
 			player: this.player,
 			currentChoice: this.currentChoice,
 			duration: this.duration,
 			selections: this.selections,
-			deckName: this.deckName,
-		});
+			deckName: this.deckName
+		};
 	}
 
-	
 	/**
 	 * Gets the deck code of the finished draft.
 	 *
@@ -364,10 +372,10 @@ export class Draft extends EventEmitter implements IDraft {
 	 * @returns {string}
 	 */
 	public GetDeckCode(): string {
-		type cardCode = { CardDefId: string }
-		const obj = {Cards: Array<cardCode>()}
-		this.cards.forEach(card => obj.Cards.push({CardDefId: card.cardDefKey}))
-		return btoa(JSON.stringify(obj))
+		type cardCode = { CardDefId: string };
+		const obj = { Cards: Array<cardCode>() };
+		this.cards.forEach((card) => obj.Cards.push({ CardDefId: card.cardDefKey }));
+		return btoa(JSON.stringify(obj));
 	}
 }
 

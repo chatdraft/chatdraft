@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { DatetimeNowUtc } from "$lib/datetime";
-	import { WebSocketMessageType, type WebSocketMessage } from "$lib/websocket";
+	import { DatetimeNowUtc } from '$lib/datetime';
+	import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
@@ -35,10 +35,10 @@
 		setTimeout(heartbeat, 500);
 		if (!ws) return;
 		if (ws.readyState !== 1) return;
-		const wsm : WebSocketMessage = {
+		const wsm: WebSocketMessage = {
 			type: WebSocketMessageType.Ping,
-			timestamp: DatetimeNowUtc(),
-		}
+			timestamp: DatetimeNowUtc()
+		};
 		ws.send(JSON.stringify(wsm));
 	}
 

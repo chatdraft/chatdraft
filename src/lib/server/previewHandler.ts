@@ -1,4 +1,4 @@
-import { PreviewToggled } from "./webSocketUtils";
+import { PreviewToggled } from './webSocketUtils';
 
 const previews = new Map<string, boolean>();
 
@@ -10,12 +10,11 @@ const previews = new Map<string, boolean>();
  * @returns {boolean} If the user has preview status enabled
  */
 export function GetPreviewStatus(username: string) {
-    if (previews.has(username)) {
-        return previews.get(username)!;
-    }
-    return false;
+	if (previews.has(username)) {
+		return previews.get(username)!;
+	}
+	return false;
 }
-
 
 /**
  * Sets that the user has preview status enabled currently
@@ -24,8 +23,8 @@ export function GetPreviewStatus(username: string) {
  * @param {string} username Twitch channel name of the user to set
  */
 export function SetPreviewStatus(username: string) {
-    previews.set(username, true);
-    PreviewToggled(username, true);
+	previews.set(username, true);
+	PreviewToggled(username, true);
 }
 
 /**
@@ -35,10 +34,9 @@ export function SetPreviewStatus(username: string) {
  * @param {string} username Twitch channel name of the user to clear.
  */
 export function ClearPreviewStatus(username: string) {
-    previews.set(username, false);
-    PreviewToggled(username, false);
+	previews.set(username, false);
+	PreviewToggled(username, false);
 }
-
 
 /**
  * Toggles the preview status of the given user
@@ -47,11 +45,10 @@ export function ClearPreviewStatus(username: string) {
  * @param {string} username Twitch channel name of the user to toggle.
  */
 export function TogglePreviewStatus(username: string) {
-    if (previews.has(username) && previews.get(username)) {
-        previews.set(username, false)
-    }
-    else {
-        previews.set(username, true);
-    }
-    PreviewToggled(username, previews.get(username)!);
+	if (previews.has(username) && previews.get(username)) {
+		previews.set(username, false);
+	} else {
+		previews.set(username, true);
+	}
+	PreviewToggled(username, previews.get(username)!);
 }

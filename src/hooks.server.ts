@@ -8,7 +8,12 @@ import { prisma } from '$lib/server/db';
 import { GlobalThisWSS, type ExtendedGlobal } from '$lib/server/webSocketHandler';
 import { building } from '$app/environment';
 import cookie from 'cookie';
-import { CloseBrowserSource, RegisterFullBrowserSource, RegisterDeckBrowserSource, RegisterChoiceBrowserSource } from '$lib/server/browserSourceHandler';
+import {
+	CloseBrowserSource,
+	RegisterFullBrowserSource,
+	RegisterDeckBrowserSource,
+	RegisterChoiceBrowserSource
+} from '$lib/server/browserSourceHandler';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
 
@@ -37,26 +42,24 @@ export const startupWebsocketServer = () => {
 
 			// if (!session) ws.close(1008, 'User not authenticated');
 			// ws.userId = session.userId;
-			const wsm : WebSocketMessage = {
+			const wsm: WebSocketMessage = {
 				type: WebSocketMessageType.Connect,
-				timestamp: DatetimeNowUtc(),
-			}
+				timestamp: DatetimeNowUtc()
+			};
 			ws.send(JSON.stringify(wsm));
 			ws.on('close', () => {
 				console.log(`[wss:kit] client disconnected (${ws.socketId}, ${ws.player_channel})`);
 				CloseBrowserSource(ws.player_channel, ws.socketId);
 			});
 			ws.on('message', (event) => {
-				const wsm : WebSocketMessage = JSON.parse(event.toString());
+				const wsm: WebSocketMessage = JSON.parse(event.toString());
 				if (wsm.type == WebSocketMessageType.BrowserSource) {
 					const hide = wsm.message;
 					if (hide == '') {
 						RegisterFullBrowserSource(ws.player_channel, ws.socketId);
-					}
-					else if (hide == 'choice') {
+					} else if (hide == 'choice') {
 						RegisterDeckBrowserSource(ws.player_channel, ws.socketId);
-					}
-					else if (hide == 'deck') {
+					} else if (hide == 'deck') {
 						RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
 					}
 				}
@@ -103,18 +106,18 @@ export const handle: Handle = async ({ event, resolve }) => {
 			}
 
 			event.locals.user = session.user;
-			
+
 			return await resolve(event);
 		}
 	}
 
 	event.locals.session = null;
 	event.locals.user = null;
-	
-	event.cookies.delete('session_id', {path: '/', httpOnly: true });
-	
+
+	event.cookies.delete('session_id', { path: '/', httpOnly: true });
+
 	const response = await resolve(event, {
-		filterSerializedResponseHeaders: name => name === 'content-type',
+		filterSerializedResponseHeaders: (name) => name === 'content-type'
 	});
 
 	return response;
