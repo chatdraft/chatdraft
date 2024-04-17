@@ -28,19 +28,17 @@ body {
 }
 
 @layer base {
-    /* TODO: Create custom varialbe for text stroke color /
-    / NOTES: Font Outline reuses shadow color - Stroke and Shadow cannot be set independently */
     .font-outline-0 {
-        -webkit-text-stroke: 0px var(--tw-shadow-color);
+        -webkit-text-stroke: 0px var(--tw-font-outline-color);
     }
     .font-outline {
-        -webkit-text-stroke: 1px var(--tw-shadow-color);
+        -webkit-text-stroke: 1px var(--tw-font-outline-color);
     }
     .font-outline-2 {
-        -webkit-text-stroke: 2px var(--tw-shadow-color);
+        -webkit-text-stroke: 2px var(--tw-font-outline-color);
     }
     .font-outline-4 {
-        -webkit-text-stroke: 4px var(--tw-shadow-color);
+        -webkit-text-stroke: 4px var(--tw-font-outline-color);
     }
     .w-104 {
         width: 26rem;

@@ -3,6 +3,7 @@ import type { Config } from 'tailwindcss';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 import { skeleton } from '@skeletonlabs/tw-plugin';
+import plugin from 'tailwindcss/plugin';
 
 export default {
 	darkMode: 'class',
@@ -44,6 +45,25 @@ export default {
 					}
 				]
 			}
+		}),
+		plugin(({addUtilities, theme}) => {
+			const fontOutlineUtilities = {};
+			const colors = theme('colors');
+			for (const color in colors) {
+				if (typeof colors[color] === 'object') {
+					for (const shade in colors[color]) {
+						fontOutlineUtilities[`.font-outline-${color}-${shade}`] = {
+							'--tw-font-outline-color': colors[color][shade]
+						};
+					}
+				}
+				else {
+					fontOutlineUtilities[`.font-outline-${color}`] = {
+						'--tw-font-outline-color': color
+					}
+				}
+			}
+			addUtilities(fontOutlineUtilities)
 		})
 	]
 } satisfies Config;

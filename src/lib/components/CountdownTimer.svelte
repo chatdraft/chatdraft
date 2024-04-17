@@ -3,7 +3,7 @@
     export let defaultDuration: number;
 </script>
 
-<div class="items-center inline-flex absolute right-4 font-snapn font-outline shadow-black">
+<div class="items-center inline-flex absolute right-4 font-snapn font-outline font-outline-black">
     <iconify-icon icon="ion:timer-outline" width="32" height="32" flip="horizontal"></iconify-icon>
     <span>
         {#if time_remaining > defaultDuration || time_remaining < 0}

@@ -132,8 +132,8 @@
 							<PreviewModeLabel />
 						{/if}
 						<h2 class="font-outline pl-4">
-							<span class="uppercase font-snapa font-outline shadow-black">Pick:</span>
-							<span class="font-snapn font-outline shadow-black">{current_draft.total + 1}</span>
+							<span class="uppercase font-snapa font-outline font-outline-black">Pick:</span>
+							<span class="font-snapn font-outline font-outline-black">{current_draft.total + 1}</span>
 						</h2>
 						<!-- Countdown Timer Icon & Seconds -->
 						<CountdownTimer {time_remaining} defaultDuration={current_draft.duration}></CountdownTimer>
@@ -158,7 +158,7 @@
 						<PreviewModeLabel />
 					{/if}
 					<div class="flex justify-evenly items-center">
-					<h2 class="uppercase font-snapa font-outline shadow-black">
+					<h2 class="uppercase font-snapa font-outline font-outline-black">
 						Drafted Cards
 					</h2>
 					</div>
@@ -185,7 +185,7 @@
 			<div class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg bg-opacity-70">
 				<div class="flex flex-shrink flex-col">
 					<div class="flex justify-evenly items-center">
-						<h2 class="uppercase font-snapa font-outline shadow-black text-slate-200 text-2xl">
+						<h2 class="uppercase font-snapa font-outline font-outline-black text-slate-200 text-2xl">
 							Drafted Deck
 						</h2>
 					</div>
