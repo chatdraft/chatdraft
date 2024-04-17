@@ -38,9 +38,9 @@
             {#if tabSet === 0}
                 <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}`} layerName='Oro%20Chat%20Draft' height={854} width={500} />
             {:else if tabSet === 1}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=deck`} layerName='Oro%20Chat%20Draft' height={439} width={500} />
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=deck`} layerName='Oro%20Chat%20Draft%20Choices' height={439} width={500} />
             {:else if tabSet === 2}
-                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=choice`} layerName='Oro%20Chat%20Draft' height={475} width={500} />
+                <BrowserSourceComponent url={`${$page.url.origin}/stream/${user}?hide=choice`} layerName='Oro%20Chat%20Draft%20Deck' height={475} width={500} />
             {/if}
         </div>
     </svelte:fragment>
