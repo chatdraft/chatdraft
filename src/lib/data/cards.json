@@ -1693,6 +1693,15 @@
             "cost": 3
         },
         {
+            "cardDefKey": "RedGuardian",
+            "variantKey": null,
+            "url": "/cards/RedGuardian/",
+            "name": "Red Guardian",
+            "description": "<b>On Reveal:</b> Afflict the lowest-Power enemy card here with -2 Power and remove its text.",
+            "displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedGuardian-f6e4d04e3e4513c7b7bc48473a269b7b83b020dc695e1001da73d7df7f3aea61.webp",
+            "cost": 3
+        },
+        {
             "cardDefKey": "RedHulk",
             "variantKey": null,
             "url": "/cards/RedHulk/",
