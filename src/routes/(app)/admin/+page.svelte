@@ -10,7 +10,7 @@
     export let data: PageData;
     $: drafts = data.drafts;
     $: previousDrafts = data.previousDrafts;
-    $: channels = data.channels;
+    $: channels = data.channels!;
     $: authorizedUsers = data.authorizedUsers!;
     $: adminUsers = data.adminUsers!;
 	$: setupCompleteUsers = data.setupCompleteUsers;
@@ -108,7 +108,6 @@
     <section>Chatbot is connected to:</section>
     <ul class="list-disc list-inside">
         {#each channels as channel}
-
             <form method="POST" action="?/partchannel" use:enhance>
                 <li>
                     <button class="btn-icon btn-icon-sm variant-outline-error">
