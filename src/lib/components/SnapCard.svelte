@@ -6,7 +6,7 @@
 </script>
 
 <div class="h-full">
-	{#if !hideText || !(card.displayImageUrl)}
+	{#if !hideText || card === undefined || card.displayImageUrl == ''}
 		<header class="card-header text-center"><b>{card.name}</b></header>
 	{/if}
 	<section>

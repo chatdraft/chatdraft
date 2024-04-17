@@ -283,7 +283,7 @@ export class Draft extends EventEmitter implements IDraft {
 	
 		const card = this.LookupCard(cardDefKey);
 	
-		if (!(card)) return false;
+		if (card === undefined) return false;
 	
 		const validChoice =
 			this.currentChoice && this.currentChoice.cards.some((card) => card.cardDefKey == cardDefKey);
