@@ -22,6 +22,7 @@ export default {
 		extend:
 		{
 			fontFamily: {
+				'normal': ['Space Grotesk'],
 				'snapa': ['CCElephantmenTall'],
 				'snapn': ['CCUltimatumBold']
 			}
