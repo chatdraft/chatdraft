@@ -1,7 +1,7 @@
 import { DatetimeNowUtc } from './datetime';
 
 /**
- * Establishes a websocket connection. Typically this will be called\
+ * Establishes a websocket connection. Typically this will be called
  * from the client running in the browser/browser source.
  *
  * @async

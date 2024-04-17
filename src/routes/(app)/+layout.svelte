@@ -10,16 +10,7 @@
 
 	// Floating UI for Popups
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
-	import {
-		AppBar,
-		AppRail,
-		AppRailAnchor,
-		AppShell,
-		Avatar,
-		storePopup
-	} from '@skeletonlabs/skeleton';
-	import { page } from '$app/stores';
-	import AppRailIcon from '$lib/components/AppRailIcon.svelte';
+	import { AppBar, AppShell, Avatar, storePopup } from '@skeletonlabs/skeleton';
 	import { onMount, setContext } from 'svelte';
 	import { sessionTimout_ms } from '$lib/constants';
 	import Navigation from '$lib/components/Navigation.svelte';
