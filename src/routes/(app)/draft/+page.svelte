@@ -95,7 +95,13 @@
 		</p>
 		{#if data.user?.initialSetupDone}
 			{#if data.botstatus}
-				<form method="post" action="?/newDraft" use:enhance>
+				<form
+					method="post"
+					action="?/newDraft"
+					use:enhance={() => {
+						return async () => {};
+					}}
+				>
 					<div class="grid grid-cols-2">
 						<DurationSlider bind:duration />
 						<div />
