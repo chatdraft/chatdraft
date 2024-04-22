@@ -137,7 +137,7 @@
 	<hr class="m-4" />
 	<section>Chatbot is connected to:</section>
 	<ul class="list-disc list-inside">
-		{#each channels as channel}
+		{#each channels as channel, index}
 			<form method="POST" action="?/partchannel" use:enhance>
 				<li>
 					<button class="btn-icon btn-icon-sm variant-outline-error">
@@ -145,6 +145,17 @@
 					</button>
 					{channel}
 					<input type="hidden" id="username" name="username" value={channel} />
+					{#if data.joinedChannels[index]}
+						<iconify-icon
+							icon="foundation:check"
+							width="24"
+							height="24"
+							style="color: green"
+							inline
+						/>
+					{:else}
+						<iconify-icon icon="foundation:x" width="24" height="24" style="color: red" inline />
+					{/if}
 				</li>
 			</form>
 		{/each}
@@ -155,6 +166,20 @@
 		<button class="btn-icon btn-icon-sm variant-outline-primary"
 			><iconify-icon icon="mdi:check-bold" /></button
 		>
+	</form>
+	<form
+		method="POST"
+		action="?/rejoinchannels"
+		use:enhance={() => {
+			return async ({ result, update }) => {
+				if (result.type == 'success') {
+					invalidateAll();
+					update();
+				}
+			};
+		}}
+	>
+		<button class="btn btn-md variant-outline-secondary mt-2"> Rejoin Channels </button>
 	</form>
 	<br />
 	<hr class="m-4" />

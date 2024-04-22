@@ -2,6 +2,7 @@ import { redirect, type Actions, error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { EndDraft, GetDraft, GetPreviousDraft } from '$lib/server/draftHandler';
 import DraftFactory from '$lib/snap/draftFactory';
+import TwitchBot from '$lib/server/twitchBot';
 
 export const load = (async ({ locals }) => {
 	if (locals.user && !locals.user.isAuthorized) throw redirect(302, '/');
@@ -53,6 +54,11 @@ export const actions = {
 		if (locals.user && locals.user.twitchID) {
 			const data = await request.formData();
 			if (data) {
+				if (!TwitchBot.IsBotInChannel(locals.user.channelName)) {
+					console.warn(
+						`${locals.user.channelName} has gone started a draft but the bot hasn't joined their channel.`
+					);
+				}
 				const duration = Number(data.get('duration')?.toString());
 				const selectionCount = Number(data.get('selectionCount')?.toString());
 				const subsExtraVote = Boolean(data.get('subsExtraVote')?.toString());

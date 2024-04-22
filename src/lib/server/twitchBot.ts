@@ -1,5 +1,4 @@
-import type { RefreshingAuthProvider } from '@twurple/auth';
-import { ChatClient } from '@twurple/chat';
+import type { AuthProvider, RefreshingAuthProvider } from '@twurple/auth';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
 import type { Choice, Card, Deck, Draft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
@@ -9,6 +8,8 @@ import { prisma } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
+import { EventSubWsListener } from '@twurple/eventsub-ws';
+import { ApiClient } from '@twurple/api';
 
 /**
  * Represents the singleton instance of the Chat Draft Twitch Bot
@@ -19,8 +20,10 @@ import { DatetimeNowUtc } from '$lib/datetime';
  */
 export default class TwitchBot {
 	private static instance: TwitchBot;
-	private chat: ChatClient | undefined;
 	private bot: Bot | undefined;
+	private api: ApiClient | undefined;
+	private eventSub: EventSubWsListener | undefined;
+	private authProvider: AuthProvider | undefined;
 
 	/**
 	 * Creates an instance of TwitchBot.
@@ -31,18 +34,13 @@ export default class TwitchBot {
 	 * @param {string[]} channels List of channels to connect to
 	 */
 	private constructor(authProvider: RefreshingAuthProvider, channels: string[]) {
-		this.chat = new ChatClient({
-			authProvider,
-			channels: channels,
-			authIntents: ['chat:read', 'chat:edit']
-		});
-		this.chat.connect();
-
+		this.authProvider = authProvider;
 		authProvider.addIntentsToUser(env.PUBLIC_TWITCH_USER_ID!, ['chat']);
 
 		this.bot = new Bot({
 			authProvider,
 			channels: channels,
+			chatClientOptions: { rejoinChannelsOnReconnect: true },
 			commands: [
 				createBotCommand(
 					'chatdraft',
@@ -124,8 +122,20 @@ export default class TwitchBot {
 				)
 			]
 		});
+	}
 
-		this.chat.onMessage((channel, user, text, msg) => {
+	/**
+	 * Initializes the bot to tally votes when 1-6 are typed in chat
+	 * and check the channel connection when the broadcaster goes live to
+	 * ensure the bot is in the channel if it failed to connect earlier.
+	 *
+	 * @private
+	 * @async
+	 * @param {string[]} channels - List of channels to join
+	 * @returns {*}
+	 */
+	private async Init(channels: string[]) {
+		this.bot?.chat.onMessage((channel, user, text, msg) => {
 			console.log(`#${channel} - <${user}>: ${text}`);
 
 			const draft = GetDraft(channel);
@@ -141,6 +151,18 @@ export default class TwitchBot {
 				SendMessage(channel, wsm);
 			}
 		});
+
+		this.api = new ApiClient({ authProvider: this.authProvider! });
+		this.eventSub = new EventSubWsListener({ apiClient: this.api });
+		const users = await this.api.users.getUsersByNames(channels);
+		users.forEach(async (user) => {
+			this.eventSub?.onStreamOnline(user.id, (event) => {
+				if (!TwitchBot.IsBotInChannel(event.broadcasterName))
+					console.warn(
+						`${event.broadcasterName} has gone live. Bot is expected to be in their channel but was not.`
+					);
+			});
+		});
 	}
 
 	/**
@@ -150,7 +172,7 @@ export default class TwitchBot {
 	 * @returns {boolean} True if the bot exists and is connected to Twitch Chat
 	 */
 	public IsHealthy() {
-		return this.chat && this.chat.isConnected;
+		return this.bot && this.bot.chat.isConnected;
 	}
 
 	/**
@@ -161,7 +183,7 @@ export default class TwitchBot {
 	 * @returns {boolean} True if the bot instance exists and has a chat instance
 	 */
 	public static IsInitialized() {
-		return this.instance && this.instance.chat;
+		return this.instance && this.instance.bot;
 	}
 
 	/**
@@ -172,7 +194,7 @@ export default class TwitchBot {
 	 * @returns {boolean} True if the bot instance exists and has a chat instance and the chat instance is connected.
 	 */
 	public static IsConnected() {
-		return this.instance && this.instance.chat && this.instance.chat.isConnected;
+		return this.instance && this.instance.bot && this.instance.bot.chat.isConnected;
 	}
 
 	/**
@@ -184,7 +206,7 @@ export default class TwitchBot {
 	 * @param {string} text Message to say
 	 */
 	public static Say(player_channel: string, text: string) {
-		if (TwitchBot.instance.chat) TwitchBot.instance.chat.say(player_channel, text);
+		if (TwitchBot.instance.bot) TwitchBot.instance.bot.say(player_channel, text);
 	}
 
 	/**
@@ -196,7 +218,7 @@ export default class TwitchBot {
 	 * @param {string} text Message to act
 	 */
 	public static Action(player_channel: string, text: string) {
-		if (TwitchBot.instance.chat) TwitchBot.instance.chat.action(player_channel, text);
+		if (TwitchBot.instance.bot) TwitchBot.instance.bot.action(player_channel, text);
 	}
 
 	/**
@@ -212,6 +234,7 @@ export default class TwitchBot {
 		if (!TwitchBot.instance) {
 			const channels = await prisma.user.GetChannels();
 			TwitchBot.instance = new TwitchBot(authProvider, channels);
+			await TwitchBot.instance.Init(channels);
 		}
 
 		return TwitchBot.instance;
@@ -331,13 +354,12 @@ export default class TwitchBot {
 	 *
 	 * @public
 	 * @static
-	 * @async
 	 * @param {string} player_channel Twitch channel to check
 	 * @returns {boolean} False if the instance is not connected to twitch, or if it is not connected to the channel
 	 */
-	public static async IsBotInChannel(player_channel: string) {
-		if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
-		return TwitchBot.instance.chat.currentChannels.includes(`#${player_channel}`);
+	public static IsBotInChannel(player_channel: string) {
+		if (!TwitchBot.instance || !TwitchBot.instance.bot) return false;
+		return TwitchBot.instance.bot.chat.currentChannels.includes(`#${player_channel}`);
 	}
 
 	/**
@@ -350,9 +372,8 @@ export default class TwitchBot {
 	 * @returns {boolean} True if the channel was successfully joined.
 	 */
 	public static async JoinChannel(player_channel: string) {
-		if (!TwitchBot.instance || !TwitchBot.instance.chat) return false;
-		if (TwitchBot.instance.bot) TwitchBot.instance.bot.join(player_channel);
-		await TwitchBot.instance.chat.join(player_channel);
+		if (!TwitchBot.instance || !TwitchBot.instance.bot) return false;
+		if (TwitchBot.instance.bot) await TwitchBot.instance.bot.join(player_channel);
 		return true;
 	}
 
@@ -366,9 +387,7 @@ export default class TwitchBot {
 	 * @returns {boolean} True if the channel was successfully joined.
 	 */
 	public static async PartChannel(player_channel: string) {
-		if (!TwitchBot.instance.chat) return false;
-		if (TwitchBot.instance.bot) TwitchBot.instance.bot.leave(player_channel);
-		await TwitchBot.instance.chat.part(player_channel);
+		if (TwitchBot.instance.bot) await TwitchBot.instance.bot.leave(player_channel);
 		return true;
 	}
 }

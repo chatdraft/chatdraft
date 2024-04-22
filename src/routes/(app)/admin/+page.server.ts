@@ -4,6 +4,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
 import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
+import TwitchBot from '$lib/server/twitchBot';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user || !locals.user.isAdmin) throw redirect(302, '/');
@@ -11,6 +12,7 @@ export const load = (async ({ locals }) => {
 	const channels = users
 		?.filter((user) => user.userPreferences?.botJoinsChannel)
 		.map((user) => user.channelName);
+	const joinedChannels = channels!.map((channel) => TwitchBot.IsBotInChannel(channel));
 	const drafts = await GetDrafts();
 	const previousDrafts = await GetPreviousDrafts();
 	const authorizedUsers = users
@@ -23,6 +25,7 @@ export const load = (async ({ locals }) => {
 
 	return {
 		channels: channels,
+		joinedChannels: joinedChannels,
 		drafts: drafts,
 		previousDrafts: previousDrafts,
 		authorizedUsers: authorizedUsers,
@@ -61,6 +64,7 @@ export const actions = {
 			const api = new ApiClient({ authProvider });
 			const user = await api.users.getUserByName(username);
 			if (user) {
+				TwitchBot.JoinChannel(username);
 				prisma.user.AddChannel(user.id);
 			}
 		}
@@ -74,9 +78,19 @@ export const actions = {
 			const api = new ApiClient({ authProvider });
 			const user = await api.users.getUserByName(username);
 			if (user) {
+				TwitchBot.PartChannel(username);
 				prisma.user.RemoveChannel(user.id);
 			}
 		}
+	},
+	rejoinchannels: async ({ locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const channels = await prisma.user.GetChannels();
+		channels.forEach((channel) => {
+			if (!TwitchBot.IsBotInChannel(channel)) {
+				TwitchBot.JoinChannel(channel);
+			}
+		});
 	},
 	updatecards: async ({ request, locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);
