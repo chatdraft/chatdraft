@@ -2323,6 +2323,15 @@
 			"cost": 5
 		},
 		{
+			"cardDefKey": "WhiteWidow",
+			"variantKey": null,
+			"url": "/cards/WhiteWidow/",
+			"name": "White Widow",
+			"description": "<b>On Reveal:</b> Add a Widow's Kiss to your opponent's side of this location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteWidow-c19e7aa28816ff42666d0b5a79b4b85240b9e641df04d8817354bdf4fc82a94d.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Wolfsbane",
 			"variantKey": null,
 			"url": "/cards/Wolfsbane/",
