@@ -55,13 +55,19 @@ export const createWSSGlobalInstance = () => {
 		});
 		ws.on('message', (event) => {
 			refreshTimeout(ws.sessionId);
-			const message: WebSocketMessage = JSON.parse(event.toString());
-			if (message.type == WebSocketMessageType.Ping) {
-				const wsm: WebSocketMessage = {
-					type: WebSocketMessageType.Pong,
-					timestamp: DatetimeNowUtc()
-				};
-				ws.send(JSON.stringify(wsm));
+			try {
+				const message: WebSocketMessage = JSON.parse(event.toString());
+				if (message.type == WebSocketMessageType.Ping) {
+					const wsm: WebSocketMessage = {
+						type: WebSocketMessageType.Pong,
+						timestamp: DatetimeNowUtc()
+					};
+					ws.send(JSON.stringify(wsm));
+				}
+			} catch (error) {
+				let message = 'Unknown Error';
+				if (error instanceof Error) message = error.message;
+				console.log(message);
 			}
 		});
 	});
