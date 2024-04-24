@@ -7,7 +7,10 @@
 		routeId != '/(app)' ? pageRouteId && pageRouteId.includes(routeId) : routeId == pageRouteId;
 </script>
 
-<div class="rounded-lg border-primary-500" class:border-2={pageSelected}>
+<div
+	class="rounded-lg border-primary-500 aspect-square content-center"
+	class:border-2={pageSelected}
+>
 	<iconify-icon
 		style:color={pageSelected ? 'rgba(var(--color-primary-500) / 1)' : ''}
 		{icon}
