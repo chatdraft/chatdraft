@@ -52,20 +52,26 @@ export const startupWebsocketServer = () => {
 				CloseBrowserSource(ws.player_channel, ws.socketId);
 			});
 			ws.on('message', (event) => {
-				const wsm: WebSocketMessage = JSON.parse(event.toString());
-				if (wsm.type == WebSocketMessageType.BrowserSource) {
-					const hide = wsm.message;
-					if (hide == '') {
-						RegisterFullBrowserSource(ws.player_channel, ws.socketId);
-					} else if (hide == 'choice') {
-						RegisterDeckBrowserSource(ws.player_channel, ws.socketId);
-					} else if (hide == 'deck') {
-						RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
+				try {
+					const wsm: WebSocketMessage = JSON.parse(event.toString());
+					if (wsm.type == WebSocketMessageType.BrowserSource) {
+						const hide = wsm.message;
+						if (hide == '') {
+							RegisterFullBrowserSource(ws.player_channel, ws.socketId);
+						} else if (hide == 'choice') {
+							RegisterDeckBrowserSource(ws.player_channel, ws.socketId);
+						} else if (hide == 'deck') {
+							RegisterChoiceBrowserSource(ws.player_channel, ws.socketId);
+						}
 					}
-				}
-				if (wsm.type == WebSocketMessageType.Channel) {
-					const channel = wsm.message!;
-					ws.player_channel = channel;
+					if (wsm.type == WebSocketMessageType.Channel) {
+						const channel = wsm.message!;
+						ws.player_channel = channel;
+					}
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
 				}
 			});
 		});
