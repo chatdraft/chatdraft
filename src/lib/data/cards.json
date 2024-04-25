@@ -987,7 +987,7 @@
 			"url": "/cards/JaneFoster/",
 			"name": "Jane Foster Mighty Thor",
 			"description": "<b>On Reveal:</b> Draw all cards that Cost 0 from your deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JaneFoster-3d974f1db269d363b22d16390c3c0d2efca0df02866c648a35a99f21800c2524.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JaneFoster-9125692a29533717a356fdc1b142d0fd39b70c60622adee5c693be61419908e8.webp",
 			"cost": 5
 		},
 		{
@@ -996,7 +996,7 @@
 			"url": "/cards/JeanGrey/",
 			"name": "Jean Grey",
 			"description": "<b>Ongoing:</b> Players must play their first card here each turn. <i>(if possible)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeanGrey-00cf36d7dea1530ad53a5129c64cd05ed23b4d0631e56460269663730e4f91f8.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JeanGrey-ca9392387e7538a8913513fe30faf442c35025b10a1090c1232d25f203216f7a.webp",
 			"cost": 3
 		},
 		{
@@ -1248,8 +1248,8 @@
 			"url": "/cards/Mantis/",
 			"name": "Mantis",
 			"description": "<b>On Reveal:</b> If your opponent played any cards here this turn, copy one of them into your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mantis-5be6f06ee10cc91fc8dd2a1198806a725a0f7a14fbbca75b5db2b0e9edc330f8.webp",
-			"cost": 2
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mantis-24300df364a2def608e71c39d6982dcd956e186ff0be624b16c468764eed5ceb.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "MariaHill",
@@ -1707,7 +1707,7 @@
 			"url": "/cards/RedHulk/",
 			"name": "Red Hulk",
 			"description": "When your opponent ends a turn with unspent Energy, +4 Power.\n<i>(if in hand or in play)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedHulk-b954774fb64d1457bc1f96a5b8f5507f8284281403df8aecb7db339b60ca6b90.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedHulk-549f0a308b4b60f3c048a23a63d80a92b1a51c79ee2468af4e69c3428d85094d.webp",
 			"cost": 6
 		},
 		{
@@ -2022,7 +2022,7 @@
 			"url": "/cards/Stature/",
 			"name": "Stature",
 			"description": "Costs 1 if your opponent discarded a card from their hand this game.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Stature-d2863bd71907d1ea7ee0cc8b1e8d1fae325f536505df7f0a3dcc9c51f2306328.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Stature-2055e372156c9fa999dc61baf6c512800bf5a16d1cda97cb609eaf9b0adb32b6.webp",
 			"cost": 5
 		},
 		{
@@ -2192,7 +2192,7 @@
 			"variantKey": null,
 			"url": "/cards/USAgent/USAgent/",
 			"name": "U.S. Agent",
-			"description": "<b>Ongoing:</b> 4, 5, and 6-Cost cards here have -3 Power.",
+			"description": "<b>Ongoing:</b> 4, 5, and 6-Cost cards here have -4 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/USAgent-97d3d929fc5f76dc1cb4bc80818fcaff03010077ef9fe481d10067220b4dddff.webp",
 			"cost": 2
 		},
