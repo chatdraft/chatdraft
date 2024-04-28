@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { clipboard } from '@skeletonlabs/skeleton';
 
-	const gameStateDir =
-		'c:\\Users\\%USERNAME%\\AppData\\LocalLow\\Second Dinner\\SNAP\\Standalone\\States\\nvprod\\';
+	const gameStateFile =
+		'c:\\Users\\%USERNAME%\\AppData\\LocalLow\\Second Dinner\\SNAP\\Standalone\\States\\nvprod\\CollectionState.json';
 	export let collectionComplete: boolean;
 	let collectionFile: HTMLInputElement;
 
@@ -17,7 +17,7 @@ Click this button to copy the default directory on Windows for Marvel Snap's gam
 <button
 	class="btn btn-icon variant-filled-primary"
 	on:click|preventDefault
-	use:clipboard={gameStateDir}
+	use:clipboard={gameStateFile}
 >
 	<iconify-icon icon="clarity:copy-to-clipboard-line" width="24" height="24" flip="horizontal" />
 </button>

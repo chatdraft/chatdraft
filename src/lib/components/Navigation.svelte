@@ -55,8 +55,7 @@
 			</AppRailIcon>
 		</AppRailAnchor>
 	{/if}
-
-	{#if user && user.id == env.PUBLIC_TWITCH_USER_ID}
+	{#if user && user.twitchID == env.PUBLIC_TWITCH_USER_ID}
 		<AppRailAnchor href={twitch_bot_uri}>
 			<iconify-icon icon="mdi:wrench" width="28" height="28" />
 			<span class="mr-2 w-full">Setup Chatbot</span>

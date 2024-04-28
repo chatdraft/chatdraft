@@ -588,6 +588,160 @@ export const prisma = new PrismaClient().$extends({
 					console.log(message);
 				}
 			}
+		},
+		oneTimeDraftBatch: {
+			/**
+			 * Returns batch information about a one time batch for a given tag.
+			 * @param tag The tag used to identify the batch
+			 * @returns Batch information if any found
+			 */
+			async GetOneTimeBatch(tag: string) {
+				try {
+					return await prisma.oneTimeDraftBatch.findUnique({
+						where: {
+							tag: tag
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			},
+			/**
+			 * Create a batch of One Time Drafts with the given batch tag and expiration
+			 * @param tag Batch tag used to identify this batch
+			 * @param count Number of One Time Drafts to create
+			 * @param expiration Expiration date of the OTD Links
+			 * @returns The Draft batch including list of OTD draft IDs
+			 */
+			async CreateOneTimeDraftBatch(tag: string, count: number, expiration: Date) {
+				try {
+					return await prisma.oneTimeDraftBatch.create({
+						data: {
+							tag: tag,
+							expiration: expiration,
+							drafts: {
+								createMany: {
+									data: [...Array(count).keys()].map(() => {
+										return {
+											id: undefined
+										};
+									})
+								}
+							}
+						},
+						include: {
+							drafts: true
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			}
+		},
+		oneTimeDraft: {
+			/**
+			 * Starts a One Time Draft
+			 * @param id ID of the One Time Draft
+			 * @returns Updated draft
+			 */
+			async StartOneTimeDraft(id: string) {
+				try {
+					const draft = await prisma.oneTimeDraft.update({
+						where: {
+							id: id
+						},
+						data: {
+							startedAt: new Date()
+						}
+					});
+					return draft;
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			},
+			/**
+			 * Return a One Time Draft for given ID
+			 * @param id ID of the Draft
+			 * @returns
+			 */
+			async GetOneTimeDraft(id: string) {
+				try {
+					const draft = await prisma.oneTimeDraft.findUnique({
+						where: {
+							id: id
+						},
+						select: {
+							batchTag: true,
+							cards: true,
+							finishedAt: true,
+							id: true,
+							startedAt: true,
+							batch: {
+								select: {
+									expiration: true
+								}
+							}
+						}
+					});
+					return draft;
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			},
+			/**
+			 * Marks the given one time draft as finished.
+			 * @param id ID of the One Time Draft
+			 * @param cards Stringified array of cardDefIds of cards selected in draft
+			 * @returns
+			 */
+			async FinishOneTimeDraft(id: string, cards: string) {
+				try {
+					const draft = prisma.oneTimeDraft.update({
+						where: {
+							id: id
+						},
+						data: {
+							cards: cards,
+							finishedAt: new Date()
+						}
+					});
+					return draft;
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			},
+			/**
+			 * End a One Time Draft early
+			 * @param id The OTD to update
+			 * @returns
+			 */
+			async CancelOneTimeDraft(id: string) {
+				try {
+					const draft = prisma.oneTimeDraft.update({
+						where: {
+							id: id
+						},
+						data: {
+							finishedAt: new Date()
+						}
+					});
+					return draft;
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			}
 		}
 	}
 });

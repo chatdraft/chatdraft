@@ -14,6 +14,7 @@
 	import { onMount, setContext } from 'svelte';
 	import { sessionTimout_ms } from '$lib/constants';
 	import Navigation from '$lib/components/Navigation.svelte';
+	import { title } from '$lib/title';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	export let data;
@@ -54,6 +55,7 @@
 </script>
 
 <svelte:head>
+	<title>{$title}</title>
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </svelte:head>
 

@@ -1,5 +1,10 @@
+<script>
+	import { title } from '$lib/title';
+
+	title.set('Oro Chat Draft - About');
+</script>
+
 <svelte:head>
-	<title>oro's chat draft - About</title>
 	<meta
 		name="description"
 		content="About Oro Chat Draft, a fun app for letting Twitch Chat draft a Marvel Snap Deck for a streamer to play."

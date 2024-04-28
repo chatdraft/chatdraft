@@ -76,3 +76,18 @@ model VoteResult {
   cardDefKey String
   votes Int
 }
+
+model OneTimeDraftBatch {
+  tag String @id
+  expiration DateTime
+  drafts OneTimeDraft[]
+}
+
+model OneTimeDraft {
+  id String @id @default(cuid())
+  batchTag String
+  batch OneTimeDraftBatch @relation(fields:[batchTag], references: [tag])
+  startedAt DateTime?
+  finishedAt DateTime?
+  cards String?
+}

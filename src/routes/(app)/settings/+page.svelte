@@ -14,6 +14,7 @@
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 	import BgOpacitySlider from '$lib/components/BgOpacitySlider.svelte';
 	import { type WebSocketMessage, WebSocketMessageType } from '$lib/websocket';
+	import { title } from '$lib/title';
 
 	const toastStore = getToastStore();
 
@@ -42,10 +43,11 @@
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage);
 	});
+
+	title.set('Oro Chat Draft - Settings');
 </script>
 
 <svelte:head>
-	<title>oro's chat draft - Settings</title>
 	<meta name="description" content="Oro Chat Draft Settings" />
 </svelte:head>
 

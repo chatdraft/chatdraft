@@ -17,6 +17,7 @@
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 	import { enhance } from '$app/forms';
 	import { DatetimeNowUtc } from '$lib/datetime';
+	import { title } from '$lib/title';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -64,10 +65,11 @@
 	});
 
 	const { ResetTimeout } = getContext<{ ResetTimeout: () => void }>('ResetTimer');
+
+	title.set('Oro Chat Draft - Draft');
 </script>
 
 <svelte:head>
-	<title>oro's chat draft - Draft</title>
 	<meta name="description" content="Start a Marvel Snap Oro Chat Draft on Twitch" />
 </svelte:head>
 

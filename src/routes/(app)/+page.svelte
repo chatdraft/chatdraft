@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import StreamList from '$lib/components/StreamList.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { title } from '$lib/title';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -19,10 +20,11 @@
 			invalidate('chatdraft:auth');
 		}
 	});
+
+	title.set('Oro Chat Draft - Home');
 </script>
 
 <svelte:head>
-	<title>Oro Chat Draft - Home</title>
 	<meta
 		name="description"
 		content="Oro Chat Draft is a fun app for letting Twitch Chat draft a Marvel Snap Deck for a streamer to play."

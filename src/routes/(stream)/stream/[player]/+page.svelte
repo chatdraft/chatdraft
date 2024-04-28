@@ -15,6 +15,7 @@
 	import { onMount } from 'svelte';
 	import BrowserSourceFooter from '$lib/components/BrowserSourceFooter.svelte';
 	import BrowserSourceHeader from '$lib/components/BrowserSourceHeader.svelte';
+	import { title } from '$lib/title';
 
 	export let data;
 
@@ -116,10 +117,11 @@
 			ws.close();
 		}
 	};
+
+	title.set('Oro Chat Draft - Stream');
 </script>
 
 <svelte:head>
-	<title>oro's chat draft - Stream</title>
 	<meta name="Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 

@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import SnapFanApiInput from '$lib/components/SnapFanApiInput.svelte';
 	import { WebSocketMessageType, establishWebSocket, type WebSocketMessage } from '$lib/websocket';
+	import { title } from '$lib/title';
 
 	const toastStore = getToastStore();
 
@@ -49,10 +50,11 @@
 			goto('/draft');
 		}
 	}
+
+	title.set('Oro Chat Draft - Get Started');
 </script>
 
 <svelte:head>
-	<title>oro's chat draft - Get Started</title>
 	<meta
 		name="description"
 		content="Get Started with Oro Chat Draft and run a Marvel Snap Twitch Chat Draft"

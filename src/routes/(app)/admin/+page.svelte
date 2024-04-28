@@ -4,6 +4,7 @@
 	import { FileDropzone } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { title } from '$lib/title';
 
 	const toastStore = getToastStore();
 
@@ -18,10 +19,11 @@
 	let files: FileList;
 
 	export let form;
+
+	title.set('Oro Chat Draft - Admin');
 </script>
 
 <svelte:head>
-	<title>Oro Chat Draft - Admin</title>
 	<meta
 		name="description"
 		content="Oro Chat Draft is a fun app for letting Twitch Chat draft a Marvel Snap Deck for a streamer to play."
@@ -199,6 +201,138 @@
 			{/each}
 		{/if}
 	</ul>
+	<hr class="m-4" />
+
+	<section>
+		<h3>Generate One Time Draft Links</h3>
+		<form
+			method="post"
+			action="?/generateOtdLinks"
+			use:enhance={() => {
+				return async ({ result, update }) => {
+					if (result.type == 'success' && form?.dataUri) {
+						toastStore.trigger({ message: 'One Time Draft Links successfully generated.' });
+					}
+					update();
+				};
+			}}
+		>
+			<p>Batch Label:</p>
+			<input
+				type="text"
+				name="otdBatchLabel"
+				placeholder="OTD Batch Label"
+				class="input w-64"
+				value={form?.tagData ?? ''}
+			/>
+			{#if form?.missingTag}
+				<span class="text-error-500 font-bold">* The Batch Label field is required.</span>
+			{/if}
+			{#if form?.alreadyExists}
+				<span class="text-error-500 font-bold">
+					* The Batch Label '{form?.tagData}' has already been used.
+				</span>
+			{/if}
+			<br />
+			<p>Number of Links:</p>
+			<input
+				type="number"
+				name="otdCount"
+				placeholder="# OTD Links"
+				class="input w-64"
+				value={form?.countData ?? ''}
+			/>
+			{#if form?.missingCount}
+				<span class="text-error-500 font-bold">* The # of Links field is required</span>
+			{/if}
+			{#if form?.countZeroOrNegative}
+				<span class="text-error-500 font-bold">* The # of Links must be greater than 0.</span>
+			{/if}
+			<br />
+			<br />
+			OTD Links Expiration:<br />
+			<input
+				type="date"
+				title="OTD Link Expiration"
+				name="otdExpiration"
+				class="input w-64"
+				value={form?.expirationData ?? ''}
+			/>
+			{#if form?.missingExpiration}
+				<span class="text-error-500 font-bold">* The Expiration field is required</span>
+			{/if}
+			<br />
+			<button class="btn btn-md variant-filled-primary mt-4">Generate</button>
+		</form>
+		{#if form?.dataUri}
+			<a href={form.dataUri} class="anchor" download="otdlinks.txt">Download OTD Links</a>
+		{/if}
+	</section>
+	<hr class="m-4" />
+	<form
+		method="POST"
+		action="?/updateotdcards"
+		enctype="multipart/form-data"
+		use:enhance={() => {
+			return async ({ result, update }) => {
+				if (result.type == 'success') {
+					toastStore.trigger({ message: 'OTD Card database successfully updated.' });
+				}
+				update();
+			};
+		}}
+	>
+		<h3 class="h3">Update OTD card database</h3>
+		<FileDropzone
+			name="files"
+			bind:files
+			class="m-4 w-1/3"
+			multiple={false}
+			accept=".json"
+			required
+		>
+			<svelte:fragment slot="message">
+				{#if files && files.length > 0}
+					{files[0].name} selected.
+				{:else}
+					Please select an updated cards.json file
+				{/if}
+			</svelte:fragment>
+		</FileDropzone>
+		<button class="btn btn-md variant-filled-primary m-4" type="submit">Submit</button>
+		{#if form?.updated}
+			Successfully updated OTD card database.
+		{/if}
+	</form>
+	<a class="anchor" href="api/v1/otdcards" target="#">
+		Check current OTD card database
+		<iconify-icon icon="fluent:window-new-16-filled" width="16" height="16" />
+	</a>
+	<form
+		method="POST"
+		action="?/resetotdcards"
+		use:enhance={({ cancel }) => {
+			if (!confirm('Are you sure you want to reset the OTD card database to installed default?')) {
+				cancel();
+			}
+
+			return async ({ result, update }) => {
+				if (result.type == 'success') {
+					toastStore.trigger({
+						message: 'OTD Card database successfully reset to build settings.'
+					});
+				}
+				update();
+			};
+		}}
+	>
+		<button class="btn btn-md variant-outline-warning m-4" type="submit"
+			>Reset to default OTD card database</button
+		>
+		{#if form?.reset}
+			Successfully reset OTD card database.
+		{/if}
+	</form>
 	<hr class="m-4" />
 
 	<section>Number of Active Drafts: {drafts.length}</section>

@@ -1,7 +1,7 @@
 import { GetDrafts, GetPreviousDrafts } from '$lib/server/draftHandler';
-import { error, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
+import { ResetCards, ResetOtdCards, UpdateCards, UpdateOtdCards } from '$lib/server/cardsHandler';
 import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
 import TwitchBot from '$lib/server/twitchBot';
@@ -104,7 +104,7 @@ export const actions = {
 	},
 	resetcards: async ({ locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);
-		ResetCards();
+		await ResetCards();
 		return { reset: true };
 	},
 	resetsetup: async ({ request, locals }) => {
@@ -115,6 +115,72 @@ export const actions = {
 			await prisma.user.ResetSetupComplete(user);
 		}
 
+		return { reset: true };
+	},
+	generateOtdLinks: async ({ request, locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		let validationError = false;
+		let missingTag = false;
+		let alreadyExists = false;
+		let missingCount = false;
+		let countZeroOrNegative = false;
+		let missingExpiration = false;
+
+		const tagData = data.get('otdBatchLabel');
+		if (!tagData) validationError = missingTag = true;
+		const tag = tagData?.toString();
+
+		if (tag) {
+			const existingBatch = await prisma.oneTimeDraftBatch.GetOneTimeBatch(tag);
+			if (existingBatch) {
+				validationError = alreadyExists = true;
+			}
+		}
+
+		const countData = data.get('otdCount');
+		if (!countData) validationError = missingCount = true;
+		const count = Number(countData!.toString());
+		if (count <= 0) validationError = countZeroOrNegative = true;
+
+		const expirationData = data.get('otdExpiration');
+		if (!expirationData) validationError = missingExpiration = true;
+		const expiration = new Date(expirationData!.toString());
+		expiration.setUTCHours(23, 59, 59, 999);
+
+		if (validationError)
+			return fail(400, {
+				missingTag: missingTag,
+				missingCount: missingCount,
+				countZeroOrNegative: countZeroOrNegative,
+				missingExpiration: missingExpiration,
+				alreadyExists: alreadyExists,
+				tagData: tagData,
+				countData: countData,
+				expirationData: expirationData
+			});
+
+		const batch = await prisma.oneTimeDraftBatch.CreateOneTimeDraftBatch(tag!, count, expiration);
+		const links = batch?.drafts?.map(
+			(draft) => `${new URL(request.url).origin}/otdraft?code=${draft.id}`
+		);
+		const dataUri = links ? 'data:text/plain;base64,' + btoa(links.join('\r\n')) : undefined;
+
+		return { dataUri: dataUri };
+	},
+	updateotdcards: async ({ request, locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		const cards = data.get('files') as File;
+		if (cards) {
+			await UpdateOtdCards(cards);
+		}
+
+		return { updated: true };
+	},
+	resetotdcards: async ({ locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		await ResetOtdCards();
 		return { reset: true };
 	}
 } satisfies Actions;

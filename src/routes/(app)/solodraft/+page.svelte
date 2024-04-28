@@ -5,6 +5,7 @@
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 	import cards from '$lib/data/cards.json';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
+	import { title } from '$lib/title';
 
 	let selectionCount = 6;
 	const gridcols = ['', '', '', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5', 'grid-cols-6'];
@@ -40,7 +41,13 @@
 
 		current_draft = current_draft;
 	}
+
+	title.set('Oro Chat Draft - Solo Draft');
 </script>
+
+<svelte:head>
+	<meta name="description" content="Start a Marvel Snap Solo Draft" />
+</svelte:head>
 
 <div class="space-y-4 p-4">
 	{#if current_draft}

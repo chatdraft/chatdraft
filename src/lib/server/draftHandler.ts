@@ -6,6 +6,7 @@ import { GetAllCards } from './cardsHandler';
 import { DatetimeNowUtc } from '$lib/datetime';
 
 export const drafts = new Map<string, Draft>();
+export const oneTimeDrafts = new Map<string, Draft>();
 export const previousDrafts = new Map<string, Draft>();
 
 /**
@@ -146,6 +147,32 @@ export function EndDraft(player: string) {
  */
 export function IsActive(player: string) {
 	return drafts.has(player) && drafts.get(player)!.currentChoice;
+}
+
+/**
+ * Sets the active draft for the given one time code.
+ * @param {string} code The one time code
+ * @param {Draft} draft The Draft object
+ */
+export function SetOneTimeDraft(code: string, draft: Draft) {
+	oneTimeDrafts.set(code, draft);
+}
+
+/**
+ * Gets the active draft for the given one time code.
+ * @param {string} code The one time code.
+ * @returns The active draft if any
+ */
+export function GetOneTimeDraft(code: string | null) {
+	if (code && oneTimeDrafts.has(code)) return oneTimeDrafts.get(code);
+}
+
+/**
+ * Clears the active draft for the given one time code.
+ * @param {string} code The one time code.
+ */
+export function ClearOneTimeDraft(code: string | null) {
+	if (code && oneTimeDrafts.has(code)) oneTimeDrafts.delete(code);
 }
 
 export type DraftEvents = {
