@@ -13,7 +13,7 @@
 	}
 </script>
 
-Click this button to copy the default directory on Windows for Marvel Snap's game state files:
+Click this button to copy the default path on Windows for Marvel Snap's Collection state file:
 <button
 	class="btn btn-icon variant-filled-primary"
 	on:click|preventDefault
