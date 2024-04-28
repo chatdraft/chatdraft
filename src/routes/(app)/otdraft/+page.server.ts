@@ -4,7 +4,7 @@ import { Draft, LookupCard } from '$lib/snap/draft';
 import { ClearOneTimeDraft, GetOneTimeDraft, SetOneTimeDraft } from '$lib/server/draftHandler';
 import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/db';
-import { twohours_ms } from '$lib/constants';
+import { onehour_ms } from '$lib/constants';
 
 export const load = (async (request) => {
 	const draftCode = request.url.searchParams.get('code');
@@ -14,7 +14,7 @@ export const load = (async (request) => {
 
 	const liveDraft = GetOneTimeDraft(draftCode);
 	if (liveDraft) {
-		if (liveDraft.startTime && Date.now() - liveDraft.startTime > twohours_ms) {
+		if (liveDraft.startTime && Date.now() - liveDraft.startTime > onehour_ms) {
 			return {
 				draftCode: draftCode,
 				validCode: true,
@@ -44,11 +44,7 @@ export const load = (async (request) => {
 			expiration: draft.batch.expiration
 		};
 	}
-	if (
-		!draft.finishedAt &&
-		draft.startedAt &&
-		Date.now() - draft.startedAt.getTime() > twohours_ms
-	) {
+	if (!draft.finishedAt && draft.startedAt && Date.now() - draft.startedAt.getTime() > onehour_ms) {
 		return {
 			draftCode: draftCode,
 			validCode: true,
@@ -98,7 +94,7 @@ export const actions = {
 					ClearOneTimeDraft(code);
 					prisma.oneTimeDraft.CancelOneTimeDraft(code);
 				}
-			}, twohours_ms);
+			}, onehour_ms);
 		}
 	},
 	draftCard: async ({ request }) => {
