@@ -141,7 +141,7 @@ export const actions = {
 		const countData = data.get('otdCount');
 		if (!countData) validationError = missingCount = true;
 		const count = Number(countData!.toString());
-		if (count <= 0) validationError = countZeroOrNegative = true;
+		if (!missingCount && count <= 0) validationError = countZeroOrNegative = true;
 
 		const expirationData = data.get('otdExpiration');
 		if (!expirationData) validationError = missingExpiration = true;
