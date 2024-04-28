@@ -48,7 +48,9 @@ export const load = (async (request) => {
 		return {
 			draftCode: draftCode,
 			validCode: true,
-			draftExpired: true
+			draftExpired: true,
+			startedAt: draft.startedAt,
+			expiredAt: new Date(draft.startedAt.getTime() + onehour_ms)
 		};
 	}
 	if (draft?.cards) {

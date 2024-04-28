@@ -33,7 +33,10 @@
 	<h1 class="h1">One Time Draft</h1>
 
 	{#if data.draftExpired}
-		<p class="mt-4">This draft was started and has expired.</p>
+		<p class="mt-4">
+			This One Time Draft link was started at {data.startedAt?.toLocaleString()} and expired at {data.expiredAt?.toLocaleString()}.
+			The draft was never finished and this link cannot be reused.
+		</p>
 	{:else if !data.draftCode}
 		<p class="mt-4">No draft code supplied. Invalid link.</p>
 	{:else if data.linkExpired}
@@ -90,10 +93,8 @@
 		{:else if data.deckCode}
 			<CodeBlock language="Deck Code" class="break-words" code={data.deckCode} />
 			<SnapDeck cards={data.cards} />
-			Started At: {data.startedAt.toLocaleDateString()}
-			{data.startedAt.toLocaleTimeString()}<br />
-			Finished At: {data.finishedAt.toLocaleDateString()}
-			{data.finishedAt.toLocaleTimeString()}
+			Started At: {data.startedAt.toLocaleString()}<br />
+			Finished At: {data.finishedAt.toLocaleString()}
 		{/if}
 		<br />
 	{/if}
