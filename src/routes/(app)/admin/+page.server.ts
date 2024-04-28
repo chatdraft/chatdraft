@@ -166,7 +166,7 @@ export const actions = {
 		);
 		const dataUri = links ? 'data:text/plain;base64,' + btoa(links.join('\r\n')) : undefined;
 
-		return { dataUri: dataUri };
+		return { dataUri: dataUri, tag: batch?.tag };
 	},
 	updateotdcards: async ({ request, locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);

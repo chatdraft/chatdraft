@@ -226,11 +226,11 @@
 				value={form?.tagData ?? ''}
 			/>
 			{#if form?.missingTag}
-				<span class="text-error-500 font-bold">* The Batch Label field is required.</span>
+				<span class="text-error-500 font-bold">* The Batch Tag field is required.</span>
 			{/if}
 			{#if form?.alreadyExists}
 				<span class="text-error-500 font-bold">
-					* The Batch Label '{form?.tagData}' has already been used.
+					* The Batch Tag '{form?.tagData}' has already been used.
 				</span>
 			{/if}
 			<br />
@@ -243,7 +243,7 @@
 				value={form?.countData ?? ''}
 			/>
 			{#if form?.missingCount}
-				<span class="text-error-500 font-bold">* The # of Links field is required</span>
+				<span class="text-error-500 font-bold">* The # of Links field is required.</span>
 			{/if}
 			{#if form?.countZeroOrNegative}
 				<span class="text-error-500 font-bold">* The # of Links must be greater than 0.</span>
@@ -259,13 +259,13 @@
 				value={form?.expirationData ?? ''}
 			/>
 			{#if form?.missingExpiration}
-				<span class="text-error-500 font-bold">* The Expiration field is required</span>
+				<span class="text-error-500 font-bold">* The Expiration field is required.</span>
 			{/if}
 			<br />
 			<button class="btn btn-md variant-filled-primary mt-4">Generate</button>
 		</form>
 		{#if form?.dataUri}
-			<a href={form.dataUri} class="anchor" download="otdlinks.txt">Download OTD Links</a>
+			<a href={form.dataUri} class="anchor" download="{form.tag}.txt">Download OTD Links</a>
 		{/if}
 	</section>
 	<hr class="m-4" />
