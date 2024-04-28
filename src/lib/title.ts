@@ -7,10 +7,12 @@ function createTitle() {
 	return {
 		subscribe,
 		set: (value: string) => {
-			set(`${env.PUBLIC_PREVIEW?.toLowerCase() == 'true' ? 'PREVIEW - ' : ''}${value}`);
+			set(`${env.PUBLIC_ENVIRONMENT_LABEL ? `${env.PUBLIC_ENVIRONMENT_LABEL} - ` : ''}${value}`);
 		},
 		clear: () => {
-			set(`${env.PUBLIC_PREVIEW?.toLowerCase() == 'true' ? 'PREVIEW - ' : ''}Oro Chat Draft`);
+			set(
+				`${env.PUBLIC_ENVIRONMENT_LABEL ? `${env.PUBLIC_ENVIRONMENT_LABEL} - ` : ''}Oro Chat Draft`
+			);
 		}
 	};
 }
