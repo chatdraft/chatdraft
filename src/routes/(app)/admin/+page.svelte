@@ -217,11 +217,11 @@
 				};
 			}}
 		>
-			<p>Batch Label:</p>
+			<p>Batch Tag:</p>
 			<input
 				type="text"
-				name="otdBatchLabel"
-				placeholder="OTD Batch Label"
+				name="otdBatchTag"
+				placeholder="OTD Batch Tag"
 				class="input w-64"
 				value={form?.tagData ?? ''}
 			/>

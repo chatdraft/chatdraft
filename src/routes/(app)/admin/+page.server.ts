@@ -127,7 +127,7 @@ export const actions = {
 		let countZeroOrNegative = false;
 		let missingExpiration = false;
 
-		const tagData = data.get('otdBatchLabel');
+		const tagData = data.get('otdBatchTag');
 		if (!tagData) validationError = missingTag = true;
 		const tag = tagData?.toString();
 
