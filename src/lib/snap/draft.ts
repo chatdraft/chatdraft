@@ -2,7 +2,6 @@ import { EventEmitter } from '@d-fischer/typed-event-emitter';
 import { shuffle } from './utils';
 import { getRandomDeckName } from './draftNames';
 import { DatetimeNowUtc } from '$lib/datetime';
-import { GetAllCards } from '$lib/server/cardsHandler';
 
 /**
  * Represents a serializable instance of a running or previous draft
@@ -266,14 +265,14 @@ export class Draft extends EventEmitter implements IDraft {
 
 		if (!this.CanChoose(cardDefKey)) return;
 
-		this.cards.push((await LookupCard(cardDefKey))!);
+		this.cards.push((await this.LookupCard(cardDefKey))!);
 		this.cards = this.cards.sort((a, b) => {
 			return a.cost - b.cost;
 		});
 		this.total++;
 
 		if (this.player != '') {
-			this.emit(this.onChoiceSelected, this.player, (await LookupCard(cardDefKey))!);
+			this.emit(this.onChoiceSelected, this.player, (await this.LookupCard(cardDefKey))!);
 		}
 
 		if (this.total == 12) {
@@ -300,7 +299,7 @@ export class Draft extends EventEmitter implements IDraft {
 
 		if (!cardDefKey) return false;
 
-		const card = LookupCard(cardDefKey);
+		const card = this.LookupCard(cardDefKey);
 
 		if (card === undefined) return false;
 
@@ -372,6 +371,30 @@ export class Draft extends EventEmitter implements IDraft {
 		this.cards.forEach((card) => obj.Cards.push({ CardDefId: card.cardDefKey }));
 		return btoa(JSON.stringify(obj));
 	}
+
+	/**
+	 * Returns the Card for a given cardDefKey
+	 *
+	 * @private
+	 * @param {(string | undefined | null)} cardDefKey The cardDefKey
+	 * @returns {Card} The Card
+	 */
+	public async LookupCard(cardDefKey: string | null) {
+		const placeholder = {
+			cardDefKey: '',
+			displayImageUrl: '/Placeholder.webp',
+			cost: 9,
+			description: '',
+			name: '',
+			url: '',
+			variantKey: null
+		};
+		if (!cardDefKey) return placeholder;
+		const card = this.all_cards.find(
+			(card: { cardDefKey: string }) => card.cardDefKey == cardDefKey
+		);
+		return card || placeholder;
+	}
 }
 
 export type Card = {
@@ -390,26 +413,3 @@ export type Choice = {
 	voteCounts: number[];
 	votes_closed: number;
 };
-
-/**
- * Returns the Card for a given cardDefKey
- *
- * @private
- * @param {(string | undefined | null)} cardDefKey The cardDefKey
- * @returns {Card} The Card
- */
-export async function LookupCard(cardDefKey: string | null) {
-	const placeholder = {
-		cardDefKey: '',
-		displayImageUrl: '/Placeholder.webp',
-		cost: 9,
-		description: '',
-		name: '',
-		url: '',
-		variantKey: null
-	};
-	if (!cardDefKey) return placeholder;
-	const cards = await GetAllCards();
-	const card = cards.all.find((card) => card.cardDefKey == cardDefKey);
-	return card || placeholder;
-}
