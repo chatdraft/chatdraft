@@ -1270,15 +1270,6 @@
 			"cost": 1
 		},
 		{
-			"cardDefKey": "SebastianShaw",
-			"variantKey": null,
-			"url": "/cards/SebastianShaw/",
-			"name": "Sebastian Shaw",
-			"description": "When this card permanently gains Power, gain +2 more Power. <i>(wherever this is)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SebastianShaw-a844e16491d1927485a8c8a8cd1fa69f26accb8c3584fa5b712a133ba5a64200.webp",
-			"cost": 3
-		},
-		{
 			"cardDefKey": "MasterMold",
 			"variantKey": null,
 			"url": "/cards/MasterMold/",
@@ -1817,6 +1808,15 @@
 			"description": "<b>On Reveal:</b> Afflict cards in your opponent's hand with -1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-216e46417c131747e78e07861eca3edfad7279921ce4537c1e8036a458e363ec.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "SebastianShaw",
+			"variantKey": null,
+			"url": "/cards/SebastianShaw/",
+			"name": "Sebastian Shaw",
+			"description": "When this card permanently gains Power, gain +2 more Power. <i>(wherever this is)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SebastianShaw-a844e16491d1927485a8c8a8cd1fa69f26accb8c3584fa5b712a133ba5a64200.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Selene",
