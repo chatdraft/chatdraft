@@ -259,7 +259,7 @@
 			"name": "Black Widow",
 			"description": "<b>On Reveal:</b> Add a Widow's Bite to your opponent's hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-fe11ee5be84194652324e644f6b641ad38484c07f0bb3e5ff7a41284803bf224.webp",
-			"cost": 2
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Blade",
