@@ -37,8 +37,6 @@ CREATE TABLE [dbo].[UserPreference] (
     [subsExtraVote] BIT NOT NULL CONSTRAINT [UserPreference_subsExtraVote_df] DEFAULT 0,
     [botJoinsChannel] BIT NOT NULL CONSTRAINT [UserPreference_botJoinsChannel_df] DEFAULT 0,
     [snapFanApiKey] NVARCHAR(1000),
-    [collection] NVARCHAR(max),
-    [bgOpacity] INT NOT NULL CONSTRAINT [UserPreference_bgOpacity_df] DEFAULT 70,
     CONSTRAINT [UserPreference_pkey] PRIMARY KEY CLUSTERED ([id]),
     CONSTRAINT [UserPreference_userId_key] UNIQUE NONCLUSTERED ([userId])
 );
@@ -70,26 +68,6 @@ CREATE TABLE [dbo].[VoteResult] (
     CONSTRAINT [VoteResult_pkey] PRIMARY KEY CLUSTERED ([id])
 );
 
--- CreateTable
-CREATE TABLE [dbo].[OneTimeDraftBatch] (
-    [id] NVARCHAR(1000) NOT NULL,
-    [tag] NVARCHAR(1000) NOT NULL,
-    [expiration] DATETIME2 NOT NULL,
-    [cardPool] NVARCHAR(max) NOT NULL,
-    CONSTRAINT [OneTimeDraftBatch_pkey] PRIMARY KEY CLUSTERED ([id]),
-    CONSTRAINT [OneTimeDraftBatch_tag_key] UNIQUE NONCLUSTERED ([tag])
-);
-
--- CreateTable
-CREATE TABLE [dbo].[OneTimeDraft] (
-    [id] NVARCHAR(1000) NOT NULL,
-    [batchId] NVARCHAR(1000) NOT NULL,
-    [startedAt] DATETIME2,
-    [finishedAt] DATETIME2,
-    [cards] NVARCHAR(1000),
-    CONSTRAINT [OneTimeDraft_pkey] PRIMARY KEY CLUSTERED ([id])
-);
-
 -- AddForeignKey
 ALTER TABLE [dbo].[Token] ADD CONSTRAINT [Token_twitchID_fkey] FOREIGN KEY ([twitchID]) REFERENCES [dbo].[User]([twitchID]) ON DELETE NO ACTION ON UPDATE CASCADE;
 
@@ -104,9 +82,6 @@ ALTER TABLE [dbo].[Round] ADD CONSTRAINT [Round_draftId_fkey] FOREIGN KEY ([draf
 
 -- AddForeignKey
 ALTER TABLE [dbo].[VoteResult] ADD CONSTRAINT [VoteResult_roundId_fkey] FOREIGN KEY ([roundId]) REFERENCES [dbo].[Round]([id]) ON DELETE NO ACTION ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE [dbo].[OneTimeDraft] ADD CONSTRAINT [OneTimeDraft_batchId_fkey] FOREIGN KEY ([batchId]) REFERENCES [dbo].[OneTimeDraftBatch]([id]) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 COMMIT TRAN;
 
