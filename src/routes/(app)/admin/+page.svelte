@@ -321,7 +321,9 @@
 			{/if}
 			{#if form?.checkDataUri}
 				Batch Links:
-				<a href={form.dataUri} class="anchor" download="{form.batch.tag}.txt">Download OTD Links</a>
+				<a href={form.checkDataUri} class="anchor" download="{form.batch.tag}.txt">
+					Download OTD Links
+				</a>
 			{/if}
 		</form>
 	</section>
