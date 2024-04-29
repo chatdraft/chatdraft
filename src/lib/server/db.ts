@@ -600,6 +600,9 @@ export const prisma = new PrismaClient().$extends({
 					return await prisma.oneTimeDraftBatch.findUnique({
 						where: {
 							tag: tag
+						},
+						include: {
+							drafts: true
 						}
 					});
 				} catch (error) {
@@ -615,12 +618,18 @@ export const prisma = new PrismaClient().$extends({
 			 * @param expiration Expiration date of the OTD Links
 			 * @returns The Draft batch including list of OTD draft IDs
 			 */
-			async CreateOneTimeDraftBatch(tag: string, count: number, expiration: Date) {
+			async CreateOneTimeDraftBatch(
+				tag: string,
+				count: number,
+				expiration: Date,
+				cardDefKeys: string
+			) {
 				try {
 					return await prisma.oneTimeDraftBatch.create({
 						data: {
 							tag: tag,
 							expiration: expiration,
+							cardPool: cardDefKeys,
 							drafts: {
 								createMany: {
 									data: [...Array(count).keys()].map(() => {
@@ -677,14 +686,16 @@ export const prisma = new PrismaClient().$extends({
 							id: id
 						},
 						select: {
-							batchTag: true,
+							batchId: true,
 							cards: true,
 							finishedAt: true,
 							id: true,
 							startedAt: true,
 							batch: {
 								select: {
-									expiration: true
+									cardPool: true,
+									expiration: true,
+									tag: true
 								}
 							}
 						}

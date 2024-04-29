@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { FileDropzone } from '@skeletonlabs/skeleton';
+	import { AccordionItem, FileDropzone } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
-	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { getToastStore, Accordion } from '@skeletonlabs/skeleton';
 	import { title } from '$lib/title';
 
 	const toastStore = getToastStore();
@@ -208,6 +208,7 @@
 		<form
 			method="post"
 			action="?/generateOtdLinks"
+			enctype="multipart/form-data"
 			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type == 'success' && form?.dataUri) {
@@ -261,80 +262,70 @@
 			{#if form?.missingExpiration}
 				<span class="text-error-500 font-bold">* The Expiration field is required.</span>
 			{/if}
-			<br />
+			<br /><FileDropzone
+				name="files"
+				bind:files
+				class="m-4 w-1/3"
+				multiple={false}
+				accept=".json"
+				required
+			>
+				<svelte:fragment slot="message">
+					{#if files && files.length > 0}
+						{files[0].name} selected.
+					{:else}
+						Please select a cards.json file to use for this batch
+					{/if}
+				</svelte:fragment>
+			</FileDropzone>
 			<button class="btn btn-md variant-filled-primary mt-4">Generate</button>
 		</form>
 		{#if form?.dataUri}
 			<a href={form.dataUri} class="anchor" download="{form.tag}.txt">Download OTD Links</a>
 		{/if}
 	</section>
-	<hr class="m-4" />
-	<form
-		method="POST"
-		action="?/updateotdcards"
-		enctype="multipart/form-data"
-		use:enhance={() => {
-			return async ({ result, update }) => {
-				if (result.type == 'success') {
-					toastStore.trigger({ message: 'OTD Card database successfully updated.' });
-				}
-				update();
-			};
-		}}
-	>
-		<h3 class="h3">Update OTD card database</h3>
-		<FileDropzone
-			name="files"
-			bind:files
-			class="m-4 w-1/3"
-			multiple={false}
-			accept=".json"
-			required
-		>
-			<svelte:fragment slot="message">
-				{#if files && files.length > 0}
-					{files[0].name} selected.
-				{:else}
-					Please select an updated cards.json file
-				{/if}
-			</svelte:fragment>
-		</FileDropzone>
-		<button class="btn btn-md variant-filled-primary m-4" type="submit">Submit</button>
-		{#if form?.updated}
-			Successfully updated OTD card database.
-		{/if}
-	</form>
-	<a class="anchor" href="api/v1/otdcards" target="#">
-		Check current OTD card database
-		<iconify-icon icon="fluent:window-new-16-filled" width="16" height="16" />
-	</a>
-	<form
-		method="POST"
-		action="?/resetotdcards"
-		use:enhance={({ cancel }) => {
-			if (!confirm('Are you sure you want to reset the OTD card database to installed default?')) {
-				cancel();
-			}
 
-			return async ({ result, update }) => {
-				if (result.type == 'success') {
-					toastStore.trigger({
-						message: 'OTD Card database successfully reset to build settings.'
-					});
-				}
-				update();
-			};
-		}}
-	>
-		<button class="btn btn-md variant-outline-warning m-4" type="submit"
-			>Reset to default OTD card database</button
-		>
-		{#if form?.reset}
-			Successfully reset OTD card database.
-		{/if}
-	</form>
 	<hr class="m-4" />
-
+	<section>
+		<h3>Check OTD Batch</h3>
+		<form method="post" action="?/getOtdBatch" use:enhance>
+			<input
+				type="text"
+				class="input w-64"
+				name="tagData"
+				placeholder="OTD Batch Tag"
+				value={form?.checkTag ?? null}
+			/>
+			{#if form?.checkMissingTag}
+				<span class="text-error-500 font-bold">* The Batch Tag field is required.</span>
+			{/if}
+			{#if form?.batchNotFound}
+				<span class="text-error-500 font-bold">* The supplied batch tag was not found.</span>
+			{/if}
+			<br />
+			<button class="btn btn-md variant-filled-primary mt-4">Check</button>
+			{#if form?.batch}
+				<br /><br />
+				<p>Batch Tag: {form.batch.tag}</p>
+				<p>Batch Expiration: {form.batch.expiration.toLocaleDateString()}</p>
+				<p>Batch OTD Count: {form.batch.drafts.length}</p>
+				<p>Batch Card Pool:</p>
+				<Accordion>
+					<AccordionItem>
+						<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
+						<svelte:fragment slot="content">
+							<p class="text-wrap">{form.batch.cardPool.replaceAll(',', ', ')}</p>
+						</svelte:fragment>
+					</AccordionItem>
+				</Accordion>
+			{/if}
+			{#if form?.checkDataUri}
+				Batch Links:
+				<a href={form.dataUri} class="anchor" download="{form.batch.tag}.txt">Download OTD Links</a>
+			{/if}
+		</form>
+	</section>
+	<hr class="m-4" />
 	<section>Number of Active Drafts: {drafts.length}</section>
 
 	<ul class="list-disc list-inside">

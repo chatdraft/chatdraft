@@ -47,7 +47,7 @@ model UserPreference {
   subsExtraVote Boolean @default(false)
   botJoinsChannel Boolean @default(false)
   snapFanApiKey String?
-  collection String? @db.NText
+  collection String? @db.NVarChar(max)
   bgOpacity Int @default(70)
 }
 
@@ -78,15 +78,18 @@ model VoteResult {
 }
 
 model OneTimeDraftBatch {
-  tag String @id
+  id String @id @default(cuid())
+  tag String @unique
   expiration DateTime
   drafts OneTimeDraft[]
+  cardPool String @db.NVarChar(max)
 }
 
 model OneTimeDraft {
   id String @id @default(cuid())
-  batchTag String
-  batch OneTimeDraftBatch @relation(fields:[batchTag], references: [tag])
+  batchId String
+  batch OneTimeDraftBatch @relation(fields:[batchId], references: [id])
+
   startedAt DateTime?
   finishedAt DateTime?
   cards String?

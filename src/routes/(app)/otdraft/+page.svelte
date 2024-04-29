@@ -40,7 +40,7 @@
 	{:else if !data.draftCode}
 		<p class="mt-4">No draft code supplied. Invalid link.</p>
 	{:else if data.linkExpired}
-		<p class="mt-4">One Time Draft link expired on {data.expiration.toLocaleDateString()}.</p>
+		<p class="mt-4">One Time Draft link expired at {data.expiration.toLocaleString()}.</p>
 	{:else if !data.validCode}
 		<p class="mt-4">Invalid draft code supplied. Invalid link.</p>
 	{:else}
@@ -93,8 +93,8 @@
 		{:else if data.deckCode}
 			<CodeBlock language="Deck Code" class="break-words" code={data.deckCode} />
 			<SnapDeck cards={data.cards} />
-			Started At: {data.startedAt.toLocaleString()}<br />
-			Finished At: {data.finishedAt.toLocaleString()}
+			Started: {data.startedAt?.toLocaleString()}<br />
+			Finished: {data.finishedAt?.toLocaleString()}
 		{/if}
 		<br />
 	{/if}

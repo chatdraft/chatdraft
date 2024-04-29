@@ -1,7 +1,7 @@
 import { GetDrafts, GetPreviousDrafts } from '$lib/server/draftHandler';
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { ResetCards, ResetOtdCards, UpdateCards, UpdateOtdCards } from '$lib/server/cardsHandler';
+import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
 import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
 import TwitchBot from '$lib/server/twitchBot';
@@ -148,7 +148,11 @@ export const actions = {
 		const expiration = new Date(expirationData!.toString());
 		expiration.setUTCHours(23, 59, 59, 999);
 
-		if (validationError)
+		const cards = data.get('files') as File;
+		const cardData = JSON.parse(await cards.text()) as { all: { cardDefKey: string }[] };
+		const cardDefKeys = cardData.all.map((card) => card.cardDefKey).join();
+
+		if (validationError) {
 			return fail(400, {
 				missingTag: missingTag,
 				missingCount: missingCount,
@@ -159,8 +163,15 @@ export const actions = {
 				countData: countData,
 				expirationData: expirationData
 			});
+		}
 
-		const batch = await prisma.oneTimeDraftBatch.CreateOneTimeDraftBatch(tag!, count, expiration);
+		const batch = await prisma.oneTimeDraftBatch.CreateOneTimeDraftBatch(
+			tag!,
+			count,
+			expiration,
+			cardDefKeys
+		);
+		if (!batch) return fail(500);
 		const links = batch?.drafts?.map(
 			(draft) => `${new URL(request.url).origin}/otdraft?code=${draft.id}`
 		);
@@ -168,19 +179,19 @@ export const actions = {
 
 		return { dataUri: dataUri, tag: batch?.tag };
 	},
-	updateotdcards: async ({ request, locals }) => {
+	getOtdBatch: async ({ request, locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);
 		const data = await request.formData();
-		const cards = data.get('files') as File;
-		if (cards) {
-			await UpdateOtdCards(cards);
-		}
+		const tagData = data.get('tagData');
+		if (!tagData) return fail(400, { checkMissingTag: true });
+		const tag = tagData.toString();
+		const batch = await prisma.oneTimeDraftBatch.GetOneTimeBatch(tag);
+		if (!batch) return fail(404, { batchNotFound: true, checkTag: tag });
 
-		return { updated: true };
-	},
-	resetotdcards: async ({ locals }) => {
-		if (!locals.user || !locals.user.isAdmin) throw error(403);
-		await ResetOtdCards();
-		return { reset: true };
+		const links = batch?.drafts?.map(
+			(draft) => `${new URL(request.url).origin}/otdraft?code=${draft.id}`
+		);
+		const dataUri = links ? 'data:text/plain;base64,' + btoa(links.join('\r\n')) : undefined;
+		return { checkDataUri: dataUri, batch: batch };
 	}
 } satisfies Actions;

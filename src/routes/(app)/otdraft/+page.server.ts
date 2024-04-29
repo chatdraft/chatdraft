@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { GetAllOtdCards } from '$lib/server/cardsHandler';
+import { GetAllCards } from '$lib/server/cardsHandler';
 import { Draft, LookupCard } from '$lib/snap/draft';
 import { ClearOneTimeDraft, GetOneTimeDraft, SetOneTimeDraft } from '$lib/server/draftHandler';
 import { error } from '@sveltejs/kit';
@@ -44,7 +44,7 @@ export const load = (async (request) => {
 			expiration: draft.batch.expiration
 		};
 	}
-	if (!draft.finishedAt && draft.startedAt && Date.now() - draft.startedAt.getTime() > onehour_ms) {
+	if (draft.startedAt && !draft.cards && Date.now() - draft.startedAt.getTime() > onehour_ms) {
 		return {
 			draftCode: draftCode,
 			validCode: true,
@@ -84,8 +84,9 @@ export const actions = {
 		if (code) {
 			const existingDraft = await prisma.oneTimeDraft.GetOneTimeDraft(code);
 			if (existingDraft?.startedAt) throw error(400, 'Draft already started');
-			const current_cards = await GetAllOtdCards();
-			const draft = new Draft('', 0, 6, current_cards, undefined, null);
+			const currentCards = await GetAllCards();
+			const draftPool = existingDraft?.batch.cardPool.split(',') ?? null;
+			const draft = new Draft('', 0, 6, currentCards, undefined, draftPool);
 			await draft.StartDraft();
 			SetOneTimeDraft(code, draft);
 			await prisma.oneTimeDraft.StartOneTimeDraft(code);
