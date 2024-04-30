@@ -16,7 +16,8 @@
 	$: adminUsers = data.adminUsers!;
 	$: setupCompleteUsers = data.setupCompleteUsers;
 
-	let files: FileList;
+	let cardDbFiles: FileList;
+	let otdBatchFiles: FileList;
 
 	export let form;
 
@@ -59,15 +60,15 @@
 		<h3 class="h3">Update card database</h3>
 		<FileDropzone
 			name="files"
-			bind:files
+			bind:files={cardDbFiles}
 			class="m-4 w-1/3"
 			multiple={false}
 			accept=".json"
 			required
 		>
 			<svelte:fragment slot="message">
-				{#if files && files.length > 0}
-					{files[0].name} selected.
+				{#if cardDbFiles && cardDbFiles.length > 0}
+					{cardDbFiles[0].name} selected.
 				{:else}
 					Please select an updated cards.json file
 				{/if}
@@ -264,15 +265,15 @@
 			{/if}
 			<br /><FileDropzone
 				name="files"
-				bind:files
+				bind:files={otdBatchFiles}
 				class="m-4 w-1/3"
 				multiple={false}
 				accept=".json"
 				required
 			>
 				<svelte:fragment slot="message">
-					{#if files && files.length > 0}
-						{files[0].name} selected.
+					{#if otdBatchFiles && otdBatchFiles.length > 0}
+						{otdBatchFiles[0].name} selected.
 					{:else}
 						Please select a cards.json file to use for this batch
 					{/if}
@@ -281,7 +282,10 @@
 			<button class="btn btn-md variant-filled-primary mt-4">Generate</button>
 		</form>
 		{#if form?.dataUri}
-			<a href={form.dataUri} class="anchor" download="{form.tag}.txt">Download OTD Links</a>
+			<a href={form.dataUri} class="anchor" download="{form.tag}.txt">
+				{form.tag}
+				<iconify-icon icon="ion:download" />
+			</a>
 		{/if}
 	</section>
 
@@ -309,7 +313,6 @@
 				<p>Batch Tag: {form.batch.tag}</p>
 				<p>Batch Expiration: {form.batch.expiration.toLocaleDateString()}</p>
 				<p>Batch OTD Count: {form.batch.drafts.length}</p>
-				<p>Batch Card Pool:</p>
 				<Accordion>
 					<AccordionItem>
 						<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
@@ -322,7 +325,8 @@
 			{#if form?.checkDataUri}
 				Batch Links:
 				<a href={form.checkDataUri} class="anchor" download="{form.batch.tag}.txt">
-					Download OTD Links
+					{form.batch.tag}
+					<iconify-icon icon="ion:download" />
 				</a>
 			{/if}
 		</form>

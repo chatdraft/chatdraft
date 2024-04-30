@@ -21,5 +21,5 @@
 	<VoteCounter {votes} />
 
 	<!-- Card Image -->
-	<div><SnapCard hideText={true} card={choice} /></div>
+	<div><SnapCard hideDescription={true} hideName={true} card={choice} /></div>
 </div>

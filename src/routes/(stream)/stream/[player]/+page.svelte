@@ -185,7 +185,7 @@
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
 								{#if current_draft?.cards[i]}
-									<SnapCard hideText={true} card={current_draft?.cards[i]} />
+									<SnapCard hideName={true} hideDescription={true} card={current_draft?.cards[i]} />
 								{:else}
 									<img src="/Placeholder.webp" alt="Placeholder card" />
 								{/if}

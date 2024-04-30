@@ -9,6 +9,7 @@
 	export let data;
 	$: current_draft = data.draft;
 	$: choices = current_draft?.currentChoice?.cards;
+	let selecting = false;
 
 	beforeNavigate((navigation) => {
 		if (
@@ -59,7 +60,18 @@
 		{#if choices && choices.length > 0}
 			<h3 class="h3">Options:</h3>
 			Click on a card to select that card.
-			<form method="post" action="?/draftCard" use:enhance>
+			<form
+				method="post"
+				action="?/draftCard"
+				use:enhance={() => {
+					selecting = true;
+					return async ({ update }) => {
+						await new Promise((fulfil) => setTimeout(fulfil, 250));
+						await update();
+						selecting = false;
+					};
+				}}
+			>
 				<input type="hidden" name="code" value={data.draftCode} />
 				<section class="grid grid-cols-6 justify-items-center">
 					{#each choices as choice}
@@ -68,13 +80,14 @@
 								type="submit"
 								name="selection"
 								value={choice.cardDefKey}
+								disabled={selecting}
 								use:popup={{
 									event: 'hover',
 									target: `popupHover${choice.cardDefKey}`,
 									placement: 'top'
 								}}
 								class="[&>*]:pointer-events-none"
-								><SnapCard card={choice} hideText={true} />
+								><SnapCard card={choice} hideName={true} />
 							</button>
 							<div
 								class="card p-4 variant-filled-secondary"
