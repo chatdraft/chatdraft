@@ -80,7 +80,8 @@ export const load = (async (request) => {
 	return {
 		draftCode: draftCode,
 		validCode: true,
-		draftExpired: false
+		draftExpired: false,
+		draftExpiration: draft.batch.draftExpiration
 	};
 }) satisfies PageServerLoad;
 

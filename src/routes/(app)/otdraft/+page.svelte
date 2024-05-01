@@ -49,7 +49,7 @@
 		{#if !current_draft && !data.deckCode}
 			<p class="mt-4">
 				This draft link can only be used one time. Please click Start Draft when you are ready. The
-				draft will expire after 1 hour.
+				draft will expire after {data.draftExpiration} minutes.
 			</p>
 			<br />
 			<form method="post" action="?/startDraft" use:enhance>
