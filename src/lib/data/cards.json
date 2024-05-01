@@ -2215,6 +2215,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Valentina",
+			"variantKey": null,
+			"url": "/cards/Valentina/",
+			"name": "Valentina",
+			"description": "<b>On Reveal:</b> Add a random 6-Cost card to your hand. Give it -2 Cost\nand -3 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Valentina-ba17e731163ffa92aad3d10ba8063bddd66f786d4b213f342b421fb85fb0a9af.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Valkyrie",
 			"variantKey": null,
 			"url": "/cards/Valkyrie/",
