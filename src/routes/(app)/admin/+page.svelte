@@ -270,7 +270,7 @@
 				title="Draft Expiration (minutes)"
 				name="draftExpiration"
 				class="input w-64"
-				value={form?.draftExpirationData ?? ''}
+				value={form?.draftExpirationData ?? 60}
 			/>
 			{#if form?.missingDraftExpiration}
 				<span class="text-error-500 font-bold">* The Expiration field is required.</span>
