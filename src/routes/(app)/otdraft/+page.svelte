@@ -10,6 +10,7 @@
 	$: current_draft = data.draft;
 	$: choices = current_draft?.currentChoice?.cards;
 	let selecting = false;
+	let selected: string | undefined = undefined;
 
 	beforeNavigate((navigation) => {
 		if (
@@ -63,17 +64,19 @@
 			<form
 				method="post"
 				action="?/draftCard"
-				use:enhance={() => {
+				use:enhance={({ formData }) => {
 					selecting = true;
+					selected = formData.get('selection')?.toString();
 					return async ({ update }) => {
 						await new Promise((fulfil) => setTimeout(fulfil, 250));
 						await update();
 						selecting = false;
+						selected = undefined;
 					};
 				}}
 			>
 				<input type="hidden" name="code" value={data.draftCode} />
-				<section class="grid grid-cols-6 justify-items-center">
+				<section class="grid grid-cols-6 justify-items-center gap-4">
 					{#each choices as choice}
 						<div class="p-4">
 							<button
@@ -81,12 +84,14 @@
 								name="selection"
 								value={choice.cardDefKey}
 								disabled={selecting}
+								class="[&>*]:pointer-events-none hover:border rounded-md"
+								class:border-primary-500={selecting && choice.cardDefKey === selected}
+								class:scale-125={selecting && choice.cardDefKey === selected}
 								use:popup={{
 									event: 'hover',
 									target: `popupHover${choice.cardDefKey}`,
 									placement: 'top'
 								}}
-								class="[&>*]:pointer-events-none"
 								><SnapCard card={choice} hideName={true} />
 							</button>
 							<div

@@ -263,6 +263,21 @@
 			{#if form?.missingExpiration}
 				<span class="text-error-500 font-bold">* The Expiration field is required.</span>
 			{/if}
+			<br /><br />
+			Draft Expiration (minutes): <br />
+			<input
+				type="number"
+				title="Draft Expiration (minutes)"
+				name="draftExpiration"
+				class="input w-64"
+				value={form?.draftExpirationData ?? ''}
+			/>
+			{#if form?.missingDraftExpiration}
+				<span class="text-error-500 font-bold">* The Expiration field is required.</span>
+			{/if}
+			{#if form?.draftExpirationZeroOrNegative}
+				<span class="text-error-500 font-bold">* The Draft expiration must be greater than 0.</span>
+			{/if}
 			<br /><FileDropzone
 				name="files"
 				bind:files={otdBatchFiles}

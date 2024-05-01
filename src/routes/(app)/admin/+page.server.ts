@@ -126,6 +126,8 @@ export const actions = {
 		let missingCount = false;
 		let countZeroOrNegative = false;
 		let missingExpiration = false;
+		let missingDraftExpiration = false;
+		let draftExpirationZeroOrNegative = false;
 
 		const tagData = data.get('otdBatchTag');
 		if (!tagData) validationError = missingTag = true;
@@ -148,6 +150,11 @@ export const actions = {
 		const expiration = new Date(expirationData!.toString());
 		expiration.setUTCHours(23, 59, 59, 999);
 
+		const draftExpirationData = data.get('draftExpiration');
+		if (!draftExpirationData) validationError = missingDraftExpiration = true;
+		const draftExpiration = Number(draftExpirationData!.toString());
+		if (draftExpiration <= 0) validationError = draftExpirationZeroOrNegative = true;
+
 		const cards = data.get('files') as File;
 		const cardData = JSON.parse(await cards.text()) as { all: { cardDefKey: string }[] };
 		const cardDefKeys = cardData.all.map((card) => card.cardDefKey).join();
@@ -159,9 +166,12 @@ export const actions = {
 				countZeroOrNegative: countZeroOrNegative,
 				missingExpiration: missingExpiration,
 				alreadyExists: alreadyExists,
+				missingDraftExpiration: missingDraftExpiration,
+				draftExpirationZeroOrNegative: draftExpirationZeroOrNegative,
 				tagData: tagData,
 				countData: countData,
-				expirationData: expirationData
+				expirationData: expirationData,
+				draftExpirationData: draftExpirationData
 			});
 		}
 
@@ -169,7 +179,8 @@ export const actions = {
 			tag!,
 			count,
 			expiration,
-			cardDefKeys
+			cardDefKeys,
+			draftExpiration
 		);
 		if (!batch) return fail(500);
 		const links = batch?.drafts?.map(

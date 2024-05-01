@@ -1,0 +1,19 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- AlterTable
+ALTER TABLE [dbo].[OneTimeDraftBatch] ADD [draftExpiration] INT NOT NULL CONSTRAINT [OneTimeDraftBatch_draftExpiration_df] DEFAULT 60;
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH

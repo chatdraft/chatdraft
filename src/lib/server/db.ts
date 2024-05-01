@@ -616,13 +616,15 @@ export const prisma = new PrismaClient().$extends({
 			 * @param tag Batch tag used to identify this batch
 			 * @param count Number of One Time Drafts to create
 			 * @param expiration Expiration date of the OTD Links
+			 * @param draftExpiration Number of minutes before the draft expires
 			 * @returns The Draft batch including list of OTD draft IDs
 			 */
 			async CreateOneTimeDraftBatch(
 				tag: string,
 				count: number,
 				expiration: Date,
-				cardDefKeys: string
+				cardDefKeys: string,
+				draftExpiration: number
 			) {
 				try {
 					return await prisma.oneTimeDraftBatch.create({
@@ -630,6 +632,7 @@ export const prisma = new PrismaClient().$extends({
 							tag: tag,
 							expiration: expiration,
 							cardPool: cardDefKeys,
+							draftExpiration: draftExpiration,
 							drafts: {
 								createMany: {
 									data: [...Array(count).keys()].map(() => {
@@ -695,7 +698,8 @@ export const prisma = new PrismaClient().$extends({
 								select: {
 									cardPool: true,
 									expiration: true,
-									tag: true
+									tag: true,
+									draftExpiration: true
 								}
 							}
 						}

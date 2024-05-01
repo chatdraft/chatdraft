@@ -4,7 +4,7 @@ import { Draft } from '$lib/snap/draft';
 import { ClearOneTimeDraft, GetOneTimeDraft, SetOneTimeDraft } from '$lib/server/draftHandler';
 import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/db';
-import { onehour_ms } from '$lib/constants';
+import { minutes_to_ms } from '$lib/constants';
 
 export const load = (async (request) => {
 	const draftCode = request.url.searchParams.get('code');
@@ -12,9 +12,20 @@ export const load = (async (request) => {
 		return { draftCode: draftCode, validCode: false };
 	}
 
+	const draft = await prisma.oneTimeDraft.GetOneTimeDraft(draftCode);
+	if (!draft) {
+		return {
+			draftCode: draftCode,
+			validCode: false
+		};
+	}
+
 	const liveDraft = GetOneTimeDraft(draftCode);
 	if (liveDraft) {
-		if (liveDraft.startTime && Date.now() - liveDraft.startTime > onehour_ms) {
+		if (
+			liveDraft.startTime &&
+			Date.now() - liveDraft.startTime > draft.batch.draftExpiration * minutes_to_ms
+		) {
 			return {
 				draftCode: draftCode,
 				validCode: true,
@@ -28,14 +39,6 @@ export const load = (async (request) => {
 			validCode: true
 		};
 	}
-
-	const draft = await prisma.oneTimeDraft.GetOneTimeDraft(draftCode);
-	if (!draft) {
-		return {
-			draftCode: draftCode,
-			validCode: false
-		};
-	}
 	if (!draft.finishedAt && Date.now() > draft.batch.expiration.getTime()) {
 		return {
 			draftCode: draftCode,
@@ -44,13 +47,17 @@ export const load = (async (request) => {
 			expiration: draft.batch.expiration
 		};
 	}
-	if (draft.startedAt && !draft.cards && Date.now() - draft.startedAt.getTime() > onehour_ms) {
+	if (
+		draft.startedAt &&
+		!draft.cards &&
+		Date.now() - draft.startedAt.getTime() > draft.batch.draftExpiration * minutes_to_ms
+	) {
 		return {
 			draftCode: draftCode,
 			validCode: true,
 			draftExpired: true,
 			startedAt: draft.startedAt,
-			expiredAt: new Date(draft.startedAt.getTime() + onehour_ms)
+			expiredAt: new Date(draft.startedAt.getTime() + draft.batch.draftExpiration * minutes_to_ms)
 		};
 	}
 	if (draft?.cards) {
@@ -83,13 +90,16 @@ export const actions = {
 		const code = form.get('code')?.toString();
 		if (code) {
 			const existingDraft = await prisma.oneTimeDraft.GetOneTimeDraft(code);
-			if (existingDraft?.startedAt) throw error(400, 'Draft already started');
+			if (!existingDraft) throw error(404, 'Draft not found');
+			if (existingDraft.startedAt) throw error(400, 'Draft already started');
 			const currentCards = await GetAllCards();
 			const draftPool = existingDraft?.batch.cardPool.split(',') ?? null;
 			const draft = new Draft('', 0, 6, currentCards, undefined, draftPool);
 			await draft.StartDraft();
 			SetOneTimeDraft(code, draft);
 			await prisma.oneTimeDraft.StartOneTimeDraft(code);
+
+			const draftExpiration_ms = existingDraft.batch.draftExpiration * minutes_to_ms;
 			setTimeout(() => {
 				const draft = GetOneTimeDraft(code);
 				if (draft) {
@@ -97,7 +107,7 @@ export const actions = {
 					ClearOneTimeDraft(code);
 					prisma.oneTimeDraft.CancelOneTimeDraft(code);
 				}
-			}, onehour_ms);
+			}, draftExpiration_ms);
 		}
 	},
 	draftCard: async ({ request }) => {

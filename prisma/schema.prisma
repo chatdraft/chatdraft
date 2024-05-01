@@ -83,6 +83,7 @@ model OneTimeDraftBatch {
   expiration DateTime
   drafts OneTimeDraft[]
   cardPool String @db.NVarChar(max)
+  draftExpiration Int @default(60)
 }
 
 model OneTimeDraft {
