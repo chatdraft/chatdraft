@@ -55,6 +55,7 @@
 
 			showDeck = true;
 			setTimeout(() => {
+				//@ts-ignore data.draft can be assigned to null, it's just known not to be null at this point
 				data.draft = null;
 				showDeck = false;
 			}, 30000);

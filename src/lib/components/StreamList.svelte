@@ -40,7 +40,7 @@
 							class="absolute bottom-2 right-4 font-bold text-4xl font-outline font-outline-black text-white font-snapn uppercase backdrop-blur-md bg-white/30 text-center rounded-md px-2"
 						>
 							Pick <span class="font-snapn text-4xl font-outline font-outline-black"
-								>{draft.draft.total}</span
+								>{draft.draft.total + 1}</span
 							>
 						</div>
 					</a>

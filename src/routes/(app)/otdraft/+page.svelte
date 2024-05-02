@@ -51,7 +51,6 @@
 				This draft link can only be used one time. Please click Start Draft when you are ready. The
 				draft will expire after {data.draftExpiration} minutes.
 			</p>
-			<br />
 			<form method="post" action="?/startDraft" use:enhance>
 				<input type="hidden" name="code" value={data.draftCode} />
 				<button type="submit" class="btn btn-lg variant-filled-primary">Start Draft</button><br />
@@ -59,9 +58,9 @@
 		{/if}
 
 		{#if choices && choices.length > 0}
-			<h3 class="h3">Options:</h3>
 			Click on a card to select that card.
 			<form
+				class="mt-0"
 				method="post"
 				action="?/draftCard"
 				use:enhance={({ formData }) => {
@@ -78,24 +77,28 @@
 				<input type="hidden" name="code" value={data.draftCode} />
 				<section class="grid grid-cols-6 justify-items-center gap-4">
 					{#each choices as choice}
-						<div class="p-4">
+						<div>
 							<button
 								type="submit"
 								name="selection"
 								value={choice.cardDefKey}
 								disabled={selecting}
-								class="[&>*]:pointer-events-none hover:border rounded-md"
-								class:border-primary-500={selecting && choice.cardDefKey === selected}
-								class:scale-125={selecting && choice.cardDefKey === selected}
+								class:!border-primary-500={selecting && choice.cardDefKey === selected}
+								class:!bg-secondary-800={selecting && choice.cardDefKey === selected}
+								class="[&>*]:pointer-events-none rounded-md hover:outline hover:outline-primary-500 bg-primary-hover-token"
 								use:popup={{
 									event: 'hover',
 									target: `popupHover${choice.cardDefKey}`,
 									placement: 'top'
 								}}
-								><SnapCard card={choice} hideName={true} />
+							>
+								<img src={choice.displayImageUrl} alt="{choice.name}'s card" />
 							</button>
+							<p class="text-center">
+								{@html choice.description}
+							</p>
 							<div
-								class="card p-4 variant-filled-secondary"
+								class="card p-4 variant-filled-secondary duration-0"
 								data-popup={`popupHover${choice.cardDefKey}`}
 							>
 								<b>{choice.name}</b>

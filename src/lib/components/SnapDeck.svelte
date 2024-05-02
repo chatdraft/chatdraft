@@ -12,7 +12,7 @@
 				{#if cards && cards[j * cols + i]}
 					<img src={cards[j * cols + i].displayImageUrl} alt="{cards[j * cols + i].name}'s card" />
 				{:else}
-					<img class="pt-4 pb-6 px-8 flex-none" src="/Placeholder.webp" alt="Placeholder card" />
+					<img src="/Placeholder.webp" alt="Placeholder card" />
 				{/if}
 			{/each}
 		</section>
