@@ -147,6 +147,5 @@
 				Started: {data.startedAt?.toLocaleString()} – Finished: {data.finishedAt?.toLocaleString()}
 			</p>
 		{/if}
-		<br />
 	{/if}
 </div>
