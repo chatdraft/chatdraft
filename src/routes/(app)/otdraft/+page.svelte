@@ -32,7 +32,12 @@
 </svelte:head>
 
 <div class="space-y-4 p-4">
-	<h1 class="h1">One Time Draft</h1>
+	<div class="grid grid-cols-2">
+		<h1 class="h1">One Time Draft</h1>
+		{#if data.draft}
+			<h2 class="h2 text-right">Pick: {data.draft?.total + 1}</h2>
+		{/if}
+	</div>
 
 	{#if data.draftExpired}
 		<p class="mt-4">
@@ -83,9 +88,8 @@
 								name="selection"
 								value={choice.cardDefKey}
 								disabled={selecting}
-								class:!border-primary-500={selecting && choice.cardDefKey === selected}
-								class:!bg-secondary-800={selecting && choice.cardDefKey === selected}
-								class="[&>*]:pointer-events-none rounded-md hover:outline hover:outline-primary-500 bg-primary-hover-token"
+								class:bg-secondary-800={selecting && choice.cardDefKey === selected}
+								class="[&>*]:pointer-events-none rounded-md hover:bg-primary-500/50 bg-secondary-800"
 								use:popup={{
 									event: 'hover',
 									target: `popupHover${choice.cardDefKey}`,
@@ -94,7 +98,7 @@
 							>
 								<img src={choice.displayImageUrl} alt="{choice.name}'s card" />
 							</button>
-							<p class="text-center">
+							<p class="text-center text-xs">
 								{@html choice.description}
 							</p>
 							<div
@@ -108,8 +112,29 @@
 					{/each}
 				</section>
 			</form>
-			<div class="w-3/4">
-				<SnapDeck cards={current_draft?.cards || []} />
+			<h2 class="h2">Drafted Deck</h2>
+			Sorted by ascending energy cost.
+			<div class="grid grid-cols-2 divide-x divide-surface-500">
+				<div>
+					<SnapDeck cards={current_draft?.cards || []} />
+				</div>
+				<div class="text-left pl-4 text-xl">
+					<div class="flex flex-col">
+						<div>
+							{current_draft?.cards
+								.toSpliced(6, 6)
+								.map((card) => card.name)
+								.join(', ')}
+						</div>
+						<br />
+						<div>
+							{current_draft?.cards
+								.toSpliced(0, 6)
+								.map((card) => card.name)
+								.join(', ')}
+						</div>
+					</div>
+				</div>
 			</div>
 		{:else if data.deckCode}
 			<CodeBlock language="Deck Code" class="break-words" code={data.deckCode} />
