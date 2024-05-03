@@ -24,14 +24,16 @@
 		}
 	});
 
-	title.set('Oro Chat Draft - One Time Draft');
+	$: data.draft
+		? title.set(`Oro Chat Draft - One Time Draft - Pick [${data.draft.total + 1}]`)
+		: title.set('Oro Chat Draft - One Time Draft');
 </script>
 
 <svelte:head>
 	<meta name="description" content="Start a One Time Draft" />
 </svelte:head>
 
-<div class="space-y-4 p-4">
+<div class="p-4 -mb-16">
 	<div class="grid grid-cols-2">
 		<h1 class="h1">One Time Draft</h1>
 		{#if data.draft}
@@ -53,8 +55,9 @@
 	{:else}
 		{#if !current_draft && !data.deckCode}
 			<p class="mt-4">
-				This draft link can only be used one time. Please click Start Draft when you are ready. The
-				draft will expire after {data.draftExpiration} minutes.
+				Welcome! This is a valid draft code for <b>one time use</b>. When ready, click the 'Start
+				Draft' button to launch a draft. After launch, the draft has
+				<b>{data.draftExpiration} minutes</b> to be completed.
 			</p>
 			<form method="post" action="?/startDraft" use:enhance>
 				<input type="hidden" name="code" value={data.draftCode} />
@@ -63,7 +66,7 @@
 		{/if}
 
 		{#if choices && choices.length > 0}
-			Click on a card to select that card.
+			Draft a card by clicking on it.
 			<form
 				class="mt-0"
 				method="post"
@@ -112,7 +115,7 @@
 					{/each}
 				</section>
 			</form>
-			<h2 class="h2">Drafted Deck</h2>
+			<p class="text-2xl mt-4">Drafted Deck</p>
 			Sorted by ascending energy cost.
 			<div class="grid grid-cols-2 divide-x divide-surface-500">
 				<div>
@@ -139,8 +142,9 @@
 		{:else if data.deckCode}
 			<CodeBlock language="Deck Code" class="break-words" code={data.deckCode} />
 			<SnapDeck cards={data.cards} />
-			Started: {data.startedAt?.toLocaleString()}<br />
-			Finished: {data.finishedAt?.toLocaleString()}
+			<p>
+				Started: {data.startedAt?.toLocaleString()} - Finished: {data.finishedAt?.toLocaleString()}
+			</p>
 		{/if}
 		<br />
 	{/if}
