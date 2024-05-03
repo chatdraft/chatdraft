@@ -25,7 +25,7 @@
 	});
 
 	$: data.draft
-		? title.set(`Oro Chat Draft - One Time Draft - Pick [${data.draft.total + 1}]`)
+		? title.set(`Oro Chat Draft - One Time Draft - Pick ${data.draft.total + 1}`)
 		: title.set('Oro Chat Draft - One Time Draft');
 </script>
 
@@ -61,7 +61,8 @@
 			</p>
 			<form method="post" action="?/startDraft" use:enhance>
 				<input type="hidden" name="code" value={data.draftCode} />
-				<button type="submit" class="btn btn-lg variant-filled-primary">Start Draft</button><br />
+				<button type="submit" class="btn btn-lg variant-filled-primary mt-4">Start Draft</button><br
+				/>
 			</form>
 		{/if}
 
@@ -91,8 +92,8 @@
 								name="selection"
 								value={choice.cardDefKey}
 								disabled={selecting}
-								class:bg-secondary-800={selecting && choice.cardDefKey === selected}
-								class="[&>*]:pointer-events-none rounded-md hover:bg-primary-500/50 bg-secondary-800"
+								class:!bg-secondary-800={selecting && choice.cardDefKey === selected}
+								class="[&>*]:pointer-events-none rounded-md hover:bg-primary-500/50"
 								use:popup={{
 									event: 'hover',
 									target: `popupHover${choice.cardDefKey}`,
@@ -115,14 +116,14 @@
 					{/each}
 				</section>
 			</form>
-			<p class="text-2xl mt-4">Drafted Deck</p>
+			<h2 class="h2 mt-4">Drafted Deck</h2>
 			Sorted by ascending energy cost.
 			<div class="grid grid-cols-2 divide-x divide-surface-500">
 				<div>
 					<SnapDeck cards={current_draft?.cards || []} />
 				</div>
 				<div class="text-left pl-4 text-xl">
-					<div class="flex flex-col">
+					<div class="flex flex-col text-2xl">
 						<div>
 							{current_draft?.cards
 								.toSpliced(6, 6)
@@ -140,10 +141,10 @@
 				</div>
 			</div>
 		{:else if data.deckCode}
-			<CodeBlock language="Deck Code" class="break-words" code={data.deckCode} />
+			<CodeBlock language="Deck Code" class="break-words mt-4" code={data.deckCode} />
 			<SnapDeck cards={data.cards} />
 			<p>
-				Started: {data.startedAt?.toLocaleString()} - Finished: {data.finishedAt?.toLocaleString()}
+				Started: {data.startedAt?.toLocaleString()} – Finished: {data.finishedAt?.toLocaleString()}
 			</p>
 		{/if}
 		<br />
