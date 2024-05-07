@@ -271,6 +271,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey": "Blink",
+			"variantKey": null,
+			"url": "/cards/Blink/",
+			"name": "Blink",
+			"description": "<b>On Reveal:</b> Swap the last card you played with a higher-Cost card\nfrom your deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blink-18769ed729af267827c329e5937be1ad4b8caf66197c6fa41d115f6b24decd92.webp",
+			"cost": 5
+		},
+		{
 			"cardDefKey": "Blob",
 			"variantKey": null,
 			"url": "/cards/Blob/",
@@ -1529,6 +1538,15 @@
 			"description": "When this is destroyed, add a copy to each other location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nimrod-81b6e9a9c1b0bb420134943364405550e0517eb6f48dcdca9bb7c3a3ee9fb467.webp",
 			"cost": 5
+		},
+		{
+			"cardDefKey": "Nocturne",
+			"variantKey": null,
+			"url": "/cards/Nocturne",
+			"name": "Nocturne",
+			"description": "You can move this once. When this moves, replace its location with a random new one.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nocturne-b67f4c66c266706c6830d023d5a5f59e840732310240343ea163d706b7eef2f7.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Nova",
