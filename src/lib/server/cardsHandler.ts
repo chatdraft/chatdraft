@@ -55,26 +55,3 @@ export async function ResetCards() {
 		await fs.rm(updatedCardFile);
 	}
 }
-
-/**
- * Returns the Card for a given cardDefKey
- *
- * @private
- * @param {(string | undefined | null)} cardDefKey The cardDefKey
- * @returns {Card} The Card
- */
-export async function LookupCard(cardDefKey: string | null) {
-	const placeholder = {
-		cardDefKey: '',
-		displayImageUrl: '/Placeholder.webp',
-		cost: 9,
-		description: '',
-		name: '',
-		url: '',
-		variantKey: null
-	};
-	if (!cardDefKey) return placeholder;
-	const cards = await GetAllCards();
-	const card = cards.all.find((card) => card.cardDefKey == cardDefKey);
-	return card || placeholder;
-}

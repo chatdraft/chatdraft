@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Card } from '$lib/snap/draft';
+	import type { Card } from '$lib/snap/cards';
 
 	export let card: Card;
 	export let hideName: boolean = false;

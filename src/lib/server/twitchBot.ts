@@ -1,6 +1,6 @@
 import type { AuthProvider, RefreshingAuthProvider } from '@twurple/auth';
 import { Bot, createBotCommand } from '@twurple/easy-bot';
-import type { Choice, Card, Deck, Draft } from '$lib/snap/draft';
+import type { Choice, Draft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
 import { SendMessage } from './webSocketUtils';
@@ -10,6 +10,7 @@ import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
 import { EventSubWsListener } from '@twurple/eventsub-ws';
 import { ApiClient } from '@twurple/api';
+import { type Card, type Deck, GetDeckCode } from '$lib/snap/cards';
 
 /**
  * Represents the singleton instance of the Chat Draft Twitch Bot
@@ -135,6 +136,12 @@ export default class TwitchBot {
 	 * @returns {*}
 	 */
 	private async Init(channels: string[]) {
+		try {
+			this.bot?.changeColor('dodger_blue');
+		} catch (error) {
+			console.log(error);
+		}
+
 		this.bot?.chat.onMessage((channel, user, text, msg) => {
 			console.log(`#${channel} - <${user}>: ${text}`);
 
@@ -221,6 +228,19 @@ export default class TwitchBot {
 		if (TwitchBot.instance.bot) TwitchBot.instance.bot.action(player_channel, text);
 	}
 
+	public static async Message(userName: string, text: string) {
+		if (TwitchBot.instance.bot) {
+			try {
+				await TwitchBot.instance.bot.whisper(userName, text);
+			} catch (error) {
+				console.log(error);
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Gets or creates the Twitch Bot instance
 	 *
@@ -249,11 +269,21 @@ export default class TwitchBot {
 	 * @param {string} player_channel Twitch channel to say the message
 	 * @returns {*}
 	 */
-	public static async DraftStarted(player_channel: string) {
-		TwitchBot.Say(
-			player_channel,
-			'A new draft has started! Type the number to vote for the card you want to draft!'
-		);
+	public static async DraftStarted(
+		player_channel: string,
+		battleChatter: string | undefined = undefined
+	) {
+		if (battleChatter) {
+			TwitchBot.Say(
+				player_channel,
+				`A new draft has started vs @${battleChatter}! Type the number to vote for the card you want to draft!`
+			);
+		} else {
+			TwitchBot.Say(
+				player_channel,
+				'A new draft has started! Type the number to vote for the card you want to draft!'
+			);
+		}
 	}
 
 	/**
@@ -282,8 +312,16 @@ export default class TwitchBot {
 	 * @param {Card} card The winning card
 	 * @returns {*}
 	 */
-	public static async ChoiceSelected(player_channel: string, card: Card) {
+	public static async ChoiceSelected(
+		player_channel: string,
+		card: Card,
+		battleChatter: string | undefined = undefined,
+		battleCard: Card | undefined = undefined
+	) {
 		TwitchBot.Action(player_channel, `${card.name} has been selected!`);
+		if (battleChatter && battleCard) {
+			TwitchBot.Action(player_channel, `@${battleChatter} has drafted ${battleCard.name}`);
+		}
 	}
 
 	/**
@@ -296,11 +334,32 @@ export default class TwitchBot {
 	 * @param {Deck} deck The completed deck
 	 * @returns {*}
 	 */
-	public static async DraftComplete(player_channel: string, deck: Deck) {
+	public static async DraftComplete(
+		player_channel: string,
+		deck: Deck,
+		battleChatter: string | undefined = undefined,
+		battleDeck: Deck | undefined = undefined
+	) {
 		TwitchBot.Say(
 			player_channel,
 			`The completed deck has been drafted: ${deck.map((card) => card.name).join(', ')}.`
 		);
+		if (battleChatter && battleDeck) {
+			TwitchBot.Say(
+				player_channel,
+				`@${battleChatter} has drafted: ${battleDeck.map((card) => card.name).join(', ')}.`
+			);
+			const messageSent = await TwitchBot.Message(
+				battleChatter,
+				`Your drafted deck code: ${GetDeckCode(battleDeck)}`
+			);
+			if (!messageSent) {
+				TwitchBot.Say(
+					player_channel,
+					`Unable to DM Deck Code to @${battleChatter}. Please follow chatdraftbot or allow whispers from strangers.`
+				);
+			}
+		}
 	}
 
 	/**
@@ -327,11 +386,21 @@ export default class TwitchBot {
 	 * @param {string[]} ties The list of ties (if any)
 	 * @returns {*}
 	 */
-	public static async VotingClosed(player_channel: string, result: string, ties: string[]) {
+	public static async VotingClosed(
+		player_channel: string,
+		result: string,
+		ties: string[],
+		battleChatter: string | undefined = undefined,
+		battleCard: Card | undefined = undefined
+	) {
 		if (ties.length > 1) {
 			TwitchBot.Action(player_channel, `${result} chosen after tie between ${ties.join(', ')}.`);
 		} else {
 			TwitchBot.Action(player_channel, `${result} was drafted!`);
+		}
+
+		if (battleChatter && battleCard) {
+			TwitchBot.Action(player_channel, `@${battleChatter} has selected ${battleCard.name}!`);
 		}
 	}
 
@@ -345,8 +414,16 @@ export default class TwitchBot {
 	 * @param {string} result The card that was selected
 	 * @returns {*}
 	 */
-	public static async ChoiceOverride(player_channel: string, result: string) {
+	public static async ChoiceOverride(
+		player_channel: string,
+		result: string,
+		battleChatter: string | undefined = undefined,
+		battleCard: string | undefined = undefined
+	) {
 		TwitchBot.Say(player_channel, `${player_channel} overrode the vote and selected ${result}!`);
+		if (battleChatter && battleCard) {
+			TwitchBot.Action(player_channel, `${battleChatter} has drafted ${battleCard}`);
+		}
 	}
 
 	/**

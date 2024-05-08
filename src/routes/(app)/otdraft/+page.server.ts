@@ -1,10 +1,11 @@
 import type { PageServerLoad } from './$types';
-import { GetAllCards, LookupCard } from '$lib/server/cardsHandler';
+import { GetAllCards } from '$lib/server/cardsHandler';
 import { Draft } from '$lib/snap/draft';
 import { ClearOneTimeDraft, GetOneTimeDraft, SetOneTimeDraft } from '$lib/server/draftHandler';
 import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/db';
 import { minutes_to_ms } from '$lib/constants';
+import { LookupCard } from '$lib/snap/cards';
 
 export const load = (async (request) => {
 	const draftCode = request.url.searchParams.get('code');
@@ -66,7 +67,9 @@ export const load = (async (request) => {
 		const cards = JSON.parse(draft.cards) as string[];
 		cards.forEach((card) => obj.Cards.push({ CardDefId: card }));
 
-		const lookup = await Promise.all(cards.map(async (card) => LookupCard(card)));
+		const lookup = await Promise.all(
+			cards.map(async (card) => LookupCard((await GetAllCards()).all, card))
+		);
 		return {
 			draftCode: draftCode,
 			deckCode: btoa(JSON.stringify(obj)),

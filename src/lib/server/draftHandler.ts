@@ -1,9 +1,10 @@
 import type IDraft from '$lib/snap/draft';
-import type { Card, Choice, Deck, Draft } from '$lib/snap/draft';
+import type { Choice, Draft } from '$lib/snap/draft';
 import { shuffle } from '$lib/snap/utils';
 import type { EventHandler } from '@d-fischer/typed-event-emitter';
 import { GetAllCards } from './cardsHandler';
 import { DatetimeNowUtc } from '$lib/datetime';
+import type { Card, Deck } from '$lib/snap/cards';
 
 export const drafts = new Map<string, Draft>();
 export const oneTimeDrafts = new Map<string, Draft>();

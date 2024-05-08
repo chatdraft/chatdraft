@@ -1,4 +1,4 @@
-import type { Deck } from './draft';
+import type { Deck } from './cards';
 
 /**
  * Gets a random deck name

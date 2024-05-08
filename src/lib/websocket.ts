@@ -86,5 +86,6 @@ export enum WebSocketMessageType {
 	PreviewToggled = 'previewtoggled',
 	BrowserUpdated = 'browserupdated',
 	ShowDeck = 'showdeck',
-	VoteUpdated = 'voteupdated'
+	VoteUpdated = 'voteupdated',
+	BattlerSelected = 'battlerselected'
 }

@@ -1,5 +1,6 @@
 import { DatetimeNowUtc } from '$lib/datetime';
-import type { Choice, Card, Deck, Draft } from '$lib/snap/draft';
+import type { Card, Deck } from '$lib/snap/cards';
+import type { Choice, Draft } from '$lib/snap/draft';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { type ExtendedGlobal, GlobalThisWSS } from './webSocketHandler';
 
@@ -172,6 +173,15 @@ export const BrowserSourceUpdated = async (
 			deck_sources_configured: deck_sources_configured,
 			choice_sources_configured: choice_sources_configured
 		})
+	};
+	SendMessage(player_channel, wsm);
+};
+
+export const BattlerChoice = async (player_channel: string, battlerChoiceCard: Card) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.BattlerSelected,
+		timestamp: DatetimeNowUtc(),
+		message: JSON.stringify(battlerChoiceCard)
 	};
 	SendMessage(player_channel, wsm);
 };

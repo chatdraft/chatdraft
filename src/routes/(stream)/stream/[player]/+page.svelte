@@ -5,8 +5,8 @@
 	import { invalidateAll } from '$app/navigation';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { DatetimeNowUtc } from '$lib/datetime.js';
-	import type { Card } from '$lib/snap/draft.js';
+	import { DatetimeNowUtc } from '$lib/datetime';
+	import type { Card } from '$lib/snap/cards';
 	import {
 		establishWebSocket,
 		type WebSocketMessage,
@@ -92,11 +92,16 @@
 			invalidateAll();
 		}
 
+		if (wsm.type == WebSocketMessageType.BattlerSelected) {
+			battlerSelectedCard = JSON.parse(wsm.message!);
+		}
+
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
 	};
 
 	let winningCard: Card | undefined = undefined;
+	let battlerSelectedCard: Card | undefined = undefined;
 
 	$: current_draft = data.previewStatus ? data.previewDraft : data.draft;
 	$: choices = current_draft?.currentChoice?.cards!;
@@ -160,6 +165,7 @@
 									{choice}
 									{index}
 									votes={votes[index]}
+									battlerSelected={battlerSelectedCard?.cardDefKey == choice.cardDefKey}
 								/>
 							{/each}
 						{/if}

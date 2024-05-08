@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Card } from '$lib/snap/draft';
+	import type { Card } from '$lib/snap/cards';
 
 	export let cards: Card[];
 	export let cols: 2 | 3 | 4 | 6 = 6;

@@ -3,6 +3,7 @@ import { GetDraft, SetPreviousDraft, drafts } from '$lib/server/draftHandler';
 import { ClearPreviewStatus } from '$lib/server/previewHandler';
 import TwitchBot from '$lib/server/twitchBot';
 import {
+	BattlerChoice,
 	ChoiceOverride,
 	ChoiceSelected,
 	DraftCanceled,
@@ -33,6 +34,7 @@ export default class DraftFactory {
 	 * @param {number} selections The number of selections per voting period
 	 * @param {boolean} [subsExtraVote=false] Whether subscribers get +1 added to their vote
 	 * @param {(string[] | null)} playerCollection List of cardDefKeys in the players collection or empty array if complete.
+	 * @param {string} battleChatter The chatter also drafting in a chatter battle if any
 	 * @returns {Draft} The new draft.
 	 */
 	public static async CreateDraft(
@@ -40,7 +42,8 @@ export default class DraftFactory {
 		duration: number,
 		selections: number,
 		subsExtraVote: boolean = false,
-		playerCollection: string[] | null
+		playerCollection: string[] | null,
+		battleChatter: string | undefined = undefined
 	) {
 		const currentDraft = GetDraft(player_channel);
 		if (currentDraft) return currentDraft;
@@ -51,7 +54,8 @@ export default class DraftFactory {
 			selections,
 			await GetAllCards(),
 			subsExtraVote,
-			playerCollection
+			playerCollection,
+			battleChatter
 		);
 
 		if (draft.player != '') {
@@ -79,7 +83,7 @@ export default class DraftFactory {
 
 		draft.onDraftComplete(async (draft) => {
 			await new Promise((f) => setTimeout(f, 2000));
-			TwitchBot.DraftComplete(draft.player, draft.cards);
+			TwitchBot.DraftComplete(draft.player, draft.cards, draft.battleChatter, draft.battleCards);
 			DraftComplete(draft.player, draft.cards);
 			await new Promise((f) => setTimeout(f, duration * 2 * 1000));
 			SetPreviousDraft(draft);
@@ -91,6 +95,8 @@ export default class DraftFactory {
 
 		draft.onChoiceOverride(TwitchBot.ChoiceOverride);
 		draft.onChoiceOverride(ChoiceOverride);
+
+		draft.onBattlerChoice(BattlerChoice);
 
 		return draft;
 	}

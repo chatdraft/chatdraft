@@ -1,6 +1,19 @@
 <script lang="ts">
 	export let votes: number;
+	export let battlerSelected: boolean;
 </script>
+
+<div class="flex justify-center absolute bottom-1 left-2" class:hidden={!battlerSelected}>
+	<div class="flex items-center">
+		<iconify-icon
+			icon="mdi:crown"
+			width="32"
+			height="32"
+			class="stroke-white stroke-1 drop-shadow-[-2px_2px_2px_white] inline-block"
+			style="color: black"
+		/>
+	</div>
+</div>
 
 <div class="flex justify-center absolute bottom-0 right-2">
 	<div class="flex items-center">
