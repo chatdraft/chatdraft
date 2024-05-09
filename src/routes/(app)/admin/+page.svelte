@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { AccordionItem, FileDropzone } from '@skeletonlabs/skeleton';
+	import { AccordionItem, FileDropzone, InputChip } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { getToastStore, Accordion } from '@skeletonlabs/skeleton';
 	import { title } from '$lib/title';
@@ -18,6 +18,9 @@
 
 	let cardDbFiles: FileList;
 	let otdBatchFiles: FileList;
+
+	let organizerList: string[] = [];
+	let organizerInputChip: InputChip;
 
 	export let form;
 
@@ -130,7 +133,7 @@
 		{/each}
 		<form method="POST" action="?/authorize" use:enhance>
 			<label for="username">Authorize User:</label>
-			<input type="text" id="username" name="username" placeholder="Username" class="text-black" />
+			<input type="text" id="username" name="username" placeholder="Username" class="input w-64" />
 			<button class="btn-icon btn-icon-sm variant-outline-primary"
 				><iconify-icon icon="mdi:check-bold" /></button
 			>
@@ -165,7 +168,7 @@
 	</ul>
 	<form method="POST" action="?/joinchannel" use:enhance>
 		<label for="username">Join Channel:</label>
-		<input type="text" id="username" name="username" placeholder="Username" class="text-black" />
+		<input type="text" id="username" name="username" placeholder="Username" class="input w-64" />
 		<button class="btn-icon btn-icon-sm variant-outline-primary"
 			><iconify-icon icon="mdi:check-bold" /></button
 		>
@@ -203,6 +206,32 @@
 		{/if}
 	</ul>
 	<hr class="m-4" />
+
+	<section>
+		<p>One Time Draft Organizer Accounts</p>
+		{#each data.organizers || [] as organizer}
+			<form method="POST" action="?/removeOrganizer" use:enhance>
+				<li>
+					<button class="btn-icon btn-icon-sm variant-outline-error">
+						<iconify-icon icon="mdi:remove-bold" />
+					</button>
+					{organizer}
+					<input type="hidden" id="username" name="organizer" value={organizer} />
+				</li>
+			</form>
+		{/each}
+		<br />
+		<form method="POST" action="?/addOrganizer" use:enhance>
+			<input class="input w-64" type="text" name="organizer" placeholder="Username" />
+
+			<button class="btn-icon btn-icon-sm variant-outline-primary"
+				><iconify-icon icon="mdi:check-bold" /></button
+			>
+		</form>
+	</section>
+	<br />
+	<hr />
+	<br />
 
 	<section>
 		<h3>Generate One Time Draft Links</h3>
@@ -294,6 +323,14 @@
 					{/if}
 				</svelte:fragment>
 			</FileDropzone>
+			Organizers: <br />
+			<InputChip
+				bind:value={organizerList}
+				bind:this={organizerInputChip}
+				name="organizers"
+				placeholder="Enter an organizer name"
+				class="w-64"
+			/>
 			<button class="btn btn-md variant-filled-primary mt-4">Generate</button>
 		</form>
 		{#if form?.dataUri}
@@ -308,13 +345,12 @@
 	<section>
 		<h3>Check OTD Batch</h3>
 		<form method="post" action="?/getOtdBatch" use:enhance>
-			<input
-				type="text"
-				class="input w-64"
-				name="tagData"
-				placeholder="OTD Batch Tag"
-				value={form?.checkTag ?? null}
-			/>
+			<select class="select w-64" name="tagData">
+				<option value="">Select an OTD Batch to View</option>
+				{#each data.otdBatches || [] as otdBatch}
+					<option value={otdBatch.tag}>{otdBatch.tag}</option>
+				{/each}
+			</select>
 			{#if form?.checkMissingTag}
 				<span class="text-error-500 font-bold">* The Batch Tag field is required.</span>
 			{/if}
@@ -328,6 +364,11 @@
 				<p>Batch Tag: {form.batch.tag}</p>
 				<p>Batch Expiration: {form.batch.expiration.toLocaleDateString()}</p>
 				<p>Batch OTD Count: {form.batch.drafts.length}</p>
+				<p>
+					Batch OTD Organizers: {form.batch.organizers
+						.map((organizer) => organizer.channelName)
+						.join(', ')}
+				</p>
 				<Accordion>
 					<AccordionItem>
 						<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>

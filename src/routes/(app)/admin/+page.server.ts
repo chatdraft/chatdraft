@@ -22,6 +22,8 @@ export const load = (async ({ locals }) => {
 	const setupCompleteUsers = users
 		?.filter((user) => user.initialSetupDone)
 		.map((user) => user.channelName);
+	const organizers = users?.filter((user) => user.isOrganizer).map((user) => user.channelName);
+	const otdBatches = await prisma.oneTimeDraftBatch.GetAllOneTimeDraftBatches();
 
 	return {
 		channels: channels,
@@ -30,7 +32,9 @@ export const load = (async ({ locals }) => {
 		previousDrafts: previousDrafts,
 		authorizedUsers: authorizedUsers,
 		adminUsers: adminUsers,
-		setupCompleteUsers: setupCompleteUsers
+		setupCompleteUsers: setupCompleteUsers,
+		organizers: organizers,
+		otdBatches: otdBatches
 	};
 }) satisfies PageServerLoad;
 
@@ -159,6 +163,12 @@ export const actions = {
 		const cardData = JSON.parse(await cards.text()) as { all: { cardDefKey: string }[] };
 		const cardDefKeys = cardData.all.map((card) => card.cardDefKey).join();
 
+		const organizersData = data.getAll('organizers');
+		const organizers: string[] = organizersData.map((data) => data.toString());
+		const organizerIds = (await prisma.user.GetUsersByName(organizers))?.map(
+			(organizer) => organizer.id
+		);
+
 		if (validationError) {
 			return fail(400, {
 				missingTag: missingTag,
@@ -171,7 +181,8 @@ export const actions = {
 				tagData: tagData,
 				countData: countData,
 				expirationData: expirationData,
-				draftExpirationData: draftExpirationData
+				draftExpirationData: draftExpirationData,
+				organizersData: organizersData
 			});
 		}
 
@@ -180,7 +191,8 @@ export const actions = {
 			count,
 			expiration,
 			cardDefKeys,
-			draftExpiration
+			draftExpiration,
+			organizerIds
 		);
 		if (!batch) return fail(500);
 		const links = batch?.drafts?.map(
@@ -204,5 +216,19 @@ export const actions = {
 		);
 		const dataUri = links ? 'data:text/plain;base64,' + btoa(links.join('\r\n')) : undefined;
 		return { checkDataUri: dataUri, batch: batch };
+	},
+	addOrganizer: async ({ request, locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		const organizerData = data.get('organizer');
+		if (!organizerData) return fail(400, { organizerMissing: true });
+		await prisma.user.UpdateUserOrganizer(organizerData.toString(), true);
+	},
+	removeOrganizer: async ({ request, locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		const organizerData = data.get('organizer');
+		if (!organizerData) return fail(400, { organizerMissing: true });
+		await prisma.user.UpdateUserOrganizer(organizerData?.toString(), false);
 	}
 } satisfies Actions;

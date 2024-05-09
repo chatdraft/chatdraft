@@ -48,6 +48,13 @@
 		{/if}
 	{/if}
 
+	{#if user && (user.isOrganizer || user.isAdmin)}
+		<AppRailAnchor href="/organizer">
+			<AppRailIcon pageRouteId={$page.route.id} routeId="/organizer" icon="mdi:trophy"
+				>Org</AppRailIcon
+			>
+		</AppRailAnchor>
+	{/if}
 	{#if user && user.isAdmin}
 		<AppRailAnchor href="/admin">
 			<AppRailIcon pageRouteId={$page.route.id} routeId="/admin" icon="mdi:administrator">

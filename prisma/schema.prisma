@@ -28,6 +28,8 @@ model User {
   createdAt DateTime @default(now())
   drafts Draft[]
   userPreferences UserPreference?
+  isOrganizer Boolean @default(false)
+  otdBatches OneTimeDraftBatch[]
 }
 
 model Token {
@@ -84,6 +86,7 @@ model OneTimeDraftBatch {
   drafts OneTimeDraft[]
   cardPool String @db.NVarChar(max)
   draftExpiration Int @default(60)
+  organizers User[]
 }
 
 model OneTimeDraft {

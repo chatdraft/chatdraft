@@ -330,6 +330,60 @@ export const prisma = new PrismaClient().$extends({
 				}
 
 				return undefined;
+			},
+			async GetUserByName(name: string) {
+				try {
+					return await prisma.user.findUnique({
+						where: {
+							channelName: name
+						},
+						include: {
+							otdBatches: true,
+							userPreferences: true
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+
+				return undefined;
+			},
+			async GetUsersByName(names: string[]) {
+				try {
+					return await prisma.user.findMany({
+						where: {
+							channelName: {
+								in: names
+							}
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+
+				return undefined;
+			},
+			async UpdateUserOrganizer(username: string, isOrganizer: boolean) {
+				try {
+					return await prisma.user.update({
+						where: {
+							channelName: username
+						},
+						data: {
+							isOrganizer: isOrganizer
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+
+				return undefined;
 			}
 		},
 		token: {
@@ -602,7 +656,8 @@ export const prisma = new PrismaClient().$extends({
 							tag: tag
 						},
 						include: {
-							drafts: true
+							drafts: true,
+							organizers: true
 						}
 					});
 				} catch (error) {
@@ -624,7 +679,8 @@ export const prisma = new PrismaClient().$extends({
 				count: number,
 				expiration: Date,
 				cardDefKeys: string,
-				draftExpiration: number
+				draftExpiration: number,
+				organizerIds: string[] = []
 			) {
 				try {
 					return await prisma.oneTimeDraftBatch.create({
@@ -641,12 +697,44 @@ export const prisma = new PrismaClient().$extends({
 										};
 									})
 								}
+							},
+							organizers: {
+								connect: organizerIds.map((organizer) => {
+									return { id: organizer };
+								})
 							}
 						},
 						include: {
-							drafts: true
+							drafts: true,
+							organizers: true
 						}
 					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			},
+			async GetOneTimeDraftBatchesByOrganizer(organizerId: string) {
+				try {
+					return await prisma.oneTimeDraftBatch.findMany({
+						where: {
+							organizers: {
+								some: {
+									id: organizerId
+								}
+							}
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+			},
+			async GetAllOneTimeDraftBatches() {
+				try {
+					return await prisma.oneTimeDraftBatch.findMany({});
 				} catch (error) {
 					let message = 'Unknown Error';
 					if (error instanceof Error) message = error.message;

@@ -6,6 +6,8 @@ import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/db';
 import { minutes_to_ms } from '$lib/constants';
 import { LookupCard } from '$lib/snap/cards';
+import { OtdStatus } from '$lib/snap/draft';
+import { GetOtdStatus } from '$lib/server/otdraft';
 
 export const load = (async (request) => {
 	const draftCode = request.url.searchParams.get('code');
@@ -20,7 +22,7 @@ export const load = (async (request) => {
 			validCode: false
 		};
 	}
-
+	const draftStatus = GetOtdStatus(draft);
 	const liveDraft = GetOneTimeDraft(draftCode);
 	if (liveDraft) {
 		if (
@@ -40,7 +42,7 @@ export const load = (async (request) => {
 			validCode: true
 		};
 	}
-	if (!draft.finishedAt && Date.now() > draft.batch.expiration.getTime()) {
+	if (draftStatus == OtdStatus.LinkExpired) {
 		return {
 			draftCode: draftCode,
 			validCode: true,
@@ -48,17 +50,13 @@ export const load = (async (request) => {
 			expiration: draft.batch.expiration
 		};
 	}
-	if (
-		draft.startedAt &&
-		!draft.cards &&
-		Date.now() - draft.startedAt.getTime() > draft.batch.draftExpiration * minutes_to_ms
-	) {
+	if (draftStatus == OtdStatus.DraftExpired) {
 		return {
 			draftCode: draftCode,
 			validCode: true,
 			draftExpired: true,
 			startedAt: draft.startedAt,
-			expiredAt: new Date(draft.startedAt.getTime() + draft.batch.draftExpiration * minutes_to_ms)
+			expiredAt: new Date(draft.startedAt!.getTime() + draft.batch.draftExpiration * minutes_to_ms)
 		};
 	}
 	if (draft?.cards) {

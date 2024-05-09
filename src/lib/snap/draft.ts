@@ -472,3 +472,12 @@ export type Choice = {
 	voteCounts: number[];
 	votes_closed: number;
 };
+
+export enum OtdStatus {
+	Unused = 'Unused',
+	Started = 'Started',
+	Finished = 'Finished',
+	LinkExpired = 'LinkExpired',
+	DraftExpired = 'DraftExpired',
+	Ready = 'Ready'
+}
