@@ -492,7 +492,7 @@
 			"url": "/cards/Darkhawk/",
 			"name": "Darkhawk",
 			"description": "<b>Ongoing:</b> +2 Power for each card in your opponent's deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Darkhawk-f7b3d0eaf013d3584691828c07d6b1b29c35e1c09bb711ace03374f155b3b4bf.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Darkhawk-3e0bce0529f36d34aea431de7558f702634979b2a18c5f1080ad6ee8fd713d9c.webp",
 			"cost": 5
 		},
 		{
@@ -1094,7 +1094,7 @@
 			"variantKey": null,
 			"url": "/cards/Klaw/",
 			"name": "Klaw",
-			"description": "<b>Ongoing:</b> The location to the right has +6 Power.",
+			"description": "<b>Ongoing:</b> The location to the right has +8 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Klaw-dbf489893a3ded332428c68bdc851f6fa4f2a4d94d491cad128f38acdfd55427.webp",
 			"cost": 5
 		},
@@ -1131,7 +1131,7 @@
 			"url": "/cards/LadyDeathstrike/",
 			"name": "Lady Deathstrike",
 			"description": "<b>On Reveal:</b> Destroy each card here with 3 or less Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-034e0bb4bcc51390674cb938f270f75f8e1149f3b50f1998e5252ae0e031c7c4.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-29ade9299f3c346450c255d677fa828b3c6e79ed7aefcae0d01adfa8ad6339dc.webp",
 			"cost": 5
 		},
 		{
@@ -1158,7 +1158,7 @@
 			"url": "/cards/Leech/",
 			"name": "Leech",
 			"description": "<b>On Reveal:</b> Remove the text from cards with <b>On Reveal</b> abilities in\nyour opponent's hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-649079ff46be73de7ae3428fc7d5d635d3f33e711bce21ab75b5220982147ad6.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-2a367a12503f9b566073e66bbb05d04e5d7789658b8e53ca2256a1c136dae095.webp",
 			"cost": 5
 		},
 		{
@@ -1653,7 +1653,7 @@
 			"url": "/cards/Psylocke/",
 			"name": "Psylocke",
 			"description": "<b>On Reveal:</b> Next turn, you get +1 Energy.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Psylocke-0164fcbc9889c7414351a310e368ad7c3be512b886b49a1c07e45fdcf221d8f3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Psylocke-a680c427b94b2f52c19717a933e6aa61244b6e0431a54a6dd02657bbdf724eaa.webp",
 			"cost": 2
 		},
 		{
@@ -1806,7 +1806,7 @@
 			"url": "/cards/Sauron/",
 			"name": "Sauron",
 			"description": "<b>On Reveal:</b> Remove the abilities from all <b>Ongoing</b> cards in your\nhand and deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-8999b17465f706ae1dd02bff088f7e85c53f823d16e64f27de4c8131052210e4.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-653ad54c6e98822b314f4f2ee90bc2e5d43cba466fd1f6d1c53b517131dd8c79.webp",
 			"cost": 3
 		},
 		{
@@ -2228,7 +2228,7 @@
 			"variantKey": null,
 			"url": "/cards/Ultron/",
 			"name": "Ultron",
-			"description": "<b>On Reveal:</b> Create four 1-Power Drones at each other location.",
+			"description": "<b>On Reveal:</b> Create four 2-Power Drones at each other location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ultron-1884cb5909014edc0a370ea8f473b4e367acb5587c8f32544fd7c30b545bf372.webp",
 			"cost": 6
 		},
