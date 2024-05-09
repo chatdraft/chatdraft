@@ -136,12 +136,6 @@ export default class TwitchBot {
 	 * @returns {*}
 	 */
 	private async Init(channels: string[]) {
-		try {
-			this.bot?.changeColor('dodger_blue');
-		} catch (error) {
-			console.log(error);
-		}
-
 		this.bot?.chat.onMessage((channel, user, text, msg) => {
 			console.log(`#${channel} - <${user}>: ${text}`);
 
