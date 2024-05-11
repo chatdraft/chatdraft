@@ -62,7 +62,7 @@ export const actions = {
 				const duration = Number(data.get('duration')?.toString());
 				const selectionCount = Number(data.get('selectionCount')?.toString());
 				const subsExtraVote = Boolean(data.get('subsExtraVote')?.toString());
-				const battleChatter = data.get('battleChatter')?.toString().toLowerCase();
+				const battleChatter = data.get('battleChatter')?.toString().toLowerCase().trim();
 				const collection = locals.user?.userPreferences?.collection
 					? JSON.parse(locals.user?.userPreferences.collection)
 					: null;
