@@ -63,21 +63,21 @@
 		</Accordion>
 		<h3 class="h3">One Time Drafts</h3>
 		<div class="table-container">
-			<table class="table table-hover table-compact text-center border-collapse">
+			<table class="table table-hover table-compact text-center border-collapse w-min">
 				<thead>
 					<tr>
-						<th class="p-4 table-cell-fit">Status</th>
-						<th class="p-4 table-cell-fit text-center">User</th>
-						<th class="p-4 text-center table-cell-fit">Started</th>
-						<th class="p-4 text-center table-cell-fit">Finished</th>
-						<th class="p-4 text-center table-cell">OTD Link</th>
-						<th class="table-cell-fit" />
+						<th class="table-cell-fit">Status</th>
+						<th class="table-cell-fit text-center">User</th>
+						<th class="text-center table-cell-fit">Started</th>
+						<th class="text-center table-cell-fit">Finished</th>
+						<th class="text-left table-cell">OTD Link</th>
+						<th class="text-left table-cell">Copy</th>
 					</tr>
 				</thead>
 				<tbody>
 					{#each form.otdBatch.drafts as draft, index}
 						<tr class="align-middle">
-							<td class="table-cell-fit">
+							<td class="table-cell-fit align-middle">
 								{#if form.otdStatuses}
 									{#if form.otdStatuses[index] == OtdStatus.Unused}
 										<iconify-icon
@@ -179,18 +179,18 @@
 									{/if}
 								{/if}
 							</td>
-							<td class="table-cell-fit">
+							<td class="table-cell-fit !whitespace-nowrap !align-middle">
 								{#if draft.user}
 									{draft.user}
 								{/if}
 							</td>
-							<td class="table-cell-fit !whitespace-normal lg:!whitespace-nowrap">
+							<td class="table-cell-fit !whitespace-normal lg:!whitespace-nowrap !align-middle">
 								{draft.startedAt?.toLocaleString() || ''}
 							</td>
-							<td class="table-cell-fit !whitespace-normal lg:!whitespace-nowrap">
+							<td class="table-cell-fit !whitespace-normal lg:!whitespace-nowrap !align-middle">
 								{draft.finishedAt?.toLocaleString() || ''}
 							</td>
-							<td class="table-cell whitespace-nowrap">
+							<td class="table-cell whitespace-nowrap !align-middle text-left">
 								<a class="anchor" href="{$page.url.origin}/otdraft?code={draft.id}" target="_blank">
 									{draft.id}
 								</a>
@@ -198,13 +198,14 @@
 							<td>
 								<button
 									on:click|preventDefault
-									class="btn btn-icon variant-filled-primary btn-icon-sm"
+									class="btn btn-icon btn-icon-sm"
 									use:clipboard={`${$page.url.origin}/otdraft?code=${draft.id}`}
 								>
 									<iconify-icon
 										icon="clarity:copy-to-clipboard-line"
 										width="16"
 										height="16"
+										style="color: rgba(var(--color-primary-500) / 1)"
 										flip="horizontal"
 									/>
 								</button>
