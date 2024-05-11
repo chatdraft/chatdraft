@@ -272,6 +272,16 @@ export default class TwitchBot {
 				player_channel,
 				`A new draft has started vs @${battleChatter}! Type the number to vote for the card you want to draft!`
 			);
+			const canWhisper = TwitchBot.Message(
+				battleChatter,
+				`A new chat draft battle has started in ${player_channel}'s channel!`
+			);
+			if (!canWhisper) {
+				TwitchBot.Say(
+					player_channel,
+					`Unable to Whisper @${battleChatter}. Please follow chatdraftbot or allow whispers from strangers.`
+				);
+			}
 		} else {
 			TwitchBot.Say(
 				player_channel,
@@ -348,10 +358,7 @@ export default class TwitchBot {
 				`Your drafted deck code: ${GetDeckCode(battleDeck)}`
 			);
 			if (!messageSent) {
-				TwitchBot.Say(
-					player_channel,
-					`Unable to DM Deck Code to @${battleChatter}. Please follow chatdraftbot or allow whispers from strangers.`
-				);
+				TwitchBot.Say(player_channel, `@${battleChatter}: ${GetDeckCode(battleDeck)}`);
 			}
 		}
 	}
