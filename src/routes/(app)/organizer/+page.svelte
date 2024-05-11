@@ -63,21 +63,21 @@
 		</Accordion>
 		<h3 class="h3">One Time Drafts</h3>
 		<div class="table-container">
-			<table class="table table-hover table-compact text-center border-collapse w-5/6 lg:w-2/3">
+			<table class="table table-hover table-compact text-center border-collapse">
 				<thead>
 					<tr>
 						<th class="p-4 table-cell-fit">Status</th>
 						<th class="p-4 table-cell-fit text-center">User</th>
-						<th class="p-4 text-center">Started</th>
-						<th class="p-4 text-center">Finished</th>
-						<th class="p-4 text-center">OTD Link</th>
-						<th />
+						<th class="p-4 text-center table-cell-fit">Started</th>
+						<th class="p-4 text-center table-cell-fit">Finished</th>
+						<th class="p-4 text-center table-cell">OTD Link</th>
+						<th class="table-cell-fit" />
 					</tr>
 				</thead>
 				<tbody>
 					{#each form.otdBatch.drafts as draft, index}
 						<tr class="align-middle">
-							<td>
+							<td class="table-cell-fit">
 								{#if form.otdStatuses}
 									{#if form.otdStatuses[index] == OtdStatus.Unused}
 										<iconify-icon
@@ -184,10 +184,10 @@
 									{draft.user}
 								{/if}
 							</td>
-							<td class="table-cell">
+							<td class="table-cell-fit !whitespace-normal lg:!whitespace-nowrap">
 								{draft.startedAt?.toLocaleString() || ''}
 							</td>
-							<td class="table-cell">
+							<td class="table-cell-fit !whitespace-normal lg:!whitespace-nowrap">
 								{draft.finishedAt?.toLocaleString() || ''}
 							</td>
 							<td class="table-cell whitespace-nowrap">
