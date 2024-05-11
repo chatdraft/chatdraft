@@ -163,12 +163,6 @@ export const actions = {
 		const cardData = JSON.parse(await cards.text()) as { all: { cardDefKey: string }[] };
 		const cardDefKeys = cardData.all.map((card) => card.cardDefKey).join();
 
-		const organizersData = data.getAll('organizers');
-		const organizers: string[] = organizersData.map((data) => data.toString());
-		const organizerIds = (await prisma.user.GetUsersByName(organizers))?.map(
-			(organizer) => organizer.id
-		);
-
 		if (validationError) {
 			return fail(400, {
 				missingTag: missingTag,
@@ -181,8 +175,7 @@ export const actions = {
 				tagData: tagData,
 				countData: countData,
 				expirationData: expirationData,
-				draftExpirationData: draftExpirationData,
-				organizersData: organizersData
+				draftExpirationData: draftExpirationData
 			});
 		}
 
@@ -191,8 +184,7 @@ export const actions = {
 			count,
 			expiration,
 			cardDefKeys,
-			draftExpiration,
-			organizerIds
+			draftExpiration
 		);
 		if (!batch) return fail(500);
 		const links = batch?.drafts?.map(
@@ -230,5 +222,22 @@ export const actions = {
 		const organizerData = data.get('organizer');
 		if (!organizerData) return fail(400, { organizerMissing: true });
 		await prisma.user.UpdateUserOrganizer(organizerData?.toString(), false);
+	},
+	updateBatchOrganizers: async ({ request, locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+
+		const batchId = data.get('batchId')?.toString();
+		if (!batchId) return fail(400, { missingBatchId: true });
+
+		const organizersData = data.getAll('organizers');
+		const organizers: string[] = organizersData.map((data) => data.toString());
+		const organizerIds = (await prisma.user.GetUsersByName(organizers))?.map(
+			(organizer) => organizer.id
+		);
+		if (!organizerIds) return fail(400, { missingOrganizers: true });
+
+		const batch = await prisma.oneTimeDraftBatch.UpdateOneTimeBatchOrganizer(batchId, organizerIds);
+		return { batch: batch };
 	}
 } satisfies Actions;

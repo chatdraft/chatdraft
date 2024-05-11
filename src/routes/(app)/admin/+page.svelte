@@ -323,14 +323,6 @@
 					{/if}
 				</svelte:fragment>
 			</FileDropzone>
-			Organizers: <br />
-			<InputChip
-				bind:value={organizerList}
-				bind:this={organizerInputChip}
-				name="organizers"
-				placeholder="Enter an organizer name"
-				class="w-64"
-			/>
 			<button class="btn btn-md variant-filled-primary mt-4">Generate</button>
 		</form>
 		{#if form?.dataUri}
@@ -359,33 +351,53 @@
 			{/if}
 			<br />
 			<button class="btn btn-md variant-filled-primary mt-4">Check</button>
-			{#if form?.batch}
-				<br /><br />
-				<p>Batch Tag: {form.batch.tag}</p>
-				<p>Batch Expiration: {form.batch.expiration.toLocaleDateString()}</p>
-				<p>Batch OTD Count: {form.batch.drafts.length}</p>
-				<p>
-					Batch OTD Organizers: {form.batch.organizers
-						.map((organizer) => organizer.channelName)
-						.join(', ')}
-				</p>
-				<Accordion>
-					<AccordionItem>
-						<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
-						<svelte:fragment slot="content">
-							<p class="text-wrap">{form.batch.cardPool.replaceAll(',', ', ')}</p>
-						</svelte:fragment>
-					</AccordionItem>
-				</Accordion>
-			{/if}
-			{#if form?.checkDataUri}
-				Batch Links:
-				<a href={form.checkDataUri} class="anchor" download="{form.batch.tag}.txt">
-					{form.batch.tag}
-					<iconify-icon icon="ion:download" />
-				</a>
-			{/if}
 		</form>
+		{#if form?.batch}
+			<br />
+			<p>Batch Tag: {form.batch.tag}</p>
+			<p>Batch Expiration: {form.batch.expiration.toLocaleDateString()}</p>
+			<p>Batch OTD Count: {form.batch.drafts.length}</p>
+			<Accordion regionControl="flex-row-reverse gap-4">
+				<AccordionItem>
+					<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
+					<svelte:fragment slot="content">
+						<p class="text-wrap">{form.batch.cardPool.replaceAll(',', ', ')}</p>
+					</svelte:fragment>
+				</AccordionItem>
+			</Accordion>
+		{/if}
+		{#if form?.checkDataUri}
+			Batch Links:
+			<a href={form.checkDataUri} class="anchor" download="{form.batch.tag}.txt">
+				{form.batch.tag}
+				<iconify-icon icon="ion:download" />
+			</a>
+			<br />
+
+			<form
+				method="post"
+				action="?/updateBatchOrganizers"
+				use:enhance={() => {
+					return async ({ result }) => {
+						if (result.type == 'success') {
+							toastStore.trigger({ message: 'Organizers successfully updated.' });
+						}
+					};
+				}}
+			>
+				<input type="hidden" value={form.batch.id} name="batchId" />
+				Organizers: <br />
+				<InputChip
+					value={form.batch.organizers.map((organizer) => organizer.channelName)}
+					bind:this={organizerInputChip}
+					name="organizers"
+					placeholder="Enter an organizer name"
+					whitelist={data.organizers}
+					class="w-1/2 m-4"
+				/>
+				<button class="btn btn-md variant-filled-primary mt-4">Update Organizers</button>
+			</form>
+		{/if}
 	</section>
 	<hr class="m-4" />
 	<section>Number of Active Drafts: {drafts.length}</section>

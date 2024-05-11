@@ -50,17 +50,26 @@
 		<p class="mt-4">No draft code supplied. Invalid link.</p>
 	{:else if data.linkExpired}
 		<p class="mt-4">One Time Draft link expired at {data.expiration.toLocaleString()}.</p>
+	{:else if data.draftStarted}
+		<p class="mt-4">One Time Draft link already started by {data.user}.</p>
 	{:else if !data.validCode}
 		<p class="mt-4">Invalid draft code supplied. Invalid link.</p>
 	{:else}
 		{#if !current_draft && !data.deckCode}
 			<p class="mt-4">
-				Welcome! This is a valid draft code for <b>one time use</b>. When ready, click the 'Start
-				Draft' button to launch a draft. After launch, the draft has
+				Welcome! This is a valid draft code for <b>one time use</b>. When ready, enter your name and
+				click the 'Start Draft' button to launch a draft. After launch, the draft has
 				<b>{data.draftExpiration} minutes</b> to be completed.
 			</p>
 			<form method="post" action="?/startDraft" use:enhance>
 				<input type="hidden" name="code" value={data.draftCode} />
+				<input
+					type="text"
+					name="username"
+					placeholder="Enter your name"
+					class="input w-64"
+					required
+				/><br />
 				<button type="submit" class="btn btn-lg variant-filled-primary mt-4">Start Draft</button><br
 				/>
 			</form>

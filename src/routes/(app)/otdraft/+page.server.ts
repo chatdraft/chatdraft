@@ -78,6 +78,16 @@ export const load = (async (request) => {
 		};
 	}
 
+	if (draftStatus == OtdStatus.Started) {
+		return {
+			validCode: true,
+			startedAt: draft.startedAt,
+			user: draft.user,
+			draftStarted: true,
+			draftCode: draftCode
+		};
+	}
+
 	return {
 		draftCode: draftCode,
 		validCode: true,
@@ -90,16 +100,18 @@ export const actions = {
 	startDraft: async ({ request }) => {
 		const form = await request.formData();
 		const code = form.get('code')?.toString();
-		if (code) {
+		const username = form.get('username')?.toString();
+		if (code && username) {
 			const existingDraft = await prisma.oneTimeDraft.GetOneTimeDraft(code);
 			if (!existingDraft) throw error(404, 'Draft not found');
-			if (existingDraft.startedAt) throw error(400, 'Draft already started');
+			if (existingDraft.startedAt)
+				throw error(400, `Draft already started by ${existingDraft.user}`);
 			const currentCards = await GetAllCards();
 			const draftPool = existingDraft?.batch.cardPool.split(',') ?? null;
 			const draft = new Draft('', 0, 6, currentCards, undefined, draftPool);
 			await draft.StartDraft();
 			SetOneTimeDraft(code, draft);
-			await prisma.oneTimeDraft.StartOneTimeDraft(code);
+			await prisma.oneTimeDraft.StartOneTimeDraft(code, username);
 
 			const draftExpiration_ms = existingDraft.batch.draftExpiration * minutes_to_ms;
 			setTimeout(() => {

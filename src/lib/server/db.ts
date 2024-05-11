@@ -740,6 +740,42 @@ export const prisma = new PrismaClient().$extends({
 					if (error instanceof Error) message = error.message;
 					console.log(message);
 				}
+			},
+			async UpdateOneTimeBatchOrganizer(batchId: string, organizerIds: string[]) {
+				try {
+					// Remove all organizers
+					await prisma.oneTimeDraftBatch.update({
+						where: {
+							id: batchId
+						},
+						data: {
+							organizers: {
+								set: []
+							}
+						}
+					});
+					// Set new organizers
+					return await prisma.oneTimeDraftBatch.update({
+						where: {
+							id: batchId
+						},
+						data: {
+							organizers: {
+								connect: organizerIds.map((organizerId) => {
+									return { id: organizerId };
+								})
+							}
+						},
+						include: {
+							drafts: true,
+							organizers: true
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
 			}
 		},
 		oneTimeDraft: {
@@ -748,14 +784,15 @@ export const prisma = new PrismaClient().$extends({
 			 * @param id ID of the One Time Draft
 			 * @returns Updated draft
 			 */
-			async StartOneTimeDraft(id: string) {
+			async StartOneTimeDraft(id: string, userName: string) {
 				try {
 					const draft = await prisma.oneTimeDraft.update({
 						where: {
 							id: id
 						},
 						data: {
-							startedAt: new Date()
+							startedAt: new Date(),
+							user: userName
 						}
 					});
 					return draft;
@@ -776,20 +813,8 @@ export const prisma = new PrismaClient().$extends({
 						where: {
 							id: id
 						},
-						select: {
-							batchId: true,
-							cards: true,
-							finishedAt: true,
-							id: true,
-							startedAt: true,
-							batch: {
-								select: {
-									cardPool: true,
-									expiration: true,
-									tag: true,
-									draftExpiration: true
-								}
-							}
+						include: {
+							batch: true
 						}
 					});
 					return draft;

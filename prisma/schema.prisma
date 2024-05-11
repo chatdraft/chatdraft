@@ -97,4 +97,5 @@ model OneTimeDraft {
   startedAt DateTime?
   finishedAt DateTime?
   cards String?
+  user String?
 }
