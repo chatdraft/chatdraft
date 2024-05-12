@@ -26,7 +26,6 @@
 <section class="p-4">
 	<section>
 		<h1 class="h1">Organizer</h1>
-		<br />
 		<h2 class="h2">One Time Drafts</h2>
 		<form method="POST" action="?/viewOtdBatch" use:enhance>
 			<label for="otdraftBatchTag" class="label font-bold">Batch Tag:</label>
@@ -44,7 +43,7 @@
 	</section>
 	{#if form?.otdBatch}
 		<hr class="m-4" />
-		<h3 class="h3">Batch Details:</h3>
+		<h3 class="h3">Batch Details</h3>
 		<p><b>Tag:</b> {form.otdBatch.tag}</p>
 		<p><b>Expiration:</b> {form.otdBatch.expiration.toLocaleDateString()}</p>
 		<p><b>Count:</b> {form.otdBatch.drafts.length}</p>
