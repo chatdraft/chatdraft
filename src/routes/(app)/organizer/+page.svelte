@@ -44,16 +44,15 @@
 	{#if form?.otdBatch}
 		<hr class="m-4" />
 		<h2 class="h2">OTD Batch:</h2>
-		<p>Batch Tag: {form.otdBatch.tag}</p>
-		<p>Batch Expiration: {form.otdBatch.expiration.toLocaleDateString()}</p>
-		<p>Batch OTD Count: {form.otdBatch.drafts.length}</p>
-		<p>Draft Expiration Time: {form.otdBatch.draftExpiration} minutes</p>
+		<p><b>Batch Tag:</b> {form.otdBatch.tag}</p>
+		<p><b>Batch Expiration:</b> {form.otdBatch.expiration.toLocaleDateString()}</p>
+		<p><b>Batch OTD Count:</b> {form.otdBatch.drafts.length}</p>
+		<p><b>Draft Expiration Time:</b> {form.otdBatch.draftExpiration} minutes</p>
 		<p>
-			Batch OTD Organizers: {form.otdBatch.organizers
-				.map((organizer) => organizer.channelName)
-				.join(', ')}
+			<b>Batch OTD Organizers:</b>
+			{form.otdBatch.organizers.map((organizer) => organizer.channelName).join(', ')}
 		</p>
-		<Accordion regionControl="flex-row-reverse gap-4">
+		<Accordion regionControl="flex-row-reverse gap-4 text-primary-500">
 			<AccordionItem>
 				<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
 				<svelte:fragment slot="content">

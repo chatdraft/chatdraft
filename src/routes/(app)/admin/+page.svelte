@@ -354,10 +354,10 @@
 		</form>
 		{#if form?.batch}
 			<br />
-			<p>Batch Tag: {form.batch.tag}</p>
-			<p>Batch Expiration: {form.batch.expiration.toLocaleDateString()}</p>
-			<p>Batch OTD Count: {form.batch.drafts.length}</p>
-			<Accordion regionControl="flex-row-reverse gap-4">
+			<p><b>Batch Tag:</b> {form.batch.tag}</p>
+			<p><b>Batch Expiration:</b> {form.batch.expiration.toLocaleDateString()}</p>
+			<p><b>Batch OTD Count:</b> {form.batch.drafts.length}</p>
+			<Accordion regionControl="flex-row-reverse gap-4 text-primary-500">
 				<AccordionItem>
 					<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
 					<svelte:fragment slot="content">
@@ -367,7 +367,7 @@
 			</Accordion>
 		{/if}
 		{#if form?.checkDataUri}
-			Batch Links:
+			<b>Batch Links:</b>
 			<a href={form.checkDataUri} class="anchor" download="{form.batch.tag}.txt">
 				{form.batch.tag}
 				<iconify-icon icon="ion:download" />
@@ -386,7 +386,7 @@
 				}}
 			>
 				<input type="hidden" value={form.batch.id} name="batchId" />
-				Organizers: <br />
+				<b>Organizers:</b> <br />
 				<InputChip
 					value={form.batch.organizers.map((organizer) => organizer.channelName)}
 					bind:this={organizerInputChip}
