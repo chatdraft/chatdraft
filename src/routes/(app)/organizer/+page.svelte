@@ -27,15 +27,16 @@
 	<section>
 		<h1 class="h1">Organizer</h1>
 		<br />
+		<h2 class="h2">One Time Drafts</h2>
 		<form method="POST" action="?/viewOtdBatch" use:enhance>
-			<label for="otdraftBatchTag" class="label">One Time Draft Batch Tag:</label>
+			<label for="otdraftBatchTag" class="label font-bold">Batch Tag:</label>
 			<select class="select w-64" name="otdraftBatchTag">
-				<option value="">Select an OTD Batch to View</option>
+				<option value="">Select OTD Batch</option>
 				{#each data.otdBatches || [] as otdBatch}
 					<option value={otdBatch.tag}>{otdBatch.tag}</option>
 				{/each}
 			</select>
-			<button class="btn variant-filled-primary">View OTD Batch</button>
+			<button class="btn variant-filled-primary">View</button>
 			{#if form?.otdBatchTagMissing}
 				<span class="text-error-500 font-bold">* Please select an OTD Batch Tag</span>
 			{/if}
@@ -43,24 +44,24 @@
 	</section>
 	{#if form?.otdBatch}
 		<hr class="m-4" />
-		<h2 class="h2">OTD Batch:</h2>
-		<p><b>Batch Tag:</b> {form.otdBatch.tag}</p>
-		<p><b>Batch Expiration:</b> {form.otdBatch.expiration.toLocaleDateString()}</p>
-		<p><b>Batch OTD Count:</b> {form.otdBatch.drafts.length}</p>
-		<p><b>Draft Expiration Time:</b> {form.otdBatch.draftExpiration} minutes</p>
+		<h3 class="h3">Batch Details:</h3>
+		<p><b>Tag:</b> {form.otdBatch.tag}</p>
+		<p><b>Expiration:</b> {form.otdBatch.expiration.toLocaleDateString()}</p>
+		<p><b>Count:</b> {form.otdBatch.drafts.length}</p>
+		<p><b>Timer:</b> {form.otdBatch.draftExpiration} minutes</p>
 		<p>
-			<b>Batch OTD Organizers:</b>
+			<b>Organizers:</b>
 			{form.otdBatch.organizers.map((organizer) => organizer.channelName).join(', ')}
 		</p>
-		<Accordion regionControl="flex-row-reverse gap-4 text-primary-500">
+		<Accordion regionControl="flex-row-reverse gap-4 text-primary-500 font-bold">
 			<AccordionItem>
-				<svelte:fragment slot="summary">Batch Card Pool</svelte:fragment>
+				<svelte:fragment slot="summary">Card Pool</svelte:fragment>
 				<svelte:fragment slot="content">
 					<p class="text-wrap">{form.otdBatch.cardPool.replaceAll(',', ', ')}</p>
 				</svelte:fragment>
 			</AccordionItem>
 		</Accordion>
-		<h3 class="h3">One Time Drafts</h3>
+		<h3 class="h3">Drafts Dashboard</h3>
 		<div class="table-container">
 			<table class="table table-hover table-compact text-center border-collapse w-min">
 				<thead>
