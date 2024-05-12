@@ -77,7 +77,7 @@
 				<tbody>
 					{#each form.otdBatch.drafts as draft, index}
 						<tr class="align-middle">
-							<td class="table-cell-fit align-middle">
+							<td class="table-cell-fit !align-middle">
 								{#if form.otdStatuses}
 									{#if form.otdStatuses[index] == OtdStatus.Unused}
 										<iconify-icon
@@ -198,13 +198,13 @@
 							<td>
 								<button
 									on:click|preventDefault
-									class="btn btn-icon btn-icon-sm"
+									class="btn p-0"
 									use:clipboard={`${$page.url.origin}/otdraft?code=${draft.id}`}
 								>
 									<iconify-icon
 										icon="clarity:copy-to-clipboard-line"
-										width="16"
-										height="16"
+										width="24"
+										height="24"
 										style="color: rgba(var(--color-primary-500) / 1)"
 										flip="horizontal"
 									/>
