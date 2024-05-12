@@ -90,6 +90,7 @@
 												target: form.otdStatuses[index],
 												placement: 'top'
 											}}
+											class="align-middle"
 										/>
 										<div
 											class="card p-4 variant-filled-secondary duration-0"
@@ -109,6 +110,7 @@
 												target: form.otdStatuses[index],
 												placement: 'top'
 											}}
+											class="align-middle"
 										/>
 										<div
 											class="card p-4 variant-filled-secondary duration-0"
@@ -129,6 +131,7 @@
 												target: form.otdStatuses[index],
 												placement: 'top'
 											}}
+											class="align-middle"
 										/>
 										<div
 											class="card p-4 variant-filled-secondary duration-0"
@@ -149,6 +152,7 @@
 												target: form.otdStatuses[index],
 												placement: 'top'
 											}}
+											class="align-middle"
 										/>
 										<div
 											class="card p-4 variant-filled-secondary duration-0"
@@ -168,6 +172,7 @@
 												target: form.otdStatuses[index],
 												placement: 'top'
 											}}
+											class="align-middle"
 										/>
 										<div
 											class="card p-4 variant-filled-secondary duration-0"
