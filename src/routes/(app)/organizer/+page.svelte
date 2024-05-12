@@ -26,9 +26,10 @@
 <section class="p-4">
 	<section>
 		<h1 class="h1">Organizer</h1>
+		<p class="space-y-4">Read only view for organization details.</p>
 		<h2 class="h2">One Time Drafts</h2>
 		<form method="POST" action="?/viewOtdBatch" use:enhance>
-			<label for="otdraftBatchTag" class="label font-bold">Batch Tag:</label>
+			<label for="otdraftBatchTag" class="label font-bold">Batch Tag</label>
 			<select class="select w-64" name="otdraftBatchTag">
 				<option value="">Select OTD Batch</option>
 				{#each data.otdBatches || [] as otdBatch}

@@ -64,11 +64,11 @@
 			<form method="post" action="?/startDraft" use:enhance>
 				<input type="hidden" name="code" value={data.draftCode} />
 				<input
-					type="text"
+					type="hidden"
 					name="username"
 					placeholder="Enter your name"
 					class="input w-64"
-					required
+					value=" "
 				/><br />
 				<button type="submit" class="btn btn-lg variant-filled-primary mt-4">Start Draft</button><br
 				/>
