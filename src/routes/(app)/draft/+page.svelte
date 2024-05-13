@@ -118,9 +118,9 @@
 						active="bg-primary-500"
 						label="Subscriber Votes +1"
 					/>
-					<!-- <b>Viewer to Battle:</b>
+					<b>Viewer to Battle:</b>
 					<input class="input w-64" type="text" name="battleChatter" placeholder="None" />
-					<br /> -->
+					<br />
 					<button class="btn btn-lg variant-filled-primary mt-2" on:click={ResetTimeout}
 						>Start Draft</button
 					><br />
