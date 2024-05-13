@@ -24,21 +24,23 @@
 </svelte:head>
 
 <section class="p-4">
-	<section>
+	<section class="space-y-4">
 		<h1 class="h1">Organizer</h1>
-		<p class="space-y-4">Read only view for organization details.</p>
+		<p>Read only view for organization details.</p>
 		<h2 class="h2">One Time Drafts</h2>
 		<form method="POST" action="?/viewOtdBatch" use:enhance>
 			<label for="otdraftBatchTag" class="label font-bold">Batch Tag</label>
-			<select class="select w-64" name="otdraftBatchTag">
-				<option value="">Select OTD Batch</option>
+			<select class="select w-64 invalid:text-gray-500" name="otdraftBatchTag" required>
+				<option disabled selected value="">Select OTD Batch</option>
 				{#each data.otdBatches || [] as otdBatch}
-					<option value={otdBatch.tag}>{otdBatch.tag}</option>
+					<option value={otdBatch.tag} selected={form?.otdBatch?.tag == otdBatch.tag}>
+						{otdBatch.tag}
+					</option>
 				{/each}
 			</select>
 			<button class="btn variant-filled-primary">View</button>
 			{#if form?.otdBatchTagMissing}
-				<span class="text-error-500 font-bold">* Please select an OTD Batch Tag</span>
+				<p class="text-error-500 font-bold">No OTD batch tag selected.</p>
 			{/if}
 		</form>
 	</section>
@@ -200,7 +202,7 @@
 									{draft.id}
 								</a>
 							</td>
-							<td>
+							<td class="!align-middle">
 								<button
 									on:click|preventDefault
 									class="btn p-0"

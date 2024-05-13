@@ -69,7 +69,7 @@
 					placeholder="Enter your name"
 					class="input w-64"
 					value=" "
-				/><br />
+				/>
 				<button type="submit" class="btn btn-lg variant-filled-primary mt-4">Start Draft</button><br
 				/>
 			</form>
