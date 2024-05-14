@@ -1792,6 +1792,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Sage",
+			"variantKey": null,
+			"url": "/cards/Sage/",
+			"name": "Sage",
+			"description": "<b>On Reveal:</b> +2 Power for each different Power among all\nother cards here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sage-f2d8e991191fd67fb3c8e95c0ab6ddd29590497e187fa315c29a27691f2c3e5b.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "Sandman",
 			"variantKey": null,
 			"url": "/cards/Sandman/",
