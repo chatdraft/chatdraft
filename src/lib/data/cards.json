@@ -2329,7 +2329,7 @@
 			"name": "Werewolf By Night",
 			"description": "After you play an <b>On Reveal</b> card at another location, move there and\ngain +2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-52da3d0454a94b9b00be3ea28ca6c9b209661a148d30d621c55685b1a57fa964.webp",
-			"cost": 3
+			"cost": 4
 		},
 		{
 			"cardDefKey": "WhiteQueen",
