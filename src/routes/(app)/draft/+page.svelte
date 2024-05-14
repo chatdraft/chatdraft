@@ -3,7 +3,7 @@
 	import { twitch_login_uri } from '$lib/api/twitch/client';
 	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { CodeBlock } from '@skeletonlabs/skeleton';
+	import { Accordion, AccordionItem, CodeBlock } from '@skeletonlabs/skeleton';
 	import { getContext, onDestroy, onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import {
@@ -112,14 +112,21 @@
 						<SelectionCountSlider bind:selectionCount />
 						<div />
 					</div>
-					<ChatDraftSlideToggle
-						name="subsExtraVote"
-						checked={data.subsExtraVote}
-						active="bg-primary-500"
-						label="Subscriber Votes +1"
-					/>
-					<b>Viewer to Battle:</b>
-					<input class="input w-64" type="text" name="battleChatter" placeholder="None" />
+					<Accordion regionControl="flex-row-reverse gap-4 text-primary-500" width="w-1/2">
+						<AccordionItem>
+							<svelte:fragment slot="summary">Advanced</svelte:fragment>
+							<svelte:fragment slot="content">
+								<ChatDraftSlideToggle
+									name="subsExtraVote"
+									checked={data.subsExtraVote}
+									active="bg-primary-500"
+									label="Subscriber Votes +1"
+								/>
+								<b>Battle Viewer:</b>
+								<input class="input w-64" type="text" name="battleChatter" placeholder="None" />
+							</svelte:fragment>
+						</AccordionItem>
+					</Accordion>
 					<br />
 					<button class="btn btn-lg variant-filled-primary mt-2" on:click={ResetTimeout}
 						>Start Draft</button
