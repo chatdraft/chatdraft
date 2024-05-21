@@ -1486,6 +1486,15 @@
 			"cost": 4
 		},
 		{
+			"cardDefKey": "Namora",
+			"variantKey": null,
+			"url": "/cards/Namora/",
+			"name": "Namora",
+			"description": "<b>On Reveal:</b> Give +5 Power to each of your cards alone at another location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Namora-5a16dd8c31b879fdf9664ddf1bce0459038eabf3691a20af306a3597deef7bf3.webp",
+			"cost": 5
+		},
+		{
 			"cardDefKey": "Nebula",
 			"variantKey": null,
 			"url": "/cards/Nebula/",
