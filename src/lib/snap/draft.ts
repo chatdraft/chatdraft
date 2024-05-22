@@ -117,7 +117,8 @@ export class Draft extends EventEmitter implements IDraft {
 				result: string,
 				ties: string[],
 				battleChatter: string | undefined,
-				battleCard: Card | undefined
+				battleCard: Card | undefined,
+				battleCardRandom: boolean | undefined
 			]
 		>();
 
@@ -127,7 +128,8 @@ export class Draft extends EventEmitter implements IDraft {
 				player_channel: string,
 				card: Card,
 				battleChatter: string | undefined,
-				battleCard: Card | undefined
+				battleCard: Card | undefined,
+				battlerCardRandom: boolean | undefined
 			]
 		>();
 
@@ -143,7 +145,8 @@ export class Draft extends EventEmitter implements IDraft {
 				player_channel: string,
 				result: string,
 				battleChatter: string | undefined,
-				battleCard: string | undefined
+				battleCard: string | undefined,
+				battleCardRandom: boolean | undefined
 			]
 		>();
 
@@ -241,15 +244,16 @@ export class Draft extends EventEmitter implements IDraft {
 		if (this.player != '') {
 			this.emit(this.onNewChoice, this.player, newChoice);
 			this.voteTimer = setTimeout(async () => {
-				const result = await this.CloseVoting();
-				if (result && result.winner) {
+				const { winner, ties, battleCard, battleVoteRandom } = await this.CloseVoting();
+				if (winner) {
 					this.emit(
 						this.onVotingClosed,
 						this.player,
-						result.winner?.name,
-						result.ties,
+						winner?.name,
+						ties,
 						this.battleChatter,
-						result.battleCard
+						battleCard,
+						battleVoteRandom
 					);
 				}
 			}, voting_period_ms);
@@ -293,9 +297,14 @@ export class Draft extends EventEmitter implements IDraft {
 			winner = ties[Math.floor(Math.random() * ties.length)];
 		}
 
-		const battleCard = await this.Choose(winner.cardDefKey);
+		const { battleVote, battleVoteRandom } = await this.Choose(winner.cardDefKey);
 
-		return { winner: winner, ties: ties.map((card) => card.name), battleCard: battleCard };
+		return {
+			winner: winner,
+			ties: ties.map((card) => card.name),
+			battleCard: battleVote,
+			battleVoteRandom: battleVoteRandom
+		};
 	}
 
 	/**
@@ -308,12 +317,14 @@ export class Draft extends EventEmitter implements IDraft {
 	 * @returns {*}
 	 */
 	public async Choose(cardDefKey: string | undefined | null, override: boolean = false) {
+		let battleVoteRandom = false;
 		if (this.battleChatter && this.battleVote) {
 			this.battleCards.push(this.battleVote);
 		} else if (this.battleChatter && !this.battleVote && this.currentChoice) {
 			this.battleVote =
 				this.currentChoice.cards[Math.floor(Math.random() * this.currentChoice.cards.length)];
 			this.battleCards.push(this.battleVote);
+			battleVoteRandom = true;
 		}
 		this.battleCards = this.battleCards.sort((a, b) => {
 			return a.cost - b.cost;
@@ -326,11 +337,12 @@ export class Draft extends EventEmitter implements IDraft {
 				this.player,
 				cardDefKey,
 				this.battleChatter,
-				battleVote?.name
+				battleVote?.name,
+				battleVoteRandom
 			);
-		if (!cardDefKey) return;
+		if (!cardDefKey) return { battleVote: undefined, battleVoteRandom: undefined };
 
-		if (!this.CanChoose(cardDefKey)) return;
+		if (!this.CanChoose(cardDefKey)) return { battleVote: undefined, battleVoteRandom: undefined };
 
 		this.cards.push((await this.LookupCard(cardDefKey))!);
 		this.cards = this.cards.sort((a, b) => {
@@ -344,7 +356,8 @@ export class Draft extends EventEmitter implements IDraft {
 				this.player,
 				(await this.LookupCard(cardDefKey))!,
 				this.battleChatter,
-				this.battleVote
+				this.battleVote,
+				battleVoteRandom
 			);
 		}
 
@@ -354,7 +367,7 @@ export class Draft extends EventEmitter implements IDraft {
 			if (this.player != '') {
 				this.emit(this.onDraftComplete, this);
 			}
-			return;
+			return { battleVote: battleVote, battleVoteRandom: battleVoteRandom };
 		}
 
 		let excluded = this.cards;
@@ -364,7 +377,7 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 		this.currentChoice = await this.NewChoice(excluded);
 
-		return battleVote;
+		return { battleVote: battleVote, battleVoteRandom: battleVoteRandom };
 	}
 
 	/**

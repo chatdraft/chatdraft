@@ -180,7 +180,15 @@ export type DraftEvents = {
 	DraftStarted: EventHandler<[player_channel: string]>;
 	DraftCanceled: EventHandler<[player_channel: string]>;
 	NewChoice: EventHandler<[player_channel: string, choice: Choice]>;
-	ChoiceSelected: EventHandler<[player_channel: string, card: Card]>;
+	ChoiceSelected: EventHandler<
+		[
+			player_channel: string,
+			card: Card,
+			battleChatter: string | undefined,
+			battleCard: Card | undefined,
+			battlerCardRandom: boolean | undefined
+		]
+	>;
 	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
 	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
 	ChoiceOverride: EventHandler<[player_channel: string, result: string]>;

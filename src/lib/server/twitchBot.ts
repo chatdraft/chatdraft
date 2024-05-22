@@ -272,14 +272,14 @@ export default class TwitchBot {
 				player_channel,
 				`A new draft has started vs @${battleChatter}! Type the number to vote for the card you want to draft!`
 			);
-			const canWhisper = TwitchBot.Message(
+			const canWhisper = await TwitchBot.Message(
 				battleChatter,
-				`A new chat draft battle has started in ${player_channel}'s channel!`
+				`Your chat draft battle has started in ${player_channel}'s channel!`
 			);
 			if (!canWhisper) {
 				TwitchBot.Say(
 					player_channel,
-					`Unable to Whisper @${battleChatter}. Please follow chatdraftbot or allow whispers from strangers.`
+					`@${battleChatter}: Unable to Whisper. Please follow chatdraftbot to receive your deck code after draft.`
 				);
 			}
 		} else {
@@ -320,11 +320,19 @@ export default class TwitchBot {
 		player_channel: string,
 		card: Card,
 		battleChatter: string | undefined = undefined,
-		battleCard: Card | undefined = undefined
+		battleCard: Card | undefined = undefined,
+		battlerCardRandom: boolean | undefined = undefined
 	) {
 		TwitchBot.Action(player_channel, `${card.name} has been selected!`);
 		if (battleChatter && battleCard) {
-			TwitchBot.Action(player_channel, `@${battleChatter} has drafted ${battleCard.name}`);
+			if (battlerCardRandom) {
+				TwitchBot.Action(
+					player_channel,
+					`@${battleChatter} has randomly picked ${battleCard.name}`
+				);
+			} else {
+				TwitchBot.Action(player_channel, `@${battleChatter} has drafted ${battleCard.name}`);
+			}
 		}
 	}
 
@@ -353,13 +361,7 @@ export default class TwitchBot {
 				player_channel,
 				`@${battleChatter} has drafted: ${battleDeck.map((card) => card.name).join(', ')}.`
 			);
-			const messageSent = await TwitchBot.Message(
-				battleChatter,
-				`Your drafted deck code: ${GetDeckCode(battleDeck)}`
-			);
-			if (!messageSent) {
-				TwitchBot.Say(player_channel, `@${battleChatter}: ${GetDeckCode(battleDeck)}`);
-			}
+			await TwitchBot.Message(battleChatter, `Your drafted deck code: ${GetDeckCode(battleDeck)}`);
 		}
 	}
 
@@ -392,7 +394,8 @@ export default class TwitchBot {
 		result: string,
 		ties: string[],
 		battleChatter: string | undefined = undefined,
-		battleCard: Card | undefined = undefined
+		battleCard: Card | undefined = undefined,
+		battlerCardRandom: boolean | undefined = undefined
 	) {
 		if (ties.length > 1) {
 			TwitchBot.Action(player_channel, `${result} chosen after tie between ${ties.join(', ')}.`);
@@ -401,7 +404,14 @@ export default class TwitchBot {
 		}
 
 		if (battleChatter && battleCard) {
-			TwitchBot.Action(player_channel, `@${battleChatter} has selected ${battleCard.name}!`);
+			if (battlerCardRandom) {
+				TwitchBot.Action(
+					player_channel,
+					`@${battleChatter} has randomly picked ${battleCard.name}`
+				);
+			} else {
+				TwitchBot.Action(player_channel, `@${battleChatter} has drafted ${battleCard.name}`);
+			}
 		}
 	}
 
@@ -419,11 +429,16 @@ export default class TwitchBot {
 		player_channel: string,
 		result: string,
 		battleChatter: string | undefined = undefined,
-		battleCard: string | undefined = undefined
+		battleCard: string | undefined = undefined,
+		battlerCardRandom: boolean | undefined = undefined
 	) {
 		TwitchBot.Say(player_channel, `${player_channel} overrode the vote and selected ${result}!`);
 		if (battleChatter && battleCard) {
-			TwitchBot.Action(player_channel, `${battleChatter} has drafted ${battleCard}`);
+			if (battlerCardRandom) {
+				TwitchBot.Action(player_channel, `@${battleChatter} has randomly picked ${battleCard}`);
+			} else {
+				TwitchBot.Action(player_channel, `@${battleChatter} has drafted ${battleCard}`);
+			}
 		}
 	}
 
