@@ -158,7 +158,7 @@
 			"variantKey": null,
 			"url": "/cards/BaronMordo/",
 			"name": "Baron Mordo",
-			"description": "<b>On Reveal:</b> Your opponent draws a card. Set its Cost to 6.",
+			"description": "<b>On Reveal:</b> The top card of your opponent's deck costs 6 until turn 6.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BaronMordo-b1e091d8ab0bfe612bc37ab57dd8d1de773745d87308fc1017927c60ad7194ef.webp",
 			"cost": 2
 		},
@@ -347,8 +347,8 @@
 			"variantKey": null,
 			"url": "/cards/CaptainAmerica/",
 			"name": "Captain America",
-			"description": "<b>Ongoing:</b> Your other cards at this location have +1 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainAmerica-242d6fdd164c127eef599cdfeeab856e3bb0ee351acbb9a7dc094f46449e1696.webp",
+			"description": "<b>Ongoing:</b> Your other <b>Ongoing</b> cards here have +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainAmerica-2d8a802281d0e136143e8dee354b87d4c4678e71a304a3856b732ba56acfc475.webp",
 			"cost": 3
 		},
 		{
@@ -771,7 +771,7 @@
 			"url": "/cards/GrandMaster/",
 			"name": "Grand Master",
 			"description": "<b>On Reveal:</b> Move one of your other <b>On Reveal</b> cards here to the middle location. Its ability happens again.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GrandMaster-685e5a881c789e0785b502a9d4ff01a90f5f66f0fe233f43508ddd147d02a496.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GrandMaster-f96b4a2b9747b54381426853b03f813836b28643e5d00fe4fc549762505deb87.webp",
 			"cost": 2
 		},
 		{
@@ -1149,7 +1149,7 @@
 			"url": "/cards/Leader/",
 			"name": "Leader",
 			"description": "<b>On Reveal:</b> Copy the enemy card(s) with the highest Power played this turn, but on your side.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leader-b26780c5d835a83bb87b36939a4513b1c18b1b24cc1856896d49c4e9f56d9b53.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leader-6f4600d3fb41a9214d78f707a249592d1e4bfe4758f824d17f2c8d24c16cf941.webp",
 			"cost": 6
 		},
 		{
@@ -1158,7 +1158,7 @@
 			"url": "/cards/Leech/",
 			"name": "Leech",
 			"description": "<b>On Reveal:</b> Remove the text from cards with <b>On Reveal</b> abilities in\nyour opponent's hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-2a367a12503f9b566073e66bbb05d04e5d7789658b8e53ca2256a1c136dae095.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-08586bf91dab3294978fdbd2e36cca5d30bacedba343c35e8d0a13dcede14962.webp",
 			"cost": 5
 		},
 		{
@@ -1203,7 +1203,7 @@
 			"url": "/cards/LukeCage/",
 			"name": "Luke Cage",
 			"description": "<b>Ongoing:</b> Your cards can't have their Power reduced.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-3ed733977deec1567d28494c1930748de736e7158154899d42b2441bac997418.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-daa58dd8a3d7632ee2bbaa4cb77e9c4d8513608ef6ef151ee155cae69a5b3438.webp",
 			"cost": 3
 		},
 		{
@@ -1877,8 +1877,8 @@
 			"variantKey": null,
 			"url": "/cards/Sentry/",
 			"name": "Sentry",
-			"description": "You can't play this at the right location.\n<b>On Reveal:</b> Add a -10 Power Void to the right location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sentry-4e75060f2748e720934f666d3074100a2bf1b160017071e34e24262e5b1db4be.webp",
+			"description": "You can't play this at the right location.\n<b>On Reveal:</b> Add a -8 Power Void to the right location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sentry-a97d94a84cb4ddfd774239d12ad3f866e7b0f56e8ec84f002346272571d8f60b.webp",
 			"cost": 4
 		},
 		{
@@ -1995,7 +1995,7 @@
 			"url": "/cards/Spectrum/",
 			"name": "Spectrum",
 			"description": "<b>On Reveal:</b> Give your <b>Ongoing</b> cards +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Spectrum-00b28fce37b71e9d0f147629cede843adc7ff72e9d42398e7f06df589f37277b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Spectrum-a265e4500773d6ab565aa5b72f03643fb4582275f21ca3abb32f2b5bd4ba8190.webp",
 			"cost": 6
 		},
 		{
@@ -2346,8 +2346,8 @@
 			"url": "/cards/WerewolfByNight/",
 			"name": "Werewolf By Night",
 			"description": "After you play an <b>On Reveal</b> card at another location, move there and\ngain +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-52da3d0454a94b9b00be3ea28ca6c9b209661a148d30d621c55685b1a57fa964.webp",
-			"cost": 4
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-4ba25fdcbd7d8d99903d579c6661090c46fc8c8e66dd9fdc6689e827c36852f2.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "WhiteQueen",
