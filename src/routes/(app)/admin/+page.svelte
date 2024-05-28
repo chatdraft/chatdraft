@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { AccordionItem, FileDropzone, InputChip } from '@skeletonlabs/skeleton';
+	import { AccordionItem, FileDropzone, InputChip, popup } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { getToastStore, Accordion } from '@skeletonlabs/skeleton';
 	import { title } from '$lib/title';
+	import DurationSlider from '$lib/components/DurationSlider.svelte';
+	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
+	import { EntrantStatus } from '$lib/event';
 
 	const toastStore = getToastStore();
 
@@ -22,7 +25,12 @@
 	let organizerList: string[] = [];
 	let organizerInputChip: InputChip;
 
+	let currentEventDuration: number = 90;
+	let currentEventSelections: number = 6;
+
 	export let form;
+
+	function StartEvent() {}
 
 	title.set('Oro Chat Draft - Admin');
 </script>
@@ -396,6 +404,163 @@
 					class="w-1/2 m-4"
 				/>
 				<button class="btn btn-md variant-filled-primary mt-4">Update Organizers</button>
+			</form>
+		{/if}
+	</section>
+	<hr class="m-4" />
+	<section>
+		<h3 class="h3">Current Event</h3>
+		{#if data.currentEvent}
+			<p>Duration: {data.currentEvent.duration} seconds</p>
+
+			<p>Selections: {data.currentEvent.selections}</p>
+			<button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}
+				><iconify-icon icon="material-symbols:refresh" /></button
+			>
+			<div class="table-container">
+				<table class="table table-hover table-compact text-center border-collapse w-min">
+					<thead>
+						<tr>
+							<th class="table-cell-fit">Status</th>
+							<th class="table-cell-fit text-center">User</th>
+							<th class="text-center table-cell-fit">Battle Viewer</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each data.currentEvent.entrants as entrant}
+							<tr class="align-middle">
+								<td>
+									{#if entrant.status == EntrantStatus.Invited}
+										<iconify-icon
+											icon="material-symbols:circle"
+											width="24"
+											height="24"
+											style="color: red"
+											inline
+											use:popup={{
+												event: 'hover',
+												target: entrant.status,
+												placement: 'top'
+											}}
+										/>
+										<div
+											class="card p-4 variant-filled-secondary duration-0"
+											data-popup={entrant.status}
+										>
+											<b>Invited</b>
+											<div class="arrow variant-filled-secondary" />
+										</div>
+									{:else if entrant.status == EntrantStatus.Joined}
+										<iconify-icon
+											icon="mdi:minus"
+											width="24"
+											height="24"
+											style="color: yellow"
+											inline
+											use:popup={{
+												event: 'hover',
+												target: entrant.status,
+												placement: 'top'
+											}}
+										/>
+										<div
+											class="card p-4 variant-filled-secondary duration-0"
+											data-popup={entrant.status}
+										>
+											<b>Joined</b>
+											<div class="arrow variant-filled-secondary" />
+										</div>
+									{:else if entrant.status == EntrantStatus.Ready}
+										<iconify-icon
+											icon="foundation:check"
+											width="24"
+											height="24"
+											style="color: green"
+											inline
+											use:popup={{
+												event: 'hover',
+												target: entrant.status,
+												placement: 'top'
+											}}
+										/>
+										<div
+											class="card p-4 variant-filled-secondary duration-0"
+											data-popup={entrant.status}
+										>
+											<b>Ready</b>
+											<div class="arrow variant-filled-secondary" />
+										</div>
+									{/if}
+								</td>
+								<td>
+									{entrant.user.channelName}
+								</td>
+								<td>
+									{entrant.battleViewer
+										? entrant.battleViewer
+										: entrant.status == EntrantStatus.Ready
+										? 'No one'
+										: 'No one yet'}
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
+			</div>
+			{#if !data.currentEvent.started}
+				<form
+					method="post"
+					action="?/startEvent"
+					use:enhance={({ cancel }) => {
+						if (data.currentEvent) {
+							const readyUsers = data.currentEvent?.entrants.filter(
+								(entrant) => entrant.status == EntrantStatus.Ready
+							);
+							if (readyUsers.length < 2) {
+								alert('At least two users must be ready in order to start the event.');
+								cancel();
+							}
+						}
+						cancel();
+					}}
+				>
+					<button class="btn btn-md variant-filled-primary mt-4" on:click={StartEvent}>
+						Start Event
+					</button>
+					<button formaction="?/cancelEvent" class="btn btn-md variant-filled-warning mt-4">
+						Cancel Event
+					</button>
+				</form>
+			{:else}
+				<form method="post" action="?/cancelEvent" use:enhance>
+					<button class="btn btn-md variant-filled-warning mt-4"> Finish Event </button>
+				</form>
+			{/if}
+		{:else}
+			<form method="post" action="?/createEvent" use:enhance>
+				<div class="grid grid-cols-2">
+					<DurationSlider bind:duration={currentEventDuration} name="eventDuration" />
+				</div>
+				<div class="grid grid-cols-2">
+					<SelectionCountSlider
+						bind:selectionCount={currentEventSelections}
+						name="eventSelections"
+					/>
+				</div>
+				<InputChip
+					name="entrants"
+					placeholder="Enter an entrant name"
+					whitelist={data.authorizedUsers}
+					class="w-1/2 m-4"
+				/>
+
+				{#if form?.entrantsUnspecified}
+					<span class="text-error-500 font-bold">* At least two entrants must be specified.</span>
+				{/if}
+				<br />
+				<button class="btn btn-md variant-filled-primary mt-4"
+					>Create Event & Invite Entrants</button
+				>
 			</form>
 		{/if}
 	</section>

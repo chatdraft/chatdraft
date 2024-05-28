@@ -5,6 +5,12 @@ import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
 import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
 import TwitchBot from '$lib/server/twitchBot';
+import {
+	CancelCurrentEvent,
+	CreateEvent,
+	GetCurrentEvent,
+	StartCurrentEvent
+} from '$lib/server/event';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user || !locals.user.isAdmin) throw redirect(302, '/');
@@ -24,6 +30,7 @@ export const load = (async ({ locals }) => {
 		.map((user) => user.channelName);
 	const organizers = users?.filter((user) => user.isOrganizer).map((user) => user.channelName);
 	const otdBatches = await prisma.oneTimeDraftBatch.GetAllOneTimeDraftBatches();
+	const currentEvent = GetCurrentEvent();
 
 	return {
 		channels: channels,
@@ -34,7 +41,8 @@ export const load = (async ({ locals }) => {
 		adminUsers: adminUsers,
 		setupCompleteUsers: setupCompleteUsers,
 		organizers: organizers,
-		otdBatches: otdBatches
+		otdBatches: otdBatches,
+		currentEvent: currentEvent
 	};
 }) satisfies PageServerLoad;
 
@@ -239,5 +247,28 @@ export const actions = {
 
 		const batch = await prisma.oneTimeDraftBatch.UpdateOneTimeBatchOrganizer(batchId, organizerIds);
 		return { batch: batch };
+	},
+	createEvent: async ({ request, locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		if (data) {
+			const duration = Number(data.get('eventDuration')?.toString());
+			const selectionCount = Number(data.get('eventSelections')?.toString());
+			const entrantNamesData = data.getAll('entrants');
+			const entrantNames: string[] = entrantNamesData.map((data) => data.toString());
+			const entrants = await prisma.user.GetUsersByName(entrantNames);
+			if (entrants && entrants.length >= 2) CreateEvent(duration, selectionCount, entrants);
+			else return fail(400, { entrantsUnspecified: true });
+		}
+
+		return { currentEvent: GetCurrentEvent() };
+	},
+	startEvent: async ({ locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		StartCurrentEvent();
+	},
+	cancelEvent: async ({ locals }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		CancelCurrentEvent();
 	}
 } satisfies Actions;

@@ -553,11 +553,13 @@ export const prisma = new PrismaClient().$extends({
 			 * @param {string} twitchId Twitch User ID of the user to get the collection of
 			 * @returns {string[]} List of cards in the user's collection, or an empty array if collection complete.
 			 */
-			async GetUserCollection(twitchId: string) {
+			async GetUserCollection(username: string) {
 				try {
 					const data = await prisma.userPreference.findFirst({
 						where: {
-							userId: twitchId
+							user: {
+								channelName: username
+							}
 						},
 						select: {
 							collection: true

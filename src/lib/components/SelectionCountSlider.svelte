@@ -4,6 +4,7 @@
 	export let selectionCount: number;
 	export let minSelectionCount = 3;
 	export let maxSelectionCount = 6;
+	export let name = 'selectionCount';
 </script>
 
 <div class="flex justify-between items-center">
@@ -20,7 +21,7 @@
 		<RangeSlider
 			class="relative mb-6"
 			label="selectionCount"
-			name="selectionCount"
+			{name}
 			bind:value={selectionCount}
 			min={minSelectionCount}
 			max={maxSelectionCount}

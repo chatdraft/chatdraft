@@ -4,6 +4,7 @@
 	export let duration: number;
 	export let minDuration = 30;
 	export let maxDuration = 180;
+	export let name = 'duration';
 </script>
 
 <div class="flex justify-between items-center pt-2">
@@ -18,7 +19,7 @@
 		<RangeSlider
 			class="relative mb-6"
 			label="duration"
-			name="duration"
+			{name}
 			bind:value={duration}
 			min={minDuration}
 			max={maxDuration}
