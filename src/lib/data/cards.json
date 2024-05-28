@@ -1819,6 +1819,15 @@
 			"cost": 5
 		},
 		{
+			"cardDefKey": "Sasquatch",
+			"variantKey": null,
+			"url": "/cards/Sasquatch/",
+			"name": "Sasquatch",
+			"description": "Costs 1 less for each card you played last turn.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sasquatch-011b96abb528164bc2337723ea0ce0cd02fc49a5584619b1467f9cb148a894af.webp",
+			"cost": 6
+		},
+		{
 			"cardDefKey": "Sauron",
 			"variantKey": null,
 			"url": "/cards/Sauron/",
