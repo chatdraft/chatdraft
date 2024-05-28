@@ -520,8 +520,9 @@
 								alert('At least two users must be ready in order to start the event.');
 								cancel();
 							}
+						} else {
+							cancel();
 						}
-						cancel();
 					}}
 				>
 					<button class="btn btn-md variant-filled-primary mt-4" on:click={StartEvent}>
