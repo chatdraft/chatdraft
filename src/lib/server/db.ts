@@ -551,7 +551,7 @@ export const prisma = new PrismaClient().$extends({
 			 *
 			 * @async
 			 * @param {string} twitchId Twitch User ID of the user to get the collection of
-			 * @returns {string[]} List of cards in the user's collection, or an empty array if collection complete.
+			 * @returns {string[]} List of cards in the user's collection, or null if collection complete.
 			 */
 			async GetUserCollection(username: string) {
 				try {
@@ -567,14 +567,15 @@ export const prisma = new PrismaClient().$extends({
 					});
 
 					if (data && data.collection) {
-						return JSON.parse(data.collection) as string[];
+						const collection = JSON.parse(data.collection) as string[];
+						return collection.length > 0 ? collection : null;
 					}
 				} catch (error) {
 					let message = 'Unknown Error';
 					if (error instanceof Error) message = error.message;
 					console.log(message);
 				}
-				return [];
+				return null;
 			},
 
 			/**
