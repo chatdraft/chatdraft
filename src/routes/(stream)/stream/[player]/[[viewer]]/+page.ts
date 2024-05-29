@@ -20,7 +20,9 @@ export const load: PageLoad = async ({ fetch, params, url, data }) => {
 			hide: hide,
 			previewStatus: data.previewStatus,
 			previewDraft: data.previewDraft,
-			bgOpacity: data.bgOpacity
+			bgOpacity: data.bgOpacity,
+			displayDeck: params.viewer == 'viewer' ? draft.viewerDeck : draft.cards,
+			displayName: params.viewer == 'viewer' ? draft.viewerName : draft.player
 		};
 	}
 
@@ -31,6 +33,8 @@ export const load: PageLoad = async ({ fetch, params, url, data }) => {
 		hide: hide,
 		previewStatus: data.previewStatus,
 		previewDraft: data.previewDraft,
-		bgOpacity: data.bgOpacity
+		bgOpacity: data.bgOpacity,
+		displayDeck: [],
+		displayName: player
 	};
 };

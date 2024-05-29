@@ -19,6 +19,8 @@ export default interface IDraft {
 	duration: number;
 	selections: number;
 	deckName: string;
+	viewerDeck: Deck;
+	viewerName: string | undefined;
 }
 
 /**
@@ -70,7 +72,7 @@ export class Draft extends EventEmitter implements IDraft {
 		},
 		subsExtraVote = false,
 		collection: string[] | null,
-		battleChatter: string | undefined = undefined
+		viewerName: string | undefined = undefined
 	) {
 		super();
 		this.player = player_channel;
@@ -78,7 +80,7 @@ export class Draft extends EventEmitter implements IDraft {
 		this.selections = selections;
 		this.subsExtraVote = subsExtraVote;
 		this.all_cards = all_cards.all;
-		this.battleChatter = battleChatter;
+		this.viewerName = viewerName;
 
 		if (collection) {
 			this.all_cards = all_cards.all.filter((card) => collection.includes(card.cardDefKey));
@@ -101,9 +103,9 @@ export class Draft extends EventEmitter implements IDraft {
 	started: boolean = false;
 
 	// The viewer chat draft battle viewer and their vote and cards
-	battleChatter: string | undefined;
+	viewerName: string | undefined;
 	battleVote: Card | undefined;
-	battleCards: Deck = [];
+	viewerDeck: Deck = [];
 
 	onDraftStarted =
 		this.registerEvent<[player_channel: string, battleChatter: string | undefined]>();
@@ -164,7 +166,7 @@ export class Draft extends EventEmitter implements IDraft {
 		this.started = true;
 		this.startTime = DatetimeNowUtc();
 		if (this.player != '') {
-			this.emit(this.onDraftStarted, this.player, this.battleChatter);
+			this.emit(this.onDraftStarted, this.player, this.viewerName);
 		}
 
 		this.total = 0;
@@ -251,7 +253,7 @@ export class Draft extends EventEmitter implements IDraft {
 						this.player,
 						winner?.name,
 						ties,
-						this.battleChatter,
+						this.viewerName,
 						battleCard,
 						battleVoteRandom
 					);
@@ -259,7 +261,7 @@ export class Draft extends EventEmitter implements IDraft {
 			}, voting_period_ms);
 		}
 
-		if (this.battleCards) {
+		if (this.viewerDeck) {
 			this.battleVote = undefined;
 		}
 
@@ -318,15 +320,15 @@ export class Draft extends EventEmitter implements IDraft {
 	 */
 	public async Choose(cardDefKey: string | undefined | null, override: boolean = false) {
 		let battleVoteRandom = false;
-		if (this.battleChatter && this.battleVote) {
-			this.battleCards.push(this.battleVote);
-		} else if (this.battleChatter && !this.battleVote && this.currentChoice) {
+		if (this.viewerName && this.battleVote) {
+			this.viewerDeck.push(this.battleVote);
+		} else if (this.viewerName && !this.battleVote && this.currentChoice) {
 			this.battleVote =
 				this.currentChoice.cards[Math.floor(Math.random() * this.currentChoice.cards.length)];
-			this.battleCards.push(this.battleVote);
+			this.viewerDeck.push(this.battleVote);
 			battleVoteRandom = true;
 		}
-		this.battleCards = this.battleCards.sort((a, b) => {
+		this.viewerDeck = this.viewerDeck.sort((a, b) => {
 			return a.cost - b.cost;
 		});
 		const battleVote = this.battleVote;
@@ -336,7 +338,7 @@ export class Draft extends EventEmitter implements IDraft {
 				this.onChoiceOverride,
 				this.player,
 				cardDefKey,
-				this.battleChatter,
+				this.viewerName,
 				battleVote?.name,
 				battleVoteRandom
 			);
@@ -355,7 +357,7 @@ export class Draft extends EventEmitter implements IDraft {
 				this.onChoiceSelected,
 				this.player,
 				(await this.LookupCard(cardDefKey))!,
-				this.battleChatter,
+				this.viewerName,
 				this.battleVote,
 				battleVoteRandom
 			);
@@ -371,9 +373,9 @@ export class Draft extends EventEmitter implements IDraft {
 		}
 
 		let excluded = this.cards;
-		if (this.battleChatter) {
+		if (this.viewerName) {
 			// Union of battleCards and streamer's cards
-			excluded = [...new Set([...excluded, ...this.battleCards])];
+			excluded = [...new Set([...excluded, ...this.viewerDeck])];
 		}
 		this.currentChoice = await this.NewChoice(excluded);
 
@@ -424,7 +426,7 @@ export class Draft extends EventEmitter implements IDraft {
 		const vote = Number(choice);
 		if (vote < 1 || vote > this.selections) return;
 
-		if (user.toLowerCase() == this.battleChatter) {
+		if (user.toLowerCase() == this.viewerName) {
 			this.battleVote = this.currentChoice.cards[vote - 1];
 			this.emit(this.onBattlerChoice, this.player, this.battleVote);
 		} else {
@@ -453,7 +455,9 @@ export class Draft extends EventEmitter implements IDraft {
 			currentChoice: this.currentChoice,
 			duration: this.duration,
 			selections: this.selections,
-			deckName: this.deckName
+			deckName: this.deckName,
+			viewerDeck: this.viewerDeck,
+			viewerName: this.viewerName
 		};
 	}
 

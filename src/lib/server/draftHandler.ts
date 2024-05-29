@@ -95,7 +95,9 @@ export async function GetPreviewDraft(): Promise<IDraft> {
 		currentChoice: currentChoice,
 		duration: duration,
 		selections: selections,
-		deckName: deckName
+		deckName: deckName,
+		viewerDeck: [],
+		viewerName: undefined
 	};
 }
 

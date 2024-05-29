@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../$types';
 import { GetPreviewStatus } from '$lib/server/previewHandler';
 import { GetPreviewDraft } from '$lib/server/draftHandler';
 

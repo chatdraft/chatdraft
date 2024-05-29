@@ -182,7 +182,9 @@
 						<PreviewModeLabel />
 					{/if}
 					<div class="flex justify-evenly items-center">
-						<h2 class="uppercase font-snapa font-outline font-outline-black">Drafted Cards</h2>
+						<h2 class="uppercase font-snapa font-outline font-outline-black">
+							{data.displayName} Drafted Cards
+						</h2>
 					</div>
 					<!-- Grid of Cards -->
 					<div
@@ -191,8 +193,8 @@
 						{#each Array(12) as _, i}
 							<div class="border-slate-200 border-0 rounded-lg relative">
 								<!-- Card Image -->
-								{#if current_draft?.cards[i]}
-									<SnapCard hideName={true} hideDescription={true} card={current_draft?.cards[i]} />
+								{#if data.displayDeck[i]}
+									<SnapCard hideName={true} hideDescription={true} card={data.displayDeck[i]} />
 								{:else}
 									<img src="/Placeholder.webp" alt="Placeholder card" />
 								{/if}

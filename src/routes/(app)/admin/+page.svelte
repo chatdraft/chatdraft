@@ -414,9 +414,9 @@
 			<p>Duration: {data.currentEvent.duration} seconds</p>
 
 			<p>Selections: {data.currentEvent.selections}</p>
-			<button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}
-				><iconify-icon icon="material-symbols:refresh" /></button
-			>
+			<button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}>
+				<iconify-icon icon="material-symbols:refresh" />
+			</button>
 			<div class="table-container">
 				<table class="table table-hover table-compact text-center border-collapse w-min">
 					<thead>

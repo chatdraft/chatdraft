@@ -23,6 +23,8 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		currentChoice: draft.currentChoice,
 		duration: draft.duration,
 		selections: draft.selections,
-		deckName: draft.deckName
+		deckName: draft.deckName,
+		viewerDeck: draft.viewerDeck,
+		viewerName: draft.viewerName
 	});
 };
