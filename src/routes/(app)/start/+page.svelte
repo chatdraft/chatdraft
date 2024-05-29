@@ -104,8 +104,8 @@
 						Click ‘Next’ to set up your browser source(s).
 					{:else}
 						<p>
-							The chat draft bot needs to be added to your Twitch channel. Click the “Join Channel”
-							button to invite the bot.
+							The chat draft bot needs to be added to your Twitch channel. Click ‘Join Channel’ to
+							invite the bot.
 						</p>
 
 						<form
@@ -140,7 +140,7 @@
 					<svelte:fragment slot="header">Setup Complete!</svelte:fragment>
 					<p>Congratulations! You have successfully configured Oro Chat Draft!</p>
 					<br />
-					<p>Click ‘Finish' to complete Getting Started.</p>
+					<p>Click ‘Finish’ to complete Getting Started.</p>
 				</Step>
 			</Stepper>
 		</form>

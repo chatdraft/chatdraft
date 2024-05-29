@@ -528,9 +528,9 @@
 					<button class="btn btn-md variant-filled-primary mt-4" on:click={StartEvent}>
 						Start Event
 					</button>
-					<button formaction="?/cancelEvent" class="btn btn-md variant-filled-warning mt-4">
-						Cancel Event
-					</button>
+				</form>
+				<form method="post" action="?/cancelEvent" use:enhance>
+					<button class="btn btn-md variant-filled-warning mt-4"> Cancel Event </button>
 				</form>
 			{:else}
 				<form method="post" action="?/cancelEvent" use:enhance>
@@ -559,9 +559,7 @@
 					<span class="text-error-500 font-bold">* At least two entrants must be specified.</span>
 				{/if}
 				<br />
-				<button class="btn btn-md variant-filled-primary mt-4"
-					>Create Event & Invite Entrants</button
-				>
+				<button class="btn btn-md variant-filled-primary mt-4">Create Event</button>
 			</form>
 		{/if}
 	</section>

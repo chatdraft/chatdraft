@@ -7,50 +7,61 @@
 	export let form;
 </script>
 
-<div class="p-4">
+<div class="space-y-4 p-4">
 	<h1 class="h1">Event</h1>
 	{#if !data.currentEvent}
-		There is no event currently planned.
+		<p>No active events.</p>
 	{:else}
 		{@const currentEntrant = data.currentEvent.entrants.find(
 			(entrant) => data.user?.channelName == entrant.user.channelName
 		)}
 		{#if currentEntrant}
 			{#if currentEntrant.status == EntrantStatus.Invited}
-				<p>Welcome to the event. Please join.</p>
+				<p>Welcome to the Rolk Invitational Part Deux. Click ‘Join’ to enter the lobby.</p>
 				<form method="post" action="?/join" use:enhance>
-					<button class="btn btn-md variant-filled-primary mt-4">Join</button>
+					<button class="btn btn-md variant-filled-primary">Join</button>
 				</form>
 			{:else if currentEntrant.status == EntrantStatus.Joined}
-				<p>Welcome to the event. Please choose your drafting partner when ready.</p>
+				<p>
+					Rolk Invitational Part Deux requires viewer participation. Input the Twitch name for the
+					viewer drafter and click ‘Ready’ to complete event set up.
+				</p>
 				<form method="post" action="?/ready" use:enhance>
-					<b>Battle Viewer:</b>
-					<input class="input w-64" type="text" name="battleChatter" placeholder="None" />
+					<label class="font-bold inline-block" for="battleChatter_0"
+						>Viewer Drafter:
+						<input
+							class="input w-64"
+							type="text"
+							name="battleChatter"
+							placeholder="None"
+							id="battleChatter_0"
+						/>
+					</label>
 					{#if form?.battleChatterNotFound}
 						<span class="text-error-500 font-bold">
-							The user {form.battleChatter} was not found. Check spelling.
+							User {form.battleChatter} not found. Check spelling.
 						</span>
 					{/if}
-					<br />
-					<button class="btn btn-md variant-filled-primary mt-4">Ready</button>
-					<button formaction="?/unjoin" class="btn btn-md variant-filled-warning mt-4">
-						Unjoin
-					</button>
+					<div class="mt-4">
+					<button class="btn btn-md variant-filled-primary">Ready</button>
+					<button formaction="?/unjoin" class="btn btn-md variant-filled-warning">Leave</button>
+				</div>
 				</form>
 			{:else if currentEntrant.status == EntrantStatus.Ready}
 				<form method="post" action="?/unready" use:enhance>
-					<p>
-						You are ready. Please wait for the draft event to start.
-						<br />
-						Your battle viewer: {currentEntrant.battleViewer ? currentEntrant.battleViewer : 'None'}
+					<p class="font-bold">
+						Ready!</p>
+						<p>
+						Viewer Drafter: {currentEntrant.battleViewer ? currentEntrant.battleViewer : 'None'}<br/>
+						Event drafts will be launched by administrator.
 					</p>
-					<button class="btn btn-md variant-filled-warning mt-4">Unready</button>
+					<button class="btn btn-md variant-filled-warning mt-4">Not Ready</button>
 				</form>
 			{/if}
 		{:else if data.user}
-			<p>Current event does not include your account. Please contact the event organizers.</p>
+			<p>No active events for user.</p>
 		{:else}
-			<p>Please log in to join the event.</p>
+			<p>Log in required for events.</p>
 		{/if}
 	{/if}
 </div>
