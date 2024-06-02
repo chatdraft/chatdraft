@@ -30,8 +30,6 @@
 
 	export let form;
 
-	function StartEvent() {}
-
 	title.set('Oro Chat Draft - Admin');
 </script>
 
@@ -409,14 +407,17 @@
 	</section>
 	<hr class="m-4" />
 	<section>
-		<h3 class="h3">Current Event</h3>
+		<h3 class="h3 inline">Current Event</h3>
 		{#if data.currentEvent}
+			<button
+				class="btn-icon btn-icon-sm variant-filled-primary mx-4"
+				on:click={() => invalidateAll()}
+			>
+				<iconify-icon icon="material-symbols:refresh" />
+			</button>
 			<p>Duration: {data.currentEvent.duration} seconds</p>
 
 			<p>Selections: {data.currentEvent.selections}</p>
-			<button class="btn-icon btn-icon-sm variant-filled-primary" on:click={() => invalidateAll()}>
-				<iconify-icon icon="material-symbols:refresh" />
-			</button>
 			<div class="table-container">
 				<table class="table table-hover table-compact text-center border-collapse w-min">
 					<thead>
@@ -511,6 +512,7 @@
 				<form
 					method="post"
 					action="?/startEvent"
+					class="inline"
 					use:enhance={({ cancel }) => {
 						if (data.currentEvent) {
 							const readyUsers = data.currentEvent?.entrants.filter(
@@ -525,11 +527,9 @@
 						}
 					}}
 				>
-					<button class="btn btn-md variant-filled-primary mt-4" on:click={StartEvent}>
-						Start Event
-					</button>
+					<button class="btn btn-md variant-filled-primary mt-4"> Start Event </button>
 				</form>
-				<form method="post" action="?/cancelEvent" use:enhance>
+				<form method="post" action="?/cancelEvent" use:enhance class="inline-block">
 					<button class="btn btn-md variant-filled-warning mt-4"> Cancel Event </button>
 				</form>
 			{:else}
