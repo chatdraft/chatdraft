@@ -213,13 +213,13 @@
 			<div class="flex flex-shrink flex-col">
 				<div class="flex justify-evenly items-center">
 					<h2 class="uppercase font-snapa font-outline font-outline-black text-slate-200 text-2xl">
-						Drafted Deck
+						{data.displayName} Drafted Cards
 					</h2>
 				</div>
 				{#if data.hide == ''}
-					<SnapDeck cards={current_draft?.cards || []} cols={3} />
+					<SnapDeck cards={data.displayDeck || []} cols={3} />
 				{:else}
-					<SnapDeck cards={current_draft?.cards || []} cols={4} />
+					<SnapDeck cards={data.displayDeck || []} cols={4} />
 				{/if}
 			</div>
 		</div>
