@@ -83,7 +83,7 @@ export default class DraftFactory {
 
 		draft.onDraftComplete(async (draft) => {
 			await new Promise((f) => setTimeout(f, 2000));
-			TwitchBot.DraftComplete(draft.player, draft.cards, draft.viewerName, draft.battleCards);
+			TwitchBot.DraftComplete(draft.player, draft.cards, draft.viewerName, draft.viewerDeck);
 			DraftComplete(draft.player, draft.cards);
 			await new Promise((f) => setTimeout(f, duration * 2 * 1000));
 			SetPreviousDraft(draft);
