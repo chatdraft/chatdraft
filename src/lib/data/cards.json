@@ -748,6 +748,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Gilgamesh",
+			"variantKey": null,
+			"url": "/cards/Gilgamesh/",
+			"name": "Gilgamesh",
+			"description": "<b>On Reveal:</b> +1 Power for each of your other cards in play with increased Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gilgamesh-342a0cb0c141137689b9bbedf477699c3de25aaa1db119583d67fc5d9919d05e.webp",
+			"cost": 5
+		},
+		{
 			"cardDefKey": "Gladiator",
 			"variantKey": null,
 			"url": "/cards/Gladiator/",
@@ -2204,6 +2213,15 @@
 			"description": "<i>It's clobberin' time!</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TheThing-b31fa8f4c440826b9f6ee915f1b960143e80e139298c781e243f7eb7ee1a2397.webp",
 			"cost": 4
+		},
+		{
+			"cardDefKey": "Thena",
+			"variantKey": null,
+			"url": "/cards/Thena/",
+			"name": "Thena",
+			"description": "After each turn, +3 Power if you played <i>(exactly)</i> 2 cards.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thena-ab98cf244d9ad34e9c743829f24544cd6e771e4a7f011a2d36ed30968f2a0ffc.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Thor",
