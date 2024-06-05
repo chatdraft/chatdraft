@@ -96,6 +96,10 @@
 			battlerSelectedCard = JSON.parse(wsm.message!);
 		}
 
+		if (wsm.type == WebSocketMessageType.OpacityUpdated) {
+			data.bgOpacity = JSON.parse(wsm.message!).bgOpacity;
+		}
+
 		showDeck = false;
 		selectionCount = current_draft?.selections!;
 	};
@@ -131,14 +135,14 @@
 	<meta name="Marvel Snap Twitch Chat Draft" />
 </svelte:head>
 
-{#if current_draft}
+{#if current_draft && data.displayName}
 	{#if time_remaining}
 		<BrowserSourceHeader />
 		<div class="text-white text-4xl rounded-sm font-snapa">
 			{#if data.hide != 'choice'}
 				<!-- Pick Number and Timer -->
 				<div
-					class="bg-purple-900 text-white text-4xl rounded-t-lg bg-opacity-70"
+					class="bg-purple-900 text-white text-4xl rounded-t-lg bg-opacity-{data.bgOpacity}"
 					class:rounded-b-lg={data.hide != 'deck'}
 				>
 					<div class="flex items-center">
@@ -177,7 +181,9 @@
 			{/if}
 			{#if data.hide != 'deck'}
 				<!-- Drafted Cards -->
-				<div class="bg-purple-900 text-slate-200 text-2xl font-outline rounded-t-lg bg-opacity-70">
+				<div
+					class="bg-purple-900 text-slate-200 text-2xl font-outline rounded-t-lg bg-opacity-{data.bgOpacity}"
+				>
 					{#if preview_mode}
 						<PreviewModeLabel />
 					{/if}
@@ -203,12 +209,12 @@
 					</div>
 				</div>
 			{/if}
-			<BrowserSourceFooter />
+			<BrowserSourceFooter bgOpacity={data.bgOpacity} />
 		</div>
 	{:else if data.hide != 'deck'}
 		<BrowserSourceHeader />
 		<div
-			class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg bg-opacity-70"
+			class="flex flex-row bg-black/70 text-white bg-purple-900 text-4xl rounded-t-lg bg-opacity-{data.bgOpacity}"
 		>
 			<div class="flex flex-shrink flex-col">
 				<div class="flex justify-evenly items-center">
@@ -223,6 +229,6 @@
 				{/if}
 			</div>
 		</div>
-		<BrowserSourceFooter />
+		<BrowserSourceFooter bgOpacity={data.bgOpacity} />
 	{/if}
 {/if}

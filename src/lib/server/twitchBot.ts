@@ -120,6 +120,21 @@ export default class TwitchBot {
 						}
 					},
 					{ globalCooldown: 30, userCooldown: 60 }
+				),
+				createBotCommand(
+					'chatdraftcodev',
+					async (_, { broadcasterName, reply }) => {
+						const currentDraft = GetDraft(broadcasterName);
+						if (currentDraft?.viewerDeck.length == 12) {
+							reply(GetDeckCode(currentDraft.viewerDeck));
+						} else {
+							const previousDraft = GetPreviousDraft(broadcasterName);
+							if (previousDraft?.viewerDeck) {
+								reply(GetDeckCode(previousDraft.viewerDeck));
+							}
+						}
+					},
+					{ globalCooldown: 30, userCooldown: 60 }
 				)
 			]
 		});
@@ -143,7 +158,7 @@ export default class TwitchBot {
 
 			if (!draft) return;
 
-			if (['1', '2', '3', '4', '5', '6'].includes(text) && IsActive(draft.player)) {
+			if (['1', '2', '3', '4', '5', '6'].includes(text.trim()) && IsActive(draft.player)) {
 				draft.Vote(user, text, msg.userInfo.isSubscriber);
 				const wsm: WebSocketMessage = {
 					type: WebSocketMessageType.VoteUpdated,

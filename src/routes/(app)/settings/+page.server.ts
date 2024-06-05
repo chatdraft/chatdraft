@@ -8,6 +8,9 @@ import {
 	IsFullSourceConfigured
 } from '$lib/server/browserSourceHandler';
 import { prisma } from '$lib/server/db';
+import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
+import { DatetimeNowUtc } from '$lib/datetime';
+import { SendMessage } from '$lib/server/webSocketUtils';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user || !locals.user.isAuthorized) throw redirect(302, '/');
@@ -116,7 +119,15 @@ export const actions = {
 				bgOpacity
 			);
 
-			if (userPreference) locals.user.userPreferences = userPreference;
+			if (userPreference) {
+				locals.user.userPreferences = userPreference;
+				const wsm: WebSocketMessage = {
+					type: WebSocketMessageType.OpacityUpdated,
+					timestamp: DatetimeNowUtc(),
+					message: JSON.stringify({ bgOpacity: bgOpacity })
+				};
+				SendMessage(locals.user.channelName, wsm);
+			}
 
 			return { success: true };
 		}

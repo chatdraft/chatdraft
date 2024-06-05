@@ -30,6 +30,8 @@
 	let webSocketEstablished = false;
 	let ws: WebSocket | null = null;
 
+	let bgOpacity: number = data.bgOpacity;
+
 	const handleMessage = async (message: string) => {
 		const wsm: WebSocketMessage = JSON.parse(message);
 		if (wsm.type == WebSocketMessageType.BrowserUpdated) {
@@ -132,6 +134,23 @@
 		{deck_sources_configured}
 		{choices_sources_configured}
 	/>
+	<br />
+	<h3 class="h3">Background Opacity</h3>
+	<form
+		method="post"
+		action="?/updateOpacity"
+		use:enhance={() => {
+			return async ({ result }) => {
+				if (result.type == 'success') {
+					toastStore.trigger({ message: 'Background Opacity updated successfully.' });
+				}
+			};
+		}}
+		class="w-1/2 mt-2"
+	>
+		<BgOpacitySlider {bgOpacity} />
+		<button class="btn btn-lg variant-filled-primary mt-2">Save Opacity</button>
+	</form>
 	<br />
 
 	<h2 class="h2">Snap Collection</h2>
