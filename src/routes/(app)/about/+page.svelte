@@ -12,7 +12,7 @@
 </svelte:head>
 
 <div class="space-y-4 p-4">
-	<h1 class="h1">About Oro Chat Draft</h1>
+	<h1 class="h1"> About Oro Chat Draft</h1>
 	<p class="mt-4">
 		Oro Chat Draft Beta is targeted for Twitch Streamers playing Marvel Snap. The streamer (or
 		moderator) can launch a chat draft and then the program will run without requiring any focus or
