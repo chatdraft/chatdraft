@@ -3,14 +3,14 @@ import DraftFactory from '$lib/snap/draftFactory';
 import type { User } from '@prisma/client';
 import { prisma } from './db';
 
-type Event = {
+export type Event = {
 	duration: number;
 	selections: number;
 	entrants: Array<Entrant>;
 	started: boolean;
 };
 
-type Entrant = {
+export type Entrant = {
 	user: User;
 	battleViewer: string | undefined;
 	status: EntrantStatus;
@@ -96,4 +96,25 @@ export function ClearUserBattleViewer(username: string) {
 
 export function GetCurrentEvent() {
 	return currentEvent;
+}
+
+export function RemoveEntrant(channelName: string) {
+	if (currentEvent) {
+		const index = currentEvent.entrants.findIndex((entrant) => {
+			return entrant.user.channelName == channelName;
+		});
+		if (index > -1) {
+			currentEvent.entrants.splice(index, 1);
+		}
+	}
+}
+
+export function AddEntrant(entrant: User) {
+	if (currentEvent) {
+		currentEvent.entrants.push({
+			user: entrant,
+			battleViewer: undefined,
+			status: EntrantStatus.Invited
+		});
+	}
 }

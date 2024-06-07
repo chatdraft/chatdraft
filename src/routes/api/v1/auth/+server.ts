@@ -12,7 +12,7 @@ const authProvider = new RefreshingAuthProvider({
 	clientSecret: privateenv.TWITCH_CLIENT_SECRET
 });
 
-export const GET: RequestHandler = async ({ cookies, url }) => {
+export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 	const code = url.searchParams.get('code');
 	if (!code) throw error(400, 'No code provided.');
 
@@ -33,6 +33,7 @@ export const GET: RequestHandler = async ({ cookies, url }) => {
 			await prisma.token.SaveToken(user_id, tokenData);
 			authProvider.addUser(env.PUBLIC_TWITCH_USER_ID, tokenData, ['chat:read', 'chat:edit']);
 			TwitchBot.getInstance(authProvider);
+			locals.auth_provider.addUserForToken(tokenData);
 		}
 
 		// Optionally, you can upsert the user in the DB here

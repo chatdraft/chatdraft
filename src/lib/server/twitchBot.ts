@@ -11,6 +11,7 @@ import { DatetimeNowUtc } from '$lib/datetime';
 import { EventSubWsListener } from '@twurple/eventsub-ws';
 import { ApiClient } from '@twurple/api';
 import { type Card, type Deck, GetDeckCode } from '$lib/snap/cards';
+import type { Event } from '$lib/server/event';
 
 /**
  * Represents the singleton instance of the Chat Draft Twitch Bot
@@ -159,7 +160,7 @@ export default class TwitchBot {
 			if (!draft) return;
 
 			if (['1', '2', '3', '4', '5', '6'].includes(text.trim()) && IsActive(draft.player)) {
-				draft.Vote(user, text, msg.userInfo.isSubscriber);
+				draft.Vote(user, text.trim(), msg.userInfo.isSubscriber);
 				const wsm: WebSocketMessage = {
 					type: WebSocketMessageType.VoteUpdated,
 					timestamp: DatetimeNowUtc()
@@ -497,5 +498,27 @@ export default class TwitchBot {
 	public static async PartChannel(player_channel: string) {
 		if (TwitchBot.instance.bot) await TwitchBot.instance.bot.leave(player_channel);
 		return true;
+	}
+}
+
+export async function GetBotFollowers(
+	auth_provider: AuthProvider,
+	currentEvent: Event | undefined
+) {
+	try {
+		const api = new ApiClient({ authProvider: auth_provider });
+		const botFollowers = (
+			await api.channels.getChannelFollowers(env.PUBLIC_TWITCH_USER_ID)
+		).data.map((follower) => {
+			return {
+				viewer: follower.userName,
+				following: !!currentEvent?.entrants.find(
+					(entrant) => entrant.battleViewer === follower.userName
+				)
+			};
+		});
+		return botFollowers;
+	} catch (error) {
+		return undefined;
 	}
 }

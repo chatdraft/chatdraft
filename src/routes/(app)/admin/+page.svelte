@@ -415,6 +415,11 @@
 			>
 				<iconify-icon icon="material-symbols:refresh" />
 			</button>
+			{#if !data.botFollowers}
+				<span class="text-error-500 font-bold"
+					>* Unable to load bot follower status. Please setup chatbot again.</span
+				>
+			{/if}
 			<p>Duration: {data.currentEvent.duration} seconds</p>
 
 			<p>Selections: {data.currentEvent.selections}</p>
@@ -425,6 +430,8 @@
 							<th class="table-cell-fit">Status</th>
 							<th class="table-cell-fit text-center">User</th>
 							<th class="text-center table-cell-fit">Battle Viewer</th>
+							<th class="text-center table-cell-fit">Following</th>
+							<th class="text-center table-cell-fit">Remove</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -503,12 +510,64 @@
 										? 'No one'
 										: 'No one yet'}
 								</td>
+								<td>
+									{#if data.botFollowers}
+										{#if entrant.battleViewer && data.botFollowers.find((follower) => follower.viewer === entrant.battleViewer)?.following}
+											<iconify-icon
+												icon="foundation:check"
+												width="24"
+												height="24"
+												style="color: green"
+												inline
+											/>
+										{:else if entrant.battleViewer}
+											<iconify-icon
+												icon="foundation:x"
+												width="24"
+												height="24"
+												style="color: red"
+												inline
+												class="align-middle"
+											/>
+										{/if}
+									{:else}
+										<iconify-icon
+											icon="fluent:question-24-filled"
+											width="24"
+											height="24"
+											style="color: white"
+											inline
+											class="align-middle"
+										/>
+									{/if}
+								</td>
+								<td>
+									<form method="post" action="?/removeEventEntrant" use:enhance>
+										<input type="hidden" value={entrant.user.channelName} name="removedEntrant" />
+										<button class="btn-icon btn-icon-sm variant-outline-error">
+											<iconify-icon icon="mdi:remove-bold" />
+										</button>
+									</form>
+								</td>
 							</tr>
 						{/each}
 					</tbody>
 				</table>
 			</div>
 			{#if !data.currentEvent.started}
+				<form method="post" action="?/addEntrant" use:enhance class="mt-4">
+					<input class="input w-64" type="text" name="newEntrant" placeholder="New entrant" />
+					{#if form?.newEntrantUnspecified}
+						<span class="text-error-500 font-bold">* New entrant name is required</span>
+					{/if}
+					{#if form?.entrantNotFound}
+						<span class="text-error-500 font-bold">* User not found. Check spelling. </span>
+					{/if}
+					{#if form?.userAlreadyEntered}
+						<span class="text-error-500 font-bold">* User is already entered into event. </span>
+					{/if}
+					<button class="btn btn-sm variant-filled-primary">Add</button>
+				</form>
 				<form
 					method="post"
 					action="?/startEvent"

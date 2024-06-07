@@ -4,11 +4,13 @@ import type { Actions, PageServerLoad } from './$types';
 import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
 import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
-import TwitchBot from '$lib/server/twitchBot';
+import TwitchBot, { GetBotFollowers } from '$lib/server/twitchBot';
 import {
+	AddEntrant,
 	CancelCurrentEvent,
 	CreateEvent,
 	GetCurrentEvent,
+	RemoveEntrant,
 	StartCurrentEvent
 } from '$lib/server/event';
 
@@ -31,6 +33,7 @@ export const load = (async ({ locals }) => {
 	const organizers = users?.filter((user) => user.isOrganizer).map((user) => user.channelName);
 	const otdBatches = await prisma.oneTimeDraftBatch.GetAllOneTimeDraftBatches();
 	const currentEvent = GetCurrentEvent();
+	const botFollowers = GetBotFollowers(locals.auth_provider, currentEvent);
 
 	return {
 		channels: channels,
@@ -42,7 +45,8 @@ export const load = (async ({ locals }) => {
 		setupCompleteUsers: setupCompleteUsers,
 		organizers: organizers,
 		otdBatches: otdBatches,
-		currentEvent: currentEvent
+		currentEvent: currentEvent,
+		botFollowers: botFollowers
 	};
 }) satisfies PageServerLoad;
 
@@ -270,5 +274,40 @@ export const actions = {
 	cancelEvent: async ({ locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);
 		CancelCurrentEvent();
+	},
+	addEntrant: async ({ locals, request }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const currentEvent = GetCurrentEvent();
+		if (currentEvent) {
+			const data = await request.formData();
+			if (data) {
+				const newEntrant = data.get('newEntrant')?.toString();
+				if (newEntrant) {
+					const user = await prisma.user.GetUserByName(newEntrant);
+					if (
+						currentEvent.entrants.find((entrant) => entrant.user.channelName == user?.channelName)
+					) {
+						return fail(400, { userAlreadyEntered: true });
+					}
+					if (user && user.isAuthorized) {
+						AddEntrant(user);
+					} else {
+						return fail(400, { entrantNotFound: true });
+					}
+				}
+			} else {
+				return fail(400, { newEntrantUnspecified: true });
+			}
+		} else {
+			return fail(400, { noCurrentEvent: true });
+		}
+	},
+	removeEventEntrant: async ({ locals, request }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		if (data) {
+			const removedEntrant = data.get('removedEntrant')?.toString();
+			if (removedEntrant) RemoveEntrant(removedEntrant);
+		}
 	}
 } satisfies Actions;
