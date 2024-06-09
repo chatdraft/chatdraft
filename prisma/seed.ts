@@ -37,7 +37,25 @@ async function main() {
 		}
 	});
 
-	console.log({ oro, jjrolk });
+	const theory = await prisma.user.upsert({
+		where: {
+			twitchID: '39040663'
+		},
+		update: {},
+		create: {
+			channelName: 'skilled_theory',
+			displayName: 'Skilled_Theory',
+			twitchID: '39040663',
+			isAdmin: true,
+			initialSetupDone: false,
+			isAuthorized: true,
+			twitchProfilePictureURL:
+				'https://static-cdn.jtvnw.net/jtv_user_pictures/62390893-9bb5-4100-9f23-7ca7a271440c-profile_image-300x300.png'
+		}
+	});
+
+
+	console.log({ oro, jjrolk, theory });
 }
 
 main()
