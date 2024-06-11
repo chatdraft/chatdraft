@@ -1913,7 +1913,7 @@
 			"variantKey": null,
 			"url": "/cards/Sersi/",
 			"name": "Sersi",
-			"description": "<b>On Reveal:</b> Transform your other cards here into random cards that\\ncost 1 more. <i>(if able)</i>",
+			"description": "<b>On Reveal:</b> Transform your other cards here into random cards that\ncost 1 more. <i>(if able)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sersi-883007daf945c2609e542458e6f12c89f56def41871fed03c189ed3331b9caf7.webp",
 			"cost": 5
 		},
