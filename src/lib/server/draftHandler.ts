@@ -60,18 +60,10 @@ export function GetPreviousDrafts() {
  * @returns {Promise<IDraft>}
  */
 export async function GetPreviewDraft(): Promise<IDraft> {
-	const total = Math.floor(Math.random() * 13);
-
-	const deck: Card[] = [];
 	const shuffled: Card[] = [];
 	const cards = await GetAllCards();
 	cards.all.forEach((card) => shuffled.push(card));
 	shuffle(shuffled);
-	for (let i = 0; i < total; i++) {
-		deck.push(shuffled.pop()!);
-	}
-
-	const player = 'preview';
 
 	const duration = 60;
 	const selections = 6;
@@ -86,16 +78,15 @@ export async function GetPreviewDraft(): Promise<IDraft> {
 		currentChoice.cards.push(shuffled.pop()!);
 		currentChoice.voteCounts.push(0);
 	}
-	const deckName = 'Preview';
 
 	return {
-		total: total,
-		cards: deck,
-		player: player,
+		total: 0,
+		cards: [],
+		player: 'preview',
 		currentChoice: currentChoice,
 		duration: duration,
 		selections: selections,
-		deckName: deckName,
+		deckName: 'Preview',
 		viewerDeck: [],
 		viewerName: undefined
 	};

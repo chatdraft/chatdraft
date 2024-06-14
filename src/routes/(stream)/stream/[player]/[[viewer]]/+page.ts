@@ -34,7 +34,7 @@ export const load: PageLoad = async ({ fetch, params, url, data }) => {
 		previewStatus: data.previewStatus,
 		previewDraft: data.previewDraft,
 		bgOpacity: data.bgOpacity,
-		displayDeck: [],
-		displayName: player
+		displayDeck: data.previewStatus ? data.previewDraft.cards : [],
+		displayName: data.previewStatus ? (params.viewer == 'viewer' ? '[Viewer]' : player) : ''
 	};
 };
