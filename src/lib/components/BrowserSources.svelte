@@ -31,6 +31,9 @@
 	<Tab bind:group={tabSet} name="deckTab" value={2}>
 		<span>Deck</span>
 	</Tab>
+	<Tab bind:group={tabSet} name="viewerTab" value={3}>
+		<span>Viewer Deck</span>
+	</Tab>
 	<svelte:fragment slot="panel">
 		<div class="card p-2">
 			{#if tabSet === 0}
@@ -51,6 +54,13 @@
 				<BrowserSourceComponent
 					url={`${$page.url.origin}/stream/${user}?hide=choice`}
 					layerName="Oro%20Chat%20Draft%20Deck"
+					height={475}
+					width={500}
+				/>
+			{:else if tabSet === 3}
+				<BrowserSourceComponent
+					url={`${$page.url.origin}/stream/${user}/viewer?hide=choice`}
+					layerName="Oro%20Chat%20Draft%20Viewer%20Deck"
 					height={475}
 					width={500}
 				/>
