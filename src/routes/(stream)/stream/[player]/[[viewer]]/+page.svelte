@@ -65,7 +65,7 @@
 
 		if (wsm.type == WebSocketMessageType.DraftComplete) {
 			setTimeout(() => {
-				current_draft = null;
+				current_draft = undefined;
 			}, (current_draft ? current_draft.duration : 30) * 2 * 1000);
 			invalidateAll();
 		}
@@ -179,7 +179,7 @@
 			{#if data.hide != 'choice' && data.hide != 'deck'}
 				<div class="mt-2 bg-transparent" />
 			{/if}
-			{#if data.hide != 'deck'}
+			{#if data.hide != 'deck' && data.displayDeck}
 				<!-- Drafted Cards -->
 				<div
 					class="bg-purple-900 text-slate-200 text-2xl font-outline rounded-t-lg bg-opacity-{data.bgOpacity}"
