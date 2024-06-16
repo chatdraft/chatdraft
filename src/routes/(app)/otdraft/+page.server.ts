@@ -108,7 +108,7 @@ export const actions = {
 				throw error(400, `Draft already started by ${existingDraft.user}`);
 			const currentCards = await GetAllCards();
 			const draftPool = existingDraft?.batch.cardPool.split(',') ?? null;
-			const draft = new Draft('', 0, 6, currentCards, undefined, draftPool);
+			const draft = new Draft('', 0, 6, currentCards.all, undefined, draftPool);
 			await draft.StartDraft();
 			SetOneTimeDraft(code, draft);
 			await prisma.oneTimeDraft.StartOneTimeDraft(code, username);

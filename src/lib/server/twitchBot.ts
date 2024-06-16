@@ -25,7 +25,6 @@ export default class TwitchBot {
 	private bot: Bot | undefined;
 	private api: ApiClient | undefined;
 	private eventSub: EventSubWsListener | undefined;
-	private authProvider: AuthProvider | undefined;
 
 	/**
 	 * Creates an instance of TwitchBot.
@@ -35,8 +34,7 @@ export default class TwitchBot {
 	 * @param {RefreshingAuthProvider} authProvider The refreshing auth provider used to connect to Twitch Chat
 	 * @param {string[]} channels List of channels to connect to
 	 */
-	private constructor(authProvider: RefreshingAuthProvider, channels: string[]) {
-		this.authProvider = authProvider;
+	private constructor(private authProvider: RefreshingAuthProvider, channels: string[]) {
 		authProvider.addIntentsToUser(env.PUBLIC_TWITCH_USER_ID!, ['chat']);
 
 		this.bot = new Bot({

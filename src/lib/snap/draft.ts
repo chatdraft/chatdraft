@@ -36,9 +36,6 @@ export class Draft extends EventEmitter implements IDraft {
 	private voteTimer: NodeJS.Timeout | undefined;
 	public deckName: string = '';
 
-	public duration = 20;
-	public selections = 3;
-
 	public startTime: number | undefined;
 	public finishTime: number | undefined;
 
@@ -52,58 +49,39 @@ export class Draft extends EventEmitter implements IDraft {
 	 * @param {number} selections The number of selections per voting period
 	 * @param {{all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number}[]}} all_cards The list of cards to use for the draft
 	 * @param {boolean} [subsExtraVote=false] Whether subscribers get +1 extra vote added
-	 * @param {(string[] | null)} collection The users available collection.
-	 * @param {string} battleChatter The chatter also drafting in a chatter battle if any
+	 * @param {(string[] | null)} collection The user's available collection.
+	 * @param {string} viewerName The chatter also drafting in a viewer battle if any
 	 */
 	public constructor(
-		player_channel: string,
-		duration: number,
-		selections: number,
-		all_cards: {
-			all: {
-				cardDefKey: string;
-				variantKey: null;
-				url: string;
-				name: string;
-				description: string;
-				displayImageUrl: string;
-				cost: number;
-			}[];
-		},
-		subsExtraVote = false,
+		public player: string,
+		public duration: number,
+		public selections: number,
+		private all_cards: {
+			cardDefKey: string;
+			variantKey: null;
+			url: string;
+			name: string;
+			description: string;
+			displayImageUrl: string;
+			cost: number;
+		}[],
+		private subsExtraVote = false,
 		collection: string[] | null,
-		viewerName: string | undefined = undefined
+		public viewerName: string | undefined = undefined
 	) {
 		super();
-		this.player = player_channel;
-		this.duration = duration;
-		this.selections = selections;
-		this.subsExtraVote = subsExtraVote;
-		this.all_cards = all_cards.all;
-		this.viewerName = viewerName;
 
 		if (collection) {
-			this.all_cards = all_cards.all.filter((card) => collection.includes(card.cardDefKey));
+			this.all_cards = all_cards.filter((card) => collection.includes(card.cardDefKey));
 		}
 	}
+
 	cards: Deck = [];
 	total: number = 0;
-	player: string = '';
 	currentChoice: Choice | undefined;
-	subsExtraVote: boolean = false;
-	all_cards: {
-		cardDefKey: string;
-		variantKey: null;
-		url: string;
-		name: string;
-		description: string;
-		displayImageUrl: string;
-		cost: number;
-	}[];
 	started: boolean = false;
 
 	// The viewer chat draft battle viewer and their vote and cards
-	viewerName: string | undefined;
 	battleVote: Card | undefined;
 	viewerDeck: Deck = [];
 

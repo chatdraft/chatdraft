@@ -20,7 +20,7 @@
 		if (latestCardsReq.ok) {
 			current_cards = await latestCardsReq.json();
 		}
-		current_draft = new Draft('', 0, selectionCount, current_cards, undefined, null);
+		current_draft = new Draft('', 0, selectionCount, current_cards.all, undefined, null);
 		await current_draft.StartDraft();
 
 		current_draft = current_draft;

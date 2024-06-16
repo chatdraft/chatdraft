@@ -52,7 +52,7 @@ export default class DraftFactory {
 			player_channel,
 			duration,
 			selections,
-			await GetAllCards(),
+			(await GetAllCards()).all,
 			subsExtraVote,
 			playerCollection,
 			battleChatter
