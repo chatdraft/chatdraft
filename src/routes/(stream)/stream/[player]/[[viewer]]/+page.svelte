@@ -112,6 +112,7 @@
 	$: votes = current_draft?.currentChoice?.voteCounts!;
 	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
 	$: preview_mode = data.previewStatus;
+	$: maxVotes = votes && votes.length > 0 ? Math.max(...votes) : 0;
 
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage, data.draft?.player, data.hide);
@@ -169,7 +170,9 @@
 									{choice}
 									{index}
 									votes={votes[index]}
-									battlerSelected={battlerSelectedCard?.cardDefKey == choice.cardDefKey}
+									currentWinner={maxVotes > 0 && votes[index] == maxVotes}
+									battlerSelected={battlerSelectedCard?.cardDefKey === choice.cardDefKey}
+									viewerProfilePicture={data.viewerProfilePicture}
 								/>
 							{/each}
 						{/if}

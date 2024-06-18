@@ -8,10 +8,14 @@
 	export let index: number;
 	export let votes: number;
 	export let battlerSelected: boolean;
+	export let viewerProfilePicture: string | undefined;
+	export let currentWinner: boolean;
 </script>
 
 <div
-	class="border-white bg-black border-2 rounded-lg shadow-md shadow-black/100 relative bg-opacity-70"
+	class="bg-black outline outline-2 rounded-lg shadow-md shadow-black/100 relative bg-opacity-70 outline-white"
+	class:glow={currentWinner}
+	class:glow-yellow-500={currentWinner}
 	class:blur
 >
 	<!-- Selection Value-->
@@ -20,7 +24,7 @@
 	</span>
 
 	<!-- Vote Icon & Number of Votes-->
-	<VoteCounter {votes} {battlerSelected} />
+	<VoteCounter {votes} {battlerSelected} {viewerProfilePicture} />
 
 	<!-- Card Image -->
 	<div><SnapCard hideDescription={true} hideName={true} card={choice} /></div>

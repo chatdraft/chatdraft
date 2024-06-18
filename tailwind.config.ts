@@ -47,6 +47,7 @@ export default {
 		}),
 		plugin(({ addUtilities, theme }) => {
 			const fontOutlineUtilities = {};
+			const glowUtilities = {};
 			const colors = theme('colors');
 			for (const color in colors) {
 				if (typeof colors[color] === 'object') {
@@ -54,14 +55,21 @@ export default {
 						fontOutlineUtilities[`.font-outline-${color}-${shade}`] = {
 							'--tw-font-outline-color': colors[color][shade]
 						};
+						glowUtilities[`.glow-${color}-${shade}`] = {
+							'--tw-glow-color': colors[color][shade]
+						};
 					}
 				} else {
 					fontOutlineUtilities[`.font-outline-${color}`] = {
 						'--tw-font-outline-color': color
 					};
+					glowUtilities[`.glow-${color}`] = {
+						'--tw-glow-color': color
+					};
 				}
 			}
 			addUtilities(fontOutlineUtilities);
+			addUtilities(glowUtilities);
 		})
 	]
 } satisfies Config;

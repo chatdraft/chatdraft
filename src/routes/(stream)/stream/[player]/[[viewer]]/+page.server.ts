@@ -1,6 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { GetPreviewStatus } from '$lib/server/previewHandler';
 import { GetDraft, GetPreviewDraft } from '$lib/server/draftHandler';
+import { ApiClient } from '@twurple/api';
 
 export const ssr = false;
 
@@ -14,6 +15,11 @@ export const load = (async ({ params, locals, url }) => {
 	const draft = await GetDraft(player);
 	const previewStatus = GetPreviewStatus(player);
 	const previewDraft = await GetPreviewDraft();
+	let viewerProfilePicture = undefined;
+	if (draft?.viewerName) {
+		const api = new ApiClient({ authProvider: locals.auth_provider });
+		viewerProfilePicture = (await api.users.getUserByName(draft?.viewerName))?.profilePictureUrl;
+	}
 
 	return {
 		draft: draft?.toIDraft(),
@@ -34,6 +40,7 @@ export const load = (async ({ params, locals, url }) => {
 				: player
 			: params.viewer == 'viewer'
 			? draft?.viewerName
-			: player
+			: player,
+		viewerProfilePicture: viewerProfilePicture
 	};
 }) satisfies PageServerLoad;

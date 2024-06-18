@@ -57,4 +57,16 @@ body {
 		);
 		background-size: 35px 35px;
 	}
+	.glow {
+		--tw-shadow: 0px 0px 6px 6px var(--tw-glow-color) !important;
+		--tw-shadow-colored: 0px 0px 6px 6px var(--tw-glow-color) !important;
+		box-shadow: var(--tw-ring-offset-shadow, --tw-glow-color),
+			var(--tw-ring-shadow, --var-tw-glow-color), var(--tw-shadow) !important;
+	}
+	.glow-sm {
+		--tw-shadow: 0px 0px 4px 4px var(--tw-glow-color) !important;
+		--tw-shadow-colored: 0px 0px 6px 6px var(--tw-glow-color) !important;
+		box-shadow: var(--tw-ring-offset-shadow, --tw-glow-color),
+			var(--tw-ring-shadow, --var-tw-glow-color), var(--tw-shadow) !important;
+	}
 }
