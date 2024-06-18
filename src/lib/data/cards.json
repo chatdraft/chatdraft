@@ -1252,6 +1252,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Makkari",
+			"variantKey": null,
+			"url": "/cards/Makkari/",
+			"name": "Makkari",
+			"description": "After the turn, runs from your hand to a random location. <i>(if possible)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Makkari-36c47524d357d0e7c6c31717f3f6a27f42d4bc97a28310605f37d8870b8d81c3.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "ManThing",
 			"variantKey": null,
 			"url": "/cards/ManThing/",
