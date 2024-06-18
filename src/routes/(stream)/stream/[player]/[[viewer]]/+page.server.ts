@@ -2,6 +2,7 @@ import type { PageServerLoad } from './$types';
 import { GetPreviewStatus } from '$lib/server/previewHandler';
 import { GetDraft, GetPreviewDraft } from '$lib/server/draftHandler';
 import { ApiClient } from '@twurple/api';
+import { prisma } from '$lib/server/db';
 
 export const ssr = false;
 
@@ -21,6 +22,11 @@ export const load = (async ({ params, locals, url }) => {
 		viewerProfilePicture = (await api.users.getUserByName(draft?.viewerName))?.profilePictureUrl;
 	}
 
+	const bgOpacity =
+		locals.user?.userPreferences?.bgOpacity ??
+		(await prisma.userPreference.GetUserPreference(player))?.bgOpacity ??
+		70;
+
 	return {
 		draft: draft?.toIDraft(),
 		choice: draft?.currentChoice,
@@ -28,7 +34,7 @@ export const load = (async ({ params, locals, url }) => {
 		hide: hide,
 		previewStatus: previewStatus,
 		previewDraft: previewDraft,
-		bgOpacity: locals.user?.userPreferences?.bgOpacity,
+		bgOpacity: bgOpacity,
 		displayDeck: previewStatus
 			? previewDraft.cards
 			: params.viewer == 'viewer'
