@@ -1639,6 +1639,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Phastos",
+			"variantKey": null,
+			"url": "/cards/Phastos/",
+			"name": "Phastos",
+			"description": "<b>On Reveal:</b> Give each card in your deck -1 Cost or +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Phastos-4927b1ac49c8b005958ede37eb3b04bc003acd4a8655e529472b4573a03895d0.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "ThePhoenixForce",
 			"variantKey": null,
 			"url": "/cards/ThePhoenixForce/",
