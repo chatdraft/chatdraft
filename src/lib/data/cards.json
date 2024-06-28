@@ -69,7 +69,7 @@
 			"url": "/cards/Alioth/",
 			"name": "Alioth",
 			"description": "<b>On Reveal:</b> Remove the text from all unrevealed enemy cards here.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-5edeb83a7b0f82ce19910d1dd8db6f3ef7bd72e01870dc63bcef80047034ae8a.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-7e11fd5690b4de2456c53500ae8699ed6ca35bb9f2a690ba759cb5a939804a94.webp",
 			"cost": 6
 		},
 		{
@@ -95,8 +95,8 @@
 			"variantKey": null,
 			"url": "/cards/Angela/",
 			"name": "Angela",
-			"description": "After you play a card here,\n+2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-e5202dee422ce864dddd8caf0478be8639152aab75d3c14d54e5535278c7613d.webp",
+			"description": "After you play a card here,\n+1 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angela-d4ce6a71c979701cc1b49e9f5a1bbf87555acc3b3da2e9f4ad733296e289e6eb.webp",
 			"cost": 2
 		},
 		{
@@ -870,8 +870,8 @@
 			"url": "/cards/Hercules/",
 			"name": "Hercules",
 			"description": "The first time another card moves here each turn, move it to another location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-176cfb1ac3916406300d79c25ca50a4d3e501bb6cde3d5404efba92eea1fb0ef.webp",
-			"cost": 4
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-c479f0192ab3a72bdda4390ebcfcdf315b8b98c1a8f6876d1d0348891c1fafac.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "HighEvolutionary",
@@ -879,7 +879,7 @@
 			"url": "/cards/HighEvolutionary/",
 			"name": "High Evolutionary",
 			"description": "At the start of the game, unlock the potential of your cards with no abilities.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HighEvolutionary-e54bd931c8b8927aed398cfa6901446f4a68b165e407f9a56fdb56fa49f8cefc.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HighEvolutionary-72179678e2cfd498c2e76b366aab1f63a846f14425f685e38c1daf1f43e7c161.webp",
 			"cost": 4
 		},
 		{
@@ -1086,8 +1086,8 @@
 			"url": "/cards/Kingpin/",
 			"name": "Kingpin",
 			"description": "When an enemy card moves here, afflict it with -2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kingpin-9ad2b8e3b48ba157218d4968d7b43127d06f94dff38d652da5a87c572efbf5e9.webp",
-			"cost": 3
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kingpin-e3841d5305030e7933e6048ae69a648556e9ecf06e6ad33d8a71d8c1fc2c1ac2.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "KittyPryde",
@@ -1338,7 +1338,7 @@
 			"url": "/cards/MilesMorales/",
 			"name": "Miles Morales",
 			"description": "If a card moved last turn, this costs 1.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MilesMorales-84fff049d6b607c2f6f1c7420d8f650a6a7125622bd55d4195fb3ef13c601e90.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MilesMorales-0f1c1a3e272741da27fb59e348fcc5ccf89f2f80119f91491c86b9c3e2c08e10.webp",
 			"cost": 4
 		},
 		{
@@ -1536,7 +1536,7 @@
 			"url": "/cards/NickFury/",
 			"name": "Nick Fury",
 			"description": "<b>On Reveal:</b> Add 3 random\n6-Cost cards to your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NickFury-b60346df92dac314d5315592b25fe9c7a97113dafaa3a3ff3badeab6d649c113.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NickFury-46e91ab0b530b7bb64dd7b38260205b5d237ee5a10373a3cebd43ba3dc2be193.webp",
 			"cost": 4
 		},
 		{
