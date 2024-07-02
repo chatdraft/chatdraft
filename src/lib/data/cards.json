@@ -127,6 +127,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Arishem",
+			"variantKey": null,
+			"url": "/cards/Arishem/",
+			"name": "Arishem",
+			"description": "At the start of the game, +1 Max Energy. Shuffle 12 random cards\ninto your deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arishem-491a716f355692caf691c7307c22e6102f092eedb99e0fe70c0423296c2d1c84.webp",
+			"cost": 7
+		},
+		{
 			"cardDefKey": "Armor",
 			"variantKey": null,
 			"url": "/cards/Armor/",
