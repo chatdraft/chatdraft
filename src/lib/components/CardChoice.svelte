@@ -13,9 +13,10 @@
 </script>
 
 <div
-	class="bg-black outline outline-2 rounded-lg shadow-md shadow-black/100 relative bg-opacity-70 outline-white"
-	class:glow={currentWinner}
-	class:glow-yellow-500={currentWinner}
+	class="bg-black outline outline-2 rounded-lg shadow-md shadow-black/100 relative bg-opacity-70 outline-slate-500"
+	class:!outline-white={currentWinner}
+	class:glow-sm={currentWinner}
+	class:glow-white={currentWinner}
 	class:blur
 >
 	<!-- Selection Value-->

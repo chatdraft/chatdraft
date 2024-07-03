@@ -12,7 +12,7 @@
 			src={viewerProfilePicture}
 			alt="Viewer Profile Picture"
 			width="w-12"
-			class="glow-sm glow-yellow-500"
+			class="outline outline-2 outline-white glow-sm glow-black"
 		/>
 	</div>
 </div>
