@@ -811,6 +811,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Gwenpool",
+			"variantKey": null,
+			"url": "/cards/Gwenpool/",
+			"name": "Gwenpool",
+			"description": "<b>On Reveal:</b> Pick a random card in your hand 3 times. Give +2 Power each time.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gwenpool-fb25b642553ae3dfcff82a48b1e9895c7217caa569da87354fc70f1711253238.webp",
+			"cost": 4
+		},
+		{
 			"cardDefKey": "Havok",
 			"variantKey": null,
 			"url": "/cards/Havok/",
@@ -952,6 +961,15 @@
 			"name": "Human Torch",
 			"description": "When this moves, double\nits Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HumanTorch-8aa84fe8272531834e7012819b4b7422ef5b54819d8ea2435344e40bddcd66e5.webp",
+			"cost": 1
+		},
+		{
+			"cardDefKey": "HydraBob",
+			"variantKey": null,
+			"url": "/cards/HydraBob/",
+			"name": "Hydra Bob",
+			"description": "After each turn, this moves if a player Snapped.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HydraBob-b92ff3b70d282629624075885dd83706bcadb7cd8e939ec3d4bf612b57272179.webp",
 			"cost": 1
 		},
 		{
