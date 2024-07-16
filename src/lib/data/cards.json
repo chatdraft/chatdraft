@@ -64,6 +64,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Ajax",
+			"variantKey": null,
+			"url": "/cards/Ajax/",
+			"name": "Ajax",
+			"description": "<b>Ongoing:</b> +1 Power for each card in play afflicted with negative Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ajax-52814fbaf50f5c3c310bb2b1e38ac6031428610b0967e7ad2c926bad6949d86f.webp",
+			"cost": 5
+		},
+		{
 			"cardDefKey": "Alioth",
 			"variantKey": null,
 			"url": "/cards/Alioth/",
