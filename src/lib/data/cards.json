@@ -302,7 +302,7 @@
 			"variantKey": null,
 			"url": "/cards/Blob/",
 			"name": "Blob",
-			"description": "<b>On Reveal:</b> Merge cards from your deck into this until it gains 15 or more Power. \n<b>Ongoing:</b> Can't be moved.",
+			"description": "<b>On Reveal:</b> Merge cards from your deck into this until it gains 15 or more Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blob-44863a075c8653ea28da532bcafdc7abdd511f19546049700f6f808737e7278d.webp",
 			"cost": 6
 		},
@@ -915,7 +915,7 @@
 			"url": "/cards/HitMonkey/",
 			"name": "Hit-Monkey",
 			"description": "<b>On Reveal:</b> Gain +2 Power for each other card you played this turn.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HitMonkey-f11f9573c69ee4cadd8a009621d9fc25d67ecf36a0eaf557b5f8f143074c94a2.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HitMonkey-c23e94e0d93d492dfd9bd1cdb68589d41ed38301670fc3ef5ea1dd7803c02ea5.webp",
 			"cost": 3
 		},
 		{
@@ -978,7 +978,7 @@
 			"url": "/cards/HydraBob/",
 			"name": "Hydra Bob",
 			"description": "After each turn, this moves if a player Snapped.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HydraBob-b92ff3b70d282629624075885dd83706bcadb7cd8e939ec3d4bf612b57272179.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HydraBob-33ec6627743450a7c619ddb20a79bb077dec864a8902d0a9b4ed2a34bec538e4.webp",
 			"cost": 1
 		},
 		{
@@ -1229,8 +1229,8 @@
 			"variantKey": null,
 			"url": "/cards/Lockjaw/",
 			"name": "Lockjaw",
-			"description": "After you play a card here, swap it with a card in your deck.\n<i>(once per turn)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lockjaw-fd87397bcbfbeb28e8133ea763ca372fe272341895bd377e17742a7b85a6073f.webp",
+			"description": "After you play a card here, swap it with a card in your deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lockjaw-bcc5df95544c345a67eb062923283163d72497400da7a820edd9751bedbe37aa.webp",
 			"cost": 4
 		},
 		{
@@ -1437,7 +1437,7 @@
 			"url": "/cards/Mockingbird/",
 			"name": "Mockingbird",
 			"description": "Costs 1 less for each of your cards in play that didn't start in your deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mockingbird-7dde5d3ea472253ddf7d03ae4ea590c8280d3210ffa5439c8d0f03a8e201db7d.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mockingbird-61b48f97634e006f67d3fe635a5d7f10b522e51c5386d1880b3dd30acaa132b3.webp",
 			"cost": 5
 		},
 		{
@@ -1770,7 +1770,7 @@
 			"url": "/cards/RavonnaRenslayer/",
 			"name": "Ravonna Renslayer",
 			"description": "<b>Ongoing:</b> Your cards with 1 or less Power cost 1 less. <i>(minimum 1)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RavonnaRenslayer-7fe5ca5e4dae475fed7417b3650b6e27bdec45eb65d3455a13386e349330a5a4.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RavonnaRenslayer-a1bb24550feb337c29f79c83bb681b0c735aa0e2e37f4e175a585301d487e4b0.webp",
 			"cost": 3
 		},
 		{
@@ -1896,7 +1896,7 @@
 			"url": "/cards/Sauron/",
 			"name": "Sauron",
 			"description": "<b>On Reveal:</b> Remove the abilities from all <b>Ongoing</b> cards in your\nhand and deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-653ad54c6e98822b314f4f2ee90bc2e5d43cba466fd1f6d1c53b517131dd8c79.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-34f8d465c1810e2a55fd0b51471ad12e4516df648e6a4b2ec8f6180217ccf141.webp",
 			"cost": 3
 		},
 		{
@@ -2372,7 +2372,7 @@
 			"variantKey": null,
 			"url": "/cards/Viper/",
 			"name": "Viper",
-			"description": "<b>On Reveal:</b> One of your other cards here switches sides.",
+			"description": "<b>On Reveal:</b> One of your other cards here with the lowest Power switches sides.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-0e211444f5b88308b3a4c88a3146326655812129e482f191143419746484aedf.webp",
 			"cost": 3
 		},
@@ -2436,7 +2436,7 @@
 			"url": "/cards/WerewolfByNight/",
 			"name": "Werewolf By Night",
 			"description": "After you play an <b>On Reveal</b> card at another location, move there and\ngain +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-4ba25fdcbd7d8d99903d579c6661090c46fc8c8e66dd9fdc6689e827c36852f2.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-2afd7a876774a586841d8673fc3ca7e070a6d74171857ffe516da485e4a3e7a0.webp",
 			"cost": 3
 		},
 		{
