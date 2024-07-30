@@ -230,7 +230,7 @@
 			"variantKey": null,
 			"url": "/cards/BlackBolt/",
 			"name": "Black Bolt",
-			"description": "<b>On Reveal:</b> Discard the lowest-cost card from your opponent's hand.",
+			"description": "<b>On Reveal:</b> Discard the card that costs the least from your\nopponent's hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackBolt-9d39defd2487b4062ca800b09631863770f3f405729da2638e903baac1bf568d.webp",
 			"cost": 5
 		},
@@ -293,7 +293,7 @@
 			"variantKey": null,
 			"url": "/cards/Blink/",
 			"name": "Blink",
-			"description": "<b>On Reveal:</b> Swap the last card you played with a higher-Cost card\nfrom your deck.",
+			"description": "<b>On Reveal:</b> Swap the last card you played with a card that costs more from your deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blink-18769ed729af267827c329e5937be1ad4b8caf66197c6fa41d115f6b24decd92.webp",
 			"cost": 5
 		},
@@ -410,7 +410,7 @@
 			"variantKey": null,
 			"url": "/cards/ColleenWing/",
 			"name": "Colleen Wing",
-			"description": "<b>On Reveal:</b> Discard the lowest-cost card from your hand.",
+			"description": "<b>On Reveal:</b> Discard the card that costs the least from your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ColleenWing-05c9af0b10e4f43b577238743f0004c62ada7311b99cf752bd44aa737e520c9f.webp",
 			"cost": 2
 		},
@@ -1049,7 +1049,7 @@
 			"variantKey": null,
 			"url": "/cards/JaneFoster/",
 			"name": "Jane Foster Mighty Thor",
-			"description": "<b>On Reveal:</b> Draw all cards that Cost 0 from your deck.",
+			"description": "<b>On Reveal:</b> Draw all cards that cost 0 from your deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JaneFoster-9125692a29533717a356fdc1b142d0fd39b70c60622adee5c693be61419908e8.webp",
 			"cost": 5
 		},
@@ -1193,7 +1193,7 @@
 			"variantKey": null,
 			"url": "/cards/LadySif/",
 			"name": "Lady Sif",
-			"description": "<b>On Reveal:</b> Discard the highest-cost card from your hand.",
+			"description": "<b>On Reveal:</b> Discard the card that costs the most from your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadySif-804c387924c9144be93d1dc3b5101dcb637d382d8699b83e452b877368479506.webp",
 			"cost": 3
 		},
@@ -1391,7 +1391,7 @@
 			"variantKey": null,
 			"url": "/cards/Mirage/",
 			"name": "Mirage",
-			"description": "<b>On Reveal:</b> Copy the lowest-Cost card in your opponent's hand into your hand. Give it +2 Power.",
+			"description": "<b>On Reveal:</b> Copy the card that costs the least from your opponent's hand into your hand. Give it +2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mirage-81d000dcf229a0fbfb061592148c83b41f1b069cf73f9ac4328ac9eed3fd3d0d.webp",
 			"cost": 2
 		},
@@ -1472,7 +1472,7 @@
 			"variantKey": null,
 			"url": "/cards/MoonKnight/",
 			"name": "Moon Knight",
-			"description": "<b>On Reveal:</b> Discard a card from each player's hand.",
+			"description": "<b>On Reveal:</b> Discard a card with an even Cost from each player's hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonKnight-6cf0247f363f0f55f097c73f79811f896518422d20b1c611b7cb425b858f6021.webp",
 			"cost": 3
 		},
@@ -2336,7 +2336,7 @@
 			"variantKey": null,
 			"url": "/cards/Uatu/",
 			"name": "Uatu the Watcher",
-			"description": "At the start of the game, shows the right location to you.",
+			"description": "At the start of the game, shows unrevealed locations to you.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Uatu-615998e4b9f366acd781019e3ff7dbf85e4fcfaef08505539c188cb4f22daf4f.webp",
 			"cost": 1
 		},
@@ -2453,7 +2453,7 @@
 			"variantKey": null,
 			"url": "/cards/WhiteQueen/",
 			"name": "White Queen",
-			"description": "<b>On Reveal:</b> Copy the highest-Cost card in your opponent's hand\ninto your hand.",
+			"description": "<b>On Reveal:</b> Copy the card that costs the most from your opponent's hand into your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteQueen-52b671586cc3224ca71229108a7995417b547fa93a19b2a1acd8debe2a76d117.webp",
 			"cost": 4
 		},
@@ -2525,7 +2525,7 @@
 			"variantKey": null,
 			"url": "/cards/Yondu/",
 			"name": "Yondu",
-			"description": "<b>On Reveal:</b> Destroy the lowest-Cost card in your opponent's deck.",
+			"description": "<b>On Reveal:</b> Destroy the card that costs the least in your\nopponent's deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yondu-539e7b8bc5cc63ef9c62c0a308161cbd52462584a514d2f9496e1a28b972a290.webp",
 			"cost": 1
 		},
