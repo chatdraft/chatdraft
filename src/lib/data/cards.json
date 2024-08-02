@@ -132,7 +132,7 @@
 			"url": "/cards/Apocalypse/",
 			"name": "Apocalypse",
 			"description": "When you discard this, put it back with +4 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Apocalypse-f792f4664912232d3bb5944c74aa6b80a5ce9837f32e8dcd0b35ba1c5d8ff9e4.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Apocalypse-46a1929e0fabe6fbc9241a4e58b7a9aba5546a491abfe81655b9eedb0d3b3571.webp",
 			"cost": 6
 		},
 		{
@@ -302,7 +302,7 @@
 			"variantKey": null,
 			"url": "/cards/Blob/",
 			"name": "Blob",
-			"description": "<b>On Reveal:</b> Merge cards from your deck into this until it gains 15 or more Power.",
+			"description": "<b>On Reveal:</b> Merge cards from your deck into this until it gains 13 or more Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Blob-44863a075c8653ea28da532bcafdc7abdd511f19546049700f6f808737e7278d.webp",
 			"cost": 6
 		},
@@ -599,9 +599,9 @@
 			"variantKey": null,
 			"url": "/cards/DoctorOctopus/",
 			"name": "Doctor Octopus",
-			"description": "<b>On Reveal:</b> Pull 4 random cards from your opponent's hand to their side\nof this location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DoctorOctopus-21afd7c6a17362416f10c174bc7ddc29e7919ab1f93c8f206c4d17d15acef0f5.webp",
-			"cost": 5
+			"description": "<b>On Reveal:</b> Pull the lowest-Power card from your opponent's hand to their side of this location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DoctorOctopus-a5b29df3eb62b1b239ea82c7a89ce8cf24cf1eabae51f4406902006894aefc09.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "DoctorStrange",
@@ -1211,9 +1211,9 @@
 			"variantKey": null,
 			"url": "/cards/Leech/",
 			"name": "Leech",
-			"description": "<b>On Reveal:</b> Remove the text from cards with <b>On Reveal</b> abilities in\nyour opponent's hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-08586bf91dab3294978fdbd2e36cca5d30bacedba343c35e8d0a13dcede14962.webp",
-			"cost": 5
+			"description": "<b>On Reveal:</b> Remove the text from\n6-Cost cards in your opponent's hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leech-94c5b2c2f343ccf80f98550a2764a5a5e051eb1a265738cce3e00c8c30893fee.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Legion",
@@ -1247,9 +1247,9 @@
 			"variantKey": null,
 			"url": "/cards/Loki/",
 			"name": "Loki",
-			"description": "<b>On Reveal:</b> Transform your hand into cards from your opponent's starting deck and give them -1 Cost.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-fd0954a7248e815c49dca118f1d17208e3830c2ebdd0018c5efc0af0fe65173d.webp",
-			"cost": 4
+			"description": "<b>On Reveal:</b> Replace your deck with your opponent's starting deck. Give them -1 Cost and draw a card.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-51cae9a48afa0a9d04ec3a637ad9e0710d8ba0ef9376addfd8118ca0053fcded.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "LukeCage",
@@ -2409,7 +2409,7 @@
 			"url": "/cards/WarMachine/",
 			"name": "War Machine",
 			"description": "<b>On Reveal:</b> Until the end of next turn, nothing can stop you from playing cards anywhere.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WarMachine-c9c781db4cd49b478a5c4fd3dda50f00a3fdeb8aff44306e93084b4d759e9665.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WarMachine-71bcaba064f7add68eb6dc6cabd34c9dacce5fc0ff28aad24f87ed2cc18bdc4b.webp",
 			"cost": 4
 		},
 		{
