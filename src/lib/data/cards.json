@@ -856,6 +856,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey": "KateBishop",
+			"variantKey": null,
+			"url": "/cards/KateBishop/",
+			"name": "Hawkeye Kate Bishop",
+			"description": "<b>On Reveal:</b> Add 2 Arrows to your hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KateBishop-69a81c39d68c59f9880eed5cc95b7fd547d51ba2331a8518b0b202de3386a661.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Hazmat",
 			"variantKey": null,
 			"url": "/cards/Hazmat/",
@@ -1340,6 +1349,15 @@
 			"description": "At the end of the game, move to a location that LOSES you the\ngame. <i>(if possible)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Martyr-383410b9b395c432cbdadcc3908b766f3041a11aa5868aa57ff89d3687cfb002.webp",
 			"cost": 1
+		},
+		{
+			"cardDefKey": "MarvelBoy",
+			"variantKey": null,
+			"url": "/cards/MarvelBoy/",
+			"name": "Marvel Boy",
+			"description": "After each turn, give 3 of your 1-Cost cards +1 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MarvelBoy-d14318cc9a1dc665a1c19fb53146ab796ef7d4d762d32a0918139e091d016c06.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "MasterMold",
