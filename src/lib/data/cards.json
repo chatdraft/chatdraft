@@ -2494,6 +2494,15 @@
 			"cost": 2
 		},
 		{
+			"cardDefKey": "Wiccan",
+			"variantKey": null,
+			"url": "/cards/Wiccan/",
+			"name": "Wiccan",
+			"description": "<b>On Reveal:</b> If you've spent all your Energy this game, +2 Max Energy.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wiccan-5b461f8d179d844c9b3deb4f574b93a8b720713041bd5279e2da76c8aed8fc16.webp",
+			"cost": 4
+		},
+		{
 			"cardDefKey": "Wolfsbane",
 			"variantKey": null,
 			"url": "/cards/Wolfsbane/",
