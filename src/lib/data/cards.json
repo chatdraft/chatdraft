@@ -96,7 +96,7 @@
 			"url": "/cards/Angel/",
 			"name": "Angel",
 			"description": "When one of your cards is destroyed, this flies out of your hand or deck to replace it.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angel-e21430c1e42c4e0db2ee24e47adf92c317aece1155f78d784e68190219f04280.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Angel-7fb6e9e80de83971f17a767b3f5e2e5d834522850bda47832e24f9c5d09d4a77.webp",
 			"cost": 1
 		},
 		{
@@ -140,7 +140,7 @@
 			"variantKey": null,
 			"url": "/cards/Arishem/",
 			"name": "Arishem",
-			"description": "At the start of the game, +1 Max Energy. Shuffle 12 random cards\ninto your deck.",
+			"description": "At the start of the game, +1 Max Energy. Shuffle 15 random cards\ninto your deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arishem-491a716f355692caf691c7307c22e6102f092eedb99e0fe70c0423296c2d1c84.webp",
 			"cost": 7
 		},
@@ -386,6 +386,15 @@
 			"description": "<b>On Reveal:</b> Destroy your other cards here. +2 Power for each destroyed.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Carnage-a55f3c533f794a9b76093732471be216d84c89f178805970f92bb02eb5c127db.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "CassandraNova",
+			"variantKey": null,
+			"url": "/cards/CassandraNova/",
+			"name": "Cassandra Nova",
+			"description": "<b>On Reveal:</b> Steal 1 Power from each card in your opponent's deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CassandraNova-bcb54c2128c3335e54e31289d32843e714d5389e385a26acb28d557e886c5ea6.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Cerebro",
@@ -1194,7 +1203,7 @@
 			"url": "/cards/LadyDeathstrike/",
 			"name": "Lady Deathstrike",
 			"description": "<b>On Reveal:</b> Destroy each card here with 3 or less Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-29ade9299f3c346450c255d677fa828b3c6e79ed7aefcae0d01adfa8ad6339dc.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LadyDeathstrike-d404dd99957efcad7645260a965baecbd5dbecbccb95d64791ea9b1209049031.webp",
 			"cost": 5
 		},
 		{
@@ -1320,7 +1329,7 @@
 			"url": "/cards/ManThing/",
 			"name": "Man-Thing",
 			"description": "<b>Ongoing:</b> 1, 2, and 3-Cost cards here have -2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ManThing-ed58ad053261a7a4dbe00bc55df24a3526312cd202e38ed9ec12a3ad8d833d74.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ManThing-d52c52204866d4d660121eef41462cf5df541c39bd81501b20686f1653e3139b.webp",
 			"cost": 4
 		},
 		{
@@ -1635,7 +1644,7 @@
 			"url": "/cards/Nocturne",
 			"name": "Nocturne",
 			"description": "You can move this once. When this moves, replace its location with a random new one.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nocturne-b67f4c66c266706c6830d023d5a5f59e840732310240343ea163d706b7eef2f7.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nocturne-4dace60dcdd2045925d7eb8e1e39abe9b05f7a0228847c1b326bc038f588c11e.webp",
 			"cost": 3
 		},
 		{
@@ -1905,7 +1914,7 @@
 			"url": "/cards/Sandman/",
 			"name": "Sandman",
 			"description": "<b>On Reveal:</b> Players can only play 1 card next turn.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-e6a81f63be1c10120d2e11d87eec44815356017e6d72c67c0727f529ce22ead3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-361ff32f1dcce8768a75315b2478038b0289248ea14dbf6c9b627c6e61068d26.webp",
 			"cost": 5
 		},
 		{
@@ -2310,7 +2319,7 @@
 			"url": "/cards/Thena/",
 			"name": "Thena",
 			"description": "After each turn, +3 Power if you played <i>(exactly)</i> 2 cards.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thena-ab98cf244d9ad34e9c743829f24544cd6e771e4a7f011a2d36ed30968f2a0ffc.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thena-2702288c77bf1fcb7b267e2de6c9141ec3378727061eeb9bf4ec623ce2044e07.webp",
 			"cost": 2
 		},
 		{
