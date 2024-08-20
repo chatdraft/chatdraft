@@ -185,7 +185,7 @@
 			"variantKey": null,
 			"url": "/cards/BaronZemo/",
 			"name": "Baron Zemo",
-			"description": "<b>On Reveal:</b> Recruit the lowest-Cost card from your opponent's deck to your side of this location.",
+			"description": "<b>On Reveal:</b> Recruit a card that costs the least from your opponent’s deck to your side of this location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BaronZemo-a82705e36b5b2b42de01547e564b3f9fc19826d225fac6996a60ee29c1faf7f2.webp",
 			"cost": 3
 		},
@@ -1499,7 +1499,7 @@
 			"variantKey": null,
 			"url": "/cards/MoonKnight/",
 			"name": "Moon Knight",
-			"description": "<b>On Reveal:</b> Discard a card with an even Cost from each player's hand.",
+			"description": "<b>On Reveal:</b> Discard an even-costed card from each player’s hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonKnight-6cf0247f363f0f55f097c73f79811f896518422d20b1c611b7cb425b858f6021.webp",
 			"cost": 3
 		},
@@ -2012,7 +2012,7 @@
 			"variantKey": null,
 			"url": "/cards/ShadowKing/",
 			"name": "Shadow King",
-			"description": "<b>On Reveal:</b> Set all cards here to their base Power.",
+			"description": "<b>On Reveal:</b> Reset all cards here to their base Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-cb3e4b8db461ec40ed389f0803e02831b5a77276e3751c626a3fd7f1687cd35a.webp",
 			"cost": 2
 		},
