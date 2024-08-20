@@ -2116,6 +2116,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Speed",
+			"variantKey": null,
+			"url": "/cards/Speed/",
+			"name": "Speed",
+			"description": "<b>Ongoing:</b> +1 Power for each turn in which you spent all your Energy.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Speed-704fd6607c8007bfa4441ae490ec44c80dbaa6cc0122b174b86b14d73dbfee17.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "SpiderHam",
 			"variantKey": null,
 			"url": "/cards/SpiderHam/",
