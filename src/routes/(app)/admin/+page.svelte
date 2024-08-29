@@ -8,6 +8,7 @@
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import { EntrantStatus } from '$lib/event';
+	import type { Card } from '$lib/snap/cards';
 
 	const toastStore = getToastStore();
 
@@ -22,6 +23,8 @@
 	let cardDbFiles: FileList;
 	let otdBatchFiles: FileList;
 
+	let cardDb: Card[];
+
 	let organizerList: string[] = [];
 	let organizerInputChip: InputChip;
 
@@ -31,6 +34,13 @@
 	export let form;
 
 	title.set('Oro Chat Draft - Admin');
+
+	async function RefreshCardDb() {
+		const cardsReq = await fetch('api/v1/cards');
+		if (cardsReq.ok) {
+			cardDb = (await cardsReq.json()).all;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -92,6 +102,16 @@
 		Check current card database
 		<iconify-icon icon="fluent:window-new-16-filled" width="16" height="16" />
 	</a>
+	<Accordion regionControl="flex-row-reverse gap-4 text-primary-500 font-bold">
+		<AccordionItem on:toggle={RefreshCardDb}>
+			<svelte:fragment slot="summary">All Cards</svelte:fragment>
+			<svelte:fragment slot="content">
+				{#if cardDb}
+					<p class="text-wrap">{cardDb.map((card) => card.name).join(', ')}</p>
+				{/if}
+			</svelte:fragment>
+		</AccordionItem>
+	</Accordion>
 	<form
 		method="POST"
 		action="?/resetcards"

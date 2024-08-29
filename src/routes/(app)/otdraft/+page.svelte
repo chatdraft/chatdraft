@@ -1,10 +1,11 @@
 <script lang="ts">
-	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
-	import { CodeBlock, popup } from '@skeletonlabs/skeleton';
+	import { CodeBlock } from '@skeletonlabs/skeleton';
 	import { beforeNavigate } from '$app/navigation';
 	import { enhance } from '$app/forms';
 	import { title } from '$lib/title.js';
+	import DraftChoice from '$lib/components/DraftChoice.svelte';
+	import DraftSummary from '$lib/components/DraftSummary.svelte';
 
 	export let data;
 	$: current_draft = data.draft;
@@ -95,60 +96,13 @@
 				<input type="hidden" name="code" value={data.draftCode} />
 				<section class="grid grid-cols-6 justify-items-center gap-4">
 					{#each choices as choice}
-						<div>
-							<button
-								type="submit"
-								name="selection"
-								value={choice.cardDefKey}
-								disabled={selecting}
-								class:!outline={selecting && choice.cardDefKey === selected}
-								class="[&>*]:pointer-events-none rounded-md btn p-0 hover:variant-soft-secondary"
-								use:popup={{
-									event: 'hover',
-									target: `popupHover${choice.cardDefKey}`,
-									placement: 'top'
-								}}
-							>
-								<img src={choice.displayImageUrl} alt="{choice.name}'s card" />
-							</button>
-							<p class="text-center text-xs">
-								{@html choice.description}
-							</p>
-							<div
-								class="card p-4 variant-filled-secondary duration-0"
-								data-popup={`popupHover${choice.cardDefKey}`}
-							>
-								<b>{choice.name}</b>
-								<div class="arrow variant-filled-secondary" />
-							</div>
-						</div>
+						<DraftChoice {choice} {selecting} {selected} />
 					{/each}
 				</section>
 			</form>
-			<h2 class="h2 mt-4">Drafted Deck</h2>
-			Sorted by ascending energy cost.
-			<div class="grid grid-cols-2 divide-x divide-surface-500">
-				<div class="mt-4">
-					<SnapDeck cards={current_draft?.cards || []} />
-				</div>
-				<div class="text-left pl-4 text-xl">
-					<div class="flex flex-col text-2xl">
-						<div>
-							{current_draft?.cards
-								.toSpliced(6, 6)
-								.map((card) => card.name)
-								.join(', ')}
-						</div>
-						<br />
-						<div>
-							{current_draft?.cards
-								.toSpliced(0, 6)
-								.map((card) => card.name)
-								.join(', ')}
-						</div>
-					</div>
-				</div>
-			</div>
+			{#if current_draft}
+				<DraftSummary {current_draft} />
+			{/if}
 		{:else if data.deckCode}
 			<CodeBlock language="Deck Code" class="break-words mt-4" code={data.deckCode} />
 			<SnapDeck cards={data.cards} />

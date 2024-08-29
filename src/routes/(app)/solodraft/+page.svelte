@@ -1,11 +1,12 @@
 <script lang="ts">
-	import SnapCard from '$lib/components/SnapCard.svelte';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { Draft } from '$lib/snap/draft.js';
 	import { CodeBlock } from '@skeletonlabs/skeleton';
 	import cards from '$lib/data/cards.json';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import { title } from '$lib/title';
+	import DraftChoice from '$lib/components/DraftChoice.svelte';
+	import DraftSummary from '$lib/components/DraftSummary.svelte';
 
 	let selectionCount = 6;
 	const gridcols = ['', '', '', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5', 'grid-cols-6'];
@@ -27,6 +28,7 @@
 	}
 
 	async function DraftCard(index: number) {
+		console.log('hello');
 		if (current_draft && choices) {
 			await current_draft.Choose(choices[index].cardDefKey);
 			current_draft = current_draft;
@@ -51,8 +53,9 @@
 
 <div class="space-y-4 p-4">
 	{#if current_draft}
-		<div class="grid grid-cols-2">
+		<div class="grid grid-cols-3">
 			<h1 class="h1">Solo Draft</h1>
+			<h2 class="h2 text-left">Pick: {current_draft.total + 1}</h2>
 			<div class="grid justify-items-end">
 				<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 					{#if current_draft.total < 12}
@@ -75,21 +78,15 @@
 	{/if}
 
 	{#if choices && choices.length > 0}
-		<h3 class="h3">Options:</h3>
-		Press Select to choose a card.
+		Draft a card by clicking on it.
 		<section class="grid {grid_layout} justify-items-center">
-			{#each choices as _choice, index}
-				<button
-					type="button"
-					class="btn btn-md variant-outline-primary p-4 w-1/2"
-					on:click={() => DraftCard(index)}>Select</button
-				>
-			{/each}
-			{#each choices as choice}
-				<div class="p-4"><SnapCard card={choice} /></div>
+			{#each choices as choice, index}
+				<DraftChoice {choice} on:click={() => DraftCard(index)} />
 			{/each}
 		</section>
-		<SnapDeck cards={current_draft?.cards || []} />
+		{#if current_draft}
+			<DraftSummary {current_draft} />
+		{/if}
 	{:else if current_draft?.cards}
 		<CodeBlock language="Deck Code" class="break-words" code={current_draft.GetDeckCode()} />
 		<SnapDeck cards={current_draft?.cards} />
