@@ -205,7 +205,7 @@
 			"name": "Beast",
 			"description": "<b>On Reveal:</b> Return your other cards here to your hand. They cost 1 less next turn.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-71bf25406c9b2cf0a256344854042ad01fdb7205206aa1b5364585fb61938195.webp",
-			"cost": 2
+			"cost": 3
 		},
 		{
 			"cardDefKey": "BetaRayBill",
@@ -1276,7 +1276,7 @@
 			"name": "Loki",
 			"description": "<b>On Reveal:</b> Replace your deck with your opponent's starting deck. Give those cards -1 Cost.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-966b93d952dc6569174467a5c8cd4596bc4c30bd514cabb3c6afed567bff22c3.webp",
-			"cost": 3
+			"cost": 2
 		},
 		{
 			"cardDefKey": "LukeCage",
@@ -2275,7 +2275,7 @@
 			"name": "Taskmaster",
 			"description": "<b>On Reveal:</b> Set this card’s Power equal to that of the last card you played. <i>(if that card's in play)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Taskmaster-80224e4a9a023ccb4e16e96a411988955562365f68efe9619ce9bba02490bacd.webp",
-			"cost": 5
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Thanos",
