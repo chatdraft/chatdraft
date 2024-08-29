@@ -167,7 +167,7 @@
 			"variantKey": null,
 			"url": "/cards/Attuma/",
 			"name": "Attuma",
-			"description": "After each turn, destroy this if you have another card here.",
+			"description": "After each turn, destroy one of your cards here with less Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Attuma-90970fbe4443753a92df03d6b9e196b7780d065f694dd8f5b470d0d55c593fbb.webp",
 			"cost": 4
 		},
@@ -204,7 +204,7 @@
 			"url": "/cards/Beast/",
 			"name": "Beast",
 			"description": "<b>On Reveal:</b> Return your other cards here to your hand. They cost 1 less next turn.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-d0907010411769d49099d581329ba82cfe44e3aba6ca26248dbd31f56d90e91f.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Beast-71bf25406c9b2cf0a256344854042ad01fdb7205206aa1b5364585fb61938195.webp",
 			"cost": 2
 		},
 		{
@@ -357,7 +357,7 @@
 			"url": "/cards/Cannonball/",
 			"name": "Cannonball",
 			"description": "<b>On Reveal:</b> Move the highest-Power enemy card here away. If you can't, destroy it with a Rock.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cannonball-8257aa410f5fb14a2e8f0d2397a107318efa66d5c33fed49bc44e3376504fd2c.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Cannonball-648998f19cefe6c80e5559887951517a72e074f545c081478024bebf8143c453.webp",
 			"cost": 5
 		},
 		{
@@ -437,7 +437,7 @@
 			"variantKey": null,
 			"url": "/cards/Copycat/",
 			"name": "Copycat",
-			"description": "When you draw this, steal the text from the bottom card of your\nopponent's deck.",
+			"description": "When you draw this, copy the text from the bottom card of your\nopponent's deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Copycat-00434915457a5cfa826d855c47e598cb1f31b9001a23d1122a06355f346417fb.webp",
 			"cost": 3
 		},
@@ -581,8 +581,8 @@
 			"variantKey": null,
 			"url": "/cards/Destroyer/",
 			"name": "Destroyer",
-			"description": "<b>On Reveal:</b> Destroy your\nother cards.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-0ba3d1b1e7ac9a9b2ee7bd6d754787489f7b8371276fa40d83668fde29d54704.webp",
+			"description": "<b>On Reveal:</b> Destroy your cards at other locations.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-cc5df3172556fb72c7a03c4a9961a85cc7ab38818b27e6d805ff50974d5af38e.webp",
 			"cost": 6
 		},
 		{
@@ -982,6 +982,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Hulkling",
+			"variantKey": null,
+			"url": "/cards/Hulkling/",
+			"name": "Emperor Hulkling",
+			"description": "At the start of the game, copy the text of a random 6-Cost card.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkling-fa6717550e13d1f56cceba901d8fbc9d5bd85f023a344e20b25d6db98ec40ac0.webp",
+			"cost": 6
+		},
+		{
 			"cardDefKey": "Hulkbuster",
 			"variantKey": null,
 			"url": "/cards/Hulkbuster/",
@@ -1265,8 +1274,8 @@
 			"variantKey": null,
 			"url": "/cards/Loki/",
 			"name": "Loki",
-			"description": "<b>On Reveal:</b> Replace your deck with your opponent's starting deck. Give them -1 Cost and draw a card.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-51cae9a48afa0a9d04ec3a637ad9e0710d8ba0ef9376addfd8118ca0053fcded.webp",
+			"description": "<b>On Reveal:</b> Replace your deck with your opponent's starting deck. Give those cards -1 Cost.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-966b93d952dc6569174467a5c8cd4596bc4c30bd514cabb3c6afed567bff22c3.webp",
 			"cost": 3
 		},
 		{
@@ -2265,7 +2274,7 @@
 			"url": "/cards/Taskmaster/",
 			"name": "Taskmaster",
 			"description": "<b>On Reveal:</b> Set this card’s Power equal to that of the last card you played. <i>(if that card's in play)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Taskmaster-b635b23f16a85774e143d05f5cb53af264faed336879274714b725933ef25341.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Taskmaster-80224e4a9a023ccb4e16e96a411988955562365f68efe9619ce9bba02490bacd.webp",
 			"cost": 5
 		},
 		{
