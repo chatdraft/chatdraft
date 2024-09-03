@@ -2080,6 +2080,15 @@
 			"cost": 2
 		},
 		{
+			"cardDefKey": "SilverSable",
+			"variantKey": null,
+			"url": "/cards/SilverSable/",
+			"name": "Silver Sable",
+			"description": "<b>On Reveal:</b> Steal 2 Power from the top card of your opponent's deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSable-4d5b3d442713494ea7da570f0f2e47d083997fd258131a7d619db3df515507ac.webp",
+			"cost": 1
+		},
+		{
 			"cardDefKey": "SilverSamurai",
 			"variantKey": null,
 			"url": "/cards/SilverSamurai/",
@@ -2267,6 +2276,15 @@
 			"description": "<b>On Reveal:</b> Discard a card from your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SwordMaster-6ec9684fa612df3a37a8f009cd8ece2e1198b12ae2aa44aa9df438bde6e801b6.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "SymbioteSpiderMan",
+			"variantKey": null,
+			"url": "/cards/SymbioteSpiderMan/",
+			"name": "Symbiote Spider-Man",
+			"description": "<b>Activate:</b> Merge your lowest-Cost card here with this. Copy its text like it just revealed.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SymbioteSpiderMan-8ff084000efa4d34f9cca0e733f89737913e15a8e1439252eec6825ae6bfce32.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Taskmaster",
