@@ -1306,6 +1306,15 @@
 			"cost": 5
 		},
 		{
+			"cardDefKey": "MadameWeb",
+			"variantKey": null,
+			"url": "/cards/MadameWeb/",
+			"name": "Madame Web",
+			"description": "<b>Ongoing:</b> You can move one of your other cards away from here each turn.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MadameWeb-b531f395d076b09bbe1fb63da949b9673dda054ffab79a29dc8897c5b70de51a.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Magik",
 			"variantKey": null,
 			"url": "/cards/Magik/",
