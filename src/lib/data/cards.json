@@ -33,7 +33,7 @@
 			"url": "/cards/Aero/",
 			"name": "Aero",
 			"description": "<b>On Reveal:</b> Move the last enemy card played this turn to this location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-3fd679ad7b8e1cbf8776c668353b2d8432a71d9dd5359f7e67aea0f1b4cb3954.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-07e713e162146fce1dc925b34567a5dd8cf14296fa14ee0b45189cebf17f4e50.webp",
 			"cost": 5
 		},
 		{
@@ -41,7 +41,7 @@
 			"variantKey": null,
 			"url": "/cards/AgathaHarkness/",
 			"name": "Agatha Harkness",
-			"description": "Agatha starts in your hand and plays your cards for you.",
+			"description": "Agatha starts in your hand. She plays your cards for you on even turns.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgathaHarkness-3ee1d10f0ea0efd8e62a54612478dc82616fa5d69993108b52068ad60f8fc354.webp",
 			"cost": 6
 		},
@@ -240,7 +240,7 @@
 			"url": "/cards/BlackCat/",
 			"name": "Black Cat",
 			"description": "If this is in your hand after the turn, discard it.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-c2dc8f23d9c450da7776d4e70c3b3029d2a412bb92e58a9a03a7576b8f668bc5.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-fbd2013d9dd185aa202a99c885293a90d09c438e3f53fc35d6c86a00a7b96b89.webp",
 			"cost": 4
 		},
 		{
@@ -762,7 +762,7 @@
 			"url": "/cards/GhostRider/",
 			"name": "Ghost Rider",
 			"description": "<b>On Reveal:</b> Bring back one of your discarded cards to this location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostRider-f4c8bac018ef267dfd567d52331ab81e18c5440f3703207a3862d7eed80a58b0.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostRider-35f8ded279bd7cc959acf1e19ed10594205bc2e18e66e02cbc7773eebd495a7b.webp",
 			"cost": 4
 		},
 		{
@@ -1491,7 +1491,7 @@
 			"url": "/cards/Mockingbird/",
 			"name": "Mockingbird",
 			"description": "Costs 1 less for each of your cards in play that didn't start in your deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mockingbird-61b48f97634e006f67d3fe635a5d7f10b522e51c5386d1880b3dd30acaa132b3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mockingbird-ca95206f5a22720663db43d68a1121e09c05c328a542daed95266d88f9a61b6f.webp",
 			"cost": 5
 		},
 		{
@@ -1509,7 +1509,7 @@
 			"url": "/cards/MoonGirl/",
 			"name": "Moon Girl",
 			"description": "<b>On Reveal:</b> Duplicate\nyour hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonGirl-d08395ab1fc538ab3d00fbe9f3596f1bd179ecf507346a091097f143647b7718.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonGirl-d47a8c60b3fb7c732efec300486cac88a185eeae3061ede0f367eaa00de00b28.webp",
 			"cost": 4
 		},
 		{
@@ -1931,8 +1931,8 @@
 			"variantKey": null,
 			"url": "/cards/Sandman/",
 			"name": "Sandman",
-			"description": "<b>On Reveal:</b> Players can only play 1 card next turn.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-361ff32f1dcce8768a75315b2478038b0289248ea14dbf6c9b627c6e61068d26.webp",
+			"description": "<b>On Reveal:</b> Next turn, cards cost 1 more. (maximum 6)",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-bc0ce9d69b0a1b94a7a412fcf4ac0045031a842311c34dfcc7f67e645b337026.webp",
 			"cost": 5
 		},
 		{
@@ -2480,7 +2480,7 @@
 			"variantKey": null,
 			"url": "/cards/WarMachine/",
 			"name": "War Machine",
-			"description": "<b>On Reveal:</b> Until the end of next turn, nothing can stop you from playing cards anywhere.",
+			"description": "<b>Ongoing:</b> Nothing can stop you from playing cards anywhere.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WarMachine-71bcaba064f7add68eb6dc6cabd34c9dacce5fc0ff28aad24f87ed2cc18bdc4b.webp",
 			"cost": 4
 		},
