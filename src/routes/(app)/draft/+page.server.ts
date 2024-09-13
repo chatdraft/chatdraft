@@ -3,9 +3,12 @@ import type { PageServerLoad } from './$types';
 import { EndDraft, GetDraft, GetPreviousDraft } from '$lib/server/draftHandler';
 import DraftFactory from '$lib/snap/draftFactory';
 import TwitchBot from '$lib/server/twitchBot';
+import { GetAllCards } from '$lib/server/cardsHandler';
 
 export const load = (async ({ locals }) => {
 	if (locals.user && !locals.user.isAuthorized) throw redirect(302, '/');
+
+	const cardPool = await GetAllCards();
 
 	if (locals.user?.channelName) {
 		const draft = GetDraft(locals.user?.channelName);
@@ -18,7 +21,8 @@ export const load = (async ({ locals }) => {
 				player: draft.player,
 				duration: locals.user.userPreferences?.draftRoundDuration,
 				selectionCount: locals.user.userPreferences?.cardsPerRound,
-				subsExtraVote: locals.user.userPreferences?.subsExtraVote
+				subsExtraVote: locals.user.userPreferences?.subsExtraVote,
+				cardPool: cardPool
 			};
 		}
 
@@ -33,7 +37,8 @@ export const load = (async ({ locals }) => {
 				prev_draft_deck_code: prevdraft.GetDeckCode(),
 				duration: locals.user.userPreferences?.draftRoundDuration,
 				selectionCount: locals.user.userPreferences?.cardsPerRound,
-				subsExtraVote: locals.user.userPreferences?.subsExtraVote
+				subsExtraVote: locals.user.userPreferences?.subsExtraVote,
+				cardPool: cardPool
 			};
 		}
 
@@ -44,7 +49,8 @@ export const load = (async ({ locals }) => {
 			player: null,
 			duration: locals.user.userPreferences?.draftRoundDuration,
 			selectionCount: locals.user.userPreferences?.cardsPerRound,
-			subsExtraVote: locals.user.userPreferences?.subsExtraVote
+			subsExtraVote: locals.user.userPreferences?.subsExtraVote,
+			cardPool: cardPool
 		};
 	}
 }) satisfies PageServerLoad;
@@ -63,6 +69,8 @@ export const actions = {
 				const selectionCount = Number(data.get('selectionCount')?.toString());
 				const subsExtraVote = Boolean(data.get('subsExtraVote')?.toString());
 				const battleChatter = data.get('battleChatter')?.toString().toLowerCase().trim();
+				const featuredCardMode = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+				const featuredCardDefKey = data.get('featuredCardDefKey')?.toString().trim();
 				const collection = locals.user?.userPreferences?.collection
 					? JSON.parse(locals.user?.userPreferences.collection)
 					: null;
@@ -73,7 +81,9 @@ export const actions = {
 					selectionCount,
 					subsExtraVote,
 					collection,
-					battleChatter
+					battleChatter,
+					featuredCardMode,
+					featuredCardDefKey
 				);
 
 				draft.StartDraft();

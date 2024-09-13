@@ -6,6 +6,20 @@ export type Card = {
 	cost: number;
 };
 
+export type CardDb = {
+	currentSeasonPassCardDefId: string;
+	currentSpotlightCardDefId: string;
+	all: {
+		cardDefKey: string;
+		variantKey: null;
+		url: string;
+		name: string;
+		description: string;
+		displayImageUrl: string;
+		cost: number;
+	}[];
+};
+
 export type Deck = Card[];
 
 export function GetDeckCode(deck: Deck) {
@@ -22,7 +36,7 @@ export function GetDeckCode(deck: Deck) {
  * @param {(string | undefined | null)} cardDefKey The cardDefKey
  * @returns {Card} The Card
  */
-export async function LookupCard(cards: { cardDefKey: string }[], cardDefKey: string | null) {
+export function LookupCard(cards: { cardDefKey: string }[], cardDefKey: string | null) {
 	const placeholder = {
 		cardDefKey: '',
 		displayImageUrl: '/Placeholder.webp',

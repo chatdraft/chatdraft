@@ -1,4 +1,6 @@
 {
+	"currentSeasonPassCardDefId": "SymbioteSpiderMan",
+	"currentSpotlightCardDefId": "MadameWeb",
 	"all": [
 		{
 			"cardDefKey": "Abomination",

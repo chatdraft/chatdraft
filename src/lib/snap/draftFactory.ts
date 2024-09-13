@@ -43,7 +43,9 @@ export default class DraftFactory {
 		selections: number,
 		subsExtraVote: boolean = false,
 		playerCollection: string[] | null,
-		battleChatter: string | undefined = undefined
+		battleChatter: string | undefined = undefined,
+		featuredCardMode: string = 'off',
+		featuredCardDefKey: string = ''
 	) {
 		const currentDraft = GetDraft(player_channel);
 		if (currentDraft) return currentDraft;
@@ -55,7 +57,9 @@ export default class DraftFactory {
 			(await GetAllCards()).all,
 			subsExtraVote,
 			playerCollection,
-			battleChatter
+			battleChatter,
+			featuredCardMode,
+			featuredCardDefKey
 		);
 
 		if (draft.player != '') {

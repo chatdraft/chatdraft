@@ -18,6 +18,7 @@
 	import { enhance } from '$app/forms';
 	import { DatetimeNowUtc } from '$lib/datetime';
 	import { title } from '$lib/title';
+	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -26,6 +27,12 @@
 	let subsExtraVote = data.subsExtraVote;
 
 	let ws: WebSocket | null = null;
+
+	let featuredCardSelect: string;
+	let featuredCardMode: string = 'off';
+	let customFeaturedCardDefKey: string = '';
+
+	let customFeaturedCardValidationMessage = '';
 
 	const handleMessage = async (message: string) => {
 		const wsm: WebSocketMessage = JSON.parse(message);
@@ -100,8 +107,24 @@
 				<form
 					method="post"
 					action="?/newDraft"
-					use:enhance={() => {
-						return async () => {};
+					use:enhance={({ cancel }) => {
+						if (featuredCardMode != 'off' && featuredCardSelect == 'custom') {
+							if (customFeaturedCardDefKey == '') {
+								customFeaturedCardValidationMessage = 'Please enter a custom featured card.';
+								cancel();
+							} else if (
+								!data.cardPool?.all.some((card) => card.cardDefKey == customFeaturedCardDefKey)
+							) {
+								customFeaturedCardValidationMessage = 'Please select a valid custom featured card.';
+								cancel();
+							}
+						}
+						return async () => {
+							featuredCardMode = 'off';
+							featuredCardSelect = 'seasonpass';
+							customFeaturedCardDefKey = '';
+							customFeaturedCardValidationMessage = '';
+						};
 					}}
 				>
 					<div class="grid grid-cols-2">
@@ -124,6 +147,14 @@
 								/>
 								<b>Battle Viewer:</b>
 								<input class="input w-64" type="text" name="battleChatter" placeholder="None" />
+								<br />
+								<FeaturedCardOptions
+									cardPool={data.cardPool}
+									bind:featuredCardSelect
+									bind:featuredCardMode
+									bind:customFeaturedCardDefKey
+									bind:customFeaturedCardValidationMessage
+								/>
 							</svelte:fragment>
 						</AccordionItem>
 					</Accordion>

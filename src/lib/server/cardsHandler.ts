@@ -1,4 +1,5 @@
 import * as install_cards from '$lib/data/cards.json';
+import { CardDb } from '$lib/snap/cards';
 import { existsSync, promises as fs } from 'fs';
 
 const updatedCardFile = `/home/cards.json`;
@@ -9,26 +10,17 @@ const updatedCardFile = `/home/cards.json`;
  *
  * @export
  * @async
- * @returns {Promise<{all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number }[]}>}
+ * @returns {Promise<{currentSeasonPassCardDefId: string, currentSpotlightCardDefId:string, all: {cardDefKey: string, variantKey: null, url: string, name: string, description: string, displayImageUrl: string, cost: number }[]}>}
  */
-export async function GetAllCards(): Promise<{
-	all: {
-		cardDefKey: string;
-		variantKey: null;
-		url: string;
-		name: string;
-		description: string;
-		displayImageUrl: string;
-		cost: number;
-	}[];
-}> {
+export async function GetAllCards(): Promise<CardDb> {
 	if (existsSync(updatedCardFile)) {
 		const updatedCardContents = await fs.readFile(updatedCardFile, 'utf-8');
-		const updatedCards = JSON.parse(updatedCardContents);
+		const updatedCards = JSON.parse(updatedCardContents) as CardDb;
 		return updatedCards;
 	}
 
-	return install_cards;
+	// Converts imported install_cards into POJO
+	return JSON.parse(JSON.stringify(install_cards));
 }
 
 /**

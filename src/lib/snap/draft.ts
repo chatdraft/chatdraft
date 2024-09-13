@@ -67,7 +67,9 @@ export class Draft extends EventEmitter implements IDraft {
 		}[],
 		private subsExtraVote = false,
 		collection: string[] | null,
-		public viewerName: string | undefined = undefined
+		public viewerName: string | undefined = undefined,
+		private featuredCardMode: string = 'off',
+		private featuredCardDefKey: string = ''
 	) {
 		super();
 
@@ -199,20 +201,37 @@ export class Draft extends EventEmitter implements IDraft {
 		const choices: Card[] = Array(this.selections);
 		const voteCounts: number[] = Array(this.selections);
 
-		for (let i = 0; i < this.selections; i++) {
-			if (this.total < 12) {
-				choices[i] = deck.pop()!;
-			} else {
-				const name = getRandomDeckName(this.cards);
-				choices[i] = {
-					cardDefKey: name,
-					displayImageUrl: '',
-					name: name,
-					description: '',
-					cost: 0
-				};
+		if (this.featuredCardMode != 'off' && this.total == 0) {
+			const featuredCard = await LookupCard(this.all_cards, this.featuredCardDefKey);
+			if (this.featuredCardMode == 'on') {
+				choices[0] = featuredCard;
+				voteCounts[0] = 0;
+				for (let i = 1; i < this.selections; i++) {
+					choices[i] = deck.pop()!;
+					voteCounts[i] = 0;
+				}
+			} else if (this.featuredCardMode == 'full') {
+				for (let i = 0; i < this.selections; i++) {
+					choices[i] = featuredCard;
+					voteCounts[i] = 0;
+				}
 			}
-			voteCounts[i] = 0;
+		} else {
+			for (let i = 0; i < this.selections; i++) {
+				if (this.total < 12) {
+					choices[i] = deck.pop()!;
+				} else {
+					const name = getRandomDeckName(this.cards);
+					choices[i] = {
+						cardDefKey: name,
+						displayImageUrl: '',
+						name: name,
+						description: '',
+						cost: 0
+					};
+				}
+				voteCounts[i] = 0;
+			}
 		}
 		const newChoice = {
 			cards: choices,
