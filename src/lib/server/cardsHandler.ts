@@ -1,5 +1,5 @@
 import * as install_cards from '$lib/data/cards.json';
-import { CardDb } from '$lib/snap/cards';
+import type { CardDb } from '$lib/snap/cards';
 import { existsSync, promises as fs } from 'fs';
 
 const updatedCardFile = `/home/cards.json`;
