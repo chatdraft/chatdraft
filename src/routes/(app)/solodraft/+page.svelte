@@ -53,9 +53,8 @@
 
 <div class="space-y-4 p-4">
 	{#if current_draft}
-		<div class="grid grid-cols-3">
+		<div class="grid grid-cols-2">
 			<h1 class="h1">Solo Draft</h1>
-			<h2 class="h2 text-left">Pick: {current_draft.total + 1}</h2>
 			<div class="grid justify-items-end">
 				<button type="button" class="btn btn-lg variant-outline-warning" on:click={CancelDraft}>
 					{#if current_draft.total < 12}
@@ -72,9 +71,9 @@
 			<SelectionCountSlider bind:selectionCount />
 			<div />
 		</div>
-		<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}
-			>Start Draft</button
-		><br />
+		<button type="button" class="btn btn-lg variant-filled-primary" on:click={NewDraft}>
+			Start Draft
+		</button><br />
 	{/if}
 
 	{#if choices && choices.length > 0}
@@ -85,7 +84,7 @@
 			{/each}
 		</section>
 		{#if current_draft}
-			<DraftSummary {current_draft} />
+			<DraftSummary {current_draft} showCurrentPick={true} />
 		{/if}
 	{:else if current_draft?.cards}
 		<CodeBlock language="Deck Code" class="break-words" code={current_draft.GetDeckCode()} />

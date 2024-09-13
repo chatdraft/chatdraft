@@ -3,10 +3,23 @@
 	import SnapDeck from './SnapDeck.svelte';
 
 	export let current_draft: IDraft;
+	export let showCurrentPick: boolean = false;
 </script>
 
-<h2 class="h2 mt-4">Drafted Deck</h2>
-Sorted by ascending energy cost.
+<div class="grid grid-cols-2">
+	<div class="grid grid-cols-2">
+		<div>
+			<h2 class="h2">Drafted Deck</h2>
+			Sorted by ascending energy cost.
+		</div>
+	</div>
+
+	<div>
+		{#if showCurrentPick}
+			<h2 class="h2">Pick: {current_draft.total + 1}</h2>
+		{/if}
+	</div>
+</div>
 <div class="grid grid-cols-2 divide-x divide-surface-500">
 	<div class="mt-4">
 		<SnapDeck cards={current_draft?.cards || []} />
