@@ -28,7 +28,7 @@
 
 	let ws: WebSocket | null = null;
 
-	let featuredCardSelect: string;
+	let featuredCardSelect: string | undefined;
 	let featuredCardMode: string = 'off';
 	let customFeaturedCardDefKey: string = '';
 
@@ -121,7 +121,7 @@
 						}
 						return async () => {
 							featuredCardMode = 'off';
-							featuredCardSelect = 'seasonpass';
+							featuredCardSelect = undefined;
 							customFeaturedCardDefKey = '';
 							customFeaturedCardValidationMessage = '';
 						};
@@ -154,6 +154,7 @@
 									bind:featuredCardMode
 									bind:customFeaturedCardDefKey
 									bind:customFeaturedCardValidationMessage
+									collection={data.playerCollection}
 								/>
 							</svelte:fragment>
 						</AccordionItem>

@@ -50,6 +50,14 @@ export default class DraftFactory {
 		const currentDraft = GetDraft(player_channel);
 		if (currentDraft) return currentDraft;
 
+		if (
+			featuredCardMode != 'off' &&
+			playerCollection &&
+			!playerCollection.includes(featuredCardDefKey)
+		) {
+			playerCollection.push(featuredCardDefKey);
+		}
+
 		const draft = new Draft(
 			player_channel,
 			duration,

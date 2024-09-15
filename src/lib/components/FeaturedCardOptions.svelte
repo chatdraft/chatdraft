@@ -6,21 +6,20 @@
 
 	export let cardPool: CardDb;
 
-	export let featuredCardSelect: string;
+	export let featuredCardSelect: string | undefined;
 	export let featuredCardMode: string = 'off';
 	export let customFeaturedCardName: string = '';
 	export let customFeaturedCardDefKey: string = '';
-	const customFeaturedCardOptions: AutocompleteOption<string>[] | undefined = cardPool?.all.map(
-		(card) => {
+	export let collection: string[] | undefined;
+	const customFeaturedCardOptions: AutocompleteOption<string>[] | undefined = cardPool?.all
+		.filter((card) => !collection || collection.includes(card.cardDefKey))
+		.map((card) => {
 			return { label: card.name, value: card.cardDefKey };
-		}
-	);
+		});
 
 	export let customFeaturedCardValidationMessage = '';
 
-	let autocompleteElement: Autocomplete;
-
-	let customFeaturedCardPopupSettings: PopupSettings = {
+	const customFeaturedCardPopupSettings: PopupSettings = {
 		event: 'focus-click',
 		target: 'popupAutocomplete',
 		placement: 'right'
@@ -58,11 +57,23 @@
 	<br />
 	<span class="font-bold inline-block place-items-center">Featured Card:</span>
 	<select class="select" bind:value={featuredCardSelect} name="featuredCardSelect">
-		<option value="seasonpass">
+		<option
+			value="seasonpass"
+			disabled={collection && !collection.includes(cardPool.currentSeasonPassCardDefId)}
+		>
 			Current Season Pass Card: {LookupCard(cardPool.all, cardPool.currentSeasonPassCardDefId).name}
+			{#if collection && !collection.includes(cardPool.currentSeasonPassCardDefId)}
+				(Unowned)
+			{/if}
 		</option>
-		<option value="spotlight">
+		<option
+			value="spotlight"
+			disabled={collection && !collection.includes(cardPool.currentSpotlightCardDefId)}
+		>
 			Current Spotlight Card: {LookupCard(cardPool.all, cardPool.currentSpotlightCardDefId).name}
+			{#if collection && !collection.includes(cardPool.currentSpotlightCardDefId)}
+				(Unowned)
+			{/if}
 		</option>
 		<option value="custom">Custom Card</option>
 	</select>
@@ -80,11 +91,13 @@
 				if (customFeaturedCardName != LookupCard(cardPool.all, customFeaturedCardDefKey).name) {
 					customFeaturedCardDefKey = '';
 				}
-				const card = cardPool.all.find(
-					(card) =>
-						card.name.toLowerCase() == customFeaturedCardName.toLowerCase() ||
-						card.cardDefKey.toLowerCase() == customFeaturedCardName.toLowerCase()
-				);
+				const card = cardPool.all
+					.filter((card) => !collection || collection.includes(card.cardDefKey))
+					.find(
+						(card) =>
+							card.name.toLowerCase() == customFeaturedCardName.toLowerCase() ||
+							card.cardDefKey.toLowerCase() == customFeaturedCardName.toLowerCase()
+					);
 				if (card) {
 					customFeaturedCardDefKey = card.cardDefKey;
 					customFeaturedCardValidationMessage = '';
@@ -102,7 +115,6 @@
 			data-popup="popupAutocomplete"
 		>
 			<Autocomplete
-				bind:this={autocompleteElement}
 				bind:input={customFeaturedCardName}
 				options={customFeaturedCardOptions}
 				on:selection={onCustomFeaturedCardSelection}

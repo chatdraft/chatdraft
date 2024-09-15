@@ -11,6 +11,9 @@ export const load = (async ({ locals }) => {
 	const cardPool = await GetAllCards();
 
 	if (locals.user?.channelName) {
+		const playerCollection = locals.user.userPreferences?.collection
+			? JSON.parse(locals.user.userPreferences.collection)
+			: undefined;
 		const draft = GetDraft(locals.user?.channelName);
 		if (draft) {
 			return {
@@ -22,7 +25,8 @@ export const load = (async ({ locals }) => {
 				duration: locals.user.userPreferences?.draftRoundDuration,
 				selectionCount: locals.user.userPreferences?.cardsPerRound,
 				subsExtraVote: locals.user.userPreferences?.subsExtraVote,
-				cardPool: cardPool
+				cardPool: cardPool,
+				playerCollection: playerCollection
 			};
 		}
 
@@ -38,7 +42,8 @@ export const load = (async ({ locals }) => {
 				duration: locals.user.userPreferences?.draftRoundDuration,
 				selectionCount: locals.user.userPreferences?.cardsPerRound,
 				subsExtraVote: locals.user.userPreferences?.subsExtraVote,
-				cardPool: cardPool
+				cardPool: cardPool,
+				playerCollection: playerCollection
 			};
 		}
 
@@ -50,7 +55,8 @@ export const load = (async ({ locals }) => {
 			duration: locals.user.userPreferences?.draftRoundDuration,
 			selectionCount: locals.user.userPreferences?.cardsPerRound,
 			subsExtraVote: locals.user.userPreferences?.subsExtraVote,
-			cardPool: cardPool
+			cardPool: cardPool,
+			playerCollection: playerCollection
 		};
 	}
 }) satisfies PageServerLoad;
