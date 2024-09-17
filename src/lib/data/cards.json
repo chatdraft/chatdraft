@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "SymbioteSpiderMan",
-	"currentSpotlightCardDefId": "MadameWeb",
+	"currentSpotlightCardDefId": "Arana",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -138,6 +138,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "Arana",
+			"variantKey": null,
+			"url": "/cards/Arana/",
+			"name": "Ara\u00f1a",
+			"description": "<b>Activate:</b> Give the next card you play +2 Power and move it\nto the right.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arana-973b13bd7893e8d99158e4df18b1fc34013f5dfa72f1d44696f261c5b47d3c68.webp",
+			"cost": 1
+		},
+		{
 			"cardDefKey": "Arishem",
 			"variantKey": null,
 			"url": "/cards/Arishem/",
@@ -268,9 +277,9 @@
 			"variantKey": null,
 			"url": "/cards/BlackSwan/",
 			"name": "Black Swan",
-			"description": "<b>On Reveal:</b> Until the end of next turn, your 1-Cost cards cost 0.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackSwan-720fde1124ecb87e37d9983eda3cecf74899fe598d1d950b9800a5336e6cafa8.webp",
-			"cost": 3
+			"description": "<b>Activate:</b> Until the end of next turn, your 1-Cost cards cost 0.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackSwan-6ee2400a2906f66e64de76779ecdd860f378bde90529514cb8de6a568d8ccf8e.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "BlackWidow",
@@ -916,8 +925,8 @@
 			"variantKey": null,
 			"url": "/cards/Hellcow/",
 			"name": "Hellcow",
-			"description": "<b>On Reveal:</b> Discard 2 cards from your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-b6b4886f5998da1c46392dc6f26fa6328ebc70f508423a27d556ee3a82b1b4a7.webp",
+			"description": "<b>Activate:</b> Discard 2 cards from your hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-99c1b9cafab8848d23832cabcfcea5eb115dd14252909d5b780fcf4b242ec5b0.webp",
 			"cost": 4
 		},
 		{
@@ -2284,7 +2293,7 @@
 			"variantKey": null,
 			"url": "/cards/SwordMaster/",
 			"name": "Sword Master",
-			"description": "<b>On Reveal:</b> Discard a card from your hand.",
+			"description": "<b>On Reveal:</b> Discard an odd-costed card from your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SwordMaster-6ec9684fa612df3a37a8f009cd8ece2e1198b12ae2aa44aa9df438bde6e801b6.webp",
 			"cost": 3
 		},
