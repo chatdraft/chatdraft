@@ -6,6 +6,8 @@ import { prisma } from './db';
 export type Event = {
 	duration: number;
 	selections: number;
+	featuredCardMode: string;
+	featuredCardKey: string;
 	entrants: Array<Entrant>;
 	started: boolean;
 };
@@ -26,7 +28,13 @@ export function CurrentEventStarted(): boolean {
 	return currentEvent !== undefined && currentEvent.started;
 }
 
-export function CreateEvent(duration: number, selections: number, entrants: User[]) {
+export function CreateEvent(
+	duration: number,
+	selections: number,
+	entrants: User[],
+	featuredCardMode: string = 'off',
+	featuredCardKey: string = ''
+) {
 	if (CurrentEventExists()) return;
 
 	currentEvent = {
@@ -35,7 +43,9 @@ export function CreateEvent(duration: number, selections: number, entrants: User
 		entrants: entrants.map((entrant) => {
 			return { user: entrant, battleViewer: undefined, status: EntrantStatus.Invited };
 		}),
-		started: false
+		started: false,
+		featuredCardMode: featuredCardMode,
+		featuredCardKey: featuredCardKey
 	};
 }
 
@@ -48,6 +58,8 @@ export async function StartCurrentEvent() {
 
 	const duration = currentEvent.duration;
 	const selections = currentEvent.selections;
+	const featuredCardMode = currentEvent.featuredCardMode;
+	const featuredCardKey = currentEvent.featuredCardKey;
 	currentEvent.entrants.forEach(async (entrant) => {
 		if (entrant.status == EntrantStatus.Ready) {
 			const userCollection = await prisma.userPreference.GetUserCollection(
@@ -59,7 +71,9 @@ export async function StartCurrentEvent() {
 				selections,
 				false,
 				userCollection,
-				entrant.battleViewer
+				entrant.battleViewer,
+				featuredCardMode,
+				featuredCardKey
 			);
 			await draft.StartDraft();
 		}

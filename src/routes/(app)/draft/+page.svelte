@@ -28,8 +28,8 @@
 
 	let ws: WebSocket | null = null;
 
-	let featuredCardSelect: string | undefined;
-	let featuredCardMode: string = 'off';
+	let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined;
+	let featuredCardMode: 'off' | 'on' | 'full' = 'off';
 	let customFeaturedCardDefKey: string = '';
 
 	let customFeaturedCardValidationMessage = '';

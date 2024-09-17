@@ -6,11 +6,11 @@
 
 	export let cardPool: CardDb;
 
-	export let featuredCardSelect: string | undefined;
-	export let featuredCardMode: string = 'off';
+	export let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined = 'seasonpass';
+	export let featuredCardMode: 'off' | 'on' | 'full' = 'off';
 	export let customFeaturedCardName: string = '';
 	export let customFeaturedCardDefKey: string = '';
-	export let collection: string[] | undefined;
+	export let collection: string[] | undefined = undefined;
 	const customFeaturedCardOptions: AutocompleteOption<string>[] | undefined = cardPool?.all
 		.filter((card) => !collection || collection.includes(card.cardDefKey))
 		.map((card) => {

@@ -1,7 +1,7 @@
 import { GetDrafts, GetPreviousDrafts } from '$lib/server/draftHandler';
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { ResetCards, UpdateCards } from '$lib/server/cardsHandler';
+import { GetAllCards, ResetCards, UpdateCards } from '$lib/server/cardsHandler';
 import { prisma } from '$lib/server/db';
 import { ApiClient } from '@twurple/api';
 import TwitchBot, { GetBotFollowers } from '$lib/server/twitchBot';
@@ -34,6 +34,7 @@ export const load = (async ({ locals }) => {
 	const otdBatches = await prisma.oneTimeDraftBatch.GetAllOneTimeDraftBatches();
 	const currentEvent = GetCurrentEvent();
 	const botFollowers = GetBotFollowers(locals.auth_provider, currentEvent);
+	const cardDb = await GetAllCards();
 
 	return {
 		channels: channels,
@@ -46,7 +47,8 @@ export const load = (async ({ locals }) => {
 		organizers: organizers,
 		otdBatches: otdBatches,
 		currentEvent: currentEvent,
-		botFollowers: botFollowers
+		botFollowers: botFollowers,
+		cardDb: cardDb
 	};
 }) satisfies PageServerLoad;
 
@@ -258,11 +260,14 @@ export const actions = {
 		if (data) {
 			const duration = Number(data.get('eventDuration')?.toString());
 			const selectionCount = Number(data.get('eventSelections')?.toString());
+			const featuredCardMode = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+			const featuredCardDefKey = data.get('featuredCardDefKey')?.toString().trim();
 			const entrantNamesData = data.getAll('entrants');
 			const entrantNames: string[] = entrantNamesData.map((data) => data.toString());
 			const entrants = await prisma.user.GetUsersByName(entrantNames);
-			if (entrants && entrants.length >= 2) CreateEvent(duration, selectionCount, entrants);
-			else return fail(400, { entrantsUnspecified: true });
+			if (entrants && entrants.length >= 2) {
+				CreateEvent(duration, selectionCount, entrants, featuredCardMode, featuredCardDefKey);
+			} else return fail(400, { entrantsUnspecified: true });
 		}
 
 		return { currentEvent: GetCurrentEvent() };

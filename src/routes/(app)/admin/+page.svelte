@@ -8,7 +8,9 @@
 	import DurationSlider from '$lib/components/DurationSlider.svelte';
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import { EntrantStatus } from '$lib/event';
-	import type { Card } from '$lib/snap/cards';
+	import type { CardDb } from '$lib/snap/cards';
+	import { LookupCard } from '$lib/snap/cards';
+	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
 
 	const toastStore = getToastStore();
 
@@ -23,7 +25,7 @@
 	let cardDbFiles: FileList;
 	let otdBatchFiles: FileList;
 
-	let cardDb: Card[];
+	let cardDb: CardDb = data.cardDb;
 
 	let organizerList: string[] = [];
 	let organizerInputChip: InputChip;
@@ -38,7 +40,7 @@
 	async function RefreshCardDb() {
 		const cardsReq = await fetch('api/v1/cards');
 		if (cardsReq.ok) {
-			cardDb = (await cardsReq.json()).all;
+			cardDb = await cardsReq.json();
 		}
 	}
 </script>
@@ -107,7 +109,7 @@
 			<svelte:fragment slot="summary">All Cards</svelte:fragment>
 			<svelte:fragment slot="content">
 				{#if cardDb}
-					<p class="text-wrap">{cardDb.map((card) => card.name).join(', ')}</p>
+					<p class="text-wrap">{cardDb.all.map((card) => card.name).join(', ')}</p>
 				{/if}
 			</svelte:fragment>
 		</AccordionItem>
@@ -443,6 +445,11 @@
 			<p>Duration: {data.currentEvent.duration} seconds</p>
 
 			<p>Selections: {data.currentEvent.selections}</p>
+
+			<p>Featured Card Mode: {data.currentEvent.featuredCardMode}</p>
+
+			<p>Featured Card: {LookupCard(cardDb.all, data.currentEvent.featuredCardKey).name}</p>
+
 			<div class="table-container">
 				<table class="table table-hover table-compact text-center border-collapse w-min">
 					<thead>
@@ -637,6 +644,14 @@
 				{#if form?.entrantsUnspecified}
 					<span class="text-error-500 font-bold">* At least two entrants must be specified.</span>
 				{/if}
+				<Accordion regionControl="flex-row-reverse gap-4 text-primary-500" width="w-1/2">
+					<AccordionItem>
+						<svelte:fragment slot="summary">Advanced</svelte:fragment>
+						<svelte:fragment slot="content">
+							<FeaturedCardOptions cardPool={cardDb} />
+						</svelte:fragment>
+					</AccordionItem>
+				</Accordion>
 				<br />
 				<button class="btn btn-md variant-filled-primary mt-4">Create Event</button>
 			</form>
