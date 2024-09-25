@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "SymbioteSpiderMan",
-	"currentSpotlightCardDefId": "Arana",
+	"currentSpotlightCardDefId": "ScarletSpider",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1963,6 +1963,15 @@
 			"description": "<b>On Reveal:</b> Remove the abilities from all <b>Ongoing</b> cards in your\nhand and deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-34f8d465c1810e2a55fd0b51471ad12e4516df648e6a4b2ec8f6180217ccf141.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "ScarletSpider",
+			"variantKey": null,
+			"url": "/cards/ScarletSpider/",
+			"name": "Scarlet Spider",
+			"description": "<b>Activate:</b> Add an exact clone of this to another location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ScarletSpider-e8aa01cd484f1a963cdca94b131912e9764f0922f317235302d6709d6c16cefc.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "ScarletWitch",
