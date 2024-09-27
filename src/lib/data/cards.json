@@ -907,7 +907,7 @@
 			"variantKey": null,
 			"url": "/cards/Hela/",
 			"name": "Hela",
-			"description": "<b>On Reveal:</b> Resurrect all cards you discarded from your hand to\nrandom locations.",
+			"description": "<b>On Reveal:</b> Resurrect all cards you discarded to random locations\nwith -3 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-503693fd78319dafdbfb300b39a54f5234212a716669e3044cd991b719d6b1d3.webp",
 			"cost": 6
 		},
