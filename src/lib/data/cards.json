@@ -269,7 +269,7 @@
 			"url": "/cards/BlackPanther/",
 			"name": "Black Panther",
 			"description": "<b>On Reveal:</b> Double this\ncard's Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackPanther-76e02066c07c250a78533fde104a2706a0eefc7fcad6503873c6586363c2c06b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackPanther-0bf134b6f9f1c275b6d300d38715a4a6f64cf5b2adfae2f935e2a232765099dc.webp",
 			"cost": 5
 		},
 		{
@@ -737,7 +737,7 @@
 			"url": "/cards/Galactus/",
 			"name": "Galactus",
 			"description": "<b>On Reveal:</b> If you're winning this location and this is your only card here, destroy all other locations.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galactus-c75f8a00acb53d146eabf4730775d149d552067c07012cf750099ec7050ca2fe.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galactus-c06e3157e837a26e09c5a0cf30fe5891161f798f40db604f69ea1894666249bb.webp",
 			"cost": 6
 		},
 		{
@@ -908,7 +908,7 @@
 			"url": "/cards/Hela/",
 			"name": "Hela",
 			"description": "<b>On Reveal:</b> Resurrect all cards you discarded to random locations\nwith -3 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-503693fd78319dafdbfb300b39a54f5234212a716669e3044cd991b719d6b1d3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-d9c91d20dd9cf9e61e581dea95e99b5f3094d0c9a4ccd241c6d178b5c0232456.webp",
 			"cost": 6
 		},
 		{
@@ -935,7 +935,7 @@
 			"url": "/cards/Hercules/",
 			"name": "Hercules",
 			"description": "The first time another card moves here each turn, move it to another location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-c479f0192ab3a72bdda4390ebcfcdf315b8b98c1a8f6876d1d0348891c1fafac.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hercules-d7fe834ba73c0a285d9aa8b3a00f154bb2860c3305f550d11dff3413a6212cee.webp",
 			"cost": 3
 		},
 		{
@@ -1214,7 +1214,7 @@
 			"url": "/cards/Kraven/",
 			"name": "Kraven",
 			"description": "When a card moves here, this gains +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kraven-648efcde7ab6cf1d38558a7821199d3e7ead7bcf24249908e4d64efbf98ec39b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kraven-6d441b7e0520084a4607ef0dcedc61f15328acb68b1c7a9688c89ff2995756f6.webp",
 			"cost": 2
 		},
 		{
@@ -1394,7 +1394,7 @@
 			"url": "/cards/MarvelBoy/",
 			"name": "Marvel Boy",
 			"description": "After each turn, give 3 of your 1-Cost cards +1 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MarvelBoy-d14318cc9a1dc665a1c19fb53146ab796ef7d4d762d32a0918139e091d016c06.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MarvelBoy-dbb81f811172c63aa88d37382c208a180a01eb4e197680170da36afa3e4ffe4c.webp",
 			"cost": 3
 		},
 		{
@@ -1628,7 +1628,7 @@
 			"url": "/cards/NegasonicTeenageWarhead/",
 			"name": "Negasonic Teenage Warhead",
 			"description": "After an enemy card is played here, destroy it. <i>(once per game)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NegasonicTeenageWarhead-fd5adef290dc504fd35445e76835592ae5d1272798969b149de7ee4a12090d6a.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/NegasonicTeenageWarhead-d1c1e3460025bba1e57690ae571ff5263d16b335ec3f441746ecc0b6ce2a84f1.webp",
 			"cost": 3
 		},
 		{
@@ -2312,7 +2312,7 @@
 			"url": "/cards/SymbioteSpiderMan/",
 			"name": "Symbiote Spider-Man",
 			"description": "<b>Activate:</b> Merge your lowest-Cost card here with this. Copy its text like it just revealed.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SymbioteSpiderMan-8ff084000efa4d34f9cca0e733f89737913e15a8e1439252eec6825ae6bfce32.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SymbioteSpiderMan-895b8abc34c62dee7e2b51a04779339084d6fa1f433438fba35a964587e18a52.webp",
 			"cost": 4
 		},
 		{
@@ -2501,7 +2501,7 @@
 			"url": "/cards/WarMachine/",
 			"name": "War Machine",
 			"description": "<b>Ongoing:</b> Nothing can stop you from playing cards anywhere.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WarMachine-71bcaba064f7add68eb6dc6cabd34c9dacce5fc0ff28aad24f87ed2cc18bdc4b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WarMachine-cee4d11e8adcac19e4a96df5e93309b30a8482afe3f15672e8228c483302a182.webp",
 			"cost": 4
 		},
 		{
