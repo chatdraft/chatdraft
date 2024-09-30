@@ -33,7 +33,7 @@ export const load = (async ({ locals }) => {
 	const organizers = users?.filter((user) => user.isOrganizer).map((user) => user.channelName);
 	const otdBatches = await prisma.oneTimeDraftBatch.GetAllOneTimeDraftBatches();
 	const currentEvent = GetCurrentEvent();
-	const botFollowers = GetBotFollowers(locals.auth_provider, currentEvent);
+	const botFollowers = await GetBotFollowers(locals.auth_provider, currentEvent);
 	const cardDb = await GetAllCards();
 
 	return {
