@@ -1,6 +1,6 @@
 {
-	"currentSeasonPassCardDefId": "SymbioteSpiderMan",
-	"currentSpotlightCardDefId": "ScarletSpider",
+	"currentSeasonPassCardDefId": "AgentVenom",
+	"currentSpotlightCardDefId": "Scream",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -64,6 +64,15 @@
 			"description": "<b>On Reveal:</b> Add a random 4-Cost and 5-Cost card to your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgentCoulson-ddb740f686c7b6f8439dce94203845468c1d4c238f7f8ad60149e9d044823a08.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "AgentVenom",
+			"variantKey": null,
+			"url": "/cards/AgentVenom/",
+			"name": "Agent Venom",
+			"description": "<b>On Reveal:</b> Set the Power of all cards in your deck to 4.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgentVenom-7837556102fb2a5e140cd19e9de95306bc4aed0799842acc288c4b36e40e43f0.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Ajax",
@@ -1989,6 +1998,15 @@
 			"name": "Scorpion",
 			"description": "<b>On Reveal:</b> Afflict cards in your opponent's hand with -1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-216e46417c131747e78e07861eca3edfad7279921ce4537c1e8036a458e363ec.webp",
+			"cost": 2
+		},
+		{
+			"cardDefKey": "Scream",
+			"variantKey": null,
+			"url": "/cards/Scream/",
+			"name": "Scream",
+			"description": "When an enemy card moves, steal 2 Power from it. <i>(once per turn)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scream-3160db5bcdeb197ba170ffe7e97bf1869d677098895e6017b19d82ca618a411f.webp",
 			"cost": 2
 		},
 		{
