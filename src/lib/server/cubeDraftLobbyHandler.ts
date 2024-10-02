@@ -1,5 +1,5 @@
 import type CubeDraft from '$lib/snap/cubeDraft';
-import { FullUser } from '$lib/server/db';
+import { type FullUser } from '$lib/server/db';
 
 export const lobbies = new Map<string, CubeDraft>();
 

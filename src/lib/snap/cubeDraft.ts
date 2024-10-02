@@ -12,7 +12,7 @@ import {
 } from '$lib/server/webSocketUtils';
 import { Draft } from './draft';
 import { ParseCollectionBlob, type FullUser } from '$lib/server/db';
-import { CardDb, Deck, IntersectionOfCollections } from './cards';
+import { type CardDb, type Deck, IntersectionOfCollections } from '$lib/snap/cards';
 import { seconds_to_ms } from '$lib/constants';
 import { shuffle } from './utils';
 import { DatetimeNowUtc } from '$lib/datetime';
