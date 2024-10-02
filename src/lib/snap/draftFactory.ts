@@ -1,5 +1,7 @@
+import { seconds_to_ms } from '$lib/constants';
+import { type FeaturedCardMode } from '$lib/featuredCard';
 import { GetAllCards } from '$lib/server/cardsHandler';
-import { GetDraft, SetPreviousDraft, drafts } from '$lib/server/draftHandler';
+import { GetDraft, SetCurrentDraft, SetPreviousDraft } from '$lib/server/draftHandler';
 import { ClearPreviewStatus } from '$lib/server/previewHandler';
 import TwitchBot from '$lib/server/twitchBot';
 import {
@@ -44,7 +46,7 @@ export default class DraftFactory {
 		subsExtraVote: boolean = false,
 		playerCollection: string[] | null,
 		battleChatter: string | undefined = undefined,
-		featuredCardMode: string = 'off',
+		featuredCardMode: FeaturedCardMode = 'off',
 		featuredCardDefKey: string = ''
 	) {
 		const currentDraft = GetDraft(player_channel);
@@ -71,7 +73,7 @@ export default class DraftFactory {
 		);
 
 		if (draft.player != '') {
-			drafts.set(draft.player, draft);
+			SetCurrentDraft(draft);
 		}
 
 		draft.onDraftStarted(TwitchBot.DraftStarted);
@@ -83,11 +85,11 @@ export default class DraftFactory {
 		draft.onDraftCanceled(TwitchBot.DraftCanceled);
 		draft.onDraftCanceled(DraftCanceled);
 
-		draft.onNewChoice(async (player_channel, choice) => {
+		draft.onNewChoice(async (player_channel, lobbyName, choice) => {
 			// delay 5 seconds before announcing a new choice for the stream to update
 			if (draft.total > 0) await new Promise((f) => setTimeout(f, 5000));
 			TwitchBot.NewChoice(player_channel, choice);
-			NewChoice(player_channel, choice);
+			NewChoice(player_channel, lobbyName, choice);
 		});
 
 		//draft.onChoiceSelected(TwitchBot.ChoiceSelected);
@@ -96,8 +98,8 @@ export default class DraftFactory {
 		draft.onDraftComplete(async (draft) => {
 			await new Promise((f) => setTimeout(f, 2000));
 			TwitchBot.DraftComplete(draft.player, draft.cards, draft.viewerName, draft.viewerDeck);
-			DraftComplete(draft.player, draft.cards);
-			await new Promise((f) => setTimeout(f, duration * 2 * 1000));
+			DraftComplete(draft.player, draft.lobbyName, draft.cards);
+			await new Promise((f) => setTimeout(f, duration * 2 * seconds_to_ms));
 			SetPreviousDraft(draft);
 			draft.CancelDraft();
 		});

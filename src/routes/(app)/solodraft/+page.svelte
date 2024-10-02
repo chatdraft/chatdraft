@@ -28,7 +28,6 @@
 	}
 
 	async function DraftCard(index: number) {
-		console.log('hello');
 		if (current_draft && choices) {
 			await current_draft.Choose(choices[index].cardDefKey);
 			current_draft = current_draft;
@@ -80,11 +79,11 @@
 		Draft a card by clicking on it.
 		<section class="grid {grid_layout} justify-items-center">
 			{#each choices as choice, index}
-				<DraftChoice {choice} on:click={() => DraftCard(index)} />
+				<DraftChoice {choice} on:click={() => DraftCard(index)} value={choice.cardDefKey} />
 			{/each}
 		</section>
 		{#if current_draft}
-			<DraftSummary {current_draft} showCurrentPick={true} />
+			<DraftSummary currentDeck={current_draft.cards} currentPick={current_draft.total + 1} />
 		{/if}
 	{:else if current_draft?.cards}
 		<CodeBlock language="Deck Code" class="break-words" code={current_draft.GetDeckCode()} />

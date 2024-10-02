@@ -5,3 +5,5 @@ export const sessionTimout_ms = 60 * 60 * 1000;
 export const onehour_ms = 1 * 60 * 60 * 1000;
 
 export const minutes_to_ms = 60 * 1000;
+
+export const seconds_to_ms = 1000;

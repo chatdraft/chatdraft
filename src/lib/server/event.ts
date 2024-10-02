@@ -2,11 +2,12 @@ import { EntrantStatus } from '$lib/event';
 import DraftFactory from '$lib/snap/draftFactory';
 import type { User } from '@prisma/client';
 import { prisma } from './db';
+import { type FeaturedCardMode } from '$lib/featuredCard';
 
 export type Event = {
 	duration: number;
 	selections: number;
-	featuredCardMode: string;
+	featuredCardMode: FeaturedCardMode;
 	featuredCardKey: string;
 	entrants: Array<Entrant>;
 	started: boolean;
@@ -32,7 +33,7 @@ export function CreateEvent(
 	duration: number,
 	selections: number,
 	entrants: User[],
-	featuredCardMode: string = 'off',
+	featuredCardMode: FeaturedCardMode = 'off',
 	featuredCardKey: string = ''
 ) {
 	if (CurrentEventExists()) return;

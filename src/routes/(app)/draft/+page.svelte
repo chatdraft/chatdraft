@@ -19,6 +19,8 @@
 	import { DatetimeNowUtc } from '$lib/datetime';
 	import { title } from '$lib/title';
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
+	import { type FeaturedCardMode } from '$lib/featuredCard';
+	import { seconds_to_ms } from '$lib/constants';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -29,7 +31,7 @@
 	let ws: WebSocket | null = null;
 
 	let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined;
-	let featuredCardMode: 'off' | 'on' | 'full' = 'off';
+	let featuredCardMode: FeaturedCardMode = 'off';
 	let customFeaturedCardDefKey: string = '';
 
 	let customFeaturedCardValidationMessage = '';
@@ -43,7 +45,7 @@
 		if (wsm.type == WebSocketMessageType.DraftComplete) {
 			setTimeout(() => {
 				invalidateAll();
-			}, (current_draft ? current_draft.duration : 30) * 2 * 1000);
+			}, (current_draft ? current_draft.duration : 30) * 2 * seconds_to_ms);
 		}
 		invalidateAll();
 	};
@@ -54,7 +56,7 @@
 	$: previous_draft = data.previous_draft;
 	$: choices = data.choice?.cards!;
 	$: votes = data.choice?.voteCounts!;
-	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
+	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / seconds_to_ms;
 	$: grid_layout = gridcols[current_draft?.selections || 6];
 	$: current_deck_code = data.draft_deck_code;
 	$: previous_deck_code = data.prev_draft_deck_code;
@@ -141,7 +143,7 @@
 							<svelte:fragment slot="content">
 								<ChatDraftSlideToggle
 									name="subsExtraVote"
-									checked={data.subsExtraVote}
+									checked={data.subsExtraVote || false}
 									active="bg-primary-500"
 									label="Subscriber Votes +1"
 								/>
@@ -160,9 +162,9 @@
 						</AccordionItem>
 					</Accordion>
 					<br />
-					<button class="btn btn-lg variant-filled-primary mt-2" on:click={ResetTimeout}
-						>Start Draft</button
-					><br />
+					<button class="btn btn-lg variant-filled-primary mt-2" on:click={ResetTimeout}>
+						Start Draft
+					</button><br />
 				</form>
 			{:else}
 				<div class="mt-4">

@@ -13,6 +13,7 @@ import {
 	RemoveEntrant,
 	StartCurrentEvent
 } from '$lib/server/event';
+import { StringToFeaturedCardMode } from '$lib/featuredCard';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user || !locals.user.isAdmin) throw redirect(302, '/');
@@ -260,7 +261,8 @@ export const actions = {
 		if (data) {
 			const duration = Number(data.get('eventDuration')?.toString());
 			const selectionCount = Number(data.get('eventSelections')?.toString());
-			const featuredCardMode = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+			const featuredCardModeRaw = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+			const featuredCardMode = StringToFeaturedCardMode(featuredCardModeRaw);
 			const featuredCardDefKey = data.get('featuredCardDefKey')?.toString().trim();
 			const entrantNamesData = data.getAll('entrants');
 			const entrantNames: string[] = entrantNamesData.map((data) => data.toString());

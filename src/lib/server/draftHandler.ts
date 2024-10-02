@@ -1,14 +1,14 @@
 import type IDraft from '$lib/snap/draft';
 import type { Choice, Draft } from '$lib/snap/draft';
 import { shuffle } from '$lib/snap/utils';
-import type { EventHandler } from '@d-fischer/typed-event-emitter';
 import { GetAllCards } from './cardsHandler';
 import { DatetimeNowUtc } from '$lib/datetime';
-import type { Card, Deck } from '$lib/snap/cards';
+import type { Card } from '$lib/snap/cards';
+import { seconds_to_ms } from '$lib/constants';
 
-export const drafts = new Map<string, Draft>();
-export const oneTimeDrafts = new Map<string, Draft>();
-export const previousDrafts = new Map<string, Draft>();
+const drafts = new Map<string, Draft>();
+const oneTimeDrafts = new Map<string, Draft>();
+const previousDrafts = new Map<string, Draft>();
 
 /**
  * Returns a list of currently active Drafts
@@ -22,6 +22,17 @@ export function GetDrafts() {
 		idrafts.push(draft.toIDraft());
 	});
 	return idrafts;
+}
+
+/**
+ * Sets the given draft to be the user's current Draft. The user is inferred from
+ * the draft object.
+ *
+ * @export
+ * @param {Draft} draft Previous draft to be set
+ */
+export function SetCurrentDraft(draft: Draft) {
+	drafts.set(draft.player, draft);
 }
 
 /**
@@ -71,7 +82,7 @@ export async function GetPreviewDraft(): Promise<IDraft> {
 		cards: [],
 		votes: new Map<string, string>(),
 		voteCounts: [],
-		votes_closed: DatetimeNowUtc() + duration * 1000
+		votes_closed: DatetimeNowUtc() + duration * seconds_to_ms
 	};
 
 	for (let i = 0; i < selections; i++) {
@@ -168,21 +179,3 @@ export function GetOneTimeDraft(code: string | null) {
 export function ClearOneTimeDraft(code: string | null) {
 	if (code && oneTimeDrafts.has(code)) oneTimeDrafts.delete(code);
 }
-
-export type DraftEvents = {
-	DraftStarted: EventHandler<[player_channel: string]>;
-	DraftCanceled: EventHandler<[player_channel: string]>;
-	NewChoice: EventHandler<[player_channel: string, choice: Choice]>;
-	ChoiceSelected: EventHandler<
-		[
-			player_channel: string,
-			card: Card,
-			battleChatter: string | undefined,
-			battleCard: Card | undefined,
-			battlerCardRandom: boolean | undefined
-		]
-	>;
-	DraftComplete: EventHandler<[player_channel: string, deck: Deck]>;
-	VotingClosed: EventHandler<[player_channel: string, result: string, ties: string[]]>;
-	ChoiceOverride: EventHandler<[player_channel: string, result: string]>;
-};

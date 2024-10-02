@@ -4,15 +4,17 @@
 
 	export let choice: Card;
 	export let selecting: boolean = false;
+	export let disabled: boolean = false;
 	export let selected: string | undefined = undefined;
+	export let value;
 </script>
 
 <div>
 	<button
 		type="submit"
 		name="selection"
-		value={choice.cardDefKey}
-		disabled={selecting}
+		{value}
+		{disabled}
 		class:!outline={selecting && choice.cardDefKey === selected}
 		class="[&>*]:pointer-events-none rounded-md btn p-0 hover:variant-soft-secondary"
 		use:popup={{

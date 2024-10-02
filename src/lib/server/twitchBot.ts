@@ -3,8 +3,8 @@ import { Bot, createBotCommand } from '@twurple/easy-bot';
 import type { Choice, Draft } from '$lib/snap/draft';
 import { env } from '$env/dynamic/public';
 import DraftFactory from '$lib/snap/draftFactory';
-import { SendMessage } from './webSocketUtils';
-import { prisma } from './db';
+import { SendMessageToPlayerChannel } from './webSocketUtils';
+import { ParseCollectionBlob, prisma } from './db';
 import { EndDraft, GetDraft, GetPreviousDraft, IsActive } from './draftHandler';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
@@ -70,7 +70,7 @@ export default class TwitchBot {
 							subsBonus = preferences ? preferences.subsExtraVote : false;
 						}
 
-						const collection = preferences?.collection ? JSON.parse(preferences?.collection) : null;
+						const collection = ParseCollectionBlob(preferences?.collection);
 
 						const draft = await DraftFactory.CreateDraft(
 							broadcasterName,
@@ -99,7 +99,7 @@ export default class TwitchBot {
 								type: WebSocketMessageType.ShowDeck,
 								timestamp: DatetimeNowUtc()
 							};
-							SendMessage(broadcasterName, wsm);
+							SendMessageToPlayerChannel(broadcasterName, wsm);
 						}
 					},
 					{ globalCooldown: 30, userCooldown: 60 }
@@ -163,7 +163,7 @@ export default class TwitchBot {
 					type: WebSocketMessageType.VoteUpdated,
 					timestamp: DatetimeNowUtc()
 				};
-				SendMessage(channel, wsm);
+				SendMessageToPlayerChannel(channel, wsm);
 			}
 		});
 
@@ -279,6 +279,7 @@ export default class TwitchBot {
 	 */
 	public static async DraftStarted(
 		player_channel: string,
+		_lobbyName: string | null,
 		battleChatter: string | undefined = undefined
 	) {
 		if (battleChatter) {
@@ -405,6 +406,7 @@ export default class TwitchBot {
 	 */
 	public static async VotingClosed(
 		player_channel: string,
+		lobbyName: string | null,
 		result: string,
 		ties: string[],
 		battleChatter: string | undefined = undefined,

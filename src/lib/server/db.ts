@@ -5,6 +5,10 @@ import type { User, UserPreference } from '@prisma/client';
 
 export type FullUser = User & { userPreferences: UserPreference | null };
 
+export function ParseCollectionBlob(collection: string | null | undefined): string[] | null {
+	return collection ? (JSON.parse(collection) as string[]) : null;
+}
+
 /**
  * Prisma client instance
  *

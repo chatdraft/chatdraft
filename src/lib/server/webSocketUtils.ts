@@ -11,11 +11,55 @@ import { type ExtendedGlobal, GlobalThisWSS } from './webSocketHandler';
  * @param {string} player_channel The Twitch channel to send the websocket message to
  * @param {WebSocketMessage} message The message to send
  */
-export function SendMessage(player_channel: string, message: WebSocketMessage) {
+export function SendMessageToPlayerChannel(player_channel: string, message: WebSocketMessage) {
 	const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
 	if (wss !== undefined) {
 		wss.clients.forEach((client) => {
 			if (client.readyState === 1 && client.player_channel == player_channel) {
+				client.send(JSON.stringify(message));
+			}
+		});
+	}
+}
+
+/**
+ * Sends a message to all websockets associated with the given twitch user channel
+ *
+ * @export
+ * @param {string} lobby The cube draft lobby to send the message to
+ * @param {WebSocketMessage} message The message to send
+ */
+export function SendMessageToLobby(lobbyName: string | null, message: WebSocketMessage) {
+	const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
+	if (wss !== undefined) {
+		wss.clients.forEach((client) => {
+			if (client.readyState === 1 && client.lobbyName == lobbyName) {
+				client.send(JSON.stringify(message));
+			}
+		});
+	}
+}
+
+/**
+ * Sends a message to all websockets associated with the given twitch user channel
+ *
+ * @export
+ * @param {string} player_channel The Twitch channel to send the websocket message to
+ * @param {WebSocketMessage} message The message to send
+ */
+export function SendMessageToPlayerInLobby(
+	player_channel: string,
+	lobbyName: string,
+	message: WebSocketMessage
+) {
+	const wss = (globalThis as ExtendedGlobal)[GlobalThisWSS];
+	if (wss !== undefined) {
+		wss.clients.forEach((client) => {
+			if (
+				client.readyState === 1 &&
+				client.player_channel == player_channel &&
+				client.lobbyName == lobbyName
+			) {
 				client.send(JSON.stringify(message));
 			}
 		});
@@ -29,11 +73,17 @@ export function SendMessage(player_channel: string, message: WebSocketMessage) {
  * @param {string} player_channel The Twitch channel to send the websocket message to
  * @returns {*}
  */
-export const DraftStarted = async (player_channel: string) => {
-	SendMessage(player_channel, {
+export const DraftStarted = async (player_channel: string, lobbyName: string | null = null) => {
+	const wsm = {
 		type: WebSocketMessageType.DraftStarted,
 		timestamp: DatetimeNowUtc()
-	});
+	};
+
+	if (!lobbyName) {
+		SendMessageToPlayerChannel(player_channel, wsm);
+	} else {
+		SendMessageToLobby(lobbyName, wsm);
+	}
 };
 
 /**
@@ -41,16 +91,25 @@ export const DraftStarted = async (player_channel: string) => {
  *
  * @async
  * @param {string} player_channel The Twitch channel to send the websocket message to
+ * @param {string | null} lobbyName The cube draft lobby this draft is related to
  * @param {Choice} choice The updated choice
  * @returns {*}
  */
-export const NewChoice = async (player_channel: string, choice: Choice) => {
+export const NewChoice = async (
+	player_channel: string,
+	lobbyName: string | null = null,
+	choice: Choice
+) => {
 	const wsm: WebSocketMessage = {
 		type: WebSocketMessageType.NewChoice,
 		timestamp: DatetimeNowUtc(),
 		message: JSON.stringify(choice)
 	};
-	SendMessage(player_channel, wsm);
+	if (!lobbyName) {
+		SendMessageToPlayerChannel(player_channel, wsm);
+	} else {
+		SendMessageToPlayerInLobby(player_channel, lobbyName, wsm);
+	}
 };
 
 /**
@@ -58,16 +117,25 @@ export const NewChoice = async (player_channel: string, choice: Choice) => {
  *
  * @async
  * @param {string} player_channel The Twitch channel to send the websocket message to
+ * @param {string | null} lobbyName The cube draft lobby this draft is related to
  * @param {Card} card The card that was selected
  * @returns {*}
  */
-export const ChoiceSelected = async (player_channel: string, card: Card) => {
+export const ChoiceSelected = async (
+	player_channel: string,
+	lobbyName: string | null = null,
+	card: Card
+) => {
 	const wsm: WebSocketMessage = {
 		type: WebSocketMessageType.ChoiceSelected,
 		timestamp: DatetimeNowUtc(),
 		message: JSON.stringify(card)
 	};
-	SendMessage(player_channel, wsm);
+	if (!lobbyName) {
+		SendMessageToPlayerChannel(player_channel, wsm);
+	} else {
+		SendMessageToPlayerInLobby(player_channel, lobbyName, wsm);
+	}
 };
 
 /**
@@ -75,16 +143,25 @@ export const ChoiceSelected = async (player_channel: string, card: Card) => {
  *
  * @async
  * @param {string} player_channel The Twitch channel to send the websocket message to
+ * @param {string | null} lobbyName The cube draft lobby this draft is related to
  * @param {Deck} deck The finish drafted deck
  * @returns {*}
  */
-export const DraftComplete = async (player_channel: string, deck: Deck) => {
+export const DraftComplete = async (
+	player_channel: string,
+	lobbyName: string | null = null,
+	deck: Deck
+) => {
 	const wsm: WebSocketMessage = {
 		type: WebSocketMessageType.DraftComplete,
 		timestamp: DatetimeNowUtc(),
 		message: JSON.stringify(deck)
 	};
-	SendMessage(player_channel, wsm);
+	if (!lobbyName) {
+		SendMessageToPlayerChannel(player_channel, wsm);
+	} else {
+		SendMessageToPlayerInLobby(player_channel, lobbyName, wsm);
+	}
 };
 
 /**
@@ -95,10 +172,15 @@ export const DraftComplete = async (player_channel: string, deck: Deck) => {
  * @returns {*}
  */
 export const DraftCanceled = async (draft: Draft) => {
-	SendMessage(draft.player, {
+	const wsm = {
 		type: WebSocketMessageType.DraftCanceled,
 		timestamp: DatetimeNowUtc()
-	});
+	};
+	if (!draft.lobbyName) {
+		SendMessageToPlayerChannel(draft.player, wsm);
+	} else {
+		SendMessageToPlayerInLobby(draft.player, draft.lobbyName, wsm);
+	}
 };
 
 /**
@@ -108,11 +190,16 @@ export const DraftCanceled = async (draft: Draft) => {
  * @param {string} player_channel The Twitch channel to send the websocket message to
  * @returns {*}
  */
-export const VotingClosed = async (player_channel: string) => {
-	SendMessage(player_channel, {
+export const VotingClosed = async (player_channel: string, lobbyName: string | null = null) => {
+	const wsm = {
 		type: WebSocketMessageType.VotingClosed,
 		timestamp: DatetimeNowUtc()
-	});
+	};
+	if (!lobbyName) {
+		SendMessageToPlayerChannel(player_channel, wsm);
+	} else {
+		SendMessageToPlayerInLobby(player_channel, lobbyName, wsm);
+	}
 };
 
 /**
@@ -129,7 +216,7 @@ export const ChoiceOverride = async (player_channel: string, result: string) => 
 		timestamp: DatetimeNowUtc(),
 		message: result
 	};
-	SendMessage(player_channel, wsm);
+	SendMessageToPlayerChannel(player_channel, wsm);
 };
 
 /**
@@ -146,7 +233,7 @@ export const PreviewToggled = async (player_channel: string, previewStatus: bool
 		timestamp: DatetimeNowUtc(),
 		message: JSON.stringify(previewStatus)
 	};
-	SendMessage(player_channel, wsm);
+	SendMessageToPlayerChannel(player_channel, wsm);
 };
 
 /**
@@ -174,7 +261,7 @@ export const BrowserSourceUpdated = async (
 			choice_sources_configured: choice_sources_configured
 		})
 	};
-	SendMessage(player_channel, wsm);
+	SendMessageToPlayerChannel(player_channel, wsm);
 };
 
 export const BattlerChoice = async (player_channel: string, battlerChoiceCard: Card) => {
@@ -183,5 +270,37 @@ export const BattlerChoice = async (player_channel: string, battlerChoiceCard: C
 		timestamp: DatetimeNowUtc(),
 		message: JSON.stringify(battlerChoiceCard)
 	};
-	SendMessage(player_channel, wsm);
+	SendMessageToPlayerChannel(player_channel, wsm);
+};
+
+export const LobbyDraftPoolUpdated = async (lobbyName: string | null) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.LobbyDraftPoolUpdated,
+		timestamp: DatetimeNowUtc()
+	};
+	SendMessageToLobby(lobbyName, wsm);
+};
+
+export const LobbyDraftRoundOver = async (lobbyName: string) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.LobbyDraftRoundOver,
+		timestamp: DatetimeNowUtc()
+	};
+	SendMessageToLobby(lobbyName, wsm);
+};
+
+export const LobbyDraftComplete = async (lobbyName: string) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.LobbyDraftComplete,
+		timestamp: DatetimeNowUtc()
+	};
+	SendMessageToLobby(lobbyName, wsm);
+};
+
+export const LobbyUpdated = async (lobbyName: string) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.LobbyUpdated,
+		timestamp: DatetimeNowUtc()
+	};
+	SendMessageToLobby(lobbyName, wsm);
 };

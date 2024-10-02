@@ -4,6 +4,8 @@ import { EndDraft, GetDraft, GetPreviousDraft } from '$lib/server/draftHandler';
 import DraftFactory from '$lib/snap/draftFactory';
 import TwitchBot from '$lib/server/twitchBot';
 import { GetAllCards } from '$lib/server/cardsHandler';
+import { ParseCollectionBlob } from '$lib/server/db';
+import { StringToFeaturedCardMode } from '$lib/featuredCard';
 
 export const load = (async ({ locals }) => {
 	if (locals.user && !locals.user.isAuthorized) throw redirect(302, '/');
@@ -11,9 +13,7 @@ export const load = (async ({ locals }) => {
 	const cardPool = await GetAllCards();
 
 	if (locals.user?.channelName) {
-		const playerCollection = locals.user.userPreferences?.collection
-			? JSON.parse(locals.user.userPreferences.collection)
-			: undefined;
+		const playerCollection = ParseCollectionBlob(locals.user.userPreferences?.collection);
 		const draft = GetDraft(locals.user?.channelName);
 		if (draft) {
 			return {
@@ -75,7 +75,8 @@ export const actions = {
 				const selectionCount = Number(data.get('selectionCount')?.toString());
 				const subsExtraVote = Boolean(data.get('subsExtraVote')?.toString());
 				const battleChatter = data.get('battleChatter')?.toString().toLowerCase().trim();
-				const featuredCardMode = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+				const featuredCardModeRaw = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+				const featuredCardMode = StringToFeaturedCardMode(featuredCardModeRaw);
 				const featuredCardDefKey = data.get('featuredCardDefKey')?.toString().trim();
 				const collection = locals.user?.userPreferences?.collection
 					? JSON.parse(locals.user?.userPreferences.collection)

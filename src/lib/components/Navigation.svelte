@@ -35,8 +35,8 @@
 				</AppRailIcon>
 			</AppRailAnchor>
 			<AppRailAnchor href="/draft">
-				<AppRailIcon pageRouteId={$page.route.id} routeId="/draft" icon="mdi:cards">
-					Draft
+				<AppRailIcon pageRouteId={$page.route.id} routeId="/draft" icon="carbon:chat-bot">
+					Chat Draft
 				</AppRailIcon>
 			</AppRailAnchor>
 		{:else}
@@ -46,6 +46,11 @@
 				</AppRailIcon>
 			</AppRailAnchor>
 		{/if}
+		<AppRailAnchor href="/cubedraft">
+			<AppRailIcon pageRouteId={$page.route.id} routeId="/cubedraft" icon="mdi:cube-outline">
+				Cube Draft
+			</AppRailIcon>
+		</AppRailAnchor>
 	{/if}
 
 	{#if user && (user.isOrganizer || user.isAdmin)}

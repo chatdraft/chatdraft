@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { type FeaturedCardMode } from '$lib/featuredCard';
 	import { LookupCard } from '$lib/snap/cards';
 	import type { CardDb } from '$lib/snap/cards';
 	import { RadioGroup, RadioItem, popup, Autocomplete } from '@skeletonlabs/skeleton';
@@ -6,11 +7,11 @@
 
 	export let cardPool: CardDb;
 
-	export let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined = 'seasonpass';
-	export let featuredCardMode: 'off' | 'on' | 'full' = 'off';
+	export let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined = undefined;
+	export let featuredCardMode: FeaturedCardMode = 'off';
 	export let customFeaturedCardName: string = '';
 	export let customFeaturedCardDefKey: string = '';
-	export let collection: string[] | undefined = undefined;
+	export let collection: string[] | null = null;
 	const customFeaturedCardOptions: AutocompleteOption<string>[] | undefined = cardPool?.all
 		.filter((card) => !collection || collection.includes(card.cardDefKey))
 		.map((card) => {

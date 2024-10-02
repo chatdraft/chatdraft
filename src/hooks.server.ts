@@ -68,6 +68,10 @@ export const startupWebsocketServer = () => {
 						const channel = wsm.message!;
 						ws.player_channel = channel;
 					}
+					if (wsm.type == WebSocketMessageType.LobbyName) {
+						const lobby = wsm.message!;
+						ws.lobbyName = lobby;
+					}
 				} catch (error) {
 					let message = 'Unknown Error';
 					if (error instanceof Error) message = error.message;

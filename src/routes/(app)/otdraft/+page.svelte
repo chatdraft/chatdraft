@@ -96,12 +96,18 @@
 				<input type="hidden" name="code" value={data.draftCode} />
 				<section class="grid grid-cols-6 justify-items-center gap-4">
 					{#each choices as choice}
-						<DraftChoice {choice} {selecting} {selected} />
+						<DraftChoice
+							{choice}
+							{selecting}
+							{selected}
+							disabled={selecting}
+							value={choice.cardDefKey}
+						/>
 					{/each}
 				</section>
 			</form>
 			{#if current_draft}
-				<DraftSummary {current_draft} />
+				<DraftSummary currentDeck={current_draft.cards} currentPick={current_draft.total + 1} />
 			{/if}
 		{:else if data.deckCode}
 			<CodeBlock language="Deck Code" class="break-words mt-4" code={data.deckCode} />

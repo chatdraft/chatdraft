@@ -16,6 +16,7 @@
 	import BrowserSourceFooter from '$lib/components/BrowserSourceFooter.svelte';
 	import BrowserSourceHeader from '$lib/components/BrowserSourceHeader.svelte';
 	import { title } from '$lib/title';
+	import { seconds_to_ms } from '$lib/constants.js';
 
 	export let data;
 
@@ -66,7 +67,7 @@
 		if (wsm.type == WebSocketMessageType.DraftComplete) {
 			setTimeout(() => {
 				current_draft = undefined;
-			}, (current_draft ? current_draft.duration : 30) * 2 * 1000);
+			}, (current_draft ? current_draft.duration : 30) * 2 * seconds_to_ms);
 			invalidateAll();
 		}
 
@@ -110,7 +111,7 @@
 	$: current_draft = data.previewStatus ? data.previewDraft : data.draft;
 	$: choices = current_draft?.currentChoice?.cards!;
 	$: votes = current_draft?.currentChoice?.voteCounts!;
-	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / 1000;
+	$: time_remaining = (current_draft?.currentChoice?.votes_closed! - now) / seconds_to_ms;
 	$: preview_mode = data.previewStatus;
 	$: maxVotes = votes && votes.length > 0 ? Math.max(...votes) : 0;
 

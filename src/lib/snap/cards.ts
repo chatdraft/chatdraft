@@ -50,3 +50,19 @@ export function LookupCard(cards: { cardDefKey: string }[], cardDefKey: string |
 	const card = cards.find((card) => card.cardDefKey == cardDefKey) as Card;
 	return card || placeholder;
 }
+
+export function IntersectionOfCollections(collections: (string[] | null)[]): string[] | null {
+	if (collections.length == 0) return null;
+	return collections.reduce((intersection, collection) => {
+		if (!intersection && !collection) {
+			return null;
+		}
+		if (!intersection) {
+			return collection;
+		}
+		if (!collection) {
+			return intersection;
+		}
+		return intersection.filter((card) => collection.includes(card));
+	});
+}

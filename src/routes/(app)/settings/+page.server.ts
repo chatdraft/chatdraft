@@ -10,7 +10,8 @@ import {
 import { prisma } from '$lib/server/db';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
-import { SendMessage } from '$lib/server/webSocketUtils';
+import { SendMessageToPlayerChannel } from '$lib/server/webSocketUtils';
+import { UpdateUserCollection } from '$lib/server/cubeDraftLobbyHandler';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user || !locals.user.isAuthorized) throw redirect(302, '/');
@@ -99,7 +100,10 @@ export const actions = {
 						locals.user.twitchID,
 						cards
 					);
-					if (userPreference) locals.user.userPreferences = userPreference;
+					if (userPreference) {
+						locals.user.userPreferences = userPreference;
+						UpdateUserCollection(locals.user, userPreference.collection);
+					}
 				}
 			}
 		}
@@ -107,7 +111,10 @@ export const actions = {
 	resetCollection: async ({ locals }) => {
 		if (locals.user && locals.user.twitchID) {
 			const userPreference = await prisma.userPreference.ResetUserCollection(locals.user.twitchID);
-			if (userPreference) locals.user.userPreferences = userPreference;
+			if (userPreference) {
+				locals.user.userPreferences = userPreference;
+				UpdateUserCollection(locals.user, userPreference.collection);
+			}
 		}
 	},
 	updateOpacity: async ({ request, locals }) => {
@@ -126,7 +133,7 @@ export const actions = {
 					timestamp: DatetimeNowUtc(),
 					message: JSON.stringify({ bgOpacity: bgOpacity })
 				};
-				SendMessage(locals.user.channelName, wsm);
+				SendMessageToPlayerChannel(locals.user.channelName, wsm);
 			}
 
 			return { success: true };

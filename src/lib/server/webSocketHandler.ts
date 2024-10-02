@@ -15,6 +15,7 @@ declare class ExtendedWebSocket extends WebSocketBase {
 	userId: string;
 	sessionId: string;
 	player_channel: string;
+	lobbyName: string;
 }
 
 export type { ExtendedWebSocket };
