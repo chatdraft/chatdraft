@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "AgentVenom",
-	"currentSpotlightCardDefId": "Scream",
+	"currentSpotlightCardDefId": "Misery",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1459,6 +1459,15 @@
 			"description": "<b>On Reveal:</b> Copy the card that costs the least from your opponent's hand into your hand. Give it +2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mirage-81d000dcf229a0fbfb061592148c83b41f1b069cf73f9ac4328ac9eed3fd3d0d.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "Misery",
+			"variantKey": null,
+			"url": "/cards/Misery/",
+			"name": "Misery",
+			"description": "<b>On Reveal:</b> Repeat the <b>On Reveal</b> abilities of your other cards here, then destroy them.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Misery-a8aefcd11d9c53a79472022b52ca50d7b64cbe2533ae17d22815aa79c5a7674a.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "MrFantastic",
