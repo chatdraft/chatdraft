@@ -1422,7 +1422,7 @@
 			"name": "Maximus",
 			"description": "<b>On Reveal:</b> Your opponent\ndraws 2 cards.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Maximus-f2908d0277c319541344b849fc283a72082d35a19682b8d09e3f73ee1e094531.webp",
-			"cost": 3
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Medusa",
