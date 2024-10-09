@@ -8,7 +8,7 @@
 	let editingUser: User | undefined = undefined;
 </script>
 
-<div class="table-container m-4">
+<div class="table-container m-4 overflow-x-visible">
 	<form
 		method="post"
 		action="?/updateUser"
@@ -19,8 +19,10 @@
 			};
 		}}
 	>
-		<table class="table table-hover table-compact text-center border-collapse w-min">
-			<thead>
+		<table
+			class="table table-hover table-compact text-center border-collapse w-min overflow-scroll"
+		>
+			<thead class="sticky top-0">
 				<tr>
 					<th class="table-cell-fit">Name</th>
 					<th class="table-cell-fit">Is Admin</th>
