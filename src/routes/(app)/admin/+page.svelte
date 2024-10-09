@@ -11,6 +11,7 @@
 	import type { CardDb } from '$lib/snap/cards';
 	import { LookupCard } from '$lib/snap/cards';
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
+	import UserManagementTable from '$lib/components/UserManagementTable.svelte';
 
 	const toastStore = getToastStore();
 
@@ -18,9 +19,6 @@
 	$: drafts = data.drafts;
 	$: previousDrafts = data.previousDrafts;
 	$: channels = data.channels!;
-	$: authorizedUsers = data.authorizedUsers!;
-	$: adminUsers = data.adminUsers!;
-	$: setupCompleteUsers = data.setupCompleteUsers;
 
 	let cardDbFiles: FileList;
 	let otdBatchFiles: FileList;
@@ -138,36 +136,17 @@
 		{/if}
 	</form>
 	<hr class="m-4" />
-	<section>Admin Accounts:</section>
-	<ul class="list-disc list-inside">
-		{#each adminUsers as username}
-			<li>{username}</li>
-		{/each}
-	</ul>
-	<br />
+	<h3 class="h3">User Management</h3>
+	<UserManagementTable users={data.users} />
+
 	<hr class="m-4" />
-	<section>Authorized Accounts:</section>
-	<ul class="list-disc list-inside">
-		{#each authorizedUsers as username}
-			<form method="POST" action="?/deauthorize" use:enhance>
-				<li>
-					<button class="btn-icon btn-icon-sm variant-outline-error">
-						<iconify-icon icon="mdi:remove-bold" />
-					</button>
-					{username}
-				</li>
-				<input type="hidden" id="username" name="username" value={username} />
-			</form>
-		{/each}
-		<form method="POST" action="?/authorize" use:enhance>
-			<label for="username">Authorize User:</label>
-			<input type="text" id="username" name="username" placeholder="Username" class="input w-64" />
-			<button class="btn-icon btn-icon-sm variant-outline-primary"
-				><iconify-icon icon="mdi:check-bold" /></button
-			>
-		</form>
-	</ul>
-	<br />
+	<form method="POST" action="?/authorize" use:enhance>
+		<label for="username">Authorize User for Chat Draft:</label>
+		<input type="text" id="username" name="username" placeholder="Username" class="input w-64" />
+		<button class="btn-icon btn-icon-sm variant-outline-primary"
+			><iconify-icon icon="mdi:check-bold" /></button
+		>
+	</form>
 	<hr class="m-4" />
 	<section>Chatbot is connected to:</section>
 	<ul class="list-disc list-inside">
@@ -217,49 +196,6 @@
 	</form>
 	<br />
 	<hr class="m-4" />
-	<section>Getting started complete for:</section>
-	<ul class="list-disc list-inside">
-		{#if setupCompleteUsers}
-			{#each setupCompleteUsers as user}
-				<form method="POST" action="?/resetsetup" use:enhance>
-					<li>
-						<button class="btn-icon btn-icon-sm variant-outline-error">
-							<iconify-icon icon="mdi:remove-bold" />
-						</button>
-						{user}
-						<input type="hidden" id="username" name="username" value={user} />
-					</li>
-				</form>
-			{/each}
-		{/if}
-	</ul>
-	<hr class="m-4" />
-
-	<section>
-		<p>One Time Draft Organizer Accounts</p>
-		{#each data.organizers || [] as organizer}
-			<form method="POST" action="?/removeOrganizer" use:enhance>
-				<li>
-					<button class="btn-icon btn-icon-sm variant-outline-error">
-						<iconify-icon icon="mdi:remove-bold" />
-					</button>
-					{organizer}
-					<input type="hidden" id="username" name="organizer" value={organizer} />
-				</li>
-			</form>
-		{/each}
-		<br />
-		<form method="POST" action="?/addOrganizer" use:enhance>
-			<input class="input w-64" type="text" name="organizer" placeholder="Username" />
-
-			<button class="btn-icon btn-icon-sm variant-outline-primary"
-				><iconify-icon icon="mdi:check-bold" /></button
-			>
-		</form>
-	</section>
-	<br />
-	<hr />
-	<br />
 
 	<section>
 		<h3>Generate One Time Draft Links</h3>

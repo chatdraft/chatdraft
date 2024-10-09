@@ -62,6 +62,7 @@ export interface ICubeDraft {
 	roundEndsAt: number;
 	closedDeckList: boolean;
 	draftedDecks: Map<string, Deck> | undefined;
+	faceDownDraft: boolean;
 }
 
 /**
@@ -157,7 +158,7 @@ export default class CubeDraft {
 	}
 
 	public get closedDeckList(): boolean {
-		return this._closedDeckList;
+		return this._faceDownDraft;
 	}
 
 	/**
@@ -179,7 +180,7 @@ export default class CubeDraft {
 		private _cardPool: CardDb,
 		private _featuredCardMode: FeaturedCardMode = 'off',
 		private _featuredCardDefKey: string = '',
-		private _closedDeckList: boolean = true
+		private _faceDownDraft: boolean = true
 	) {
 		this._players = [_creator];
 		this.updateCardPool();
@@ -323,7 +324,8 @@ export default class CubeDraft {
 			...draftedCards.filter((card) => card.winner).map((card) => card.winner!.cardDefKey)
 		);
 
-		if (this._decks.values().next().value.length < 12) {
+		const sampleDeck = this._decks.values().next().value;
+		if (sampleDeck && sampleDeck.length < 12) {
 			this.CreateNewChoices();
 			this.RestartRoundTimer();
 			await LobbyDraftRoundOver(this.lobbyName);
@@ -377,7 +379,8 @@ export default class CubeDraft {
 			featuredCardDefKey: this.featuredCardDefKey,
 			roundEndsAt: this.roundEndsAt,
 			closedDeckList: this.closedDeckList,
-			draftedDecks: this.closedDeckList ? undefined : this._decks
+			draftedDecks: this.closedDeckList ? undefined : this._decks,
+			faceDownDraft: this._faceDownDraft
 		};
 	}
 }

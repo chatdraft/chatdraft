@@ -57,101 +57,103 @@
 	<h1 class="h1">Settings</h1>
 	<p class="mt-4">Oro Chat Draft user options and configurations.</p>
 	<br />
-	<form
-		method="POST"
-		action="?/updatePreferences"
-		use:enhance={() => {
-			return async ({ result }) => {
-				if (result.type == 'success') {
-					toastStore.trigger({ message: 'Settings updated successfully.' });
-				}
-				//update();
-			};
-		}}
-	>
-		<h2 class="h2">Draft Defaults</h2>
-		<p class="mt-4">Set your default preferences for starting a draft.</p>
-		<div class="grid grid-cols-2">
-			<DurationSlider duration={data.duration} />
-		</div>
-		<div class="grid grid-cols-2">
-			<SelectionCountSlider selectionCount={data.selectionCount} />
-		</div>
-		<ChatDraftSlideToggle
-			name="subsExtraVote"
-			checked={data.subsExtraVote}
-			active="bg-primary-500"
-			label="Subscriber votes +1"
-		/>
-		<button class="btn btn-lg variant-filled-primary mt-2">Save Defaults</button><br />
-	</form>
-	<br /><br />
-	<h2 class="h2">Chat Draft Bot</h2>
-	{#if data.botInChannel}
-		<p class="mt-4">Have chat draft bot leave your channel.</p>
+	{#if data.authorization?.chatDraft}
 		<form
 			method="POST"
-			action="?/part"
-			on:submit={invalidateAll}
+			action="?/updatePreferences"
 			use:enhance={() => {
-				return async ({ result, update }) => {
+				return async ({ result }) => {
 					if (result.type == 'success') {
-						toastStore.trigger({ message: 'Bot successfully left your channel.' });
+						toastStore.trigger({ message: 'Settings updated successfully.' });
 					}
-					update();
+					//update();
 				};
 			}}
 		>
-			<button class="btn btn-lg variant-filled-warning mt-2">Leave Channel</button>
+			<h2 class="h2">Draft Defaults</h2>
+			<p class="mt-4">Set your default preferences for starting a draft.</p>
+			<div class="grid grid-cols-2">
+				<DurationSlider duration={data.duration} />
+			</div>
+			<div class="grid grid-cols-2">
+				<SelectionCountSlider selectionCount={data.selectionCount} />
+			</div>
+			<ChatDraftSlideToggle
+				name="subsExtraVote"
+				checked={data.subsExtraVote}
+				active="bg-primary-500"
+				label="Subscriber votes +1"
+			/>
+			<button class="btn btn-lg variant-filled-primary mt-2">Save Defaults</button><br />
 		</form>
-		<p class="mt-4">Note: Chat draft will not work without the bot in your channel.</p>
-	{:else}
-		<p class="mt-4">Have chat draft bot join your channel:</p>
-		<form
-			method="POST"
-			action="?/join"
-			on:submit={invalidateAll}
-			use:enhance={() => {
-				return async ({ result, update }) => {
-					if (result.type == 'success') {
-						toastStore.trigger({ message: 'Bot successfully joined your channel.' });
-					}
-					update();
-				};
-			}}
-		>
-			<button class="btn btn-lg variant-filled-primary mt-2">Join Channel</button>
-		</form>
-	{/if}
-	<br />
-	<br />
+		<br /><br />
+		<h2 class="h2">Chat Draft Bot</h2>
+		{#if data.botInChannel}
+			<p class="mt-4">Have chat draft bot leave your channel.</p>
+			<form
+				method="POST"
+				action="?/part"
+				on:submit={invalidateAll}
+				use:enhance={() => {
+					return async ({ result, update }) => {
+						if (result.type == 'success') {
+							toastStore.trigger({ message: 'Bot successfully left your channel.' });
+						}
+						update();
+					};
+				}}
+			>
+				<button class="btn btn-lg variant-filled-warning mt-2">Leave Channel</button>
+			</form>
+			<p class="mt-4">Note: Chat draft will not work without the bot in your channel.</p>
+		{:else}
+			<p class="mt-4">Have chat draft bot join your channel:</p>
+			<form
+				method="POST"
+				action="?/join"
+				on:submit={invalidateAll}
+				use:enhance={() => {
+					return async ({ result, update }) => {
+						if (result.type == 'success') {
+							toastStore.trigger({ message: 'Bot successfully joined your channel.' });
+						}
+						update();
+					};
+				}}
+			>
+				<button class="btn btn-lg variant-filled-primary mt-2">Join Channel</button>
+			</form>
+		{/if}
+		<br />
+		<br />
 
-	<h2 class="h2">Browser Sources</h2>
-	<BrowserSources
-		user={data.user || ''}
-		previewMode={data.previewMode}
-		{full_source_configured}
-		{deck_sources_configured}
-		{choices_sources_configured}
-	/>
-	<br />
-	<h3 class="h3">Background Opacity</h3>
-	<form
-		method="post"
-		action="?/updateOpacity"
-		use:enhance={() => {
-			return async ({ result }) => {
-				if (result.type == 'success') {
-					toastStore.trigger({ message: 'Background Opacity updated successfully.' });
-				}
-			};
-		}}
-		class="w-1/2 mt-2"
-	>
-		<BgOpacitySlider {bgOpacity} />
-		<button class="btn btn-lg variant-filled-primary mt-2">Save Opacity</button>
-	</form>
-	<br />
+		<h2 class="h2">Browser Sources</h2>
+		<BrowserSources
+			user={data.user || ''}
+			previewMode={data.previewMode}
+			{full_source_configured}
+			{deck_sources_configured}
+			{choices_sources_configured}
+		/>
+		<br />
+		<h3 class="h3">Background Opacity</h3>
+		<form
+			method="post"
+			action="?/updateOpacity"
+			use:enhance={() => {
+				return async ({ result }) => {
+					if (result.type == 'success') {
+						toastStore.trigger({ message: 'Background Opacity updated successfully.' });
+					}
+				};
+			}}
+			class="w-1/2 mt-2"
+		>
+			<BgOpacitySlider {bgOpacity} />
+			<button class="btn btn-lg variant-filled-primary mt-2">Save Opacity</button>
+		</form>
+		<br />
+	{/if}
 
 	<h2 class="h2">Snap Collection</h2>
 	<form

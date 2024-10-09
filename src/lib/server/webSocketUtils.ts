@@ -304,3 +304,11 @@ export const LobbyUpdated = async (lobbyName: string) => {
 	};
 	SendMessageToLobby(lobbyName, wsm);
 };
+
+export const LobbyClosed = async (lobbyName: string) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.LobbyClosed,
+		timestamp: DatetimeNowUtc()
+	};
+	SendMessageToLobby(lobbyName, wsm);
+};

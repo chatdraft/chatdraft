@@ -3,6 +3,7 @@ import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
 import { sessionTimout_ms } from '../constants';
 import type { FullUser } from './db';
+import { User, UserAuthorization } from '@prisma/client';
 
 type TSessionID = string;
 
@@ -64,4 +65,15 @@ export function updateSession(sessionId: TSessionID, accessToken: AccessToken) {
 	if (user) sessionUsers.set(sessionId, { token: accessToken, user: user });
 
 	return sessionId as TSessionID;
+}
+
+export function updateUserAuthorization(user: User & { authorization: UserAuthorization | null }) {
+	const sessionUser = Array.from(sessionUsers.values()).find(
+		(session) => user.id == session?.user.id
+	);
+	if (sessionUser) {
+		sessionUser.user.authorization = user.authorization;
+		sessionUser.user.isAdmin = user.isAdmin;
+		sessionUser.user.isOrganizer = user.isOrganizer;
+	}
 }

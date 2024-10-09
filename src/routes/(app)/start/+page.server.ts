@@ -4,7 +4,8 @@ import { GetPreviewStatus, TogglePreviewStatus } from '$lib/server/previewHandle
 import { prisma } from '$lib/server/db';
 
 export const load = (async ({ locals }) => {
-	if (locals.user && !locals.user.isAuthorized) throw redirect(302, '/');
+	if (!locals.user || !locals.user.authorization || !locals.user.authorization.chatDraft)
+		throw redirect(302, '/');
 	const user = locals.user?.channelName;
 	let previewMode = false;
 	if (user) {

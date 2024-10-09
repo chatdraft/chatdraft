@@ -20,7 +20,7 @@ model User {
   channelName String @unique
   displayName String?
   isAdmin Boolean @default(false)
-  isAuthorized Boolean @default(false)
+  authorization UserAuthorization?
   twitchID String? @unique
   twitchProfilePictureURL String?
   twitchToken Token?
@@ -51,6 +51,15 @@ model UserPreference {
   snapFanApiKey String?
   collection String? @db.NVarChar(max)
   bgOpacity Int @default(70)
+}
+
+model UserAuthorization {
+  user User @relation(fields: [userId], references: [ id ])
+  userId String @unique
+  chatDraft Boolean @default(false)
+  soloDraft Boolean @default(false)
+  cubeDraft Boolean @default(false)
+  cubeDraftCreateLobby Boolean @default(false)
 }
 
 model Draft {

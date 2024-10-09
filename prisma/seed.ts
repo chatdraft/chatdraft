@@ -14,7 +14,13 @@ async function main() {
 			twitchID: '50721467',
 			isAdmin: true,
 			initialSetupDone: true,
-			isAuthorized: true,
+			authorization: {
+				create: {
+					chatDraft: true,
+					cubeDraft: true,
+					soloDraft: true
+				}
+			},
 			twitchProfilePictureURL:
 				'https://static-cdn.jtvnw.net/jtv_user_pictures/bc432a12-327d-406b-b49e-a88d500a89f1-profile_image-300x300.png'
 		}
@@ -31,7 +37,13 @@ async function main() {
 			twitchID: '30549049',
 			isAdmin: true,
 			initialSetupDone: false,
-			isAuthorized: true,
+			authorization: {
+				create: {
+					chatDraft: true,
+					cubeDraft: true,
+					soloDraft: true
+				}
+			},
 			twitchProfilePictureURL:
 				'https://static-cdn.jtvnw.net/jtv_user_pictures/62390893-9bb5-4100-9f23-7ca7a271440c-profile_image-300x300.png'
 		}
@@ -48,12 +60,17 @@ async function main() {
 			twitchID: '39040663',
 			isAdmin: true,
 			initialSetupDone: false,
-			isAuthorized: true,
+			authorization: {
+				create: {
+					chatDraft: true,
+					cubeDraft: true,
+					soloDraft: true
+				}
+			},
 			twitchProfilePictureURL:
 				'https://static-cdn.jtvnw.net/jtv_user_pictures/62390893-9bb5-4100-9f23-7ca7a271440c-profile_image-300x300.png'
 		}
 	});
-
 
 	console.log({ oro, jjrolk, theory });
 }

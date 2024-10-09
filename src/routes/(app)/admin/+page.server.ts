@@ -14,6 +14,7 @@ import {
 	StartCurrentEvent
 } from '$lib/server/event';
 import { StringToFeaturedCardMode } from '$lib/featuredCard';
+import { updateUserAuthorization } from '$lib/server/sessionHandler';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user || !locals.user.isAdmin) throw redirect(302, '/');
@@ -25,11 +26,7 @@ export const load = (async ({ locals }) => {
 	const drafts = await GetDrafts();
 	const previousDrafts = await GetPreviousDrafts();
 	const authorizedUsers = users
-		?.filter((user) => user.isAuthorized)
-		.map((user) => user.channelName);
-	const adminUsers = users?.filter((user) => user.isAdmin).map((user) => user.channelName);
-	const setupCompleteUsers = users
-		?.filter((user) => user.initialSetupDone)
+		?.filter((user) => user.authorization && user.authorization.chatDraft)
 		.map((user) => user.channelName);
 	const organizers = users?.filter((user) => user.isOrganizer).map((user) => user.channelName);
 	const otdBatches = await prisma.oneTimeDraftBatch.GetAllOneTimeDraftBatches();
@@ -38,13 +35,12 @@ export const load = (async ({ locals }) => {
 	const cardDb = await GetAllCards();
 
 	return {
+		users: users,
 		channels: channels,
 		joinedChannels: joinedChannels,
 		drafts: drafts,
 		previousDrafts: previousDrafts,
 		authorizedUsers: authorizedUsers,
-		adminUsers: adminUsers,
-		setupCompleteUsers: setupCompleteUsers,
 		organizers: organizers,
 		otdBatches: otdBatches,
 		currentEvent: currentEvent,
@@ -60,8 +56,13 @@ export const actions = {
 		const username = data.get('username')?.toString().toLowerCase();
 		if (username) {
 			const api = new ApiClient({ authProvider: locals.auth_provider });
-			const user = await api.users.getUserByName(username);
-			if (user) prisma.user.UpdateUserAuthorization(user, true);
+			const twitchUser = await api.users.getUserByName(username);
+			if (twitchUser) {
+				const user = await prisma.user.UpdateUserAuthorization(twitchUser, true);
+				if (user) {
+					updateUserAuthorization(user);
+				}
+			}
 		}
 	},
 	deauthorize: async ({ request, locals }) => {
@@ -70,8 +71,11 @@ export const actions = {
 		const username = data.get('username')?.toString().toLowerCase();
 		if (username) {
 			const api = new ApiClient({ authProvider: locals.auth_provider });
-			const user = await api.users.getUserByName(username);
-			if (user) prisma.user.UpdateUserAuthorization(user, false);
+			const twitchUser = await api.users.getUserByName(username);
+			if (twitchUser) {
+				const user = await prisma.user.UpdateUserAuthorization(twitchUser, false);
+				if (user) updateUserAuthorization(user);
+			}
 		}
 	},
 	joinchannel: async ({ request, locals }) => {
@@ -229,14 +233,16 @@ export const actions = {
 		const data = await request.formData();
 		const organizerData = data.get('organizer');
 		if (!organizerData) return fail(400, { organizerMissing: true });
-		await prisma.user.UpdateUserOrganizer(organizerData.toString(), true);
+		const organizer = await prisma.user.UpdateUserOrganizer(organizerData.toString(), true);
+		if (organizer) updateUserAuthorization(organizer);
 	},
 	removeOrganizer: async ({ request, locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);
 		const data = await request.formData();
 		const organizerData = data.get('organizer');
 		if (!organizerData) return fail(400, { organizerMissing: true });
-		await prisma.user.UpdateUserOrganizer(organizerData?.toString(), false);
+		const organizer = await prisma.user.UpdateUserOrganizer(organizerData.toString(), true);
+		if (organizer) updateUserAuthorization(organizer);
 	},
 	updateBatchOrganizers: async ({ request, locals }) => {
 		if (!locals.user || !locals.user.isAdmin) throw error(403);
@@ -296,7 +302,7 @@ export const actions = {
 					) {
 						return fail(400, { userAlreadyEntered: true });
 					}
-					if (user && user.isAuthorized) {
+					if (user && user.authorization && user.authorization.chatDraft) {
 						AddEntrant(user);
 					} else {
 						return fail(400, { entrantNotFound: true });
@@ -315,6 +321,32 @@ export const actions = {
 		if (data) {
 			const removedEntrant = data.get('removedEntrant')?.toString();
 			if (removedEntrant) RemoveEntrant(removedEntrant);
+		}
+	},
+	updateUser: async ({ locals, request }) => {
+		if (!locals.user || !locals.user.isAdmin) throw error(403);
+		const data = await request.formData();
+		if (data) {
+			const userId = data.get('id')?.toString();
+			const isOrganizer = Boolean(data.get('isOrganizer'));
+			const initialSetupDone = Boolean(data.get('initialSetupDone'));
+			const canChatDraft = Boolean(data.get('canChatDraft'));
+			const canCubeDraft = Boolean(data.get('canCubeDraft'));
+			const canCreateCubeDraftLobby = Boolean(data.get('canCreateCubeDraftLobby'));
+			const canSoloDraft = Boolean(data.get('canSoloDraft'));
+
+			if (userId) {
+				const user = await prisma.user.UpdateUserFlags(
+					userId,
+					isOrganizer,
+					initialSetupDone,
+					canChatDraft,
+					canCubeDraft,
+					canCreateCubeDraftLobby,
+					canSoloDraft
+				);
+				if (user) updateUserAuthorization(user);
+			}
 		}
 	}
 } satisfies Actions;

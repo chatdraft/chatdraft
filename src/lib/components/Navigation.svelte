@@ -4,9 +4,9 @@
 	import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
 	import { env } from '$env/dynamic/public';
 	import AppRailIcon from './AppRailIcon.svelte';
-	import type { User } from '@prisma/client';
+	import type { User, UserAuthorization } from '@prisma/client';
 
-	export let user: User | null;
+	export let user: (User & { authorization: UserAuthorization | null }) | null;
 </script>
 
 <AppRail class="text-center overflow-x-hidden h-full">
@@ -28,29 +28,40 @@
 	</AppRailAnchor>
 
 	{#if user}
-		{#if user.initialSetupDone}
-			<AppRailAnchor href="/settings">
-				<AppRailIcon pageRouteId={$page.route.id} routeId="/settings" icon="mdi:gear">
-					Settings
-				</AppRailIcon>
-			</AppRailAnchor>
-			<AppRailAnchor href="/draft">
-				<AppRailIcon pageRouteId={$page.route.id} routeId="/draft" icon="carbon:chat-bot">
-					Chat Draft
-				</AppRailIcon>
-			</AppRailAnchor>
-		{:else}
-			<AppRailAnchor href="/start">
-				<AppRailIcon pageRouteId={$page.route.id} routeId="/start" icon="ion:rocket-sharp">
-					Get Started
+		<AppRailAnchor href="/settings">
+			<AppRailIcon pageRouteId={$page.route.id} routeId="/settings" icon="mdi:gear">
+				Settings
+			</AppRailIcon>
+		</AppRailAnchor>
+		{#if user.isAdmin || (user.authorization && user.authorization.chatDraft)}
+			{#if user.initialSetupDone}
+				<AppRailAnchor href="/draft">
+					<AppRailIcon pageRouteId={$page.route.id} routeId="/draft" icon="carbon:chat-bot">
+						Chat Draft
+					</AppRailIcon>
+				</AppRailAnchor>
+			{:else}
+				<AppRailAnchor href="/start">
+					<AppRailIcon pageRouteId={$page.route.id} routeId="/start" icon="ion:rocket-sharp">
+						Get Started
+					</AppRailIcon>
+				</AppRailAnchor>
+			{/if}
+		{/if}
+		{#if user.isAdmin || (user.authorization && user.authorization.cubeDraft)}
+			<AppRailAnchor href="/cubedraft">
+				<AppRailIcon pageRouteId={$page.route.id} routeId="/cubedraft" icon="mdi:cube-outline">
+					Cube Draft
 				</AppRailIcon>
 			</AppRailAnchor>
 		{/if}
-		<AppRailAnchor href="/cubedraft">
-			<AppRailIcon pageRouteId={$page.route.id} routeId="/cubedraft" icon="mdi:cube-outline">
-				Cube Draft
-			</AppRailIcon>
-		</AppRailAnchor>
+		{#if user.isAdmin || (user.authorization && user.authorization.soloDraft)}
+			<AppRailAnchor href="/solodraft">
+				<AppRailIcon pageRouteId={$page.route.id} routeId="/solodraft" icon="mdi:cards">
+					Solo Draft
+				</AppRailIcon>
+			</AppRailAnchor>
+		{/if}
 	{/if}
 
 	{#if user && (user.isOrganizer || user.isAdmin)}

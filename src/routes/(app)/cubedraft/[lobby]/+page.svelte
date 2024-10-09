@@ -7,7 +7,7 @@
 	import { establishWebSocket, WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 	import { onMount, onDestroy } from 'svelte';
 	import type { PageData } from './$types';
-	import { invalidateAll } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 	import { DatetimeNowUtc } from '$lib/datetime';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { clipboard, CodeBlock } from '@skeletonlabs/skeleton';
@@ -46,6 +46,15 @@
 
 		if (wsm.type == WebSocketMessageType.Pong) return;
 
+		if (wsm.type == WebSocketMessageType.LobbyClosed) {
+			if (data.lobby.creator.fullUser?.id != data.user?.id)
+				toastStore.trigger({
+					message: `The lobby ${data.lobby.lobbyName} was closed by the creator.`
+				});
+			await goto('/cubedraft');
+			return;
+		}
+
 		console.log(wsm);
 		invalidateAll();
 	};
@@ -79,12 +88,17 @@
 				})}
 			{/if}
 		</section>
+
 		<div class="grid justify-items-end">
-			{#if data.lobby?.players.some((player) => player.fullUser?.displayName == data.user?.displayName) && !data.lobby.started}
+			{#if data.lobby.creator.fullUser?.id == data.user?.id}
+				<form method="post" action="?/closeLobby" use:enhance>
+					<button class="btn btn-lg variant-outline-warning"> Close Lobby </button>
+				</form>
+			{:else if data.lobby?.players.some((player) => player.fullUser?.displayName == data.user?.displayName) && !data.lobby.started}
 				<form method="post" action="?/leaveLobby" use:enhance>
 					<button class="btn btn-lg variant-outline-warning"> Leave Draft </button>
 				</form>
-			{:else if !data.lobby?.started}
+			{:else if !data.lobby?.started && data.user?.authorization?.cubeDraft}
 				<form method="post" action="?/joinLobby" use:enhance>
 					<button class="btn btn-lg variant-outline-warning"> Join Draft </button>
 				</form>
@@ -115,6 +129,7 @@
 		{#if data.lobby?.featuredCardMode && data.lobby.featuredCardMode != 'off'}
 			<p><b>Featured Card:</b> {data.lobby?.featuredCardDefKey}</p>
 		{/if}
+		<p><b>Face Down Draft:</b> {data.lobby?.faceDownDraft ? 'Yes' : 'No'}</p>
 		<ChatDraftSlideToggle
 			label="Show Card Pool"
 			name="showCardPool"
@@ -127,7 +142,7 @@
 				? data.lobby?.draftPool.map((card) => card.name).join(', ')
 				: 'Full Collection'}
 		</p>
-		{#if data.lobby?.players.some((player) => data.user?.twitchID == player.fullUser?.twitchID)}
+		{#if data.user && data.lobby?.creator.fullUser?.id == data.user.id}
 			<form method="post" action="?/startLobby" use:enhance>
 				<button class="btn btn-lg variant-filled-primary"> Start Draft </button>
 			</form>

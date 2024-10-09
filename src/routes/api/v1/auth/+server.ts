@@ -16,7 +16,7 @@ export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 	const code = url.searchParams.get('code');
 	if (!code) throw error(400, 'No code provided.');
 
-	let redirect_uri = '/';
+	const redirectUri = url.searchParams.get('redirect') || '/';
 
 	try {
 		// Get the authentication object using the user's code
@@ -56,16 +56,10 @@ export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 				httpOnly: true,
 				maxAge: tokenData.expiresIn!
 			});
-
-			if (!user.initialSetupDone) {
-				redirect_uri = '/start';
-			} else {
-				redirect_uri = '/draft';
-			}
 		}
 	} catch (error) {
 		console.log(error);
 	}
 
-	throw redirect(302, redirect_uri);
+	throw redirect(302, redirectUri);
 };

@@ -33,6 +33,7 @@ export const load = (async ({ locals, request, cookies }) => {
 
 	return {
 		activeDrafts: activeDraftStreams,
-		user_unauthorized: locals.user && !locals.user.isAuthorized
+		user_unauthorized:
+			locals.user && locals.user.authorization && !locals.user.authorization.chatDraft
 	};
 }) satisfies PageServerLoad;

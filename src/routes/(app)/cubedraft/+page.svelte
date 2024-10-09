@@ -88,7 +88,7 @@
 		</table>
 	</div>
 
-	{#if data.user}
+	{#if (data.user && data.user.authorization?.cubeDraftCreateLobby) || data.user?.isAdmin}
 		<hr />
 		<h3 class="h3">Create New Lobby</h3>
 		<form
@@ -147,8 +147,8 @@
 							bind:customFeaturedCardValidationMessage
 						/>
 						<ChatDraftSlideToggle
-							label="Closed Deck List"
-							name="closedDeckList"
+							label="Face Down Draft"
+							name="faceDownDraft"
 							active="bg-primary-500"
 							checked={false}
 						/>

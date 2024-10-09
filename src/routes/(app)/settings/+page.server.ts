@@ -14,7 +14,7 @@ import { SendMessageToPlayerChannel } from '$lib/server/webSocketUtils';
 import { UpdateUserCollection } from '$lib/server/cubeDraftLobbyHandler';
 
 export const load = (async ({ locals }) => {
-	if (!locals.user || !locals.user.isAuthorized) throw redirect(302, '/');
+	if (!locals.user) throw redirect(302, '/');
 	const user = locals.user?.channelName;
 	let previewMode = false;
 	let full_source_configured = false;
@@ -43,13 +43,14 @@ export const load = (async ({ locals }) => {
 		selectionCount: selectionCount,
 		subsExtraVote: subsExtraVote,
 		collectionComplete: collectionComplete,
-		bgOpacity: bgOpacity
+		bgOpacity: bgOpacity,
+		authorization: locals.user.authorization
 	};
 }) satisfies PageServerLoad;
 
 export const actions = {
 	join: async ({ locals }) => {
-		if (locals.user) {
+		if (locals.user && locals.user.authorization?.chatDraft) {
 			if (await TwitchBot.JoinChannel(locals.user.channelName!)) {
 				const userPreferences = await prisma.user.AddChannel(locals.user.twitchID!);
 				if (userPreferences) locals.user.userPreferences = userPreferences;
@@ -57,7 +58,7 @@ export const actions = {
 		}
 	},
 	part: async ({ locals }) => {
-		if (locals.user) {
+		if (locals.user && locals.user.authorization?.chatDraft) {
 			if (await TwitchBot.PartChannel(locals.user.channelName!)) {
 				const userPreferences = await prisma.user.RemoveChannel(locals.user.twitchID!);
 				if (userPreferences) locals.user.userPreferences = userPreferences;

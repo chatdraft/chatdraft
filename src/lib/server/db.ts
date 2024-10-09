@@ -1,9 +1,11 @@
 import { PrismaClient } from '@prisma/client';
 import type { AccessToken } from '@twurple/auth';
 import type { HelixUser } from '@twurple/api';
-import type { User, UserPreference } from '@prisma/client';
+import type { User, UserAuthorization, UserPreference } from '@prisma/client';
 
-export type FullUser = User & { userPreferences: UserPreference | null };
+export type FullUser = User & { userPreferences: UserPreference | null } & {
+	authorization: UserAuthorization | null;
+};
 
 export function ParseCollectionBlob(collection: string | null | undefined): string[] | null {
 	return collection ? (JSON.parse(collection) as string[]) : null;
@@ -129,7 +131,8 @@ export const prisma = new PrismaClient().$extends({
 							}
 						},
 						include: {
-							userPreferences: true
+							userPreferences: true,
+							authorization: true
 						}
 					});
 
@@ -158,12 +161,20 @@ export const prisma = new PrismaClient().$extends({
 							channelName: user.name
 						},
 						update: {
-							isAuthorized: isAuthorized
+							authorization: {
+								update: {
+									chatDraft: isAuthorized
+								}
+							}
 						},
 						create: {
 							channelName: user.name,
 							displayName: user.displayName,
-							isAuthorized: isAuthorized,
+							authorization: {
+								create: {
+									chatDraft: isAuthorized
+								}
+							},
 							initialSetupDone: false,
 							twitchID: user.id,
 							twitchProfilePictureURL: user.profilePictureUrl,
@@ -174,6 +185,9 @@ export const prisma = new PrismaClient().$extends({
 									subsExtraVote: false
 								}
 							}
+						},
+						include: {
+							authorization: true
 						}
 					});
 					return db_user;
@@ -194,7 +208,9 @@ export const prisma = new PrismaClient().$extends({
 				try {
 					const users = await prisma.user.findMany({
 						where: {
-							isAuthorized: true
+							authorization: {
+								chatDraft: true
+							}
 						}
 					});
 					return users.map((user) => user.channelName);
@@ -324,7 +340,8 @@ export const prisma = new PrismaClient().$extends({
 				try {
 					return await prisma.user.findMany({
 						include: {
-							userPreferences: true
+							userPreferences: true,
+							authorization: true
 						}
 					});
 				} catch (error) {
@@ -343,7 +360,8 @@ export const prisma = new PrismaClient().$extends({
 						},
 						include: {
 							otdBatches: true,
-							userPreferences: true
+							userPreferences: true,
+							authorization: true
 						}
 					});
 				} catch (error) {
@@ -379,6 +397,47 @@ export const prisma = new PrismaClient().$extends({
 						},
 						data: {
 							isOrganizer: isOrganizer
+						},
+						include: {
+							authorization: true
+						}
+					});
+				} catch (error) {
+					let message = 'Unknown Error';
+					if (error instanceof Error) message = error.message;
+					console.log(message);
+				}
+
+				return undefined;
+			},
+			async UpdateUserFlags(
+				user_id: string,
+				isOrganizer: boolean,
+				initialSetupDone: boolean,
+				canChatDraft: boolean,
+				canCubeDraft: boolean,
+				canCreateCubeDraftLobby: boolean,
+				canSoloDraft: boolean
+			) {
+				try {
+					return await prisma.user.update({
+						where: {
+							id: user_id
+						},
+						data: {
+							isOrganizer: isOrganizer,
+							initialSetupDone: initialSetupDone,
+							authorization: {
+								update: {
+									chatDraft: canChatDraft,
+									cubeDraft: canCubeDraft,
+									cubeDraftCreateLobby: canCreateCubeDraftLobby,
+									soloDraft: canSoloDraft
+								}
+							}
+						},
+						include: {
+							authorization: true
 						}
 					});
 				} catch (error) {

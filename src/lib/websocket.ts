@@ -95,5 +95,6 @@ export enum WebSocketMessageType {
 	LobbyName = 'lobbyname',
 	LobbyDraftRoundOver = 'lobbydraftroundover',
 	LobbyDraftComplete = 'lobbydraftcomplete',
-	LobbyUpdated = 'lobbyupdated'
+	LobbyUpdated = 'lobbyupdated',
+	LobbyClosed = 'lobbyclosed'
 }

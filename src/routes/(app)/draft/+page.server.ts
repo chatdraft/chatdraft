@@ -8,7 +8,8 @@ import { ParseCollectionBlob } from '$lib/server/db';
 import { StringToFeaturedCardMode } from '$lib/featuredCard';
 
 export const load = (async ({ locals }) => {
-	if (locals.user && !locals.user.isAuthorized) throw redirect(302, '/');
+	if (!locals.user || !locals.user.authorization || !locals.user.authorization.chatDraft)
+		throw redirect(302, '/');
 
 	const cardPool = await GetAllCards();
 

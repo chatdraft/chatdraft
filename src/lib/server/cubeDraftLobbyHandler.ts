@@ -1,5 +1,6 @@
 import type CubeDraft from '$lib/snap/cubeDraft';
 import { type FullUser } from '$lib/server/db';
+import { LobbyClosed } from './webSocketUtils';
 
 export const lobbies = new Map<string, CubeDraft>();
 
@@ -35,4 +36,9 @@ export function UpdateUserCollection(user: FullUser, collection: string | null) 
 		);
 		if (playerInLobby) lobby.UpdateUserPlayerCollection(user, collection);
 	}
+}
+
+export async function CloseLobby(lobby: CubeDraft) {
+	lobbies.delete(lobby.lobbyName);
+	await LobbyClosed(lobby.lobbyName);
 }
