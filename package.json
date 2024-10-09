@@ -61,7 +61,7 @@
 		"@twurple/easy-bot": "^7.0.5",
 		"@twurple/eventsub-ws": "^7.0.3",
 		"@types/cookie-parser": "^1.4.6",
-		"cookie": "^0.7.0",
+		"cookie": "^0.7.1",
 		"cookie-parser": "^1.4.6",
 		"nanoid": "^5.0.3",
 		"tsm": "^2.3.0",
