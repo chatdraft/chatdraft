@@ -836,7 +836,7 @@
 			"url": "/cards/GrandMaster/",
 			"name": "Grand Master",
 			"description": "<b>On Reveal:</b> Move one of your other <b>On Reveal</b> cards here to the middle location. Its ability happens again.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GrandMaster-f96b4a2b9747b54381426853b03f813836b28643e5d00fe4fc549762505deb87.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GrandMaster-685ed5958f4429fdaa8ddc1ec1a28e0b4419e1ef9e145db4ea2a55f9eb17f3e7.webp",
 			"cost": 2
 		},
 		{
@@ -934,8 +934,8 @@
 			"variantKey": null,
 			"url": "/cards/Hellcow/",
 			"name": "Hellcow",
-			"description": "<b>Activate:</b> Discard 2 cards from your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-99c1b9cafab8848d23832cabcfcea5eb115dd14252909d5b780fcf4b242ec5b0.webp",
+			"description": "<b>Activate:</b> Discard a cards from your hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-2a92322b86edd6a06074530ef780621e298156b7d0963b78f577674930ae06ef.webp",
 			"cost": 4
 		},
 		{
@@ -1007,7 +1007,7 @@
 			"url": "/cards/Hulkling/",
 			"name": "Emperor Hulkling",
 			"description": "At the start of the game, copy the text of a random 6-Cost card.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkling-fa6717550e13d1f56cceba901d8fbc9d5bd85f023a344e20b25d6db98ec40ac0.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hulkling-c18e1ee2108eb591ee75fe7dd36c8ed20b02f4b8567cbef8564986f7ab2553c3.webp",
 			"cost": 6
 		},
 		{
@@ -1718,7 +1718,7 @@
 			"url": "/cards/Okoye/",
 			"name": "Okoye",
 			"description": "<b>On Reveal:</b> Give every card in your deck +1 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Okoye-d2ce7fc3d19163f77006903cf39ccb1a0ab6c4da79c2decf8dabce3029518341.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Okoye-96081234f7870d1bf29643c7e7d0d948036a29405acc6d62ff5c0ea8c5b88253.webp",
 			"cost": 2
 		},
 		{
@@ -2015,7 +2015,7 @@
 			"url": "/cards/Scream/",
 			"name": "Scream",
 			"description": "When an enemy card moves, steal 2 Power from it. <i>(once per turn)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scream-3160db5bcdeb197ba170ffe7e97bf1869d677098895e6017b19d82ca618a411f.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scream-e2496f8ddc8fed97aaf92529e66c4f3ff80581ea0f88e1a5ee564cf2c3b5e70b.webp",
 			"cost": 2
 		},
 		{
@@ -2501,7 +2501,7 @@
 			"url": "/cards/Viper/",
 			"name": "Viper",
 			"description": "<b>On Reveal:</b> One of your other cards here with the lowest Power switches sides.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-0e211444f5b88308b3a4c88a3146326655812129e482f191143419746484aedf.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Viper-76be794891a3f9b8ee3316a3fa2c933be5b54353133c8b0a5f0f29206521c2fb.webp",
 			"cost": 3
 		},
 		{
@@ -2663,8 +2663,8 @@
 			"url": "/cards/Zabu/",
 			"name": "Zabu",
 			"description": "<b>On Reveal:</b> Until the end of next turn, your 4-Cost cards cost 1 less.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zabu-c498bfb5877dcdd565701e14e5771e088b585fdb4e42160e2b9db243537d82a3.webp",
-			"cost": 2
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Zabu-f9d7cbd9c5eb27a22e8222f2713bae613f21d97648e29bbe3083f248464bb5a0.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Zero",
