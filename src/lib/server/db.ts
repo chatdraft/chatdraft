@@ -115,7 +115,12 @@ export const prisma = new PrismaClient().$extends({
 						where: {
 							twitchID: twitch_user.id
 						},
-						update: {},
+						update: {
+							channelName: twitch_user.name,
+							displayName: twitch_user.displayName,
+							twitchID: twitch_user.id,
+							twitchProfilePictureURL: twitch_user.profilePictureUrl
+						},
 						create: {
 							channelName: twitch_user.name,
 							displayName: twitch_user.displayName,
@@ -128,6 +133,9 @@ export const prisma = new PrismaClient().$extends({
 									draftRoundDuration: 90,
 									subsExtraVote: false
 								}
+							},
+							authorization: {
+								create: {}
 							}
 						},
 						include: {
@@ -428,11 +436,19 @@ export const prisma = new PrismaClient().$extends({
 							isOrganizer: isOrganizer,
 							initialSetupDone: initialSetupDone,
 							authorization: {
-								update: {
-									chatDraft: canChatDraft,
-									cubeDraft: canCubeDraft,
-									cubeDraftCreateLobby: canCreateCubeDraftLobby,
-									soloDraft: canSoloDraft
+								upsert: {
+									create: {
+										chatDraft: canChatDraft,
+										cubeDraft: canCubeDraft,
+										cubeDraftCreateLobby: canCreateCubeDraftLobby,
+										soloDraft: canSoloDraft
+									},
+									update: {
+										chatDraft: canChatDraft,
+										cubeDraft: canCubeDraft,
+										cubeDraftCreateLobby: canCreateCubeDraftLobby,
+										soloDraft: canSoloDraft
+									}
 								}
 							}
 						},
