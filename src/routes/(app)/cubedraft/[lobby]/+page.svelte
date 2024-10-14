@@ -15,6 +15,12 @@
 	import { page } from '$app/stores';
 	import { seconds_to_ms } from '$lib/constants';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import CardsSelector from '$lib/components/CardsSelector.svelte';
+	import { compareArrays } from '$lib/snap/utils';
+	import DurationSlider from '$lib/components/DurationSlider.svelte';
+	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
+	import type { FeaturedCardMode } from '$lib/featuredCard';
+	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -25,6 +31,21 @@
 
 	let selecting = false;
 	let selected: string | undefined = data.selectedCard?.cardDefKey;
+
+	let editing: boolean = false;
+
+	let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined =
+		data.lobby.featuredCardDefKey == data.cardDb.currentSeasonPassCardDefId
+			? 'seasonpass'
+			: data.lobby.featuredCardDefKey == data.cardDb.currentSpotlightCardDefId
+			? 'spotlight'
+			: data.lobby.featuredCardDefKey != ''
+			? 'custom'
+			: undefined;
+	let featuredCardMode: FeaturedCardMode = data.lobby.featuredCardMode;
+	let customFeaturedCardDefKey: string = data.lobby.featuredCardDefKey;
+
+	let customFeaturedCardValidationMessage = '';
 
 	const toastStore = getToastStore();
 
@@ -61,6 +82,8 @@
 
 	$: time_remaining = (data.lobby?.roundEndsAt! - now) / seconds_to_ms;
 
+	let cardsToRemove: string[] = data.lobby.removedCards;
+
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage);
 	});
@@ -77,7 +100,7 @@
 	<meta name="description" content="Marvel Snap Cube Draft" />
 </svelte:head>
 
-<div class="space-y-4 p-4">
+<div class="p-4">
 	<div class="grid grid-cols-3">
 		<h1 class="h1">Cube Draft</h1>
 		<section class="text-center text-2xl mt-0">
@@ -122,14 +145,93 @@
 				/>
 			</button>
 		</div>
-		<p><b>Creator:</b> {data.lobby?.creator.name}</p>
-		<p><b>Round Duration:</b> {data.lobby?.duration}</p>
-		<p><b>Selections per Round:</b> {data.lobby?.selections}</p>
-		<p><b>Featured Card Mode:</b> {data.lobby?.featuredCardMode}</p>
-		{#if data.lobby?.featuredCardMode && data.lobby.featuredCardMode != 'off'}
-			<p><b>Featured Card:</b> {data.lobby?.featuredCardDefKey}</p>
+		<div class="flex flex-row">
+			<p class="font-bold mt-1">Creator: {data.lobby?.creator.name}</p>
+			{#if data.lobby.creator.fullUser?.id == data.user?.id}
+				<div class="pl-20">
+					<ChatDraftSlideToggle
+						bind:checked={editing}
+						label="Edit: "
+						name="Edit"
+						active="bg-primary-500"
+					/>
+				</div>
+			{/if}
+		</div>
+		{#if !editing || data.lobby.creator.fullUser?.id != data.user?.id}
+			<div class="space-y-2">
+				<p><b>Round Duration:</b> {data.lobby?.duration}</p>
+				<p><b>Selections per Round:</b> {data.lobby?.selections}</p>
+				<p><b>Featured Card Mode:</b> {data.lobby?.featuredCardMode}</p>
+				{#if data.lobby?.featuredCardMode && data.lobby.featuredCardMode != 'off'}
+					<p><b>Featured Card:</b> {data.lobby?.featuredCardDefKey}</p>
+				{/if}
+				<p><b>Face Down Draft:</b> {data.lobby?.faceDownDraft ? 'Yes' : 'No'}</p>
+				<p>
+					<b>Removed Cards:</b>
+					{#if data.lobby.removedCards.length > 0}
+						{data.lobby.removedCards.join(', ')}
+					{:else}
+						None
+					{/if}
+				</p>
+			</div>
+		{:else}
+			<form
+				method="post"
+				action="?/updateLobby"
+				use:enhance={() => {
+					return async () => {
+						editing = false;
+					};
+				}}
+			>
+				<div class="grid grid-cols-2"><DurationSlider duration={data.lobby.duration} /></div>
+				<div class="grid grid-cols-2">
+					<SelectionCountSlider selectionCount={data.lobby.selections} />
+				</div>
+				<div class="pt-4 w-1/2">
+					<FeaturedCardOptions
+						cardPool={data.cardDb}
+						bind:featuredCardSelect
+						bind:featuredCardMode
+						bind:customFeaturedCardDefKey
+						bind:customFeaturedCardValidationMessage
+					/>
+				</div>
+				<div class="pt-4">
+					<ChatDraftSlideToggle
+						label="Face Down Draft"
+						name="faceDownDraft"
+						active="bg-primary-500"
+						checked={false}
+					/>
+				</div>
+
+				<div class="pt-4 flex flex-row">
+					<p class="font-bold basis-28">Remove Cards:</p>
+
+					<CardsSelector
+						placeholder="Search for a Card to Remove"
+						cards={data.cardDb.all}
+						bind:selectedCards={cardsToRemove}
+					/>
+
+					{#if !compareArrays(data.lobby.removedCards, cardsToRemove)}
+						<button
+							class="btn btn-md variant-outline-warning h-min ml-4"
+							type="button"
+							on:click={() => {
+								cardsToRemove = [...data.lobby.removedCards];
+							}}>Reset</button
+						>
+					{/if}
+				</div>
+
+				<br /><br />
+				<button class="btn btn-md variant-filled-tertiary" type="submit">Save</button>
+			</form>
 		{/if}
-		<p><b>Face Down Draft:</b> {data.lobby?.faceDownDraft ? 'Yes' : 'No'}</p>
 		<ChatDraftSlideToggle
 			label="Show Card Pool"
 			name="showCardPool"
@@ -144,16 +246,39 @@
 		</p>
 		{#if data.user && data.lobby?.creator.fullUser?.id == data.user.id}
 			<form method="post" action="?/startLobby" use:enhance>
-				<button class="btn btn-lg variant-filled-primary"> Start Draft </button>
+				<button
+					class="btn btn-lg variant-filled-primary"
+					on:click={(event) => {
+						if (editing) {
+							if (
+								!confirm(
+									'You are currently editing the draft settings. Are you sure you want to start?'
+								)
+							)
+								event.preventDefault();
+						}
+					}}
+				>
+					Start Draft
+				</button>
 			</form>
 		{/if}
 		<h2 class="h2">Players</h2>
 		{#if data.lobby?.players}
 			<ul>
-				{#each data.lobby?.players as player}
-					<li>
-						<p><b>Player Name:</b> {player.fullUser ? player.fullUser.displayName : player.name}</p>
-					</li>
+				{#each data.lobby?.players as player, index}
+					<form method="post" action="?/removePlayer" use:enhance>
+						<li>
+							<b>Player {index + 1}:</b>
+							{player.fullUser ? player.fullUser.displayName : player.name}
+							{#if data.lobby.creator.fullUser?.id == data.user?.id && player.fullUser?.id != data.user?.id}
+								<input type="hidden" id="playerName" name="playerName" value={player.name} />
+								<button class="btn-icon btn-icon-sm variant-outline-error">
+									<iconify-icon icon="mdi:remove-bold" />
+								</button>
+							{/if}
+						</li>
+					</form>
 				{/each}
 			</ul>
 		{/if}

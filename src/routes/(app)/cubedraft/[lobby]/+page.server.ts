@@ -1,6 +1,8 @@
 import { CloseLobby, GetLobby } from '$lib/server/cubeDraftLobbyHandler';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { GetAllCards } from '$lib/server/cardsHandler';
+import { StringToFeaturedCardMode } from '$lib/featuredCard';
 
 export const load = (async ({ params, locals }) => {
 	const lobby = GetLobby(params.lobby);
@@ -11,11 +13,13 @@ export const load = (async ({ params, locals }) => {
 		selectedCardIndex !== undefined
 			? userDraft?.currentChoice?.cards[selectedCardIndex - 1]
 			: undefined;
+	const cardDb = await GetAllCards();
 	return {
 		lobby: lobby?.toICubeDraft(),
 		draft: userDraft?.toIDraft(),
 		selectedCardIndex: selectedCardIndex,
-		selectedCard: selectedCard
+		selectedCard: selectedCard,
+		cardDb: cardDb
 	};
 }) satisfies PageServerLoad;
 
@@ -65,5 +69,53 @@ export const actions = {
 			throw error(403, 'You must be the lobby creator to start the draft.');
 		CloseLobby(lobby);
 		throw redirect(302, '/cubedraft');
+	},
+	removePlayer: async ({ locals, params, request }) => {
+		if (!locals.user || !locals.user.authorization || !locals.user.authorization.cubeDraft)
+			throw redirect(302, '/');
+		const lobby = GetLobby(params.lobby);
+		if (!lobby) throw error(404, `Lobby ${params.lobby} not found.`);
+		if (lobby.creator.fullUser?.id != locals.user.id)
+			throw error(403, 'You must be the lobby creator to remove a player.');
+		const data = await request.formData();
+		const playerName = data.get('playerName')?.toString();
+		if (playerName) lobby.RemoveGuestPlayer(playerName);
+	},
+	updateRemovedCards: async ({ locals, params, request }) => {
+		if (!locals.user || !locals.user.authorization || !locals.user.authorization.cubeDraft)
+			throw redirect(302, '/');
+		const lobby = GetLobby(params.lobby);
+		if (!lobby) throw error(404, `Lobby ${params.lobby} not found.`);
+		if (lobby.creator.fullUser?.id != locals.user.id)
+			throw error(403, 'You must be the lobby creator to update the removed cards.');
+		const data = await request.formData();
+		const removedCardsData = data.getAll('cards');
+		const removedCards: string[] = removedCardsData.map((data) => data.toString());
+		lobby.UpdateRemovedCards(removedCards);
+	},
+	updateLobby: async ({ locals, params, request }) => {
+		if (!locals.user || !locals.user.authorization || !locals.user.authorization.cubeDraft)
+			throw redirect(302, '/');
+		const lobby = GetLobby(params.lobby);
+		if (!lobby) throw error(404, `Lobby ${params.lobby} not found.`);
+		if (lobby.creator.fullUser?.id != locals.user.id)
+			throw error(403, 'You must be the lobby creator to update the removed cards.');
+		const data = await request.formData();
+		const duration = Number(data.get('duration')?.toString());
+		const selectionCount = Number(data.get('selectionCount')?.toString());
+		const featuredCardModeRaw = data.get('featuredCardMode')?.toString().toLowerCase().trim();
+		const featuredCardMode = StringToFeaturedCardMode(featuredCardModeRaw);
+		const featuredCardDefKey = data.get('featuredCardDefKey')?.toString().trim();
+		const faceDownDraft = Boolean(data.get('faceDownDraft')?.toString());
+		const removedCardsData = data.getAll('cards');
+		const removedCards: string[] = removedCardsData.map((data) => data.toString());
+		await lobby.UpdateLobby(
+			duration,
+			selectionCount,
+			featuredCardMode,
+			featuredCardDefKey,
+			faceDownDraft,
+			removedCards
+		);
 	}
 } satisfies Actions;

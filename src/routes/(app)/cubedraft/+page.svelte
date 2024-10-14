@@ -8,6 +8,7 @@
 	import type { PageData } from './$types';
 	import { type FeaturedCardMode } from '$lib/featuredCard';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
+	import CardsSelector from '$lib/components/CardsSelector.svelte';
 
 	export let data: PageData;
 
@@ -134,6 +135,10 @@
 			<div class="grid grid-cols-2">
 				<SelectionCountSlider bind:selectionCount />
 				<div />
+			</div>
+			<div class="flex flex-row">
+				<p class="font-bold basis-28">Removed Cards:</p>
+				<CardsSelector placeholder="Search for a Card to Remove" cards={data.cardPool.all} />
 			</div>
 			<Accordion regionControl="flex-row-reverse gap-4 text-primary-500" width="w-1/2">
 				<AccordionItem>

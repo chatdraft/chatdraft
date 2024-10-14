@@ -53,7 +53,7 @@ export function LookupCard(cards: { cardDefKey: string }[], cardDefKey: string |
 
 export function IntersectionOfCollections(collections: (string[] | null)[]): string[] | null {
 	if (collections.length == 0) return null;
-	return collections.reduce((intersection, collection) => {
+	const intersection = collections.reduce((intersection, collection) => {
 		if (!intersection && !collection) {
 			return null;
 		}
@@ -65,4 +65,7 @@ export function IntersectionOfCollections(collections: (string[] | null)[]): str
 		}
 		return intersection.filter((card) => collection.includes(card));
 	});
+	if (intersection) return [...intersection];
+
+	return null;
 }

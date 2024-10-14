@@ -34,6 +34,8 @@ export const actions = {
 			const featuredCardMode = StringToFeaturedCardMode(featuredCardModeRaw);
 			const featuredCardDefKey = data.get('featuredCardDefKey')?.toString().trim();
 			const faceDownDraft = Boolean(data.get('faceDownDraft')?.toString());
+			const removedCardsData = data.getAll('cards');
+			const removedCards: string[] = removedCardsData.map((data) => data.toString());
 
 			const cardDb = await GetAllCards();
 
@@ -45,7 +47,8 @@ export const actions = {
 				cardDb,
 				featuredCardMode,
 				featuredCardDefKey,
-				faceDownDraft
+				faceDownDraft,
+				removedCards
 			);
 			SetLobby(lobby);
 			throw redirect(302, `/cubedraft/${lobby.lobbyName}`);

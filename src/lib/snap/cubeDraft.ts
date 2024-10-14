@@ -57,12 +57,13 @@ export interface ICubeDraft {
 		displayImageUrl: string;
 		cost: number;
 	}[];
-	featuredCardMode: string;
+	featuredCardMode: FeaturedCardMode;
 	featuredCardDefKey: string;
 	roundEndsAt: number;
 	closedDeckList: boolean;
 	draftedDecks: Map<string, Deck> | undefined;
 	faceDownDraft: boolean;
+	removedCards: string[];
 }
 
 /**
@@ -157,8 +158,12 @@ export default class CubeDraft {
 		return this._roundEndsAt;
 	}
 
-	public get closedDeckList(): boolean {
+	public get isFaceDownDraft(): boolean {
 		return this._faceDownDraft;
+	}
+
+	public get removedCards(): string[] {
+		return this._removedCards;
 	}
 
 	/**
@@ -180,7 +185,8 @@ export default class CubeDraft {
 		private _cardPool: CardDb,
 		private _featuredCardMode: FeaturedCardMode = 'off',
 		private _featuredCardDefKey: string = '',
-		private _faceDownDraft: boolean = true
+		private _faceDownDraft: boolean = true,
+		private _removedCards: string[] = []
 	) {
 		this._players = [_creator];
 		this.updateCardPool();
@@ -235,6 +241,11 @@ export default class CubeDraft {
 		this._draftPool = cardPoolDefKeys
 			? this._cardPool.all.filter((card) => cardPoolDefKeys.includes(card.cardDefKey))
 			: this._cardPool.all;
+
+		this.removedCards.forEach((removedCard) => {
+			const index = this._draftPool.findIndex((card) => card.cardDefKey == removedCard);
+			if (index > -1) this._draftPool.splice(index, 1);
+		});
 
 		if (
 			this._draftPool.length != previousDraftPool.length ||
@@ -365,6 +376,29 @@ export default class CubeDraft {
 		for (const draft of this.drafts) draft.CancelDraft();
 	}
 
+	public async UpdateRemovedCards(removedCards: string[]) {
+		this._removedCards = removedCards;
+		this.updateCardPool();
+	}
+
+	public async UpdateLobby(
+		duration: number,
+		selectionCount: number,
+		featuredCardMode: FeaturedCardMode,
+		featuredCardDefKey: string = '',
+		faceDownDraft: boolean,
+		removedCards: string[]
+	) {
+		if (this._started) return;
+		this._duration = duration;
+		this._selections = selectionCount;
+		this._featuredCardMode = featuredCardMode;
+		this._featuredCardDefKey = featuredCardDefKey;
+		this._faceDownDraft = faceDownDraft;
+		this.UpdateRemovedCards(removedCards);
+		LobbyUpdated(this.lobbyName);
+	}
+
 	public toICubeDraft(): ICubeDraft {
 		return {
 			lobbyName: this.lobbyName,
@@ -378,9 +412,10 @@ export default class CubeDraft {
 			featuredCardMode: this.featuredCardMode,
 			featuredCardDefKey: this.featuredCardDefKey,
 			roundEndsAt: this.roundEndsAt,
-			closedDeckList: this.closedDeckList,
-			draftedDecks: this.closedDeckList ? undefined : this._decks,
-			faceDownDraft: this._faceDownDraft
+			closedDeckList: this.isFaceDownDraft,
+			draftedDecks: this.isFaceDownDraft ? undefined : this._decks,
+			faceDownDraft: this._faceDownDraft,
+			removedCards: this.removedCards
 		};
 	}
 }
