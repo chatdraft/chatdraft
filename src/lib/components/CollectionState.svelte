@@ -59,6 +59,7 @@
 		class="btn btn-icon variant-filled-primary"
 		on:click|preventDefault
 		use:clipboard={gameStateFile}
+		title="Copy default Collection State.json path"
 	>
 		<iconify-icon icon="clarity:copy-to-clipboard-line" width="24" height="24" flip="horizontal" />
 	</button>
@@ -73,6 +74,8 @@
 				accept=".json"
 				on:change={collectionFileChanged}
 				required
+				title="Please select CollectionState.json to upload."
+				placeholder="Select CollectionState.json"
 			/>
 			{#if collectionFiles && collectionFiles.length > 0 && collectionFiles[0].name != 'CollectionState.json'}
 				<p class="text-error-500 pl-8">
