@@ -3,7 +3,7 @@ import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
 import { sessionTimout_ms } from '../constants';
 import type { FullUser } from './db';
-import { User, UserAuthorization } from '@prisma/client';
+import type { User, UserAuthorization } from '@prisma/client';
 
 type TSessionID = string;
 

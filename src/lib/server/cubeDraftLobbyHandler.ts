@@ -1,5 +1,5 @@
 import type CubeDraft from '$lib/snap/cubeDraft';
-import { type FullUser } from '$lib/server/db';
+import type { FullUser } from '$lib/server/db';
 import { LobbyClosed } from './webSocketUtils';
 
 export const lobbies = new Map<string, CubeDraft>();

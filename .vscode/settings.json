@@ -114,5 +114,6 @@
 		"**/node_modules": false,
 		"/.svelte-kit": true,
 		"node_modules": true
-	}
+	},
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -16,7 +16,7 @@ import { type CardDb, type Deck, IntersectionOfCollections } from '$lib/snap/car
 import { seconds_to_ms } from '$lib/constants';
 import { shuffle } from './utils';
 import { DatetimeNowUtc } from '$lib/datetime';
-import { type FeaturedCardMode } from '$lib/featuredCard';
+import type { FeaturedCardMode } from '$lib/featuredCard';
 
 export type Player = {
 	name: string;
