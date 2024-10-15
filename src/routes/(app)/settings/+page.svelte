@@ -15,6 +15,7 @@
 	import BgOpacitySlider from '$lib/components/BgOpacitySlider.svelte';
 	import { type WebSocketMessage, WebSocketMessageType } from '$lib/websocket';
 	import { title } from '$lib/title';
+	import { CalculateExcludedCards } from '$lib/snap/cards';
 
 	const toastStore = getToastStore();
 
@@ -156,27 +157,21 @@
 	{/if}
 
 	<h2 class="h2">Snap Collection</h2>
-	<form
-		method="post"
-		action="?/uploadCollection"
-		enctype="multipart/form-data"
-		use:enhance={() => {
-			return async ({ result, update }) => {
-				if (result.type == 'success') {
-					toastStore.trigger({ message: 'Collection state updated successfully.' });
-				}
-				update();
-			};
-		}}
-	>
-		<CollectionState collectionComplete={data.collectionComplete} />
-		<div>
-			<b>Collected Cards:</b>
-			{data.collection?.length || 'Full'}
-		</div>
-		<div>
-			<b>Last Updated:</b>
-			{data.collectionLastUpdated?.toLocaleString() || 'Never'}
-		</div>
-	</form>
+	<CollectionState collectionComplete={data.collectionComplete} />
+	<div>
+		<b>Collected Cards:</b>
+		{data.collection?.length || 'Full'}
+	</div>
+	<div>
+		<b>Missing Cards:</b>
+		{data.collection
+			? CalculateExcludedCards(data.cardDb, data.collection || undefined)
+					.map((card) => card.name)
+					.join(', ')
+			: 'None'}
+	</div>
+	<div>
+		<b>Last Updated:</b>
+		{data.collectionLastUpdated?.toLocaleString() || 'Never'}
+	</div>
 </div>

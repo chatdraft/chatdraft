@@ -12,6 +12,7 @@ import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
 import { SendMessageToPlayerChannel } from '$lib/server/webSocketUtils';
 import { UpdateUserCollection } from '$lib/server/cubeDraftLobbyHandler';
+import { GetAllCards } from '$lib/server/cardsHandler';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user) throw redirect(302, '/');
@@ -33,6 +34,7 @@ export const load = (async ({ locals }) => {
 	const collectionComplete = locals.user.userPreferences?.collection == null;
 	const bgOpacity = locals.user.userPreferences ? locals.user.userPreferences.bgOpacity : 70;
 	const collection = ParseCollectionBlob(locals.user.userPreferences?.collection);
+	const cardDb = await GetAllCards();
 	return {
 		user: user,
 		botInChannel: locals.user.userPreferences?.botJoinsChannel,
@@ -47,7 +49,8 @@ export const load = (async ({ locals }) => {
 		bgOpacity: bgOpacity,
 		authorization: locals.user.authorization,
 		collection: collection,
-		collectionLastUpdated: locals.user.userPreferences?.collectionLastUpdated
+		collectionLastUpdated: locals.user.userPreferences?.collectionLastUpdated,
+		cardDb: cardDb
 	};
 }) satisfies PageServerLoad;
 
@@ -93,21 +96,28 @@ export const actions = {
 	uploadCollection: async ({ locals, request }) => {
 		if (locals.user && locals.user.twitchID) {
 			const formData = await request.formData();
-			const collection = formData.get('collection') as File;
-			const collectionData = JSON.parse(await collection.text());
-			if (collectionData) {
-				const cards: string[] = collectionData.ServerState.Cards.map(
-					(card: { CardDefId: string }) => card.CardDefId
-				).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index);
-				if (cards) {
-					const userPreference = await prisma.userPreference.UpdateUserCollection(
-						locals.user.twitchID,
-						cards
+			let collectedCards = formData.getAll('collectedCards').map((entry) => entry.toString());
+
+			if (collectedCards.length < 1) {
+				const collection = formData.get('collection') as File;
+				const collectionData = JSON.parse(await collection.text());
+				if (collectionData) {
+					collectedCards = collectionData.ServerState.Cards.map(
+						(card: { CardDefId: string }) => card.CardDefId
+					).filter(
+						(value: string, index: number, array: string[]) => array.indexOf(value) === index
 					);
-					if (userPreference) {
-						locals.user.userPreferences = userPreference;
-						UpdateUserCollection(locals.user, userPreference.collection);
-					}
+				}
+			}
+
+			if (collectedCards) {
+				const userPreference = await prisma.userPreference.UpdateUserCollection(
+					locals.user.twitchID,
+					collectedCards
+				);
+				if (userPreference) {
+					locals.user.userPreferences = userPreference;
+					UpdateUserCollection(locals.user, userPreference.collection);
 				}
 			}
 		}

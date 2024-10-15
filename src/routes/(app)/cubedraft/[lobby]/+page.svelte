@@ -11,7 +11,7 @@
 	import { DatetimeNowUtc } from '$lib/datetime';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { clipboard, CodeBlock } from '@skeletonlabs/skeleton';
-	import { GetDeckCode } from '$lib/snap/cards';
+	import { CalculateExcludedCards, GetDeckCode } from '$lib/snap/cards';
 	import { page } from '$app/stores';
 	import { seconds_to_ms } from '$lib/constants';
 	import { getToastStore } from '@skeletonlabs/skeleton';
@@ -89,10 +89,10 @@
 	let excludedCards = ExcludedCards();
 
 	function ExcludedCards() {
-		return data.cardDb.all.filter(
-			(card) =>
-				data.lobby.removedCards.includes(card.cardDefKey) ||
-				data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
+		return CalculateExcludedCards(
+			data.cardDb,
+			data.lobby.draftPool.map((card) => card.cardDefKey),
+			data.lobby.removedCards
 		);
 	}
 

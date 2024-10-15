@@ -69,3 +69,15 @@ export function IntersectionOfCollections(collections: (string[] | null)[]): str
 
 	return null;
 }
+
+export function CalculateExcludedCards(
+	cardDb: CardDb,
+	includedCards: string[] | undefined = undefined,
+	removedCards: string[] = []
+) {
+	return cardDb.all.filter(
+		(card) =>
+			removedCards.includes(card.cardDefKey) ||
+			(includedCards && includedCards.every((card2) => card2 != card.cardDefKey))
+	);
+}
