@@ -77,14 +77,19 @@
 		}
 
 		console.log(wsm);
-		invalidateAll();
+		await invalidateAll();
+		excludedCards = data.cardDb.all.filter(
+			(card) =>
+				data.lobby.removedCards.includes(card.cardDefKey) ||
+				data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
+		);
 	};
 
 	$: time_remaining = (data.lobby?.roundEndsAt! - now) / seconds_to_ms;
 
 	let cardsToRemove: string[] = data.lobby.removedCards;
 
-	const excludedCards = data.cardDb.all.filter(
+	let excludedCards = data.cardDb.all.filter(
 		(card) =>
 			data.lobby.removedCards.includes(card.cardDefKey) ||
 			data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
