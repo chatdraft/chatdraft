@@ -84,6 +84,12 @@
 
 	let cardsToRemove: string[] = data.lobby.removedCards;
 
+	const excludedCards = data.cardDb.all.filter(
+		(card) =>
+			data.lobby.removedCards.includes(card.cardDefKey) ||
+			data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
+	);
+
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage);
 	});
@@ -238,12 +244,20 @@
 			active="bg-primary-500"
 			bind:checked={showCardPool}
 		/>
-		<p hidden={!showCardPool}>
-			<b>Card Pool:</b>
-			{data.lobby?.draftPool
-				? data.lobby?.draftPool.map((card) => card.name).join(', ')
-				: 'Full Collection'}
-		</p>
+		<div class="space-y-4 mb-4" hidden={!showCardPool}>
+			<div>
+				<b>Card Pool:</b>
+				{data.lobby?.draftPool
+					? data.lobby?.draftPool.map((card) => card.name).join(', ')
+					: 'Full Collection'}
+			</div>
+			<div>
+				<b>Excluded Cards:</b>
+				{excludedCards && excludedCards.length > 0
+					? excludedCards.map((card) => card.name).join(', ')
+					: 'None'}
+			</div>
+		</div>
 		{#if data.user && data.lobby?.creator.fullUser?.id == data.user.id}
 			<form method="post" action="?/startLobby" use:enhance>
 				<button
