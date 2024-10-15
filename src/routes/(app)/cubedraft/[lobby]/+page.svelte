@@ -78,22 +78,22 @@
 
 		console.log(wsm);
 		await invalidateAll();
-		excludedCards = data.cardDb.all.filter(
-			(card) =>
-				data.lobby.removedCards.includes(card.cardDefKey) ||
-				data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
-		);
+		excludedCards = ExcludedCards();
 	};
 
 	$: time_remaining = (data.lobby?.roundEndsAt! - now) / seconds_to_ms;
 
 	let cardsToRemove: string[] = data.lobby.removedCards;
 
-	let excludedCards = data.cardDb.all.filter(
-		(card) =>
-			data.lobby.removedCards.includes(card.cardDefKey) ||
-			data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
-	);
+	let excludedCards = ExcludedCards();
+
+	function ExcludedCards() {
+		return data.cardDb.all.filter(
+			(card) =>
+				data.lobby.removedCards.includes(card.cardDefKey) ||
+				data.lobby.draftPool.every((card2) => card2.cardDefKey != card.cardDefKey)
+		);
+	}
 
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage);
@@ -129,11 +129,27 @@
 					<button class="btn btn-lg variant-outline-warning"> Close Lobby </button>
 				</form>
 			{:else if data.lobby?.players.some((player) => player.fullUser?.displayName == data.user?.displayName) && !data.lobby.started}
-				<form method="post" action="?/leaveLobby" use:enhance>
+				<form
+					method="post"
+					action="?/leaveLobby"
+					use:enhance={() => {
+						return async () => {
+							excludedCards = ExcludedCards();
+						};
+					}}
+				>
 					<button class="btn btn-lg variant-outline-warning"> Leave Draft </button>
 				</form>
 			{:else if !data.lobby?.started && data.user?.authorization?.cubeDraft}
-				<form method="post" action="?/joinLobby" use:enhance>
+				<form
+					method="post"
+					action="?/joinLobby"
+					use:enhance={() => {
+						return async () => {
+							excludedCards = ExcludedCards();
+						};
+					}}
+				>
 					<button class="btn btn-lg variant-outline-warning"> Join Draft </button>
 				</form>
 			{/if}
@@ -286,7 +302,15 @@
 		{#if data.lobby?.players}
 			<ul>
 				{#each data.lobby?.players as player, index}
-					<form method="post" action="?/removePlayer" use:enhance>
+					<form
+						method="post"
+						action="?/removePlayer"
+						use:enhance={() => {
+							return async () => {
+								excludedCards = ExcludedCards();
+							};
+						}}
+					>
 						<li>
 							<b>Player {index + 1}:</b>
 							{player.fullUser ? player.fullUser.displayName : player.name}
