@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "AgentVenom",
-	"currentSpotlightCardDefId": "Misery",
+	"currentSpotlightCardDefId": "Scorn",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1999,6 +1999,15 @@
 			"description": "<b>On Reveal:</b> Replace this location with a random new one.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ScarletWitch-652f4213d79cde56ce4e7913d3fc29335046180db7269b386ed5707bdc1349c5.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "Scorn",
+			"variantKey": null,
+			"url": "/cards/Scorn/",
+			"name": "Scorn",
+			"description": "When you discard this, return it to your hand and give +2 Power to itself and one of your cards in play.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorn-7103740db3d57af1469fefcbd43027989eb7f7e7dd9ba0332679ff54477d370f.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Scorpion",
