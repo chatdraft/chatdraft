@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
+	import { ParseCollectionState } from '$lib/snap/cards';
 	import { clipboard, getToastStore } from '@skeletonlabs/skeleton';
 
 	const toastStore = getToastStore();
@@ -30,11 +31,7 @@
 			try {
 				const collectionData = JSON.parse(await collectionFiles[0].text());
 				if (collectionData) {
-					cards = collectionData.ServerState.Cards.map(
-						(card: { CardDefId: string }) => card.CardDefId
-					).filter(
-						(value: string, index: number, array: string[]) => array.indexOf(value) === index
-					);
+					cards = await ParseCollectionState(collectionData);
 				}
 			} catch (e) {
 				cards = undefined;

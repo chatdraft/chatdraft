@@ -81,3 +81,11 @@ export function CalculateExcludedCards(
 			(includedCards && includedCards.every((card2) => card2 != card.cardDefKey))
 	);
 }
+
+export async function ParseCollectionState(collectionData: {
+	ServerState: { Cards: { CardDefId: string }[] };
+}) {
+	return collectionData.ServerState.Cards.map(
+		(card: { CardDefId: string }) => card.CardDefId
+	).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index);
+}

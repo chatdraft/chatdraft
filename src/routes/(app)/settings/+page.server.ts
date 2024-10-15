@@ -96,17 +96,15 @@ export const actions = {
 	uploadCollection: async ({ locals, request }) => {
 		if (locals.user && locals.user.twitchID) {
 			const formData = await request.formData();
-			let collectedCards = formData.getAll('collectedCards').map((entry) => entry.toString());
+			let collectedCards: string[] | null = formData
+				.getAll('collectedCards')
+				.map((entry) => entry.toString());
 
 			if (collectedCards.length < 1) {
 				const collection = formData.get('collection') as File;
 				const collectionData = JSON.parse(await collection.text());
 				if (collectionData) {
-					collectedCards = collectionData.ServerState.Cards.map(
-						(card: { CardDefId: string }) => card.CardDefId
-					).filter(
-						(value: string, index: number, array: string[]) => array.indexOf(value) === index
-					);
+					collectedCards = ParseCollectionBlob(collectionData);
 				}
 			}
 
