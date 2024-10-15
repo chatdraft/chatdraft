@@ -50,6 +50,7 @@ model UserPreference {
   botJoinsChannel Boolean @default(false)
   snapFanApiKey String?
   collection String? @db.NVarChar(max)
+  collectionLastUpdated DateTime?
   bgOpacity Int @default(70)
 }
 

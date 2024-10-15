@@ -7,7 +7,7 @@ import {
 	IsDeckSourceConfigured,
 	IsFullSourceConfigured
 } from '$lib/server/browserSourceHandler';
-import { prisma } from '$lib/server/db';
+import { ParseCollectionBlob, prisma } from '$lib/server/db';
 import { WebSocketMessageType, type WebSocketMessage } from '$lib/websocket';
 import { DatetimeNowUtc } from '$lib/datetime';
 import { SendMessageToPlayerChannel } from '$lib/server/webSocketUtils';
@@ -32,6 +32,7 @@ export const load = (async ({ locals }) => {
 	const subsExtraVote = locals.user.userPreferences?.subsExtraVote || false;
 	const collectionComplete = locals.user.userPreferences?.collection == null;
 	const bgOpacity = locals.user.userPreferences ? locals.user.userPreferences.bgOpacity : 70;
+	const collection = ParseCollectionBlob(locals.user.userPreferences?.collection);
 	return {
 		user: user,
 		botInChannel: locals.user.userPreferences?.botJoinsChannel,
@@ -44,7 +45,9 @@ export const load = (async ({ locals }) => {
 		subsExtraVote: subsExtraVote,
 		collectionComplete: collectionComplete,
 		bgOpacity: bgOpacity,
-		authorization: locals.user.authorization
+		authorization: locals.user.authorization,
+		collection: collection,
+		collectionLastUpdated: locals.user.userPreferences?.collectionLastUpdated
 	};
 }) satisfies PageServerLoad;
 

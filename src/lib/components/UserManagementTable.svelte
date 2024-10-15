@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { User, UserAuthorization } from '@prisma/client';
+	import { User, UserAuthorization, UserPreference } from '@prisma/client';
 	import ChatDraftSlideToggle from './ChatDraftSlideToggle.svelte';
 	import { enhance } from '$app/forms';
 
-	export let users: (User & { authorization: UserAuthorization | null })[] | undefined;
+	export let users:
+		| (User & { authorization: UserAuthorization | null; userPreferences: UserPreference | null })[]
+		| undefined;
 
 	let editingUser: User | undefined = undefined;
 </script>
@@ -32,6 +34,7 @@
 					<th class="table-cell-fit">Cube Draft</th>
 					<th class="table-cell-fit">Create Lobbies</th>
 					<th class="table-cell-fit">Solo Draft</th>
+					<th class="table-cell-fit">Collection Updated</th>
 					<th class="table-cell-fit">Edit</th>
 				</tr>
 			</thead>
@@ -125,6 +128,11 @@
 								{:else}
 									{user.authorization?.soloDraft ? '✅' : '❌'}
 								{/if}
+							</td>
+							<td class="table-cell-fit !align-middle">
+								{user.userPreferences?.collectionLastUpdated
+									? user.userPreferences?.collectionLastUpdated.toLocaleDateString()
+									: 'Never'}
 							</td>
 							<td class="table-cell-fit !align-middle">
 								{#if !editingUser}

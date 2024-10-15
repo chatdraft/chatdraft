@@ -21,6 +21,7 @@
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import type { FeaturedCardMode } from '$lib/featuredCard';
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
+	import prettyMilliseconds from 'pretty-ms';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -312,13 +313,29 @@
 						}}
 					>
 						<li>
-							<b>Player {index + 1}:</b>
-							{player.fullUser ? player.fullUser.displayName : player.name}
-							{#if data.lobby.creator.fullUser?.id == data.user?.id && player.fullUser?.id != data.user?.id}
-								<input type="hidden" id="playerName" name="playerName" value={player.name} />
-								<button class="btn-icon btn-icon-sm variant-outline-error">
-									<iconify-icon icon="mdi:remove-bold" />
-								</button>
+							<span>
+								<b>Player {index + 1}:</b>
+								{player.fullUser ? player.fullUser.displayName : player.name}
+							</span>
+							{#if data.lobby.creator.fullUser?.id == data.user?.id}
+								<span class="divider-vertical h-4 mx-2" />
+								<span>
+									{player.collection && player.collection.length > 0
+										? player.collection.length
+										: 'Complete'}
+									- {player.collectionLastUpdated
+										? `${player.collectionLastUpdated.toLocaleString()} (${prettyMilliseconds(
+												now - player.collectionLastUpdated.valueOf(),
+												{ unitCount: 2, secondsDecimalDigits: 0 }
+										  )} ago)`
+										: 'Never'}
+								</span>
+								{#if player.fullUser?.id != data.user?.id}
+									<input type="hidden" id="playerName" name="playerName" value={player.name} />
+									<button class="btn-icon btn-icon-sm variant-outline-error">
+										<iconify-icon icon="mdi:remove-bold" />
+									</button>
+								{/if}
 							{/if}
 						</li>
 					</form>

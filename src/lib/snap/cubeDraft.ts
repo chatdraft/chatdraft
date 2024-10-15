@@ -22,13 +22,15 @@ export type Player = {
 	name: string;
 	fullUser: FullUser | undefined;
 	collection: string[] | null;
+	collectionLastUpdated: Date | null | undefined;
 };
 
 export function CreateUserPlayer(fullUser: FullUser): Player {
 	return {
 		name: fullUser.channelName,
 		fullUser: fullUser,
-		collection: ParseCollectionBlob(fullUser.userPreferences?.collection)
+		collection: ParseCollectionBlob(fullUser.userPreferences?.collection),
+		collectionLastUpdated: fullUser.userPreferences?.collectionLastUpdated
 	};
 }
 
@@ -36,7 +38,8 @@ export function CreateGuestPlayer(playerName: string): Player {
 	return {
 		name: playerName,
 		fullUser: undefined,
-		collection: null
+		collection: null,
+		collectionLastUpdated: null
 	};
 }
 
@@ -297,6 +300,8 @@ export default class CubeDraft {
 		const player = this.players.find((player) => player.fullUser?.twitchID == fullUser.twitchID);
 		if (player) {
 			player.collection = ParseCollectionBlob(collection);
+			player.collectionLastUpdated = fullUser.userPreferences?.collectionLastUpdated;
+			await LobbyUpdated(this.lobbyName);
 		}
 		this.updateCardPool();
 	}

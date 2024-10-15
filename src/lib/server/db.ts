@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import type { AccessToken } from '@twurple/auth';
 import type { HelixUser } from '@twurple/api';
 import type { User, UserAuthorization, UserPreference } from '@prisma/client';
+import { DatetimeNowUtc } from '$lib/datetime';
 
 export type FullUser = User & { userPreferences: UserPreference | null } & {
 	authorization: UserAuthorization | null;
@@ -580,10 +581,12 @@ export const prisma = new PrismaClient().$extends({
 							userId: twitchId
 						},
 						update: {
-							collection: JSON.stringify(cards)
+							collection: JSON.stringify(cards),
+							collectionLastUpdated: new Date(DatetimeNowUtc())
 						},
 						create: {
 							collection: JSON.stringify(cards),
+							collectionLastUpdated: new Date(DatetimeNowUtc()),
 							user: {
 								connect: {
 									twitchID: twitchId
@@ -614,7 +617,8 @@ export const prisma = new PrismaClient().$extends({
 							userId: twitchId
 						},
 						data: {
-							collection: null
+							collection: null,
+							collectionLastUpdated: new Date(DatetimeNowUtc())
 						}
 					});
 					return userPreference;
@@ -641,7 +645,8 @@ export const prisma = new PrismaClient().$extends({
 							}
 						},
 						select: {
-							collection: true
+							collection: true,
+							collectionLastUpdated: true
 						}
 					});
 
@@ -676,6 +681,7 @@ export const prisma = new PrismaClient().$extends({
 							botJoinsChannel: true,
 							cardsPerRound: true,
 							collection: true,
+							collectionLastUpdated: true,
 							draftRoundDuration: true,
 							snapFanApiKey: true,
 							subsExtraVote: true,

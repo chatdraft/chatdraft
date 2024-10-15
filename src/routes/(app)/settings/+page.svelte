@@ -170,5 +170,13 @@
 		}}
 	>
 		<CollectionState collectionComplete={data.collectionComplete} />
+		<div>
+			<b>Collected Cards:</b>
+			{data.collection?.length || 'Full'}
+		</div>
+		<div>
+			<b>Last Updated:</b>
+			{data.collectionLastUpdated?.toLocaleString() || 'Never'}
+		</div>
 	</form>
 </div>
