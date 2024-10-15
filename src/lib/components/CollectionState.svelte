@@ -74,7 +74,7 @@
 				on:change={collectionFileChanged}
 				required
 			/>
-			{#if collectionFiles && collectionFiles[0].name != 'CollectionState.json'}
+			{#if collectionFiles && collectionFiles.length > 0 && collectionFiles[0].name != 'CollectionState.json'}
 				<p class="text-error-500 pl-8">
 					* Incorrect file selected: <span class="italic">{collectionFiles[0].name}</span>. Please
 					select <span class="italic">CollectionState.json</span>
