@@ -27,11 +27,17 @@
 			collectionFiles.length > 0 &&
 			collectionFiles[0].name === 'CollectionState.json'
 		) {
-			const collectionData = JSON.parse(await collectionFiles[0].text());
-			if (collectionData) {
-				cards = collectionData.ServerState.Cards.map(
-					(card: { CardDefId: string }) => card.CardDefId
-				).filter((value: string, index: number, array: string[]) => array.indexOf(value) === index);
+			try {
+				const collectionData = JSON.parse(await collectionFiles[0].text());
+				if (collectionData) {
+					cards = collectionData.ServerState.Cards.map(
+						(card: { CardDefId: string }) => card.CardDefId
+					).filter(
+						(value: string, index: number, array: string[]) => array.indexOf(value) === index
+					);
+				}
+			} catch (e) {
+				cards = undefined;
 			}
 		}
 	}
@@ -77,11 +83,18 @@
 				title="Please select CollectionState.json to upload."
 				placeholder="Select CollectionState.json"
 			/>
-			{#if collectionFiles && collectionFiles.length > 0 && collectionFiles[0].name != 'CollectionState.json'}
-				<p class="text-error-500 pl-8">
-					* Incorrect file selected: <span class="italic">{collectionFiles[0].name}</span>. Please
-					select <span class="italic">CollectionState.json</span>
-				</p>
+			{#if collectionFiles && collectionFiles.length > 0}
+				{#if collectionFiles[0].name != 'CollectionState.json'}
+					<p class="text-error-500 pl-8">
+						* Incorrect file selected: <span class="italic">{collectionFiles[0].name}</span>. Please
+						select <span class="italic">CollectionState.json</span>
+					</p>
+				{:else}
+					<p class="text-error-500 pl-8">
+						* Unable to parse <span class="italic">CollectionState.json</span>. Please check the
+						file and try again.
+					</p>
+				{/if}
 			{/if}
 		{:else}
 			<div class="flex flex-row">
@@ -105,11 +118,7 @@
 	<button
 		class="btn btn-md variant-filled-primary mt-2"
 		on:click={Submit}
-		disabled={uploading ||
-			(browser &&
-				(!collectionFiles ||
-					collectionFiles.length < 1 ||
-					collectionFiles[0].name !== 'CollectionState.json'))}
+		disabled={uploading || (browser && (!cards || cards.length < 1))}
 	>
 		Upload Collection
 	</button>
