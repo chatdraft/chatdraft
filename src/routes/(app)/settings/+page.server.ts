@@ -13,6 +13,7 @@ import { DatetimeNowUtc } from '$lib/datetime';
 import { SendMessageToPlayerChannel } from '$lib/server/webSocketUtils';
 import { UpdateUserCollection } from '$lib/server/cubeDraftLobbyHandler';
 import { GetAllCards } from '$lib/server/cardsHandler';
+import { ParseCollectionState } from '$lib/snap/cards';
 
 export const load = (async ({ locals }) => {
 	if (!locals.user) throw redirect(302, '/');
@@ -104,7 +105,7 @@ export const actions = {
 				const collection = formData.get('collection') as File;
 				const collectionData = JSON.parse(await collection.text());
 				if (collectionData) {
-					collectedCards = ParseCollectionBlob(collectionData);
+					collectedCards = await ParseCollectionState(collectionData);
 				}
 			}
 

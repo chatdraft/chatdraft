@@ -3,6 +3,7 @@
 	import { enhance } from '$app/forms';
 	import { ParseCollectionState } from '$lib/snap/cards';
 	import { clipboard, getToastStore } from '@skeletonlabs/skeleton';
+	import { tick } from 'svelte';
 
 	const toastStore = getToastStore();
 
@@ -29,6 +30,7 @@
 			collectionFiles[0].name === 'CollectionState.json'
 		) {
 			try {
+				cards = []; // A validation error flashes momentarily if we don't set this
 				const collectionData = JSON.parse(await collectionFiles[0].text());
 				if (collectionData) {
 					cards = await ParseCollectionState(collectionData);
@@ -38,8 +40,16 @@
 			}
 		}
 	}
+
+	async function ChangeFile() {
+		collectionFiles = null;
+		cards = undefined;
+		await tick(); // After one tick, the collection file picker control will reactivate
+		collectionFile.showPicker();
+	}
 </script>
 
+<form method="post" action="?/resetCollection" id="resetForm" use:enhance />
 <form
 	method="post"
 	action="?/uploadCollection"
@@ -72,7 +82,7 @@
 			<input
 				bind:this={collectionFile}
 				name="collection"
-				class="mt-2 input w-1/4"
+				class="mt-2 input w-1/3"
 				type="file"
 				accept=".json"
 				on:change={collectionFileChanged}
@@ -94,19 +104,18 @@
 				{/if}
 			{/if}
 		{:else}
-			<div class="flex flex-row">
-				<p class="italic p-4">
-					{collectionFiles ? collectionFiles[0].name : 'CollectionState.json'} selected.
-				</p>
-				<button
-					class="btn btn-md variant-outline-warning inline h-min"
-					type="button"
-					on:click={() => {
-						collectionFiles = null;
-						cards = undefined;
-					}}>Change</button
+			<button
+				class="flex flex-row input w-1/3 h-min items-center p-1 space-x-2 mt-2 cursor-default"
+				title="CollectionState.json selected"
+				on:click={ChangeFile}
+			>
+				<button class="btn btn-sm variant-filled cursor-default" type="button" on:click={ChangeFile}
+					>Change File</button
 				>
-			</div>
+				<div class="truncate">
+					{collectionFiles ? collectionFiles[0].name : 'CollectionState.json'} chosen
+				</div>
+			</button>
 			{#each cards as card}
 				<input type="hidden" name="collectedCards" value={card} />
 			{/each}
@@ -120,7 +129,7 @@
 		Upload Collection
 	</button>
 	{#if !collectionComplete}
-		<button class="btn btn-md variant-outline-warning" formaction="?/resetCollection">
+		<button class="btn btn-md variant-outline-warning" type="submit" form="resetForm">
 			Reset to Collection Complete
 		</button>
 	{/if}
