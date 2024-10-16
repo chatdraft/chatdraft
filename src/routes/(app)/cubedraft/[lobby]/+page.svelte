@@ -117,10 +117,12 @@
 		<h1 class="h1">Cube Draft</h1>
 		<section class="text-center text-2xl mt-0">
 			{#if data.lobby?.roundEndsAt && data.draft && data.draft?.total < 12}
-				Time Remaining: {time_remaining.toLocaleString(undefined, {
-					minimumFractionDigits: 0,
-					maximumFractionDigits: 0
-				})}
+				Time Remaining: {time_remaining > 0
+					? time_remaining.toLocaleString(undefined, {
+							minimumFractionDigits: 0,
+							maximumFractionDigits: 0
+					  })
+					: '0'}
 			{/if}
 		</section>
 
