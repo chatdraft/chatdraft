@@ -75,6 +75,15 @@
 			"cost": 2
 		},
 		{
+			"cardDefKey": "Agony",
+			"variantKey": null,
+			"url": "/cards/Agony/",
+			"name": "Agony",
+			"description": "After you play a card here, merge this with it.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Agony-a0d52b01b20c335c817cd311a42a5676d25a602bedc8e68c7d34f4803560b01a.webp",
+			"cost": 1
+		},
+		{
 			"cardDefKey": "Ajax",
 			"variantKey": null,
 			"url": "/cards/Ajax/",
