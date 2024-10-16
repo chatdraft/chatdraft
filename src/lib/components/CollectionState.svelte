@@ -93,8 +93,8 @@
 			{#if collectionFiles && collectionFiles.length > 0}
 				{#if collectionFiles[0].name != 'CollectionState.json'}
 					<p class="text-error-500 pl-8">
-						* Incorrect file selected: <span class="italic">{collectionFiles[0].name}</span>. Please
-						select <span class="italic">CollectionState.json</span>
+						* Incorrect file chosen: <span class="italic">{collectionFiles[0].name}</span>. Please
+						choose <span class="italic">CollectionState.json</span>
 					</p>
 				{:else}
 					<p class="text-error-500 pl-8">

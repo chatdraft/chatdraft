@@ -163,12 +163,14 @@
 		{data.collection?.length || 'Full'}
 	</div>
 	<div>
-		<b>Missing Cards:</b>
-		{data.collection
-			? CalculateExcludedCards(data.cardDb, data.collection || undefined)
-					.map((card) => card.name)
-					.join(', ')
-			: 'None'}
+		<p class="ml-4 -indent-4">
+			<b>Missing Cards:</b>
+			{data.collection
+				? CalculateExcludedCards(data.cardDb, data.collection || undefined)
+						.map((card) => card.name)
+						.join(', ')
+				: 'None'}
+		</p>
 	</div>
 	<div>
 		<b>Last Updated:</b>
