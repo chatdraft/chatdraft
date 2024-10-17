@@ -69,9 +69,9 @@
 		if (wsm.type == WebSocketMessageType.Pong) return;
 
 		if (wsm.type == WebSocketMessageType.LobbyClosed) {
-			if (data.lobby.creator.fullUser?.id != data.user?.id)
+			if (!data.canEditLobby)
 				toastStore.trigger({
-					message: `The lobby ${data.lobby.lobbyName} was closed by the creator.`
+					message: `The lobby ${data.lobby.lobbyName} was closed.`
 				});
 			await goto('/cubedraft');
 			return;
@@ -127,7 +127,7 @@
 		</section>
 
 		<div class="grid justify-items-end">
-			{#if data.lobby.creator.fullUser?.id == data.user?.id}
+			{#if data.canEditLobby}
 				<form method="post" action="?/closeLobby" use:enhance>
 					<button class="btn btn-lg variant-outline-warning"> Close Lobby </button>
 				</form>
@@ -177,7 +177,7 @@
 		</div>
 		<div class="flex flex-row">
 			<p class="font-bold mt-1">Creator: {data.lobby?.creator.name}</p>
-			{#if data.lobby.creator.fullUser?.id == data.user?.id}
+			{#if data.canEditLobby}
 				<div class="pl-20">
 					<ChatDraftSlideToggle
 						bind:checked={editing}
@@ -188,7 +188,7 @@
 				</div>
 			{/if}
 		</div>
-		{#if !editing || data.lobby.creator.fullUser?.id != data.user?.id}
+		{#if !editing || !data.canEditLobby}
 			<div class="space-y-2">
 				<p><b>Round Duration:</b> {data.lobby?.duration}</p>
 				<p><b>Selections per Round:</b> {data.lobby?.selections}</p>
@@ -282,7 +282,7 @@
 					: 'None'}
 			</div>
 		</div>
-		{#if data.user && data.lobby?.creator.fullUser?.id == data.user.id}
+		{#if data.user && data.canEditLobby}
 			<form method="post" action="?/startLobby" use:enhance>
 				<button
 					class="btn btn-lg variant-filled-primary"
@@ -319,7 +319,7 @@
 								<b>Player {index + 1}:</b>
 								{player.fullUser ? player.fullUser.displayName : player.name}
 							</span>
-							{#if data.lobby.creator.fullUser?.id == data.user?.id}
+							{#if data.canEditLobby}
 								<span class="divider-vertical h-4 mx-2" />
 								<span>
 									{player.collection && player.collection.length > 0

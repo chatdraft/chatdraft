@@ -19,7 +19,8 @@ export const load = (async ({ params, locals }) => {
 		draft: userDraft?.toIDraft(),
 		selectedCardIndex: selectedCardIndex,
 		selectedCard: selectedCard,
-		cardDb: cardDb
+		cardDb: cardDb,
+		canEditLobby: lobby.creator.fullUser?.id == locals.user?.id
 	};
 }) satisfies PageServerLoad;
 
