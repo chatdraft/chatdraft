@@ -1620,7 +1620,7 @@
 			"name": "Nakia",
 			"description": "<b>On Reveal:</b> Give all cards in your hand +1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Nakia-3842686e245ef923c483c6d7e7bcee8b9c9be693dd3fcda42561e6d6d5f64258.webp",
-			"cost": 2
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Namor",
