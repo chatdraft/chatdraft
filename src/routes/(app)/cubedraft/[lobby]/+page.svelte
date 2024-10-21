@@ -21,7 +21,8 @@
 	import SelectionCountSlider from '$lib/components/SelectionCountSlider.svelte';
 	import type { FeaturedCardMode } from '$lib/featuredCard';
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
-	import prettyMilliseconds from 'pretty-ms';
+	import LobbyPlayerTable from '$lib/components/LobbyPlayerTable.svelte';
+	import { PlayerStatus } from '$lib/snap/player';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -294,6 +295,9 @@
 								)
 							)
 								event.preventDefault();
+						} else if (!data.lobby.players.every((player) => player.status == PlayerStatus.ready)) {
+							if (!confirm('Not everyone is ready. Are you sure you want to start?'))
+								event.preventDefault();
 						}
 					}}
 				>
@@ -303,46 +307,18 @@
 		{/if}
 		<h2 class="h2">Players</h2>
 		{#if data.lobby?.players}
-			<ul>
-				{#each data.lobby?.players as player, index}
-					<form
-						method="post"
-						action="?/removePlayer"
-						use:enhance={() => {
-							return async () => {
-								excludedCards = ExcludedCards();
-							};
-						}}
-					>
-						<li>
-							<span>
-								<b>Player {index + 1}:</b>
-								{player.fullUser ? player.fullUser.displayName : player.name}
-							</span>
-							{#if data.canEditLobby}
-								<span class="divider-vertical h-4 mx-2" />
-								<span>
-									{player.collection && player.collection.length > 0
-										? player.collection.length
-										: 'Complete'}
-									- {player.collectionLastUpdated
-										? `${player.collectionLastUpdated.toLocaleString()} (${prettyMilliseconds(
-												now - player.collectionLastUpdated.valueOf(),
-												{ unitCount: 2, secondsDecimalDigits: 0 }
-										  )} ago)`
-										: 'Never'}
-								</span>
-								{#if player.fullUser?.id != data.user?.id}
-									<input type="hidden" id="playerName" name="playerName" value={player.name} />
-									<button class="btn-icon btn-icon-sm variant-outline-error">
-										<iconify-icon icon="mdi:remove-bold" />
-									</button>
-								{/if}
-							{/if}
-						</li>
-					</form>
-				{/each}
-			</ul>
+			<LobbyPlayerTable
+				players={data.lobby?.players}
+				canEditLobby={data.canEditLobby}
+				user={data.lobby.players.find((player) => player.name == data.user?.channelName)}
+				{now}
+				update={() => {
+					return async () => {
+						excludedCards = ExcludedCards();
+					};
+				}}
+				cardTotal={data.cardDb.all.length}
+			/>
 		{/if}
 	{:else if data.lobby.draftedDecks && (!data.user || !data.lobby.players.some((player) => player.fullUser?.id == data.user?.id))}
 		<h2 class="h2">Player Drafts</h2>

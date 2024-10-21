@@ -1,6 +1,6 @@
 import { GetAllCards } from '$lib/server/cardsHandler';
 import { GetLobbies, SetLobby } from '$lib/server/cubeDraftLobbyHandler';
-import CubeDraft, { CreateGuestPlayer, CreateUserPlayer } from '$lib/snap/cubeDraft';
+import CubeDraft, { CreateGuestPlayer, CreateUserPlayer } from '$lib/server/cubeDraft';
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import crypto from 'node:crypto';

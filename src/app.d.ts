@@ -1,6 +1,6 @@
 import type { RefreshingAuthProvider } from '@twurple/auth';
 import type { ExtendedWebSocketServer } from '$lib/server/webSocketHandler';
-import type { FullUser } from '$lib/server/db';
+import type { FullUser } from '$lib/user';
 
 declare global {
 	namespace App {

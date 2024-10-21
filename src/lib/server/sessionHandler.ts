@@ -2,8 +2,8 @@ import crypto from 'crypto';
 import type { AccessToken } from '@twurple/auth';
 import { type Cookies, error } from '@sveltejs/kit';
 import { sessionTimout_ms } from '../constants';
-import type { FullUser } from './db';
 import type { User, UserAuthorization } from '@prisma/client';
+import type { FullUser } from '$lib/user';
 
 type TSessionID = string;
 

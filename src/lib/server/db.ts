@@ -1,12 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import type { AccessToken } from '@twurple/auth';
 import type { HelixUser } from '@twurple/api';
-import type { User, UserAuthorization, UserPreference } from '@prisma/client';
 import { DatetimeNowUtc } from '$lib/datetime';
-
-export type FullUser = User & { userPreferences: UserPreference | null } & {
-	authorization: UserAuthorization | null;
-};
 
 export function ParseCollectionBlob(collection: string | null | undefined): string[] | null {
 	return collection ? (JSON.parse(collection) as string[]) : null;

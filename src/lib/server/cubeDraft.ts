@@ -10,27 +10,23 @@ import {
 	NewChoice,
 	VotingClosed
 } from '$lib/server/webSocketUtils';
-import { Draft } from './draft';
-import { ParseCollectionBlob, type FullUser } from '$lib/server/db';
+import { Draft } from '../snap/draft';
+import { ParseCollectionBlob } from '$lib/server/db';
 import { type CardDb, type Deck, IntersectionOfCollections } from '$lib/snap/cards';
 import { seconds_to_ms } from '$lib/constants';
-import { shuffle } from './utils';
+import { shuffle } from '../snap/utils';
 import { DatetimeNowUtc } from '$lib/datetime';
 import type { FeaturedCardMode } from '$lib/featuredCard';
-
-export type Player = {
-	name: string;
-	fullUser: FullUser | undefined;
-	collection: string[] | null;
-	collectionLastUpdated: Date | null | undefined;
-};
+import type { FullUser } from '$lib/user';
+import { PlayerStatus, type Player } from '$lib/snap/player';
 
 export function CreateUserPlayer(fullUser: FullUser): Player {
 	return {
 		name: fullUser.channelName,
 		fullUser: fullUser,
 		collection: ParseCollectionBlob(fullUser.userPreferences?.collection),
-		collectionLastUpdated: fullUser.userPreferences?.collectionLastUpdated
+		collectionLastUpdated: fullUser.userPreferences?.collectionLastUpdated,
+		status: PlayerStatus.joined
 	};
 }
 
@@ -39,7 +35,8 @@ export function CreateGuestPlayer(playerName: string): Player {
 		name: playerName,
 		fullUser: undefined,
 		collection: null,
-		collectionLastUpdated: null
+		collectionLastUpdated: null,
+		status: PlayerStatus.joined
 	};
 }
 
@@ -422,5 +419,31 @@ export default class CubeDraft {
 			faceDownDraft: this._faceDownDraft,
 			removedCards: this.removedCards
 		};
+	}
+
+	public PlayerReady(playerName: string) {
+		const player = this.players.find((player) => player.name == playerName);
+		if (player) {
+			player.status = PlayerStatus.ready;
+		}
+	}
+
+	public PlayerUneady(playerName: string) {
+		const player = this.players.find((player) => player.name == playerName);
+		if (player) {
+			player.status = PlayerStatus.joined;
+		}
+	}
+
+	public TogglePlayerReady(playerName: string) {
+		const player = this.players.find((player) => player.name == playerName);
+		if (player) {
+			if (player.status == PlayerStatus.joined) {
+				player.status = PlayerStatus.ready;
+			} else {
+				player.status = PlayerStatus.joined;
+			}
+		}
+		LobbyUpdated(this.lobbyName);
 	}
 }
