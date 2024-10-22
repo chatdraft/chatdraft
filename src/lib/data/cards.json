@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "AgentVenom",
-	"currentSpotlightCardDefId": "Scorn",
+	"currentSpotlightCardDefId": "Toxin",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -2449,6 +2449,15 @@
 			"description": "After ANY card is played here, this card switches sides.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Titania-1ae64730a3d0dfdcceaa3ef35be52304a5dee626b79a1e846f5601a796a30242.webp",
 			"cost": 1
+		},
+		{
+			"cardDefKey": "Toxin",
+			"variantKey": null,
+			"url": "/cards/Toxin/",
+			"name": "Toxin",
+			"description": "<b>On Reveal:</b> Return your other cards here to your hand. +2 Power\nfor each returned.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Toxin-4a6ca624dd58114a8ceea593778dc28bc34f37ee57fa3bbc6dfe09b4215ec8bc.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "TyphoidMary",
