@@ -548,7 +548,7 @@
 			"url": "/cards/Daredevil/",
 			"name": "Daredevil",
 			"description": "On turn 5, you get to see your opponent's plays before you\nmake your own.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Daredevil-3927b0bed806dab1c1e7c9bfaa7cfad0143afc2e6a38fd8190ac06b412d1c4b7.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Daredevil-b41208339e7844f2dda18809b0f8f66e92fb88bca03185d2ddbf9b0169753d7e.webp",
 			"cost": 2
 		},
 		{
@@ -701,7 +701,7 @@
 			"url": "/cards/Electro/",
 			"name": "Electro",
 			"description": "<b>On Reveal:</b> +1 Max Energy. <b>Ongoing:</b> You can only play\n1 card a turn.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Electro-44d674eea9550f4719f2eb01989e0f4bca4f7a54e69145b8939c58fd0a2c8527.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Electro-b855248dcf0e070ec555a76ac2b2bd451e44a5a519dc9c1151b4a0e09cb6d9ba.webp",
 			"cost": 3
 		},
 		{
@@ -1204,7 +1204,7 @@
 			"variantKey": null,
 			"url": "/cards/Klaw/",
 			"name": "Klaw",
-			"description": "<b>Ongoing:</b> The location to the right has +8 Power.",
+			"description": "<b>Ongoing:</b> The location to the right has +7 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Klaw-dbf489893a3ded332428c68bdc851f6fa4f2a4d94d491cad128f38acdfd55427.webp",
 			"cost": 5
 		},
@@ -1448,7 +1448,7 @@
 			"url": "/cards/Miek/",
 			"name": "Miek",
 			"description": "When you discard a card, this gains +1 Power and can move next turn.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Miek-3493fc690fa97dc3e30645edb50d4173d4a18bb528484848c1440a3b1f55c111.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Miek-0f4acd20c3f95bdf187c14c413b401564e5fd1c3ab8af4b26deb48e4e176a43d.webp",
 			"cost": 1
 		},
 		{
@@ -1475,7 +1475,7 @@
 			"url": "/cards/Misery/",
 			"name": "Misery",
 			"description": "<b>On Reveal:</b> Repeat the <b>On Reveal</b> abilities of your other cards here, then destroy them.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Misery-a8aefcd11d9c53a79472022b52ca50d7b64cbe2533ae17d22815aa79c5a7674a.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Misery-e640d2313fa188bc56308b145eb482198c8aaf12a8b9bc93d73da6302000cce6.webp",
 			"cost": 4
 		},
 		{
@@ -1925,8 +1925,8 @@
 			"url": "/cards/Rockslide/",
 			"name": "Rockslide",
 			"description": "<b>On Reveal:</b> Shuffle 2 Rocks into your opponent's deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rockslide-d02a9b5856ac90fad5a93150bd08ebc62cdceaf306a9a081b63f0834f3b26c63.webp",
-			"cost": 3
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rockslide-74ec11397c3c81b7f074b7a9de41202d1ed2d1323c75cbfb7515d72abdef0068.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Rogue",
@@ -2096,7 +2096,7 @@
 			"url": "/cards/ShadowKing/",
 			"name": "Shadow King",
 			"description": "<b>On Reveal:</b> Reset all cards here to their base Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-cb3e4b8db461ec40ed389f0803e02831b5a77276e3751c626a3fd7f1687cd35a.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-34c902fb81c51a4afbebf53bc48095c6e7d79251ca00c6fe4b48d808bc04b11e.webp",
 			"cost": 2
 		},
 		{
@@ -2294,8 +2294,8 @@
 			"url": "/cards/Storm/",
 			"name": "Storm",
 			"description": "<b>On Reveal:</b> Flood this location. Next turn is the last turn cards can\nbe played here.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Storm-ec9d0c44271db8b787e674225c9c85a8c9447513484f73db654e42368684518d.webp",
-			"cost": 3
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Storm-495dae031d9530582a7093846193601dbb87402ac7f16f6b159a438451cfbbf2.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "StrongGuy",
@@ -2464,7 +2464,7 @@
 			"variantKey": null,
 			"url": "/cards/TyphoidMary/",
 			"name": "Typhoid Mary",
-			"description": "<b>Ongoing:</b> Your other cards\nhave -1 Power.",
+			"description": "<b>Ongoing:</b> Your other cards\nhere have -1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TyphoidMary-67907153ba617f36b972f2bf6f9b015286378aea1af62ebd340fa811f2c28456.webp",
 			"cost": 4
 		},
