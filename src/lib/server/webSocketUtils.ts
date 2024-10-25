@@ -312,3 +312,15 @@ export const LobbyClosed = async (lobbyName: string) => {
 	};
 	SendMessageToLobby(lobbyName, wsm);
 };
+
+export const LobbyLockInUpdated = async (
+	lobbyName: string,
+	lockInRoundEndsAt: number | undefined
+) => {
+	const wsm: WebSocketMessage = {
+		type: WebSocketMessageType.LobbyLockInUpdated,
+		timestamp: DatetimeNowUtc(),
+		message: JSON.stringify(lockInRoundEndsAt)
+	};
+	SendMessageToLobby(lobbyName, wsm);
+};

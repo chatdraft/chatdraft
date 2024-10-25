@@ -43,7 +43,7 @@ export const establishWebSocket = async (
  * @param {(WebSocket | null)} [ws=null] Websocket to start a heartbeat on
  */
 function heartbeat(ws: WebSocket | null = null) {
-	setTimeout(() => heartbeat(ws), 500);
+	setTimeout(() => heartbeat(ws), 1000);
 	if (!ws) return;
 	if (ws.readyState !== ws.OPEN) return;
 
@@ -96,5 +96,6 @@ export enum WebSocketMessageType {
 	LobbyDraftRoundOver = 'lobbydraftroundover',
 	LobbyDraftComplete = 'lobbydraftcomplete',
 	LobbyUpdated = 'lobbyupdated',
-	LobbyClosed = 'lobbyclosed'
+	LobbyClosed = 'lobbyclosed',
+	LobbyLockInUpdated = 'lobbylockinupdated'
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { applyAction, enhance } from '$app/forms';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 	import DraftChoice from '$lib/components/DraftChoice.svelte';
 	import DraftSummary from '$lib/components/DraftSummary.svelte';
@@ -51,6 +51,14 @@
 
 	const toastStore = getToastStore();
 
+	let lockedIn: boolean;
+	const UpdateLockedIn = async () => {
+		lockedIn =
+			data.lobby.players.find((player) => player.name == data.user?.channelName)?.lockedIn || false;
+	};
+
+	UpdateLockedIn();
+
 	const handleMessage = async (message: string) => {
 		const wsm: WebSocketMessage = JSON.parse(message);
 		now = wsm.timestamp;
@@ -78,16 +86,28 @@
 			return;
 		}
 
+		if (wsm.type == WebSocketMessageType.LobbyLockInUpdated) {
+			data.lobby.lockInRoundEndsAt = wsm.message ? JSON.parse(wsm.message) : undefined;
+		}
+
 		console.log(wsm);
 		await invalidateAll();
 		excludedCards = ExcludedCards();
+		UpdateLockedIn();
 	};
 
 	$: time_remaining = (data.lobby?.roundEndsAt! - now) / seconds_to_ms;
+	$: lockInTimeRemaining = data.lobby?.lockInRoundEndsAt
+		? (data.lobby?.lockInRoundEndsAt - now) / seconds_to_ms
+		: undefined;
 
 	let cardsToRemove: string[] = data.lobby.removedCards;
 
 	let excludedCards = ExcludedCards();
+
+	let lockInBtn: HTMLButtonElement;
+
+	export let form;
 
 	function ExcludedCards() {
 		return CalculateExcludedCards(
@@ -124,6 +144,45 @@
 							maximumFractionDigits: 0
 					  })
 					: '0'}
+				{#if lockInTimeRemaining}
+					&nbsp; / <iconify-icon
+						icon="mdi:lock"
+						width="32"
+						height="32"
+						class="align-text-bottom"
+					/>: {lockInTimeRemaining > 0
+						? lockInTimeRemaining.toLocaleString(undefined, {
+								minimumFractionDigits: 0,
+								maximumFractionDigits: 0
+						  })
+						: '0'}
+				{/if}
+			{/if}
+			{#if data.lobby.started && data.lobby.players.some((player) => player.name == data.user?.channelName) && !data.lobby.finished}
+				<form
+					method="post"
+					action="?/togglePlayerLockIn"
+					use:enhance={async () => {
+						return async ({ result }) => {
+							if (result.type == 'success') {
+								await applyAction(result);
+								lockedIn = form?.lockedIn || false;
+								data.lobby.lockInRoundEndsAt = form?.lockInRoundEndsAt;
+							}
+						};
+					}}
+				>
+					<ChatDraftSlideToggle
+						label="Lock Pick: "
+						name="lockIn"
+						bind:checked={lockedIn}
+						on:change={() => lockInBtn.click()}
+						active="bg-primary-500"
+						size="sm"
+						class="align-middle"
+					/>
+					<button bind:this={lockInBtn} class="hidden collapse"> Submit </button>
+				</form>
 			{/if}
 		</section>
 
@@ -160,7 +219,7 @@
 		</div>
 	</div>
 	<a href="/cubedraft" class="anchor">
-		<iconify-icon icon="ion:chevron-back" width="24" height="24" class="pt-4" />
+		<iconify-icon icon="ion:chevron-back" width="24" height="24" />
 		<span class="align-super"> Back to lobbies </span>
 	</a>
 	{#if !data.lobby?.started}

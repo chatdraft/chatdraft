@@ -8,7 +8,8 @@ import {
 	LobbyDraftRoundOver,
 	LobbyUpdated,
 	NewChoice,
-	VotingClosed
+	VotingClosed,
+	LobbyLockInUpdated
 } from '$lib/server/webSocketUtils';
 import { Draft } from '../snap/draft';
 import { ParseCollectionBlob } from '$lib/server/db';
@@ -26,7 +27,8 @@ export function CreateUserPlayer(fullUser: FullUser): Player {
 		fullUser: fullUser,
 		collection: ParseCollectionBlob(fullUser.userPreferences?.collection),
 		collectionLastUpdated: fullUser.userPreferences?.collectionLastUpdated,
-		status: PlayerStatus.joined
+		status: PlayerStatus.joined,
+		lockedIn: false
 	};
 }
 
@@ -36,7 +38,8 @@ export function CreateGuestPlayer(playerName: string): Player {
 		fullUser: undefined,
 		collection: null,
 		collectionLastUpdated: null,
-		status: PlayerStatus.joined
+		status: PlayerStatus.joined,
+		lockedIn: false
 	};
 }
 
@@ -64,7 +67,10 @@ export interface ICubeDraft {
 	draftedDecks: Map<string, Deck> | undefined;
 	faceDownDraft: boolean;
 	removedCards: string[];
+	lockInRoundEndsAt: number | undefined;
 }
+
+const cubeDraftLockInDuration_ms = 10 * seconds_to_ms;
 
 /**
  * TODO: Describe CubeDraft
@@ -100,6 +106,10 @@ export default class CubeDraft {
 	private _finished: boolean = false;
 
 	private _roundEndsAt: number = 0;
+
+	private _lockInRoundEndsAt: number | undefined = undefined;
+
+	private _lockInRoundTimer: NodeJS.Timeout | undefined;
 
 	public get lobbyName(): string {
 		return this._lobbyName;
@@ -164,6 +174,10 @@ export default class CubeDraft {
 
 	public get removedCards(): string[] {
 		return this._removedCards;
+	}
+
+	public get lockInRoundEndsAt(): number | undefined {
+		return this._lockInRoundEndsAt;
 	}
 
 	/**
@@ -339,6 +353,7 @@ export default class CubeDraft {
 
 		const sampleDeck = this._decks.values().next().value;
 		if (sampleDeck && sampleDeck.length < 12) {
+			this.ResetLockInStatus();
 			this.CreateNewChoices();
 			this.RestartRoundTimer();
 			await LobbyDraftRoundOver(this.lobbyName);
@@ -349,6 +364,12 @@ export default class CubeDraft {
 			);
 			await LobbyDraftComplete(this.lobbyName);
 		}
+	}
+
+	private async ResetLockInStatus() {
+		this._lockInRoundEndsAt = undefined;
+		clearTimeout(this._lockInRoundTimer);
+		this._lockInRoundTimer = undefined;
 	}
 
 	private async CreateNewChoices() {
@@ -370,6 +391,7 @@ export default class CubeDraft {
 
 	public async Vote(playerName: string, choice: string) {
 		this.drafts.find((draft) => draft.player == playerName)?.Vote(playerName, choice, false);
+		this.UpdateLockInStatus();
 	}
 
 	public async CancelDraft() {
@@ -417,22 +439,9 @@ export default class CubeDraft {
 			closedDeckList: this.isFaceDownDraft,
 			draftedDecks: this.isFaceDownDraft ? undefined : this._decks,
 			faceDownDraft: this._faceDownDraft,
-			removedCards: this.removedCards
+			removedCards: this.removedCards,
+			lockInRoundEndsAt: this._lockInRoundEndsAt
 		};
-	}
-
-	public PlayerReady(playerName: string) {
-		const player = this.players.find((player) => player.name == playerName);
-		if (player) {
-			player.status = PlayerStatus.ready;
-		}
-	}
-
-	public PlayerUneady(playerName: string) {
-		const player = this.players.find((player) => player.name == playerName);
-		if (player) {
-			player.status = PlayerStatus.joined;
-		}
 	}
 
 	public TogglePlayerReady(playerName: string) {
@@ -445,5 +454,39 @@ export default class CubeDraft {
 			}
 		}
 		LobbyUpdated(this.lobbyName);
+	}
+
+	public TogglePlayerLockIn(playerName: string) {
+		const player = this.players.find((player) => player.name == playerName);
+		if (player) {
+			player.lockedIn = !player.lockedIn;
+			this.UpdateLockInStatus();
+
+			return { lockedIn: player.lockedIn, lockInRoundEndsAt: this._lockInRoundEndsAt };
+		}
+
+		return { lockedIn: false, lockInRoundEndsAt: undefined };
+	}
+
+	public UpdateLockInStatus() {
+		if (!this.lockInRoundEndsAt) {
+			if (
+				this.players.every((player) => player.lockedIn) &&
+				this.drafts.every((draft) => draft.currentChoice?.votes.get(draft.player) !== undefined) &&
+				this.roundEndsAt - DatetimeNowUtc() > cubeDraftLockInDuration_ms
+			) {
+				this._lockInRoundEndsAt = DatetimeNowUtc() + cubeDraftLockInDuration_ms;
+				this._lockInRoundTimer = setTimeout(
+					() => this.CloseRound(),
+					this._lockInRoundEndsAt - DatetimeNowUtc()
+				);
+			} else {
+				this.ResetLockInStatus();
+			}
+			LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
+		} else if (!this.players.every((player) => player.lockedIn)) {
+			this.ResetLockInStatus();
+			LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
+		}
 	}
 }

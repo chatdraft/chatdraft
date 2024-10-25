@@ -127,5 +127,18 @@ export const actions = {
 		const player = lobby.players.find((player) => player.fullUser?.id == locals.user?.id);
 		if (!player) throw error(403, 'User not in lobby.');
 		lobby.TogglePlayerReady(player.name);
+	},
+	togglePlayerLockIn: async ({ locals, params }) => {
+		if (!locals.user || !locals.user.authorization || !locals.user.authorization.cubeDraft)
+			throw redirect(302, '/');
+		const lobby = GetLobby(params.lobby);
+		if (!lobby) throw error(404, `Lobby ${params.lobby} not found.`);
+		const player = lobby.players.find((player) => player.fullUser?.id == locals.user?.id);
+		if (!player) throw error(403, 'User not in lobby.');
+		const result = lobby.TogglePlayerLockIn(player.name);
+		return {
+			lockedIn: result.lockedIn,
+			lockInRoundEndsAt: result.lockInRoundEndsAt
+		};
 	}
 } satisfies Actions;

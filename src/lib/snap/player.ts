@@ -6,6 +6,7 @@ export type Player = {
 	collection: string[] | null;
 	collectionLastUpdated: Date | null | undefined;
 	status: PlayerStatus;
+	lockedIn: boolean;
 };
 
 export enum PlayerStatus {
