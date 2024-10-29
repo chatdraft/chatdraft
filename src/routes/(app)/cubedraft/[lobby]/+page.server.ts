@@ -36,8 +36,6 @@ export const actions = {
 		if (!locals.user) throw redirect(302, '/');
 		const lobby = GetLobby(params.lobby);
 		if (!lobby) throw error(404, `Lobby ${params.lobby} not found.`);
-		if (lobby.creator.fullUser?.id == locals.user.id)
-			throw error(400, 'Lobby creator cannot leave lobby.');
 		await lobby.RemoveUserPlayer(locals.user);
 	},
 	startLobby: async ({ locals, params }) => {

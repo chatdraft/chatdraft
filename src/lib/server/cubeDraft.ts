@@ -202,7 +202,7 @@ export default class CubeDraft {
 		private _faceDownDraft: boolean = true,
 		private _removedCards: string[] = []
 	) {
-		this._players = [_creator];
+		this._players = [];
 		this.updateCardPool();
 	}
 

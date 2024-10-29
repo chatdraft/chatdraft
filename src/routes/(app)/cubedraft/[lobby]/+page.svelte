@@ -186,12 +186,13 @@
 			{/if}
 		</section>
 
-		<div class="grid justify-items-end">
+		<div class="flex flex-row place-content-end space-x-2">
 			{#if data.canEditLobby}
 				<form method="post" action="?/closeLobby" use:enhance>
-					<button class="btn btn-lg variant-outline-warning"> Close Lobby </button>
+					<button class="btn btn-lg variant-outline-error"> Close Lobby </button>
 				</form>
-			{:else if data.lobby?.players.some((player) => player.fullUser?.displayName == data.user?.displayName) && !data.lobby.started}
+			{/if}
+			{#if data.lobby?.players.some((player) => player.fullUser?.displayName == data.user?.displayName) && !data.lobby.started}
 				<form
 					method="post"
 					action="?/leaveLobby"
