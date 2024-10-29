@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "AgentVenom",
-	"currentSpotlightCardDefId": "Toxin",
+	"currentSpotlightCardDefId": "AntiVenom",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -145,6 +145,15 @@
 			"description": "<b>Ongoing:</b> If your side of this location is full, +4 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AntMan-44ffd12f8d6a8db6e642a6f3c3c3da831ba711da15d7ccaf3e3fa5205b47523c.webp",
 			"cost": 1
+		},
+		{
+			"cardDefKey": "AntiVenom",
+			"variantKey": null,
+			"url": "/cards/AntiVenom/",
+			"name": "Anti-Venom",
+			"description": "<b>On Reveal:</b> Set the Cost and Power of your deck's top card to 0.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AntiVenom-65a2b1c9fb55c33d41d4e35ebfa7b2a11618394375f14f39424721a9d7dab302.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Apocalypse",
