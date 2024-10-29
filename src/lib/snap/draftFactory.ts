@@ -1,5 +1,5 @@
 import { seconds_to_ms } from '$lib/constants';
-import { type FeaturedCardMode } from '$lib/featuredCard';
+import type { FeaturedCardMode } from '$lib/featuredCard';
 import { GetAllCards } from '$lib/server/cardsHandler';
 import { GetDraft, SetCurrentDraft, SetPreviousDraft } from '$lib/server/draftHandler';
 import { ClearPreviewStatus } from '$lib/server/previewHandler';
