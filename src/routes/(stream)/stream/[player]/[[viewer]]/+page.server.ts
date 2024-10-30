@@ -38,8 +38,12 @@ export const load = (async ({ params, locals, url }) => {
 		displayDeck: previewStatus
 			? previewDraft.cards
 			: params.viewer == 'viewer'
-			? draft?.viewerDeck
-			: draft?.cards,
+			? draft?.viewerDeck.toSorted((a, b) => {
+					return a.cost - b.cost;
+			  })
+			: draft?.cards.toSorted((a, b) => {
+					return a.cost - b.cost;
+			  }),
 		displayName: previewStatus
 			? params.viewer == 'viewer'
 				? '[Viewer]'

@@ -352,9 +352,6 @@ export class Draft extends EventEmitter implements IDraft {
 			this.viewerDeck.push(this.battleVote);
 			battleVoteRandom = true;
 		}
-		this.viewerDeck = this.viewerDeck.sort((a, b) => {
-			return a.cost - b.cost;
-		});
 		const battleVote = this.battleVote;
 
 		if (cardDefKey && override && this.player != '')
@@ -371,10 +368,6 @@ export class Draft extends EventEmitter implements IDraft {
 		if (!this.CanChoose(cardDefKey)) return { battleVote: undefined, battleVoteRandom: undefined };
 
 		this.cards.push((await this.LookupCard(cardDefKey))!);
-		this.cards = this.cards.sort((a, b) => {
-			// TODO: Mabye sort by name as a secondary criteria (look and see how the decks are sorted in game)
-			return a.cost - b.cost;
-		});
 		this.total++;
 
 		if (this.player != '') {

@@ -25,7 +25,9 @@ export type Deck = Card[];
 export function GetDeckCode(deck: Deck) {
 	type cardCode = { CardDefId: string };
 	const obj = { Cards: Array<cardCode>() };
-	deck.forEach((card) => obj.Cards.push({ CardDefId: card.cardDefKey }));
+	deck
+		.toSorted((a, b) => a.cost - b.cost)
+		.forEach((card) => obj.Cards.push({ CardDefId: card.cardDefKey }));
 	return btoa(JSON.stringify(obj));
 }
 

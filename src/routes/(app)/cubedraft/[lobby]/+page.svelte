@@ -23,6 +23,7 @@
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
 	import LobbyPlayerTable from '$lib/components/LobbyPlayerTable.svelte';
 	import { PlayerStatus } from '$lib/snap/player';
+	import OpponentDraftSummaries from '$lib/components/OpponentDraftSummaries.svelte';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -413,26 +414,20 @@
 		<DraftSummary name={data.user?.displayName || ''} currentDeck={data.draft.cards} />
 
 		{#if data.lobby.draftedDecks}
-			<hr />
-			<h2 class="h2">Opponent Drafts</h2>
-			{#each data.lobby.draftedDecks.entries() as [key, value]}
-				{#if key != data.user?.channelName}
-					<DraftSummary name={key} currentDeck={value} headerClass="h3" />
-				{/if}
-			{/each}
+			<OpponentDraftSummaries
+				draftedDecks={data.lobby.draftedDecks}
+				player={data.user?.channelName || ''}
+			/>
 		{/if}
 	{:else if data.draft}
 		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(data.draft.cards)} />
 		<SnapDeck cards={data.draft.cards} />
 
 		{#if data.lobby.draftedDecks}
-			<hr />
-			<h1 class="h1">Opponent Drafts</h1>
-			{#each data.lobby.draftedDecks.entries() as [key, value]}
-				{#if key != data.user?.channelName}
-					<DraftSummary name={key} currentDeck={value} headerClass="h3" />
-				{/if}
-			{/each}
+			<OpponentDraftSummaries
+				draftedDecks={data.lobby.draftedDecks}
+				player={data.user?.channelName || ''}
+			/>
 		{/if}
 	{/if}
 </div>

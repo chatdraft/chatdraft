@@ -7,13 +7,16 @@
 
 	export let name: string = '';
 	export let headerClass: string = 'h2';
+
+	export let sort: 'order' | 'cost' = 'cost';
+	$: deckSorted = sort === 'cost' ? currentDeck.toSorted((a, b) => a.cost - b.cost) : currentDeck;
 </script>
 
 <div class="grid grid-cols-2">
 	<div>
 		<div>
 			<h2 class={headerClass}>{name} Drafted Deck</h2>
-			Sorted by ascending energy cost.
+			Sorted by {sort === 'cost' ? 'ascending energy cost.' : 'draft order.'}
 		</div>
 	</div>
 
@@ -25,19 +28,19 @@
 </div>
 <div class="grid grid-cols-2 divide-x divide-surface-500">
 	<div class="mt-4">
-		<SnapDeck cards={currentDeck || []} />
+		<SnapDeck cards={deckSorted || []} {sort} />
 	</div>
 	<div class="text-left pl-4 text-xl">
 		<div class="flex flex-col text-2xl">
 			<div>
-				{currentDeck
+				{deckSorted
 					.toSpliced(6, 6)
 					.map((card) => card.name)
 					.join(', ')}
 			</div>
 			<br />
 			<div>
-				{currentDeck
+				{deckSorted
 					.toSpliced(0, 6)
 					.map((card) => card.name)
 					.join(', ')}
