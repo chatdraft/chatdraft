@@ -14,13 +14,15 @@ export const load = (async ({ params, locals }) => {
 			? userDraft?.currentChoice?.cards[selectedCardIndex - 1]
 			: undefined;
 	const cardDb = await GetAllCards();
+	const creator = lobby.players.find((player) => player.fullUser?.id == lobby.creator.fullUser?.id);
 	return {
 		lobby: lobby?.toICubeDraft(),
 		draft: userDraft?.toIDraft(),
 		selectedCardIndex: selectedCardIndex,
 		selectedCard: selectedCard,
 		cardDb: cardDb,
-		canEditLobby: lobby.creator.fullUser?.id == locals.user?.id
+		canEditLobby: lobby.creator.fullUser?.id == locals.user?.id,
+		creatorInLobby: creator
 	};
 }) satisfies PageServerLoad;
 

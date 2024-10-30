@@ -12,6 +12,7 @@
 	$: ready = user?.status == PlayerStatus.ready;
 	let toggleReadyBtn: HTMLButtonElement;
 	export let update: () => () => Promise<void>;
+	export let canReady = false;
 </script>
 
 <div class="table-container p-4">
@@ -46,6 +47,7 @@
 									checked={ready}
 									on:change={() => toggleReadyBtn.click()}
 									size="sm"
+									disabled={!canReady}
 								/>
 								<button bind:this={toggleReadyBtn} class="hidden collapse"> Ready</button>
 							</form>

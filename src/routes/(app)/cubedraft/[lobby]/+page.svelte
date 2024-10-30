@@ -379,6 +379,9 @@
 					};
 				}}
 				cardTotal={data.cardDb.all.length}
+				canReady={data.canEditLobby ||
+					!data.creatorInLobby ||
+					data.creatorInLobby.status == PlayerStatus.ready}
 			/>
 		{/if}
 	{:else if data.lobby.draftedDecks && (!data.user || !data.lobby.players.some((player) => player.fullUser?.id == data.user?.id))}
