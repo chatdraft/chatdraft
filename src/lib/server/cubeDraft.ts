@@ -70,7 +70,7 @@ export interface ICubeDraft {
 	lockInRoundEndsAt: number | undefined;
 }
 
-const cubeDraftLockInDuration_ms = 10 * seconds_to_ms;
+const cubeDraftLockInDuration_ms = 5 * seconds_to_ms;
 
 /**
  * TODO: Describe CubeDraft
