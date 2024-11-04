@@ -52,14 +52,6 @@
 
 	const toastStore = getToastStore();
 
-	let lockedIn: boolean;
-	const UpdateLockedIn = async () => {
-		lockedIn =
-			data.lobby.players.find((player) => player.name == data.user?.channelName)?.lockedIn || false;
-	};
-
-	UpdateLockedIn();
-
 	const handleMessage = async (message: string) => {
 		const wsm: WebSocketMessage = JSON.parse(message);
 		now = wsm.timestamp;
@@ -94,7 +86,6 @@
 		console.log(wsm);
 		await invalidateAll();
 		excludedCards = ExcludedCards();
-		UpdateLockedIn();
 	};
 
 	$: time_remaining = (data.lobby?.roundEndsAt! - now) / seconds_to_ms;
@@ -105,10 +96,6 @@
 	let cardsToRemove: string[] = data.lobby.removedCards;
 
 	let excludedCards = ExcludedCards();
-
-	let lockInBtn: HTMLButtonElement;
-
-	export let form;
 
 	function ExcludedCards() {
 		return CalculateExcludedCards(
@@ -158,32 +145,6 @@
 						  })
 						: '0'}
 				{/if}
-			{/if}
-			{#if data.lobby.started && data.lobby.players.some((player) => player.name == data.user?.channelName) && !data.lobby.finished}
-				<form
-					method="post"
-					action="?/togglePlayerLockIn"
-					use:enhance={async () => {
-						return async ({ result }) => {
-							if (result.type == 'success') {
-								await applyAction(result);
-								lockedIn = form?.lockedIn || false;
-								data.lobby.lockInRoundEndsAt = form?.lockInRoundEndsAt;
-							}
-						};
-					}}
-				>
-					<ChatDraftSlideToggle
-						label="Lock Pick: "
-						name="lockIn"
-						bind:checked={lockedIn}
-						on:change={() => lockInBtn.click()}
-						active="bg-primary-500"
-						size="sm"
-						class="align-middle"
-					/>
-					<button bind:this={lockInBtn} class="hidden collapse"> Submit </button>
-				</form>
 			{/if}
 		</section>
 
@@ -267,6 +228,7 @@
 						None
 					{/if}
 				</p>
+				<p><b>Quick Picks:</b> {data.lobby?.quickPick ? 'Yes' : 'No'}</p>
 			</div>
 		{:else}
 			<form
@@ -293,10 +255,10 @@
 				</div>
 				<div class="pt-4">
 					<ChatDraftSlideToggle
-						label="Face Down Draft"
+						label="Face Down Draft:"
 						name="faceDownDraft"
 						active="bg-primary-500"
-						checked={false}
+						checked={data.lobby.faceDownDraft}
 					/>
 				</div>
 
@@ -318,6 +280,15 @@
 							}}>Reset</button
 						>
 					{/if}
+				</div>
+
+				<div class="pt-4">
+					<ChatDraftSlideToggle
+						label="Quick Picks:"
+						name="quickPick"
+						active="bg-primary-500"
+						checked={data.lobby.quickPick}
+					/>
 				</div>
 
 				<br /><br />

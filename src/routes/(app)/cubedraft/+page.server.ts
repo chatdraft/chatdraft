@@ -36,6 +36,7 @@ export const actions = {
 			const faceDownDraft = Boolean(data.get('faceDownDraft')?.toString());
 			const removedCardsData = data.getAll('cards');
 			const removedCards: string[] = removedCardsData.map((data) => data.toString());
+			const quickPick = Boolean(data.get('quickPick')?.toString());
 
 			const cardDb = await GetAllCards();
 
@@ -48,7 +49,8 @@ export const actions = {
 				featuredCardMode,
 				featuredCardDefKey,
 				faceDownDraft,
-				removedCards
+				removedCards,
+				quickPick
 			);
 			SetLobby(lobby);
 			throw redirect(302, `/cubedraft/${lobby.lobbyName}`);

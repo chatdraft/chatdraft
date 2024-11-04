@@ -152,8 +152,14 @@
 							bind:customFeaturedCardValidationMessage
 						/>
 						<ChatDraftSlideToggle
-							label="Face Down Draft"
+							label="Face Down Draft:"
 							name="faceDownDraft"
+							active="bg-primary-500"
+							checked={false}
+						/>
+						<ChatDraftSlideToggle
+							label="Quick Picks:"
+							name="quickPick"
 							active="bg-primary-500"
 							checked={false}
 						/>

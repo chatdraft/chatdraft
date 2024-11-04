@@ -27,8 +27,7 @@ export function CreateUserPlayer(fullUser: FullUser): Player {
 		fullUser: fullUser,
 		collection: ParseCollectionBlob(fullUser.userPreferences?.collection),
 		collectionLastUpdated: fullUser.userPreferences?.collectionLastUpdated,
-		status: PlayerStatus.joined,
-		lockedIn: false
+		status: PlayerStatus.joined
 	};
 }
 
@@ -38,8 +37,7 @@ export function CreateGuestPlayer(playerName: string): Player {
 		fullUser: undefined,
 		collection: null,
 		collectionLastUpdated: null,
-		status: PlayerStatus.joined,
-		lockedIn: false
+		status: PlayerStatus.joined
 	};
 }
 
@@ -68,6 +66,7 @@ export interface ICubeDraft {
 	faceDownDraft: boolean;
 	removedCards: string[];
 	lockInRoundEndsAt: number | undefined;
+	quickPick: boolean;
 }
 
 const cubeDraftLockInDuration_ms = 5 * seconds_to_ms;
@@ -180,6 +179,10 @@ export default class CubeDraft {
 		return this._lockInRoundEndsAt;
 	}
 
+	public get quickPick(): boolean {
+		return this._quickPick;
+	}
+
 	/**
 	 * Creates an instance of a draft
 	 *
@@ -200,7 +203,8 @@ export default class CubeDraft {
 		private _featuredCardMode: FeaturedCardMode = 'off',
 		private _featuredCardDefKey: string = '',
 		private _faceDownDraft: boolean = true,
-		private _removedCards: string[] = []
+		private _removedCards: string[] = [],
+		private _quickPick: boolean = false
 	) {
 		this._players = [];
 		this.updateCardPool();
@@ -411,7 +415,8 @@ export default class CubeDraft {
 		featuredCardMode: FeaturedCardMode,
 		featuredCardDefKey: string = '',
 		faceDownDraft: boolean,
-		removedCards: string[]
+		removedCards: string[],
+		quickPick: boolean
 	) {
 		if (this._started) return;
 		this._duration = duration;
@@ -420,6 +425,7 @@ export default class CubeDraft {
 		this._featuredCardDefKey = featuredCardDefKey;
 		this._faceDownDraft = faceDownDraft;
 		this.UpdateRemovedCards(removedCards);
+		this._quickPick = quickPick;
 		LobbyUpdated(this.lobbyName);
 	}
 
@@ -440,7 +446,8 @@ export default class CubeDraft {
 			draftedDecks: this.isFaceDownDraft ? undefined : this._decks,
 			faceDownDraft: this._faceDownDraft,
 			removedCards: this.removedCards,
-			lockInRoundEndsAt: this._lockInRoundEndsAt
+			lockInRoundEndsAt: this._lockInRoundEndsAt,
+			quickPick: this._quickPick
 		};
 	}
 
@@ -456,22 +463,10 @@ export default class CubeDraft {
 		LobbyUpdated(this.lobbyName);
 	}
 
-	public TogglePlayerLockIn(playerName: string) {
-		const player = this.players.find((player) => player.name == playerName);
-		if (player) {
-			player.lockedIn = !player.lockedIn;
-			this.UpdateLockInStatus();
-
-			return { lockedIn: player.lockedIn, lockInRoundEndsAt: this._lockInRoundEndsAt };
-		}
-
-		return { lockedIn: false, lockInRoundEndsAt: undefined };
-	}
-
 	public UpdateLockInStatus() {
 		if (!this.lockInRoundEndsAt) {
 			if (
-				this.players.every((player) => player.lockedIn) &&
+				this._quickPick &&
 				this.drafts.every((draft) => draft.currentChoice?.votes.get(draft.player) !== undefined) &&
 				this.roundEndsAt - DatetimeNowUtc() > cubeDraftLockInDuration_ms
 			) {
@@ -483,9 +478,6 @@ export default class CubeDraft {
 			} else {
 				this.ResetLockInStatus();
 			}
-			LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
-		} else if (!this.players.every((player) => player.lockedIn)) {
-			this.ResetLockInStatus();
 			LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
 		}
 	}
