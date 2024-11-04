@@ -83,6 +83,8 @@ export default class CubeDraft {
 
 	private _lockInRoundTimer: NodeJS.Timeout | undefined;
 
+	private _currentRound: number = 0;
+
 	public get lobbyName(): string {
 		return this._lobbyName;
 	}
@@ -365,6 +367,7 @@ export default class CubeDraft {
 		);
 		const votes_closed = this.drafts[0].currentChoice?.votes_closed;
 		if (votes_closed) this._roundEndsAt = votes_closed;
+		this._currentRound++;
 	}
 
 	public async Vote(playerName: string, choice: string) {
@@ -422,7 +425,8 @@ export default class CubeDraft {
 			faceDownDraft: this._faceDownDraft,
 			removedCards: this.removedCards,
 			lockInRoundEndsAt: this._lockInRoundEndsAt,
-			quickPick: this._quickPick
+			quickPick: this._quickPick,
+			currentRound: this._currentRound
 		};
 	}
 

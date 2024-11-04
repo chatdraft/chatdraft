@@ -122,12 +122,12 @@
 </svelte:head>
 
 <div class="p-4 grid">
-	{#if data.lobby?.roundEndsAt && data.draft && data.draft?.total < 12}
+	{#if data.lobby?.roundEndsAt && data.lobby.started && !data.lobby.finished}
 		<div
 			class="text-center text-2xl sticky top-6 -mb-10 w-64 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-3 divide-x-2 mt-2"
 		>
 			<div>
-				{data.draft.total + 1} / 12
+				{data.lobby.currentRound} / 12
 			</div>
 			<div>
 				<iconify-icon

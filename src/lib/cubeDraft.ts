@@ -28,4 +28,5 @@ export interface ICubeDraft {
 	removedCards: string[];
 	lockInRoundEndsAt: number | undefined;
 	quickPick: boolean;
+	currentRound: number;
 }
