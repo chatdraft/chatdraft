@@ -20,12 +20,7 @@
 		<div>
 			<h2 class={headerClass}>
 				{#if playerSelected !== undefined}
-					<iconify-icon
-						icon="mdi:lock"
-						width="24"
-						height="24"
-						style={`opacity: ${playerSelected ? '100' : '0'}`}
-					/>
+					<iconify-icon icon="mdi:lock" width="24" height="24" class:invisible={!playerSelected} />
 				{/if}
 				{name ? name : 'Drafted Deck'}
 			</h2>
