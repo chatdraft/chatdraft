@@ -23,7 +23,7 @@
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
 	import LobbyPlayerTable from '$lib/components/LobbyPlayerTable.svelte';
 	import { PlayerStatus } from '$lib/snap/player';
-	import OpponentDraftSummaries from '$lib/components/OpponentDraftSummaries.svelte';
+	import DraftSummaries from '$lib/components/DraftSummaries.svelte';
 	import LobbyDetails from '$lib/components/LobbyDetails.svelte';
 	import CardPool from '$lib/components/CardPool.svelte';
 
@@ -358,14 +358,8 @@
 			</section>
 		</form>
 
-		<DraftSummary name={data.user?.displayName || ''} currentDeck={data.draft.cards} />
-
 		{#if data.lobby.draftedDecks}
-			<OpponentDraftSummaries
-				draftedDecks={data.lobby.draftedDecks}
-				player={data.user?.channelName || ''}
-				players={data.lobby.players}
-			/>
+			<DraftSummaries draftedDecks={data.lobby.draftedDecks} players={data.lobby.players} />
 		{/if}
 
 		<hr />
@@ -377,11 +371,7 @@
 		<SnapDeck cards={data.draft.cards} />
 
 		{#if data.lobby.draftedDecks}
-			<OpponentDraftSummaries
-				draftedDecks={data.lobby.draftedDecks}
-				player={data.user?.channelName || ''}
-				players={data.lobby.players}
-			/>
+			<DraftSummaries draftedDecks={data.lobby.draftedDecks} players={data.lobby.players} />
 		{/if}
 
 		<hr />

@@ -12,6 +12,7 @@
 	$: deckSorted = sort === 'cost' ? currentDeck.toSorted((a, b) => a.cost - b.cost) : currentDeck;
 
 	export let playerSelected: boolean | undefined = undefined;
+	export let soloDraft: boolean = true;
 </script>
 
 <div class="grid grid-cols-2">
@@ -21,14 +22,16 @@
 				{#if playerSelected !== undefined}
 					<iconify-icon
 						icon="mdi:lock"
-						width="32"
-						height="32"
+						width="24"
+						height="24"
 						style={`opacity: ${playerSelected ? '100' : '0'}`}
 					/>
 				{/if}
-				{name} Drafted Deck
+				{name ? name : 'Drafted Deck'}
 			</h2>
-			Sorted by {sort === 'cost' ? 'ascending energy cost.' : 'draft order.'}
+			{#if soloDraft}
+				Sorted by {sort === 'cost' ? 'ascending energy cost.' : 'draft order.'}
+			{/if}
 		</div>
 	</div>
 
