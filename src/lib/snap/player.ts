@@ -6,6 +6,7 @@ export type Player = {
 	collection: string[] | null;
 	collectionLastUpdated: Date | null | undefined;
 	status: PlayerStatus;
+	cardSelected?: boolean;
 };
 
 export enum PlayerStatus {

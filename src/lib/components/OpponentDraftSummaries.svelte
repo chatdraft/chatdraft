@@ -3,9 +3,11 @@
 
 	import DraftSummary from './DraftSummary.svelte';
 	import type { Deck } from '$lib/snap/cards';
+	import type { Player } from '$lib/snap/player';
 
 	export let draftedDecks: Map<string, Deck>;
 	export let player: string;
+	export let players: Player[];
 
 	let opponentDraftSort: 'cost' | 'order' = 'cost';
 </script>
@@ -33,6 +35,13 @@
 </div>
 {#each draftedDecks.entries() as [key, value]}
 	{#if key != player}
-		<DraftSummary name={key} currentDeck={value} headerClass="h3" sort={opponentDraftSort} />
+		{@const playerSelected = players.find((player) => player.name == key)?.cardSelected || false}
+		<DraftSummary
+			name={key}
+			currentDeck={value}
+			headerClass="h3"
+			sort={opponentDraftSort}
+			{playerSelected}
+		/>
 	{/if}
 {/each}

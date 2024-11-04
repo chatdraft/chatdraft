@@ -358,7 +358,9 @@
 	{:else if data.lobby.draftedDecks && (!data.user || !data.lobby.players.some((player) => player.fullUser?.id == data.user?.id))}
 		<h2 class="h2">Player Drafts</h2>
 		{#each data.lobby.draftedDecks.entries() as [key, value]}
-			<DraftSummary name={key} currentDeck={value} headerClass="h3" />
+			{@const playerSelected =
+				data.lobby.players.find((player) => player.name == key)?.cardSelected || false}
+			<DraftSummary name={key} currentDeck={value} headerClass="h3" {playerSelected} />
 		{/each}
 	{:else if data.draft?.currentChoice?.cards && data.draft.total < 12}
 		<form
@@ -391,6 +393,7 @@
 			<OpponentDraftSummaries
 				draftedDecks={data.lobby.draftedDecks}
 				player={data.user?.channelName || ''}
+				players={data.lobby.players}
 			/>
 		{/if}
 	{:else if data.draft}
@@ -401,6 +404,7 @@
 			<OpponentDraftSummaries
 				draftedDecks={data.lobby.draftedDecks}
 				player={data.user?.channelName || ''}
+				players={data.lobby.players}
 			/>
 		{/if}
 	{/if}

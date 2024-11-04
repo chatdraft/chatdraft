@@ -357,6 +357,7 @@ export default class CubeDraft {
 
 		const sampleDeck = this._decks.values().next().value;
 		if (sampleDeck && sampleDeck.length < 12) {
+			this.players.forEach((player) => (player.cardSelected = false));
 			this.ResetLockInStatus();
 			this.CreateNewChoices();
 			this.RestartRoundTimer();
@@ -395,6 +396,7 @@ export default class CubeDraft {
 
 	public async Vote(playerName: string, choice: string) {
 		this.drafts.find((draft) => draft.player == playerName)?.Vote(playerName, choice, false);
+		this.players.find((player) => player.name == playerName)!.cardSelected = true;
 		this.UpdateLockInStatus();
 	}
 
