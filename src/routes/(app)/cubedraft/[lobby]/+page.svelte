@@ -367,7 +367,11 @@
 		</form>
 
 		{#if data.lobby.draftedDecks}
-			<DraftSummaries draftedDecks={data.lobby.draftedDecks} players={data.lobby.players} />
+			<DraftSummaries
+				player={data.user?.channelName}
+				draftedDecks={data.lobby.draftedDecks}
+				players={data.lobby.players}
+			/>
 		{/if}
 
 		<hr />
@@ -379,7 +383,11 @@
 		<SnapDeck cards={data.draft.cards} />
 
 		{#if data.lobby.draftedDecks}
-			<DraftSummaries draftedDecks={data.lobby.draftedDecks} players={data.lobby.players} />
+			<DraftSummaries
+				player={data.user?.channelName}
+				draftedDecks={data.lobby.draftedDecks}
+				players={data.lobby.players}
+			/>
 		{/if}
 
 		<hr />

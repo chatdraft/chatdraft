@@ -7,6 +7,7 @@
 
 	export let draftedDecks: Map<string, Deck>;
 	export let players: Player[];
+	export let player: string | undefined;
 
 	let sort: 'cost' | 'order' = 'cost';
 </script>
@@ -29,7 +30,7 @@
 	</div>
 	Sorted by {sort === 'cost' ? 'ascending energy cost.' : 'draft order.'}
 </div>
-{#each draftedDecks.entries() as [key, value]}
+{#each [...draftedDecks.entries()].toSorted( ([a], [b]) => (a == player ? -1 : b == player ? 1 : 0) ) as [key, value]}
 	{@const playerSelected = players.find((player) => player.name == key)?.cardSelected || false}
 	<DraftSummary
 		name={key}
