@@ -124,18 +124,18 @@
 <div class="p-4 grid">
 	{#if data.lobby?.roundEndsAt && data.draft && data.draft?.total < 12}
 		<div
-			class="text-center text-2xl sticky top-6 -mb-10 w-64 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-3 divide-x-2"
+			class="text-center text-2xl sticky top-6 -mb-10 w-64 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-3 divide-x-2 mt-2"
 		>
-			<div class="mt-2 align-text-bottom">
+			<div>
 				{data.draft.total + 1} / 12
 			</div>
-			<div class="w-full">
+			<div>
 				<iconify-icon
 					icon="ion:timer-outline"
 					width="32"
 					height="32"
 					flip="horizontal"
-					class="mt-2 align-text-bottom"
+					class="align-text-bottom"
 				/>:
 				{time_remaining > 0
 					? time_remaining.toLocaleString(undefined, {
@@ -146,7 +146,7 @@
 			</div>
 			<div>
 				{#if lockInTimeRemaining}
-					<iconify-icon icon="mdi:lock" width="32" height="32" class="mt-2 align-text-bottom" />: {lockInTimeRemaining >
+					<iconify-icon icon="mdi:lock" width="32" height="32" class="align-text-bottom" />: {lockInTimeRemaining >
 					0
 						? lockInTimeRemaining.toLocaleString(undefined, {
 								minimumFractionDigits: 0,
