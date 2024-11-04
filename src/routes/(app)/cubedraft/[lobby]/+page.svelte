@@ -124,9 +124,12 @@
 <div class="p-4 grid">
 	{#if data.lobby?.roundEndsAt && data.draft && data.draft?.total < 12}
 		<div
-			class="text-center text-2xl sticky top-6 -mb-10 w-44 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-2 divide-x-2"
+			class="text-center text-2xl sticky top-6 -mb-10 w-64 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-3 divide-x-2"
 		>
-			<div>
+			<div class="mt-2 align-text-bottom">
+				{data.draft.total + 1} / 12
+			</div>
+			<div class="w-full">
 				<iconify-icon
 					icon="ion:timer-outline"
 					width="32"
