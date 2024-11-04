@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
+	import { enhance } from '$app/forms';
 	import ChatDraftSlideToggle from '$lib/components/ChatDraftSlideToggle.svelte';
 	import DraftChoice from '$lib/components/DraftChoice.svelte';
 	import DraftSummary from '$lib/components/DraftSummary.svelte';
@@ -24,13 +24,13 @@
 	import LobbyPlayerTable from '$lib/components/LobbyPlayerTable.svelte';
 	import { PlayerStatus } from '$lib/snap/player';
 	import OpponentDraftSummaries from '$lib/components/OpponentDraftSummaries.svelte';
+	import LobbyDetails from '$lib/components/LobbyDetails.svelte';
+	import CardPool from '$lib/components/CardPool.svelte';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
 
 	let ws: WebSocket | null = null;
-
-	let showCardPool = false;
 
 	let selecting = false;
 	let selected: string | undefined = data.selectedCard?.cardDefKey;
@@ -212,24 +212,7 @@
 			{/if}
 		</div>
 		{#if !editing || !data.canEditLobby}
-			<div class="space-y-2">
-				<p><b>Round Duration:</b> {data.lobby?.duration}</p>
-				<p><b>Selections per Round:</b> {data.lobby?.selections}</p>
-				<p><b>Featured Card Mode:</b> {data.lobby?.featuredCardMode}</p>
-				{#if data.lobby?.featuredCardMode && data.lobby.featuredCardMode != 'off'}
-					<p><b>Featured Card:</b> {data.lobby?.featuredCardDefKey}</p>
-				{/if}
-				<p><b>Face Down Draft:</b> {data.lobby?.faceDownDraft ? 'Yes' : 'No'}</p>
-				<p>
-					<b>Removed Cards:</b>
-					{#if data.lobby.removedCards.length > 0}
-						{data.lobby.removedCards.join(', ')}
-					{:else}
-						None
-					{/if}
-				</p>
-				<p><b>Quick Picks:</b> {data.lobby?.quickPick ? 'Yes' : 'No'}</p>
-			</div>
+			<LobbyDetails lobby={data.lobby} />
 		{:else}
 			<form
 				method="post"
@@ -295,26 +278,9 @@
 				<button class="btn btn-md variant-filled-tertiary" type="submit">Save</button>
 			</form>
 		{/if}
-		<ChatDraftSlideToggle
-			label="Show Card Pool"
-			name="showCardPool"
-			active="bg-primary-500"
-			bind:checked={showCardPool}
-		/>
-		<div class="space-y-4 mb-4" hidden={!showCardPool}>
-			<div>
-				<b>Card Pool:</b>
-				{data.lobby?.draftPool
-					? data.lobby?.draftPool.map((card) => card.name).join(', ')
-					: 'Full Collection'}
-			</div>
-			<div>
-				<b>Excluded Cards:</b>
-				{excludedCards && excludedCards.length > 0
-					? excludedCards.map((card) => card.name).join(', ')
-					: 'None'}
-			</div>
-		</div>
+
+		<CardPool lobby={data.lobby} {excludedCards} />
+
 		{#if data.user && data.canEditLobby}
 			<form method="post" action="?/startLobby" use:enhance>
 				<button
@@ -362,6 +328,11 @@
 				data.lobby.players.find((player) => player.name == key)?.cardSelected || false}
 			<DraftSummary name={key} currentDeck={value} headerClass="h3" {playerSelected} />
 		{/each}
+
+		<hr />
+		<h3 class="h3">Lobby Details</h3>
+		<LobbyDetails lobby={data.lobby} />
+		<CardPool lobby={data.lobby} {excludedCards} />
 	{:else if data.draft?.currentChoice?.cards && data.draft.total < 12}
 		<form
 			class="mt-0"
@@ -396,6 +367,11 @@
 				players={data.lobby.players}
 			/>
 		{/if}
+
+		<hr />
+		<h3 class="h3">Lobby Details</h3>
+		<LobbyDetails lobby={data.lobby} />
+		<CardPool lobby={data.lobby} {excludedCards} />
 	{:else if data.draft}
 		<CodeBlock language="Deck Code" class="break-words" code={GetDeckCode(data.draft.cards)} />
 		<SnapDeck cards={data.draft.cards} />
@@ -407,5 +383,10 @@
 				players={data.lobby.players}
 			/>
 		{/if}
+
+		<hr />
+		<h3 class="h3">Lobby Details</h3>
+		<LobbyDetails lobby={data.lobby} />
+		<CardPool lobby={data.lobby} {excludedCards} />
 	{/if}
 </div>

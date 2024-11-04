@@ -1,3 +1,4 @@
+import type { ICubeDraft } from '$lib/cubeDraft';
 import {
 	ChoiceSelected,
 	DraftCanceled,
@@ -39,34 +40,6 @@ export function CreateGuestPlayer(playerName: string): Player {
 		collectionLastUpdated: null,
 		status: PlayerStatus.joined
 	};
-}
-
-export interface ICubeDraft {
-	lobbyName: string;
-	creator: Player;
-	players: Player[];
-	started: boolean;
-	finished: boolean;
-	duration: number;
-	selections: number;
-	draftPool: {
-		cardDefKey: string;
-		variantKey: null;
-		url: string;
-		name: string;
-		description: string;
-		displayImageUrl: string;
-		cost: number;
-	}[];
-	featuredCardMode: FeaturedCardMode;
-	featuredCardDefKey: string;
-	roundEndsAt: number;
-	closedDeckList: boolean;
-	draftedDecks: Map<string, Deck> | undefined;
-	faceDownDraft: boolean;
-	removedCards: string[];
-	lockInRoundEndsAt: number | undefined;
-	quickPick: boolean;
 }
 
 const cubeDraftLockInDuration_ms = 5 * seconds_to_ms;
