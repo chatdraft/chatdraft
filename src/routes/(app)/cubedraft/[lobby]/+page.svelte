@@ -121,33 +121,41 @@
 	<meta name="description" content="Marvel Snap Cube Draft" />
 </svelte:head>
 
-<div class="p-4">
-	<div class="grid grid-cols-3">
-		<h1 class="h1">Cube Draft</h1>
-		<section class="text-center text-2xl mt-0">
-			{#if data.lobby?.roundEndsAt && data.draft && data.draft?.total < 12}
-				Time Remaining: {time_remaining > 0
+<div class="p-4 grid">
+	{#if data.lobby?.roundEndsAt && data.draft && data.draft?.total < 12}
+		<div
+			class="text-center text-2xl sticky top-6 -mb-10 w-44 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-2 divide-x-2"
+		>
+			<div>
+				<iconify-icon
+					icon="ion:timer-outline"
+					width="32"
+					height="32"
+					flip="horizontal"
+					class="mt-2 align-text-bottom"
+				/>:
+				{time_remaining > 0
 					? time_remaining.toLocaleString(undefined, {
 							minimumFractionDigits: 0,
 							maximumFractionDigits: 0
 					  })
 					: '0'}
+			</div>
+			<div>
 				{#if lockInTimeRemaining}
-					&nbsp; / <iconify-icon
-						icon="mdi:lock"
-						width="32"
-						height="32"
-						class="align-text-bottom"
-					/>: {lockInTimeRemaining > 0
+					<iconify-icon icon="mdi:lock" width="32" height="32" class="mt-2 align-text-bottom" />: {lockInTimeRemaining >
+					0
 						? lockInTimeRemaining.toLocaleString(undefined, {
 								minimumFractionDigits: 0,
 								maximumFractionDigits: 0
 						  })
 						: '0'}
 				{/if}
-			{/if}
-		</section>
-
+			</div>
+		</div>
+	{/if}
+	<div class="grid grid-cols-2 relative overflow-visible">
+		<h1 class="h1">Cube Draft</h1>
 		<div class="flex flex-row place-content-end space-x-2">
 			{#if data.canEditLobby}
 				<form method="post" action="?/closeLobby" use:enhance>
