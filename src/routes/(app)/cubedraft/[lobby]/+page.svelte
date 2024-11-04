@@ -124,35 +124,44 @@
 <div class="p-4 grid">
 	{#if data.lobby?.roundEndsAt && data.lobby.started && !data.lobby.finished}
 		<div
-			class="text-center text-2xl sticky top-6 -mb-10 w-64 border rounded-lg bg-surface-200-700-token justify-self-center z-50 grid grid-cols-3 divide-x-2 mt-2"
+			class="text-center text-2xl sticky top-6 -mb-10 border rounded-lg bg-surface-200-700-token justify-self-center z-50 flex flex-row divide-x-2 mt-2"
 		>
-			<div>
+			<div class="w-20">
 				{data.lobby.currentRound} / 12
 			</div>
-			<div>
+			<div class="w-20 flex flex-row">
 				<iconify-icon
 					icon="ion:timer-outline"
-					width="32"
-					height="32"
+					width="24"
+					height="24"
 					flip="horizontal"
-					class="align-text-bottom"
-				/>:
-				{time_remaining > 0
-					? time_remaining.toLocaleString(undefined, {
-							minimumFractionDigits: 0,
-							maximumFractionDigits: 0
-					  })
-					: '0'}
-			</div>
-			<div>
-				{#if lockInTimeRemaining}
-					<iconify-icon icon="mdi:lock" width="32" height="32" class="align-text-bottom" />: {lockInTimeRemaining >
-					0
-						? lockInTimeRemaining.toLocaleString(undefined, {
+					class="align-text-bottom mt-1 ml-1"
+				/>
+				<span class="w-full text-right mr-2 font-mono">
+					{time_remaining > 0
+						? time_remaining.toLocaleString(undefined, {
 								minimumFractionDigits: 0,
 								maximumFractionDigits: 0
 						  })
 						: '0'}
+				</span>
+			</div>
+			<div class="w-12 flex flex-row">
+				{#if lockInTimeRemaining}
+					<iconify-icon
+						icon="mdi:lock"
+						width="24"
+						height="24"
+						class="align-text-bottom mt-1 ml-1"
+					/>
+					<span class="w-20 text-right mr-2 font-mono">
+						{lockInTimeRemaining > 0
+							? lockInTimeRemaining.toLocaleString(undefined, {
+									minimumFractionDigits: 0,
+									maximumFractionDigits: 0
+							  })
+							: '0'}
+					</span>
 				{/if}
 			</div>
 		</div>
