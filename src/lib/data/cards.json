@@ -1,6 +1,6 @@
 {
-	"currentSeasonPassCardDefId": "AgentVenom",
-	"currentSpotlightCardDefId": "AntiVenom",
+	"currentSeasonPassCardDefId": "Surtur",
+	"currentSpotlightCardDefId": "Frigga",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -757,6 +757,15 @@
 			"description": "<b>On Reveal:</b> Give the next card you play +2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Forge-13c553d8a6bbc6276b33682915ee1a396e1f5b57cef5ff9568a7dec8a9c639da.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "Frigga",
+			"variantKey": null,
+			"url": "/cards/Frigga/",
+			"name": "Frigga",
+			"description": "<b>On Reveal:</b> Add a copy of the last card you played to your hand. <i>(if able)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Frigga-abafdf5124584c7a1b7673bdcc437b6730c73f8444fa22d79a8eb2f693b26722.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "Galactus",
@@ -2313,6 +2322,15 @@
 			"name": "Strong Guy",
 			"description": "<b>Ongoing:</b> +6 Power if your hand has 1 or fewer cards.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/StrongGuy-23be235444f42389887351f27b885dd1533a2fa9d21e798ad6c4f0489f78c43a.webp",
+			"cost": 3
+		},
+		{
+			"cardDefKey": "Surtur",
+			"variantKey": null,
+			"url": "/cards/Surtur/",
+			"name": "Surtur",
+			"description": "After you play a card with 10+ Power, this gains +3 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Surtur-b403f0aed922c7d7c15c80521a7ba869cd201606b6e29090f4ddf346dbb5755c.webp",
 			"cost": 3
 		},
 		{
