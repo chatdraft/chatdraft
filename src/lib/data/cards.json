@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "Surtur",
-	"currentSpotlightCardDefId": "Frigga",
+	"currentSpotlightCardDefId": "Malekith",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1387,6 +1387,15 @@
 			"description": "After the turn, runs from your hand to a random location. <i>(if possible)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Makkari-36c47524d357d0e7c6c31717f3f6a27f42d4bc97a28310605f37d8870b8d81c3.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "Malekith",
+			"variantKey": null,
+			"url": "/cards/Malekith/",
+			"name": "Malekith",
+			"description": "<b>On Reveal:</b> Add a 1, 2, or 3-Cost card from your deck here, but don't reveal it until the game ends.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Malekith-68680d0ba76aab7b1cb85c738667e6adebcb6160a87d8ffff4479a25bd24273d.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "ManThing",
