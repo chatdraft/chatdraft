@@ -2338,7 +2338,7 @@
 			"variantKey": null,
 			"url": "/cards/Surtur/",
 			"name": "Surtur",
-			"description": "After you play a card with 10+ Power, this gains +3 Power.",
+			"description": "After you play a card with 10 or more Power, this gains +3 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Surtur-b403f0aed922c7d7c15c80521a7ba869cd201606b6e29090f4ddf346dbb5755c.webp",
 			"cost": 3
 		},
