@@ -43,7 +43,7 @@
 			"variantKey": null,
 			"url": "/cards/AgathaHarkness/",
 			"name": "Agatha Harkness",
-			"description": "Agatha starts in your hand. She plays your cards for you on even turns.",
+			"description": "At the start of the game, draw Agatha. She controls your cards on even turns.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgathaHarkness-3ee1d10f0ea0efd8e62a54612478dc82616fa5d69993108b52068ad60f8fc354.webp",
 			"cost": 6
 		},
@@ -70,8 +70,8 @@
 			"variantKey": null,
 			"url": "/cards/AgentVenom/",
 			"name": "Agent Venom",
-			"description": "<b>On Reveal:</b> Set the Power of all cards in your deck to 4.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgentVenom-7837556102fb2a5e140cd19e9de95306bc4aed0799842acc288c4b36e40e43f0.webp",
+			"description": "<b>On Reveal:</b> Set the Power of all cards in your deck to 3.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AgentVenom-f8571e65468b673d108618acdb24918a84b0b1a083d4bb0019e752f507589b18.webp",
 			"cost": 2
 		},
 		{
@@ -313,8 +313,8 @@
 			"variantKey": null,
 			"url": "/cards/BlackWidow/",
 			"name": "Black Widow",
-			"description": "<b>On Reveal:</b> Add a Widow's Bite to your opponent's hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-fe11ee5be84194652324e644f6b641ad38484c07f0bb3e5ff7a41284803bf224.webp",
+			"description": "<b>Activate:</b> Add a Widow's Bite to your opponent's hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackWidow-251951cbfc4c7d7bd884f47855f5df54f24f4ee8ef1229941157d521ea8fd88e.webp",
 			"cost": 3
 		},
 		{
@@ -512,7 +512,7 @@
 			"url": "/cards/Crystal/",
 			"name": "Crystal",
 			"description": "<b>On Reveal:</b> Each player\ndraws a card.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crystal-6bd6e1dc3fd5a06cdbe7d0708d895ffb86b597b0b5eb803105ffe456aa5fb6b1.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Crystal-73157bc0bbc8d7f6e0c393fbf7fa1c618f45dacf56e8672917b9c0719aecb857.webp",
 			"cost": 3
 		},
 		{
@@ -620,7 +620,7 @@
 			"url": "/cards/Destroyer/",
 			"name": "Destroyer",
 			"description": "<b>On Reveal:</b> Destroy your cards at other locations.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-cc5df3172556fb72c7a03c4a9961a85cc7ab38818b27e6d805ff50974d5af38e.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Destroyer-984493725f4b5cf3ec65f0f3011eecf41bba2b94968887832ea22870c5490254.webp",
 			"cost": 6
 		},
 		{
@@ -935,7 +935,7 @@
 			"url": "/cards/Heimdall/",
 			"name": "Heimdall",
 			"description": "<b>On Reveal:</b> Move your other cards one location to the left.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Heimdall-c3846ccd37b6de222e90af73060304bfc38a60dd91fd83c2008acca91968e8a0.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Heimdall-9313f45fe297a91ed63ecb9fc49ee36529db5ccd8cb219512a8790aa7cfab461.webp",
 			"cost": 6
 		},
 		{
@@ -1150,7 +1150,7 @@
 			"variantKey": null,
 			"url": "/cards/JessicaJones/",
 			"name": "Jessica Jones",
-			"description": "<b>On Reveal:</b> If you don't play a card at this location next turn, +4 Power.",
+			"description": "<b>On Reveal:</b> If you don't play a card at this location next turn, +5 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JessicaJones-d83a5c21c1121311f770aa4f454e77776250dce1f6f1c6e7ca8fbc768166e1b5.webp",
 			"cost": 4
 		},
@@ -2123,7 +2123,7 @@
 			"url": "/cards/ShadowKing/",
 			"name": "Shadow King",
 			"description": "<b>On Reveal:</b> Reset all cards here to their base Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-34c902fb81c51a4afbebf53bc48095c6e7d79251ca00c6fe4b48d808bc04b11e.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ShadowKing-a8aa0a42991583a31205f26b11de25b7c68eab461956ce447513fdf1e120cb6e.webp",
 			"cost": 2
 		},
 		{
@@ -2186,7 +2186,7 @@
 			"url": "/cards/SilverSable/",
 			"name": "Silver Sable",
 			"description": "<b>On Reveal:</b> Steal 2 Power from the top card of your opponent's deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSable-4d5b3d442713494ea7da570f0f2e47d083997fd258131a7d619db3df515507ac.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SilverSable-4ef64da5ae817b1d2ccad725d20dfbc7eaa891aad5859d05304f112aebb19bb8.webp",
 			"cost": 1
 		},
 		{
@@ -2213,7 +2213,7 @@
 			"url": "/cards/Skaar/",
 			"name": "Skaar",
 			"description": "Costs 2 less for each of your cards that has 10 or more Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Skaar-29567d31beb45f447d65b6090634b2425409446cb8c774fd04562f8abf52ebeb.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Skaar-5d7a02dcb2f0c5ab2e033e11d7fed9ae6afa82daa70dc704db229831617e8ff3.webp",
 			"cost": 6
 		},
 		{
@@ -2339,7 +2339,7 @@
 			"url": "/cards/Surtur/",
 			"name": "Surtur",
 			"description": "After you play a card with 10 or more Power, this gains +3 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Surtur-b403f0aed922c7d7c15c80521a7ba869cd201606b6e29090f4ddf346dbb5755c.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Surtur-759696ec225e62dd8c712c6d117f37d8257485d2f0ad989288c08c7279a4b50f.webp",
 			"cost": 3
 		},
 		{
@@ -2410,7 +2410,7 @@
 			"variantKey": null,
 			"url": "/cards/Thanos/",
 			"name": "Thanos",
-			"description": "Starts in your opening hand and shuffles the six Infinity Stones into your deck.",
+			"description": "At the start of the game, draw Thanos and shuffle the six Infinity Stones into your deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thanos-82f8499e4d098da8e38c4ab2a8ec74e340ca9c61f16c04609e8b0f60d51a3001.webp",
 			"cost": 6
 		},
@@ -2536,7 +2536,7 @@
 			"variantKey": null,
 			"url": "/cards/Valentina/",
 			"name": "Valentina",
-			"description": "<b>On Reveal:</b> Add a random 6-Cost card to your hand. Give it -2 Cost\nand -3 Power.",
+			"description": "<b>On Reveal:</b> Add a random 6-Cost card to your hand. Give it -2 Cost\nand -2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Valentina-ba17e731163ffa92aad3d10ba8063bddd66f786d4b213f342b421fb85fb0a9af.webp",
 			"cost": 2
 		},
