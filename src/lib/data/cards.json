@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "Surtur",
-	"currentSpotlightCardDefId": "Malekith",
+	"currentSpotlightCardDefId": "FenrisWolf",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -747,6 +747,15 @@
 			"name": "Falcon",
 			"description": "<b>On Reveal:</b> Return your 1-Cost cards to your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Falcon-2a19c80b1b51c9dc067e33b65ac015a6609820ef2bc204a6070f34ce9ecc6740.webp",
+			"cost": 2
+		},
+		{
+			"cardDefKey": "FenrisWolf",
+			"variantKey": null,
+			"url": "/cards/FenrisWolf/",
+			"name": "Fenris Wolf",
+			"description": "<b>Activate:</b> Resurrect your opponent's highest-Power discarded or destroyed card on your side of this location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/FenrisWolf-f5af9b35940bd6a3ee4500c43896cb411a91c325cd146ab023afe0417179d6b6.webp",
 			"cost": 2
 		},
 		{
