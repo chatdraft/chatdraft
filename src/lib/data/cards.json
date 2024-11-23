@@ -1209,6 +1209,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "KingEitri",
+			"variantKey": null,
+			"url": "/cards/KingEitri/",
+			"name": "King Eitri",
+			"description": "<b>Activate:</b> Draw a card from your deck that didn't start there.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KingEitri-a502214b0e6a2bad8c8f01724ae20d260e9050427cb3ce628b0e20e778b82a41.webp",
+			"cost": 1
+		},
+		{
 			"cardDefKey": "Kingpin",
 			"variantKey": null,
 			"url": "/cards/Kingpin/",
