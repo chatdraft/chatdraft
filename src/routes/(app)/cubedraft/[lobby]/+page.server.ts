@@ -57,9 +57,16 @@ export const actions = {
 		const player = lobby.players.find((player) => player.fullUser?.id == locals.user?.id);
 		if (!player) throw error(403, 'User not in lobby unauthorized to vote in draft.');
 		const data = await request.formData();
-		const selectionCardDefKey = data.get('selection')?.toString();
-		if (!selectionCardDefKey) throw error(400, 'No card selected');
-		lobby.Vote(player.name, (Number(selectionCardDefKey) + 1).toString());
+		const selectionData = data.get('selection')?.toString();
+		if (!selectionData) throw error(400, 'No card selected');
+		const selection = Number(selectionData) + 1;
+		const previousSelectionData = data.get('previousSelection')?.toString();
+		const previousSelection = previousSelectionData ? Number(previousSelectionData) : undefined;
+		if (selection == previousSelection) {
+			lobby.Unvote(player.name);
+		} else {
+			lobby.Vote(player.name, String(selection));
+		}
 	},
 	closeLobby: async ({ locals, params }) => {
 		if (!locals.user || !locals.user.authorization || !locals.user.authorization.cubeDraft)

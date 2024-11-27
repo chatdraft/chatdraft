@@ -383,9 +383,11 @@
 					await new Promise((fulfil) => setTimeout(fulfil, 250));
 					await update({ reset: false });
 					selecting = false;
+					selected = data.selectedCard?.cardDefKey;
 				};
 			}}
 		>
+			<input type="hidden" name="previousSelection" value={data.selectedCardIndex} />
 			Select a card to draft by clicking on it.
 			<section class="grid grid-cols-6 justify-items-center gap-4">
 				{#each data.draft?.currentChoice?.cards as choice, index}

@@ -376,6 +376,12 @@ export default class CubeDraft {
 		this.UpdateLockInStatus();
 	}
 
+	public async Unvote(playerName: string) {
+		this.drafts.find((draft) => draft.player == playerName)?.Unvote(playerName);
+		this.players.find((player) => player.name == playerName)!.cardSelected = false;
+		this.UpdateLockInStatus();
+	}
+
 	public async CancelDraft() {
 		this.ClearRoundTimer();
 
@@ -444,21 +450,19 @@ export default class CubeDraft {
 	}
 
 	public UpdateLockInStatus() {
-		if (!this.lockInRoundEndsAt) {
-			if (
-				this._quickPick &&
-				this.drafts.every((draft) => draft.currentChoice?.votes.get(draft.player) !== undefined) &&
-				this.roundEndsAt - DatetimeNowUtc() > cubeDraftLockInDuration_ms
-			) {
-				this._lockInRoundEndsAt = DatetimeNowUtc() + cubeDraftLockInDuration_ms;
-				this._lockInRoundTimer = setTimeout(
-					() => this.CloseRound(),
-					this._lockInRoundEndsAt - DatetimeNowUtc()
-				);
-			} else {
-				this.ResetLockInStatus();
-			}
-			LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
+		if (
+			this._quickPick &&
+			this.drafts.every((draft) => draft.currentChoice?.votes.get(draft.player) !== undefined) &&
+			this.roundEndsAt - DatetimeNowUtc() > cubeDraftLockInDuration_ms
+		) {
+			this._lockInRoundEndsAt = DatetimeNowUtc() + cubeDraftLockInDuration_ms;
+			this._lockInRoundTimer = setTimeout(
+				() => this.CloseRound(),
+				this._lockInRoundEndsAt - DatetimeNowUtc()
+			);
+		} else {
+			this.ResetLockInStatus();
 		}
+		LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
 	}
 }

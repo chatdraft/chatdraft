@@ -455,15 +455,22 @@ export class Draft extends EventEmitter implements IDraft {
 			this.battleVote = this.currentChoice.cards[vote - 1];
 			this.emit(this.onBattlerChoice, this.player, this.battleVote);
 		} else {
-			const oldVote = Number(this.currentChoice?.votes.get(user));
-			if (oldVote >= 1 && oldVote <= 6) {
-				this.currentChoice.voteCounts[oldVote - 1] -= 1 + extraVotes;
-			}
+			this.Unvote(user, extraVotes);
 
 			this.currentChoice?.votes.set(user, choice);
 
 			this.currentChoice.voteCounts[vote - 1] += 1 + extraVotes;
 		}
+	}
+
+	public Unvote(user: string, extraVotes: number = 0) {
+		if (!this.currentChoice) return;
+
+		const oldVote = Number(this.currentChoice?.votes.get(user));
+		if (oldVote >= 1 && oldVote <= 6) {
+			this.currentChoice.voteCounts[oldVote - 1] -= 1 + extraVotes;
+		}
+		this.currentChoice?.votes.delete(user);
 	}
 
 	/**
