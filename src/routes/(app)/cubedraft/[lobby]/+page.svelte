@@ -123,8 +123,8 @@
 
 <div class="p-4 grid">
 	{#if data.lobby?.roundEndsAt && data.lobby.started && !data.lobby.finished}
-		<div class="inline-flex flex-col absolute w-52 justify-self-center">
-			<div class="w-52 h-2">
+		<div class="inline-flex flex-col absolute justify-self-center">
+			<div class="h-2">
 				{#if lockInTimeRemaining || time_remaining < data.lobby.lockInDuration}
 					{@const timer = lockInTimeRemaining
 						? Math.min(time_remaining, lockInTimeRemaining)
@@ -138,7 +138,17 @@
 			<div
 				class="text-center text-2xl border rounded-lg bg-surface-200-700-token justify-self-center z-50 flex flex-row divide-x-2"
 			>
-				<div class="w-16 font-mono">#{data.lobby.currentRound.toString().padStart(2, ' ')}</div>
+				<div class="w-16 flex flex-row">
+					<iconify-icon
+						icon="tabler:number"
+						width="24"
+						height="24"
+						class="align-text-bottom mt-1 ml-1"
+					/>
+					<span class="w-full text-right mr-2 font-mono">
+						{data.lobby.currentRound.toString()}
+					</span>
+				</div>
 				<div class="w-20 flex flex-row">
 					<iconify-icon
 						icon="ion:timer-outline"
@@ -149,12 +159,10 @@
 					/>
 					<span class="w-full text-right mr-2 font-mono">
 						{time_remaining > 0
-							? time_remaining
-									.toLocaleString(undefined, {
-										minimumFractionDigits: 0,
-										maximumFractionDigits: 0
-									})
-									.padStart(3, ' ')
+							? time_remaining.toLocaleString(undefined, {
+									minimumFractionDigits: 0,
+									maximumFractionDigits: 0
+							  })
 							: '  0'}
 					</span>
 				</div>
@@ -167,11 +175,8 @@
 						height="24"
 						class="align-text-bottom mt-1 ml-1"
 					/>
-					<span class="w-20 text-right font-mono">
-						{data.lobby.players
-							.filter((player) => player.cardSelected)
-							.length.toString()
-							.padStart(2, ' ')}
+					<span class="w-full text-right font-mono">
+						{data.lobby.players.filter((player) => player.cardSelected).length.toString()}
 					</span>
 				</div>
 			</div>
