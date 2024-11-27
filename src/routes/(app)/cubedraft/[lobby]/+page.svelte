@@ -123,46 +123,57 @@
 
 <div class="p-4 grid">
 	{#if data.lobby?.roundEndsAt && data.lobby.started && !data.lobby.finished}
-		<div
-			class="text-center text-2xl sticky top-6 -mb-10 border rounded-lg bg-surface-200-700-token justify-self-center z-50 flex flex-row divide-x-2 mt-2"
-		>
-			<div class="w-20">
-				{data.lobby.currentRound} / 12
+		<div class="inline-flex flex-col absolute w-52 justify-self-center">
+			<div class="w-52 h-2">
+				{#if lockInTimeRemaining || time_remaining < data.lobby.lockInDuration}
+					{@const timer = lockInTimeRemaining
+						? Math.min(time_remaining, lockInTimeRemaining)
+						: time_remaining}
+					<div
+						class="bg-primary-500 h-2 rounded-l-full transition-width duration-300 ease-linear"
+						style="width: {(timer / data.lobby.lockInDuration) * 100.0}%"
+					/>
+				{/if}
 			</div>
-			<div class="w-20 flex flex-row">
-				<iconify-icon
-					icon="ion:timer-outline"
-					width="24"
-					height="24"
-					flip="horizontal"
-					class="align-text-bottom mt-1 ml-1"
-				/>
-				<span class="w-full text-right mr-2 font-mono">
-					{time_remaining > 0
-						? time_remaining.toLocaleString(undefined, {
-								minimumFractionDigits: 0,
-								maximumFractionDigits: 0
-						  })
-						: '0'}
-				</span>
-			</div>
-			<div class="w-12 flex flex-row">
-				{#if lockInTimeRemaining}
+			<div
+				class="text-center text-2xl border rounded-lg bg-surface-200-700-token justify-self-center z-50 flex flex-row divide-x-2"
+			>
+				<div class="w-16 font-mono">#{data.lobby.currentRound.toString().padStart(2, ' ')}</div>
+				<div class="w-20 flex flex-row">
 					<iconify-icon
-						icon="mdi:lock"
+						icon="ion:timer-outline"
+						width="24"
+						height="24"
+						flip="horizontal"
+						class="align-text-bottom mt-1 ml-1"
+					/>
+					<span class="w-full text-right mr-2 font-mono">
+						{time_remaining > 0
+							? time_remaining
+									.toLocaleString(undefined, {
+										minimumFractionDigits: 0,
+										maximumFractionDigits: 0
+									})
+									.padStart(3, ' ')
+							: '  0'}
+					</span>
+				</div>
+				<div class="w-16 flex flex-row mr-2">
+					<iconify-icon
+						icon={data.lobby.players.every((player) => player.cardSelected)
+							? 'mdi:lock'
+							: 'mdi:lock-outline'}
 						width="24"
 						height="24"
 						class="align-text-bottom mt-1 ml-1"
 					/>
-					<span class="w-20 text-right mr-2 font-mono">
-						{lockInTimeRemaining > 0
-							? lockInTimeRemaining.toLocaleString(undefined, {
-									minimumFractionDigits: 0,
-									maximumFractionDigits: 0
-							  })
-							: '0'}
+					<span class="w-20 text-right font-mono">
+						{data.lobby.players
+							.filter((player) => player.cardSelected)
+							.length.toString()
+							.padStart(2, ' ')}
 					</span>
-				{/if}
+				</div>
 			</div>
 		</div>
 	{/if}

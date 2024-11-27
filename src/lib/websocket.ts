@@ -43,7 +43,7 @@ export const establishWebSocket = async (
  * @param {(WebSocket | null)} [ws=null] Websocket to start a heartbeat on
  */
 function heartbeat(ws: WebSocket | null = null) {
-	setTimeout(() => heartbeat(ws), 1000);
+	setTimeout(() => heartbeat(ws), 250);
 	if (!ws) return;
 	if (ws.readyState !== ws.OPEN) return;
 

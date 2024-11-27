@@ -29,4 +29,5 @@ export interface ICubeDraft {
 	lockInRoundEndsAt: number | undefined;
 	quickPick: boolean;
 	currentRound: number;
+	lockInDuration: number;
 }

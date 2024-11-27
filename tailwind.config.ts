@@ -25,6 +25,9 @@ export default {
 				normal: ['Space Grotesk'],
 				snapa: ['CCElephantmenTall'],
 				snapn: ['CCUltimatumBold']
+			},
+			transitionProperty: {
+				width: 'width'
 			}
 		}
 	},

@@ -426,7 +426,8 @@ export default class CubeDraft {
 			removedCards: this.removedCards,
 			lockInRoundEndsAt: this._lockInRoundEndsAt,
 			quickPick: this._quickPick,
-			currentRound: this._currentRound
+			currentRound: this._currentRound,
+			lockInDuration: cubeDraftLockInDuration_ms / seconds_to_ms
 		};
 	}
 
