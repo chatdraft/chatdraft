@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "Surtur",
-	"currentSpotlightCardDefId": "FenrisWolf",
+	"currentSpotlightCardDefId": "Gorr",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -865,6 +865,15 @@
 			"description": "<b>Ongoing:</b> Nobody can play cards that cost 4, 5, or 6 at this location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Goose-0be5f8e9e823d55768a5eafd184578d04ed383d7a091a322693fa8a01486b9df.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "Gorr",
+			"variantKey": null,
+			"url": "/cards/Gorr/",
+			"name": "Gorr the God Butcher",
+			"description": "<b>Ongoing:</b> +2 Power for EACH <b>On Reveal</b> card in play.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gorr-d6a15e81f47fe3658a33b2561a0734befb20eb7e80aaf510c8e276bd6674ce5c.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "GrandMaster",
