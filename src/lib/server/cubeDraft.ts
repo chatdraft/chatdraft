@@ -450,19 +450,25 @@ export default class CubeDraft {
 	}
 
 	public UpdateLockInStatus() {
+		const allLockedIn = this.drafts.every(
+			(draft) => draft.currentChoice?.votes.get(draft.player) !== undefined
+		);
+
 		if (
 			this._quickPick &&
-			this.drafts.every((draft) => draft.currentChoice?.votes.get(draft.player) !== undefined) &&
-			this.roundEndsAt - DatetimeNowUtc() > cubeDraftLockInDuration_ms
+			allLockedIn &&
+			this.roundEndsAt - DatetimeNowUtc() > cubeDraftLockInDuration_ms &&
+			!this._lockInRoundEndsAt
 		) {
 			this._lockInRoundEndsAt = DatetimeNowUtc() + cubeDraftLockInDuration_ms;
 			this._lockInRoundTimer = setTimeout(
 				() => this.CloseRound(),
 				this._lockInRoundEndsAt - DatetimeNowUtc()
 			);
-		} else {
+		} else if (!allLockedIn) {
 			this.ResetLockInStatus();
 		}
+
 		LobbyLockInUpdated(this.lobbyName, this._lockInRoundEndsAt);
 	}
 }
