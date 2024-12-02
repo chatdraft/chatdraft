@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { User, UserAuthorization, UserPreference } from '@prisma/client';
+	import type { User, UserAuthorization, UserPreference } from '@prisma/client';
 	import ChatDraftSlideToggle from './ChatDraftSlideToggle.svelte';
 	import { enhance } from '$app/forms';
 
