@@ -5,6 +5,7 @@
 	import { env } from '$env/dynamic/public';
 	import AppRailIcon from './AppRailIcon.svelte';
 	import type { User, UserAuthorization } from '@prisma/client';
+	import { GetLoginUri } from '$lib/login';
 
 	export let user: (User & { authorization: UserAuthorization | null }) | null;
 </script>
@@ -85,9 +86,7 @@
 		</AppRailAnchor>
 	{/if}
 	{#if !user}
-		<AppRailAnchor
-			href={`/api/v1/login${$page.url.pathname != '/' ? `?redirect=${$page.url.pathname}` : ''}`}
-		>
+		<AppRailAnchor href={GetLoginUri($page.url.searchParams.get('redirect'), $page.url.pathname)}>
 			<iconify-icon icon="ri:twitch-fill" width="24" height="24" />
 			<p class="mr-2 w-full">Log in</p>
 		</AppRailAnchor>

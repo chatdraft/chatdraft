@@ -16,6 +16,7 @@
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { title } from '$lib/title';
 	import { page } from '$app/stores';
+	import { GetLoginUri } from '$lib/login';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	export let data;
@@ -35,7 +36,7 @@
 
 	async function IdleTimeout() {
 		document.cookie = 'session_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-		window.location.href = '/?timedout=true';
+		window.location.href = `/?timedout=true&redirect=${$page.url.pathname}`;
 	}
 
 	async function ResetTimeout() {
@@ -111,9 +112,8 @@
 				{:else}
 					<a
 						class="btn btn-md variant-outline-primary"
-						href={`/api/v1/login${
-							$page.url.pathname != '/' ? `?redirect=${$page.url.pathname}` : ''
-						}`}>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1" /></a
+						href={GetLoginUri($page.url.searchParams.get('redirect'), $page.url.pathname)}
+						>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1" /></a
 					>
 				{/if}
 			</svelte:fragment>

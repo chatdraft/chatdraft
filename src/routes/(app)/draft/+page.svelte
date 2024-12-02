@@ -21,6 +21,7 @@
 	import FeaturedCardOptions from '$lib/components/FeaturedCardOptions.svelte';
 	import { type FeaturedCardMode } from '$lib/featuredCard';
 	import { seconds_to_ms } from '$lib/constants';
+	import { GetLoginUri } from '$lib/login';
 
 	export let data: PageData;
 	let now = DatetimeNowUtc();
@@ -181,10 +182,10 @@
 			<div class="mt-4">
 				Please <a
 					class="anchor"
-					href={`/api/v1/login${
-						$page.url.pathname != '/' ? `?redirect=${$page.url.pathname}` : ''
-					}`}>Login with Twitch</a
+					href={GetLoginUri($page.url.searchParams.get('redirect'), $page.url.pathname)}
 				>
+					Login with Twitch
+				</a>
 			</div>
 		{/if}
 	{/if}
