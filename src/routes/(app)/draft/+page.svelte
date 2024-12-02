@@ -179,7 +179,12 @@
 			</div>
 		{:else}
 			<div class="mt-4">
-				Please <a class="anchor" href={twitch_login_uri}>Login with Twitch</a>
+				Please <a
+					class="anchor"
+					href={`/api/v1/login${
+						$page.url.pathname != '/' ? `?redirect=${$page.url.pathname}` : ''
+					}`}>Login with Twitch</a
+				>
 			</div>
 		{/if}
 	{/if}

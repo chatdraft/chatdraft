@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { twitch_bot_uri, twitch_login_uri } from '$lib/api/twitch/client';
+	import { twitch_bot_uri } from '$lib/api/twitch/client';
 	import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
 	import { env } from '$env/dynamic/public';
 	import AppRailIcon from './AppRailIcon.svelte';
@@ -85,7 +85,9 @@
 		</AppRailAnchor>
 	{/if}
 	{#if !user}
-		<AppRailAnchor href={twitch_login_uri}>
+		<AppRailAnchor
+			href={`/api/v1/login${$page.url.pathname != '/' ? `?redirect=${$page.url.pathname}` : ''}`}
+		>
 			<iconify-icon icon="ri:twitch-fill" width="24" height="24" />
 			<p class="mr-2 w-full">Log in</p>
 		</AppRailAnchor>

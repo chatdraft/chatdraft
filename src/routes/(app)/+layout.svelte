@@ -15,6 +15,7 @@
 	import { sessionTimout_ms } from '$lib/constants';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { title } from '$lib/title';
+	import { page } from '$app/stores';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 
 	export let data;
@@ -108,8 +109,11 @@
 						alt={`${user.channelName}'s profile picture'`}
 					/>
 				{:else}
-					<a class="btn btn-md variant-outline-primary" href={twitch_login_uri}
-						>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1" /></a
+					<a
+						class="btn btn-md variant-outline-primary"
+						href={`/api/v1/login${
+							$page.url.pathname != '/' ? `?redirect=${$page.url.pathname}` : ''
+						}`}>Log in <iconify-icon icon="ri:twitch-fill" width="24" height="24" class="p-1" /></a
 					>
 				{/if}
 			</svelte:fragment>

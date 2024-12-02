@@ -6,6 +6,11 @@ import { RefreshingAuthProvider, exchangeCode } from '@twurple/auth';
 import TwitchBot from '$lib/server/twitchBot';
 import { ApiClient } from '@twurple/api';
 import { prisma } from '$lib/server/db';
+import {
+	ClearExpiredLoginRequests,
+	IsLoginRequestExpired,
+	PopLoginRequest
+} from '$lib/server/loginHandler';
 
 const authProvider = new RefreshingAuthProvider({
 	clientId: env.PUBLIC_TWITCH_OAUTH_CLIENT_ID,
@@ -16,7 +21,20 @@ export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 	const code = url.searchParams.get('code');
 	if (!code) throw error(400, 'No code provided.');
 
-	const redirectUri = url.searchParams.get('redirect') || '/';
+	const state = url.searchParams.get('state');
+	if (!state) {
+		throw error(401, 'Invalid login in request.');
+	}
+	const loginRequest = PopLoginRequest(state);
+	if (!loginRequest) {
+		throw error(401, 'Invalid login in request.');
+	}
+	if (IsLoginRequestExpired(loginRequest)) {
+		ClearExpiredLoginRequests();
+		throw error(401, 'Login request expired.');
+	}
+
+	const redirectUri = loginRequest.redirectUri;
 
 	try {
 		// Get the authentication object using the user's code
