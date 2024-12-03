@@ -1,6 +1,6 @@
 {
-	"currentSeasonPassCardDefId": "Surtur",
-	"currentSpotlightCardDefId": "Gorr",
+	"currentSeasonPassCardDefId": "Galacta",
+	"currentSpotlightCardDefId": "LunaSnow",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -777,6 +777,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Galacta",
+			"variantKey": null,
+			"url": "/cards/Galacta/",
+			"name": "Galacta",
+			"description": "Each turn, the first card you play at another location reveals\nwith +3 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galacta-2181e5bd73b71233698bb4311f70d4824da340f76b5a865e04cc919909742aa8.webp",
+			"cost": 6
+		},
+		{
 			"cardDefKey": "Galactus",
 			"variantKey": null,
 			"url": "/cards/Galactus/",
@@ -1359,6 +1368,15 @@
 			"name": "Luke Cage",
 			"description": "<b>Ongoing:</b> Your cards can't have their Power reduced.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LukeCage-daa58dd8a3d7632ee2bbaa4cb77e9c4d8513608ef6ef151ee155cae69a5b3438.webp",
+			"cost": 3
+		},
+		{
+			"cardDefKey": "LunaSnow",
+			"variantKey": null,
+			"url": "/cards/LunaSnow/",
+			"name": "Luna Snow",
+			"description": "<b>On Reveal:</b> Add an Ice Cube to each side of this location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LunaSnow-5abfc16c9f3801718b002084ab9b9864c7e186c6efd0655e0de5f24d9e7574c1.webp",
 			"cost": 3
 		},
 		{
