@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "Galacta",
-	"currentSpotlightCardDefId": "LunaSnow",
+	"currentSpotlightCardDefId": "PeniParker",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1837,6 +1837,15 @@
 			"description": "<b>Ongoing:</b> Your cards with no abilities have +2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Patriot-797914dae8a6b78bd9d97213c708e6fc737e8ede642dca29cd9e2a6f0568f837.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "PeniParker",
+			"variantKey": null,
+			"url": "/cards/PeniParker/",
+			"name": "Peni Parker",
+			"description": "<b>On Reveal:</b> Add SP//dr to your hand.\nWhen this merges, you get\n+1 Energy next turn.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/PeniParker-ee9ba8535553434ee79020c95eae9525ca1aed78deea998e54066f47662f4719.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Phastos",
