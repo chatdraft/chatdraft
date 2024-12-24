@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "Galacta",
-	"currentSpotlightCardDefId": "PeniParker",
+	"currentSpotlightCardDefId": "BruceBanner",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -363,6 +363,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "BruceBanner",
+			"variantKey": null,
+			"url": "/cards/BruceBanner/",
+			"name": "Bruce Banner",
+			"description": "When you end a turn with unspent Energy, 25% chance to HULK OUT!",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BruceBanner-cb8808ff4079f61da5449fdbb5478b789fc30e7a1ac506afc1e840f96ef78e02.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "BuckyBarnes",
 			"variantKey": null,
 			"url": "/cards/BuckyBarnes/",
@@ -640,6 +649,15 @@
 			"description": "<b>On Reveal:</b> Add a 5-Power DoomBot to each other location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DrDoom-428ad09a80b3598a2c34fd7193fd4e0ef2f929f871c4de725eb6d1d66288666d.webp",
 			"cost": 6
+		},
+		{
+			"cardDefKey": "Doom2099",
+			"variantKey": null,
+			"url": "/cards/Doom2099/",
+			"name": "Doctor Doom 2099",
+			"description": "After each turn, add a DoomBot 2099 to a random location if you played <i>(exactly)</i> 1 card.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Doom2099-6b78a55ddd899d4f773cf20ae0adb514697285bf27f564d9a3b03dad95e51fa3.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "DoctorOctopus",
