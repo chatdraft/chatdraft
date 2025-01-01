@@ -1,6 +1,6 @@
 {
 	"currentSeasonPassCardDefId": "Galacta",
-	"currentSpotlightCardDefId": "BruceBanner",
+	"currentSpotlightCardDefId": "RocketAndGroot",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1326,6 +1326,15 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Lasher",
+			"variantKey": null,
+			"url": "/cards/Lasher/",
+			"name": "Lasher",
+			"description": "<b>Activate:</b> Afflict an enemy card here with negative Power equal to this card's Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lasher-7d323646f18c17b08e0659b117308551413a73820fe84ee2d6a4feb7b9418a63.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Leader",
 			"variantKey": null,
 			"url": "/cards/Leader/",
@@ -2007,6 +2016,15 @@
 			"name": "Rhino",
 			"description": "<b>On Reveal:</b> Ruin this location. (remove its ability)",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rhino-70951c4d0aa24e7f42bf48c85b25cebda69b3a9cf04e764ba3765d7edc2630a1.webp",
+			"cost": 3
+		},
+		{
+			"cardDefKey": "RocketAndGroot",
+			"variantKey": null,
+			"url": "/cards/RocketAndGroot/",
+			"name": "Rocket and Groot",
+			"description": "You can move this once.\nAfter your opponent plays a card here, steal 1 Power from it.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketAndGroot-acd300eba0e1a6cf61be749c137c0f303ec3fc1004a8edcdf38f61b5d0c0c310.webp",
 			"cost": 3
 		},
 		{
