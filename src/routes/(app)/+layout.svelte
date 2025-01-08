@@ -134,7 +134,7 @@
 	</div>
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="footer">
-		©2023-2024 oro version {__APP_VERSION__}
+		©2023-2025 oro version {__APP_VERSION__}
 	</svelte:fragment>
 	<!-- (footer) -->
 </AppShell>
