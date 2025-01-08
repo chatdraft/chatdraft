@@ -1,6 +1,6 @@
 {
-	"currentSeasonPassCardDefId": "Galacta",
-	"currentSpotlightCardDefId": "RocketAndGroot",
+	"currentSeasonPassCardDefId": "IronPatriot",
+	"currentSpotlightCardDefId": "VictoriaHand",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -1153,6 +1153,15 @@
 			"description": "<b>Ongoing:</b> Your total Power is doubled at this location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronMan-b1c080ee27dc1af796b35ba726d7455ed3ea53da9d278c1a3a36587982d3d307.webp",
 			"cost": 5
+		},
+		{
+			"cardDefKey": "IronPatriot",
+			"variantKey": null,
+			"url": "/cards/IronPatriot/",
+			"name": "Iron Patriot",
+			"description": "<b>On Reveal:</b> Add a random 4, 5, or\n6-Cost card to your hand. If you\u2019re winning here after next turn, give it -4 Cost.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronPatriot-e55b842dc5ed7fd3f80738277338f2bce6013f4b5dc28ec501e5d7084ac84652.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Ironheart",
@@ -2647,6 +2656,15 @@
 			"description": "<b>On Reveal:</b> Destroy your other cards at this location. Add their Power\nto this card.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Venom-9f28751133d7f0717a975c73dfbbb6c1ad29da3be53a6c3d52271da11edbb3c8.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "VictoriaHand",
+			"variantKey": null,
+			"url": "/cards/VictoriaHand/",
+			"name": "Victoria Hand",
+			"description": "<b>Ongoing:</b> Your cards that were created in your hand have +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/VictoriaHand-6db34e28e6257eccf0970ea23f646fe91059a127ffb3081666a190d6e577431c.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Viper",
