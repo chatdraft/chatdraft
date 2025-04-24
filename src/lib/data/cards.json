@@ -277,8 +277,8 @@
 			"variantKey": null,
 			"url": "/cards/BlackCat/",
 			"name": "Black Cat",
-			"description": "If this is in your hand after the turn, discard it.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-fbd2013d9dd185aa202a99c885293a90d09c438e3f53fc35d6c86a00a7b96b89.webp",
+			"description": "<b>End of Turn:</b> Discard this from your hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-ad673083d3e567133c1654d235920a0fb2911ef5a657432c2d1fbc048c802a29.webp",
 			"cost": 4
 		},
 		{
@@ -367,7 +367,7 @@
 			"variantKey": null,
 			"url": "/cards/BruceBanner/",
 			"name": "Bruce Banner",
-			"description": "When you end a turn with unspent Energy, 25% chance to HULK OUT!",
+			"description": "<b>End of Turn:</b> If you have unspent Energy, 33% chance to HULK OUT!",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BruceBanner-cb8808ff4079f61da5449fdbb5478b789fc30e7a1ac506afc1e840f96ef78e02.webp",
 			"cost": 2
 		},
@@ -988,8 +988,8 @@
 			"variantKey": null,
 			"url": "/cards/Hela/",
 			"name": "Hela",
-			"description": "<b>On Reveal:</b> Resurrect all cards you discarded to random locations\nwith -3 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-d9c91d20dd9cf9e61e581dea95e99b5f3094d0c9a4ccd241c6d178b5c0232456.webp",
+			"description": "<b>On Reveal:</b> For each different Cost among them, resurrect a card you discarded to a random location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hela-ceeda152b914f5f8ad065c6942010169decd6b1095b4c602b02456604f5329f9.webp",
 			"cost": 6
 		},
 		{
@@ -1007,7 +1007,7 @@
 			"url": "/cards/Hellcow/",
 			"name": "Hellcow",
 			"description": "<b>Activate:</b> Discard a cards from your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-2a92322b86edd6a06074530ef780621e298156b7d0963b78f577674930ae06ef.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Hellcow-d5eb5e2872f864d8d05dda6b77d0d29c671be6dcfe7aed6d9ce4d66eed4f944f.webp",
 			"cost": 4
 		},
 		{
@@ -1394,7 +1394,7 @@
 			"url": "/cards/Loki/",
 			"name": "Loki",
 			"description": "<b>On Reveal:</b> Replace your deck with your opponent's starting deck. Give those cards -1 Cost.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-966b93d952dc6569174467a5c8cd4596bc4c30bd514cabb3c6afed567bff22c3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Loki-fd3a2841281443d29cfa1ce435502c92d0f2a9903e7bbb0845429ca17d806d19.webp",
 			"cost": 2
 		},
 		{
@@ -2483,7 +2483,7 @@
 			"url": "/cards/SwordMaster/",
 			"name": "Sword Master",
 			"description": "<b>On Reveal:</b> Discard an odd-costed card from your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SwordMaster-6ec9684fa612df3a37a8f009cd8ece2e1198b12ae2aa44aa9df438bde6e801b6.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SwordMaster-86739e42af7005003f35f28e3f96efb7352bba6c1e04996765f597343015d169.webp",
 			"cost": 3
 		},
 		{
@@ -2509,8 +2509,8 @@
 			"variantKey": null,
 			"url": "/cards/Thanos/",
 			"name": "Thanos",
-			"description": "At the start of the game, draw Thanos and shuffle the six Infinity Stones into your deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thanos-82f8499e4d098da8e38c4ab2a8ec74e340ca9c61f16c04609e8b0f60d51a3001.webp",
+			"description": "<b>Game Start:</b> Draw Thanos and shuffle the six Infinity Stones into your deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thanos-a57cf7a40c00be1b29f78eb5597f7fff48b00444877ddb4743a48c7ee6e75b0a.webp",
 			"cost": 6
 		},
 		{
@@ -2789,7 +2789,7 @@
 			"url": "/cards/Wolverine/",
 			"name": "Wolverine",
 			"description": "When this is discarded or destroyed, regenerate it at a random location\nwith +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wolverine-5e7bebba994f7d08572a8e6505bfc26e26b8b2e42b1d6538484d81d4fb9c616b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wolverine-0d0ad77bdaf0f4072a07acdcb96e8be386e65f21ddcccf76782165133c6dc53e.webp",
 			"cost": 2
 		},
 		{
