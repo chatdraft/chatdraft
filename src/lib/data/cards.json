@@ -170,7 +170,7 @@
 			"url": "/cards/Arana/",
 			"name": "Ara\u00f1a",
 			"description": "<b>Activate:</b> Give the next card you play +2 Power and move it\nto the right.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arana-973b13bd7893e8d99158e4df18b1fc34013f5dfa72f1d44696f261c5b47d3c68.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arana-0673b9e5d1b4dc0378349f6ba44e117e7e0940af69e4bf84a66b404a9dfd4f04.webp",
 			"cost": 1
 		},
 		{
@@ -548,7 +548,7 @@
 			"url": "/cards/Dagger/",
 			"name": "Dagger",
 			"description": "When this moves to a location,\n+3 Power for each enemy card there.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dagger-69b64f266f85e8a9b4d1994911d1435570c2297707d018fab4117aa3a8b8afac.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Dagger-899356d3e65310dceb59a577e6f2a86a50952d9b3003e4229130772dbbeeff44.webp",
 			"cost": 2
 		},
 		{
@@ -1349,7 +1349,7 @@
 			"url": "/cards/Leader/",
 			"name": "Leader",
 			"description": "<b>On Reveal:</b> Copy the enemy card(s) with the highest Power played this turn, but on your side.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leader-6f4600d3fb41a9214d78f707a249592d1e4bfe4758f824d17f2c8d24c16cf941.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Leader-2a4cceb6fee9a813d6add7df056d5abc646bfc1eb471844ea5ce3d6a8d75c95c.webp",
 			"cost": 6
 		},
 		{
@@ -1412,7 +1412,7 @@
 			"url": "/cards/LunaSnow/",
 			"name": "Luna Snow",
 			"description": "<b>On Reveal:</b> Add an Ice Cube to each side of this location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LunaSnow-5abfc16c9f3801718b002084ab9b9864c7e186c6efd0655e0de5f24d9e7574c1.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/LunaSnow-54cfafd0d8961115bd02f9e95065890219e13276f1e41a6386b7e3eacca05b8a.webp",
 			"cost": 3
 		},
 		{
@@ -1691,7 +1691,7 @@
 			"url": "/cards/MsMarvel/",
 			"name": "Ms. Marvel",
 			"description": "<b>Ongoing:</b> Your adjacent locations with 2+ cards and no repeated Costs have +5 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MsMarvel-d1500265b2ade02cb1f4b01c85dd821766d3261c2a0ebee43bef29e9c6b23bed.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MsMarvel-a1cb70b21b0c158b9643732c737c548319257d3174c24381acf1a42e60c80df5.webp",
 			"cost": 4
 		},
 		{
@@ -1736,7 +1736,7 @@
 			"url": "/cards/Namor/",
 			"name": "Namor",
 			"description": "<b>Ongoing:</b> +5 Power if this is your only card here.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Namor-b6a9434aa62f8a70ace7add94bd9f5c8e1c2adce5a8b850db5eac3dec61eac65.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Namora-2df266bc2145b8449871822f1475c5ccc3d54dbe314016cf6844271006829a59.webp",
 			"cost": 4
 		},
 		{
@@ -2096,7 +2096,7 @@
 			"url": "/cards/Sandman/",
 			"name": "Sandman",
 			"description": "<b>On Reveal:</b> Next turn, cards cost 1 more. (maximum 6)",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-bc0ce9d69b0a1b94a7a412fcf4ac0045031a842311c34dfcc7f67e645b337026.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sandman-44b7af22089605a7c6783be9230736aae506a0b69835c6b3048be2bb5e0fa186.webp",
 			"cost": 5
 		},
 		{
@@ -2330,7 +2330,7 @@
 			"url": "/cards/Spectrum/",
 			"name": "Spectrum",
 			"description": "<b>On Reveal:</b> Give your <b>Ongoing</b> cards +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Spectrum-a265e4500773d6ab565aa5b72f03643fb4582275f21ca3abb32f2b5bd4ba8190.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Spectrum-3a95e4f5719fce4e63d48e91703c355f6b84d4c43c471e2b397663de6c88c938.webp",
 			"cost": 6
 		},
 		{
