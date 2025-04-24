@@ -260,7 +260,7 @@
 			"url": "/cards/Bishop/",
 			"name": "Bishop",
 			"description": "After you play a card, this gains +1 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bishop-1b2df60d92cfc7e2c440ea843a74d6d7220f3fae99cb7a1ca83aeed69b3e84f5.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bishop-2ab4c56d40fc672f63e798d18d26b902646c4f8c020ed4778753373a52c2104d.webp",
 			"cost": 3
 		},
 		{
@@ -638,7 +638,7 @@
 			"url": "/cards/DevilDinosaur/",
 			"name": "Devil Dinosaur",
 			"description": "<b>Ongoing:</b> +2 Power for each card in your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DevilDinosaur-c6d2c26985f83bde005614da5d3ee659d8884a69a7daf72b3f5ea9c2f2262b96.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/DevilDinosaur-b83868a3a379e80e9b4fe9323599ec7b3199805600775c21ddf803914b8618b5.webp",
 			"cost": 5
 		},
 		{
@@ -1430,7 +1430,7 @@
 			"url": "/cards/Modok/",
 			"name": "M.O.D.O.K.",
 			"description": "<b>On Reveal:</b> Discard your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Modok-9d75c26dff078791f014161bdfea77c7edcedcc11bbe1290e0ebecf24040894a.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Modok-64c75dbe579d96ea645e5241db0c0af1428f247a33f52535f029a9ad2a489d49.webp",
 			"cost": 5
 		},
 		{
@@ -1871,7 +1871,7 @@
 			"url": "/cards/Patriot/",
 			"name": "Patriot",
 			"description": "<b>Ongoing:</b> Your cards with no abilities have +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Patriot-797914dae8a6b78bd9d97213c708e6fc737e8ede642dca29cd9e2a6f0568f837.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Patriot-8abe87d3a5d37aac224377664c9d0033567796076497604ec4226207f28dcd67.webp",
 			"cost": 3
 		},
 		{
@@ -2033,7 +2033,7 @@
 			"url": "/cards/RocketAndGroot/",
 			"name": "Rocket and Groot",
 			"description": "You can move this once.\nAfter your opponent plays a card here, steal 1 Power from it.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketAndGroot-acd300eba0e1a6cf61be749c137c0f303ec3fc1004a8edcdf38f61b5d0c0c310.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RocketAndGroot-7473ca614f86fedb54c8193e1e9044f44b16f261f83be59126ff28a2a4311b76.webp",
 			"cost": 3
 		},
 		{
