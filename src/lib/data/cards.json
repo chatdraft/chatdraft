@@ -1,6 +1,6 @@
 {
-	"currentSeasonPassCardDefId": "IronPatriot",
-	"currentSpotlightCardDefId": "VictoriaHand",
+	"currentSeasonPassCardDefId": "CaptainCarter",
+	"currentSpotlightCardDefId": "StrangeSupreme",
 	"all": [
 		{
 			"cardDefKey": "Abomination",
@@ -36,6 +36,15 @@
 			"name": "Aero",
 			"description": "<b>On Reveal:</b> Move the last enemy card played this turn to this location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-119236eb4d931a9f59821c131522764b7ea4a7f3526a74f41456f19e67359ee5.webp",
+			"cost": 5
+		},
+		{
+			"cardDefKey": "Agamotto",
+			"variantKey": null,
+			"url": "/cards/Agamotto/",
+			"name": "Agamotto",
+			"description": "<b>Game Start:</b> Shuffle 4 Ancient Arcana into your deck.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Agamotto-180c391258213f92ea8f614f539f50c40350c658268e77c1389e64032553b0dc.webp",
 			"cost": 5
 		},
 		{
@@ -172,6 +181,15 @@
 			"description": "<b>Activate:</b> After you play your next card, give it +1 Power and move it to the right.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arana-0673b9e5d1b4dc0378349f6ba44e117e7e0940af69e4bf84a66b404a9dfd4f04.webp",
 			"cost": 1
+		},
+		{
+			"cardDefKey": "Ares",
+			"variantKey": null,
+			"url": "/cards/Ares/",
+			"name": "Ares",
+			"description": "<b>On Reveal:</b> Compare the Power of the top 3 cards of both decks. If your total is higher, +6 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ares-2c07482b0fe65bf43c0509b25c865f8354fb0663ba8d22019ec4a6e339f89fca.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Arishem",
@@ -381,6 +399,15 @@
 			"cost": 2
 		},
 		{
+			"cardDefKey": "Bullseye",
+			"variantKey": null,
+			"url": "/cards/Bullseye/",
+			"name": "Bullseye",
+			"description": "<b>Activate:</b> Discard all cards that cost 1 or less from your hand. Afflict that many different enemy cards with -2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Bullseye-a162e5fbce1b1e52673dccc6beeeccf24f087726057a463312a43fdcfe1670cc.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "Cable",
 			"variantKey": null,
 			"url": "/cards/Cable/",
@@ -415,6 +442,15 @@
 			"description": "<b>Ongoing:</b> Your other <b>Ongoing</b> cards here have +2 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainAmerica-2d8a802281d0e136143e8dee354b87d4c4678e71a304a3856b732ba56acfc475.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "CaptainCarter",
+			"variantKey": null,
+			"url": "/cards/CaptainCarter/",
+			"name": "Captain Carter",
+			"description": "<b>Ongoing:</b> Add this card's Power to your back-row cards here.\n<i>(can't add to itself)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainCarter-8624b6e3b4b4163ecea9bf78abe39e2187827337b35e778626710d19bb4695ef.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "CaptainMarvel",
@@ -642,6 +678,15 @@
 			"cost": 5
 		},
 		{
+			"cardDefKey": "Diamondback",
+			"variantKey": null,
+			"url": "/cards/Diamondback/",
+			"name": "Diamondback",
+			"description": "<b>Ongoing:</b> Enemy cards here afflicted with negative Power have an additional -2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Diamondback-a2a52a9f04300a122a31d3be9ddcce084c409ec2df1584c4dedf4198851f3746.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "DrDoom",
 			"variantKey": null,
 			"url": "/cards/DrDoom/",
@@ -759,6 +804,15 @@
 			"cost": 4
 		},
 		{
+			"cardDefKey": "Eson",
+			"variantKey": null,
+			"url": "/cards/Eson/",
+			"name": "Eson",
+			"description": "<b>End of Turn:</b> Put a created card from your hand here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Eson-fb1959aa180e125ee605bffac73be9df866d3dcfecb29404f26ea36a29ab094d.webp",
+			"cost": 6
+		},
+		{
 			"cardDefKey": "Falcon",
 			"variantKey": null,
 			"url": "/cards/Falcon/",
@@ -774,6 +828,15 @@
 			"name": "Fenris Wolf",
 			"description": "<b>Activate:</b> Resurrect your opponent's highest-Power discarded or destroyed card on your side of this location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/FenrisWolf-f5af9b35940bd6a3ee4500c43896cb411a91c325cd146ab023afe0417179d6b6.webp",
+			"cost": 2
+		},
+		{
+			"cardDefKey": "Firehair",
+			"variantKey": null,
+			"url": "/cards/Firehair/",
+			"name": "Firehair",
+			"description": "When one of your cards is destroyed, this uses that card\u2019s <b>On Reveal</b>.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Firehair-c9c45482a3bde62ea8da8bf50b5fbaaf20a2cfdcf15910553cee66b9cb509a68.webp",
 			"cost": 2
 		},
 		{
@@ -885,12 +948,30 @@
 			"cost": 3
 		},
 		{
+			"cardDefKey": "Goliath",
+			"variantKey": null,
+			"url": "/cards/Goliath/",
+			"name": "Goliath",
+			"description": "<b>Ongoing:</b> +1 Power for each other <b>Ongoing</b> card you have in play.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Goliath-1e0af3eab988d2eeafa63526c5cd2024acc5bcaa1f76a13239652e7dacd703b6.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Goose",
 			"variantKey": null,
 			"url": "/cards/Goose/",
 			"name": "Goose",
 			"description": "<b>Ongoing:</b> Nobody can play cards that cost 4, 5, or 6 at this location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Goose-0be5f8e9e823d55768a5eafd184578d04ed383d7a091a322693fa8a01486b9df.webp",
+			"cost": 2
+		},
+		{
+			"cardDefKey": "Gorgon",
+			"variantKey": null,
+			"url": "/cards/Gorgon/",
+			"name": "Gorgon",
+			"description": "<b>Ongoing:</b> Your opponent's created cards cost 1 more. <i>(maximum 6)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gorgon-beafeaf3780357990eeb217ed6a7d1c121a5eb1044adffad4c34c3241339c1a8.webp",
 			"cost": 2
 		},
 		{
@@ -1119,6 +1200,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey": "InfinityUltron",
+			"variantKey": null,
+			"url": "/cards/InfinityUltron/",
+			"name": "Infinity Ultron",
+			"description": "<b>On Reveal:</b> Add 2 of Ultron's Stones to your hand.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/InfinityUltron-9b78a79d05030df35f212a0139881efc5a262f527d23af8ac6a7758213788972.webp",
+			"cost": 5
+		},
+		{
 			"cardDefKey": "InvisibleWoman",
 			"variantKey": null,
 			"url": "/cards/InvisibleWoman/",
@@ -1209,6 +1299,15 @@
 			"cost": 4
 		},
 		{
+			"cardDefKey": "JoaquinTorres",
+			"variantKey": null,
+			"url": "/cards/JoaquinTorres/",
+			"name": "Joaquin Torres Falcon II",
+			"description": "<b>Ongoing:</b> The <b>On Reveal</b> abilities of your 1-Cost cards here happen twice.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/JoaquinTorres-dfd8b77a24a79d4e48c5dfe4c1add12f37415f53c5983119eab053a71354f28d.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Jubilee",
 			"variantKey": null,
 			"url": "/cards/Jubilee/",
@@ -1236,6 +1335,15 @@
 			"cost": 4
 		},
 		{
+			"cardDefKey": "Kahhori",
+			"variantKey": null,
+			"url": "/cards/Kahhori/",
+			"name": "Kahhori",
+			"description": "<b>On Reveal:</b> Each card in your hand gives one of your cards in play +1 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kahhori-95170152d145c6301989bf09e785db282e5c2cad8c6c6d47710ed0baa9c4a518.webp",
+			"cost": 4
+		},
+		{
 			"cardDefKey": "Kang",
 			"variantKey": null,
 			"url": "/cards/Kang/",
@@ -1243,6 +1351,15 @@
 			"description": "<b>On Reveal:</b> Look at what your opponent did, then restart the turn. <i>(without Kang)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Kang-afe446737a5b0f09166a903e036667e3bf2c719f5b3e7772ea1e7e5f314bd3a3.webp",
 			"cost": 5
+		},
+		{
+			"cardDefKey": "Khonshu",
+			"variantKey": null,
+			"url": "/cards/Khonshu/",
+			"name": "Khonshu",
+			"description": "When discarded, returns in its next phase.\n<b>On Reveal:</b> Resurrect a card you discarded to another location with its Power set to 5.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Khonshu-82bc8d73a999a8263352266d673b6aaca67ec0fb805da06e46dcab8001e3aadf.webp",
+			"cost": 6
 		},
 		{
 			"cardDefKey": "Killmonger",
@@ -1342,6 +1459,15 @@
 			"description": "<b>Activate:</b> Afflict an enemy card here with negative Power equal to this card's Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lasher-7d323646f18c17b08e0659b117308551413a73820fe84ee2d6a4feb7b9418a63.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "Laufey",
+			"variantKey": null,
+			"url": "/cards/Laufey/",
+			"name": "Laufey",
+			"description": "<b>On Reveal:</b> Steal 1 Power from each other card here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Laufey-f1edf2f630331f2d041eeec736a44b521ecb710725dc57affd07199ebfb642d2.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Leader",
@@ -1666,6 +1792,15 @@
 			"description": "<b>On Reveal:</b> Discard an even-costed card from each player’s hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MoonKnight-6cf0247f363f0f55f097c73f79811f896518422d20b1c611b7cb425b858f6021.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "Moonstone",
+			"variantKey": null,
+			"url": "/cards/Moonstone/",
+			"name": "Moonstone",
+			"description": "<b>Ongoing:</b> Has the <b>Ongoing</b> effects of your 1, 2, and 3-Cost cards here.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Moonstone-63d621bf4623fe28f684d9de537280b86ec26adb3937799b2b8c6b6f6b49ccb7.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Morbius",
@@ -2010,6 +2145,15 @@
 			"cost": 5
 		},
 		{
+			"cardDefKey": "Redwing",
+			"variantKey": null,
+			"url": "/cards/Redwing/",
+			"name": "Redwing",
+			"description": "The first time this moves, add a card from your hand to the old location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Redwing-3c03eed5ec50f09bf518fc16589f1137ddd17585cff48a1a52cc88ab691621a5.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "Rescue",
 			"variantKey": null,
 			"url": "/cards/Rescue/",
@@ -2089,6 +2233,15 @@
 			"description": "<b>On Reveal:</b> +2 Power for each different Power among all\nother cards here.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sage-f2d8e991191fd67fb3c8e95c0ab6ddd29590497e187fa315c29a27691f2c3e5b.webp",
 			"cost": 3
+		},
+		{
+			"cardDefKey": "SamWilson",
+			"variantKey": null,
+			"url": "/cards/SamWilson/",
+			"name": "Sam Wilson Captain America",
+			"description": "<b>Game Start:</b> Add Cap's Shield to a random location.\n<b>Ongoing:</b> You can move Cap's Shield.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SamWilson-3cfb599921002833f0f78267cdf08183abcb0bca362399d2d5329343940a2407.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "Sandman",
@@ -2397,6 +2550,15 @@
 			"cost": 2
 		},
 		{
+			"cardDefKey": "Starbrand",
+			"variantKey": null,
+			"url": "/cards/Starbrand/",
+			"name": "Starbrand",
+			"description": "<b>Ongoing:</b> Your opponent has +3 Power at each other location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Starbrand-e10f1d1614f9fd9f46705819309a0d53993a6e5e10af0ac71da99f442d33f3a6.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "Stature",
 			"variantKey": null,
 			"url": "/cards/Stature/",
@@ -2422,6 +2584,15 @@
 			"description": "<b>On Reveal:</b> Flood this location. Next turn is the last turn cards can\nbe played here.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Storm-495dae031d9530582a7093846193601dbb87402ac7f16f6b159a438451cfbbf2.webp",
 			"cost": 4
+		},
+		{
+			"cardDefKey": "StrangeSupreme",
+			"variantKey": null,
+			"url": "/cards/StrangeSupreme/",
+			"name": "Strange Supreme",
+			"description": "Gains +2 Power from merging.\n<b>End of Turn:</b> Merge one of your created cards into this.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/StrangeSupreme-4881a65a29a3200172b6f78b66e35013ce7c5c6e8fc69266a1ceed795a959e46.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "StrongGuy",
@@ -2505,6 +2676,15 @@
 			"cost": 6
 		},
 		{
+			"cardDefKey": "ThaddeusRoss",
+			"variantKey": null,
+			"url": "/cards/ThaddeusRoss/",
+			"name": "Thaddeus Ross",
+			"description": "<b>End of Turn:</b> If your opponent has unspent Energy, draw a card with\n10 or more Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ThaddeusRoss-0cfb18761a39f96e2dffeb6980347220288509e07abfcf4c011be863e320cb3f.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Thanos",
 			"variantKey": null,
 			"url": "/cards/Thanos/",
@@ -2520,6 +2700,15 @@
 			"name": "The Collector",
 			"description": "When a card enters your hand from anywhere <i>(except your deck)</i>,\n+1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/TheCollector-a96d7516d5da3d931a8d6d458ab3157a5bd5a8213d6103c79db8f36db2a3b92c.webp",
+			"cost": 2
+		},
+		{
+			"cardDefKey": "GhostTheFirstRider",
+			"variantKey": null,
+			"url": "/cards/GhostTheFirstRider/",
+			"name": "The First Ghost Rider",
+			"description": "<b>On Reveal:</b> Discard the lowest-Power card from your hand. Remove that card's Power from this.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostTheFirstRider-7991e0a4eb15646704d7b857298870c164bebdb5225ae7277c7d68bd5d659b82.webp",
 			"cost": 2
 		},
 		{
@@ -2629,6 +2818,15 @@
 			"description": "<b>On Reveal:</b> Create four 2-Power Drones at each other location.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Ultron-1884cb5909014edc0a370ea8f473b4e367acb5587c8f32544fd7c30b545bf372.webp",
 			"cost": 6
+		},
+		{
+			"cardDefKey": "UncleBen",
+			"variantKey": null,
+			"url": "/cards/UncleBen/",
+			"name": "Uncle Ben",
+			"description": "When this card is destroyed, replace it with Spider-Man.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/UncleBen-1dfea37b29dd5d8e5580eb6794878e8a6644ec9cc36cd7f50118311a1261e9df.webp",
+			"cost": 1
 		},
 		{
 			"cardDefKey": "Valentina",
