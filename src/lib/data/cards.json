@@ -169,7 +169,7 @@
 			"variantKey": null,
 			"url": "/cards/Arana/",
 			"name": "Ara\u00f1a",
-			"description": "<b>Activate:</b> Give the next card you play +2 Power and move it\nto the right.",
+			"description": "<b>Activate:</b> After you play your next card, give it +1 Power and move it to the right.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Arana-0673b9e5d1b4dc0378349f6ba44e117e7e0940af69e4bf84a66b404a9dfd4f04.webp",
 			"cost": 1
 		},
