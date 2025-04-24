@@ -1258,7 +1258,7 @@
 			"variantKey": null,
 			"url": "/cards/KingEitri/",
 			"name": "King Eitri",
-			"description": "<b>Activate:</b> Draw a card from your deck that didn't start there.",
+			"description": "<b>Activate:</b> Draw a created card from your deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/KingEitri-a502214b0e6a2bad8c8f01724ae20d260e9050427cb3ce628b0e20e778b82a41.webp",
 			"cost": 1
 		},
@@ -1636,7 +1636,7 @@
 			"variantKey": null,
 			"url": "/cards/Mockingbird/",
 			"name": "Mockingbird",
-			"description": "Costs 1 less for each of your cards in play that didn't start in your deck.",
+			"description": "Costs 1 less for each of your created cards in play.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Mockingbird-ca95206f5a22720663db43d68a1121e09c05c328a542daed95266d88f9a61b6f.webp",
 			"cost": 5
 		},
@@ -1969,7 +1969,7 @@
 			"variantKey": null,
 			"url": "/cards/Quinjet/",
 			"name": "Quinjet",
-			"description": "<b>Ongoing:</b> Cards that didn't start in your deck cost 1 less. <i>(minimum 1)</i>",
+			"description": "<b>Ongoing:</b> Your created cards cost 1 less. <i>(minimum 1)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Quinjet-d44e150816f3b13720f7003316c4486684ef2b001646d64f18bbbdc2b2209aa8.webp",
 			"cost": 1
 		},
@@ -2824,7 +2824,7 @@
 			"variantKey": null,
 			"url": "/cards/Yondu/",
 			"name": "Yondu",
-			"description": "<b>On Reveal:</b> Destroy the card that costs the least in your\nopponent's deck.",
+			"description": "<b>On Reveal:</b> Banish the card that costs the least in your\nopponent's deck.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Yondu-539e7b8bc5cc63ef9c62c0a308161cbd52462584a514d2f9496e1a28b972a290.webp",
 			"cost": 1
 		},
