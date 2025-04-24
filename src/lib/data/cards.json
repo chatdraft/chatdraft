@@ -35,7 +35,7 @@
 			"url": "/cards/Aero/",
 			"name": "Aero",
 			"description": "<b>On Reveal:</b> Move the last enemy card played this turn to this location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-07e713e162146fce1dc925b34567a5dd8cf14296fa14ee0b45189cebf17f4e50.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Aero-119236eb4d931a9f59821c131522764b7ea4a7f3526a74f41456f19e67359ee5.webp",
 			"cost": 5
 		},
 		{
@@ -97,7 +97,7 @@
 			"variantKey": null,
 			"url": "/cards/Alioth/",
 			"name": "Alioth",
-			"description": "<b>On Reveal:</b> Remove the text from all unrevealed enemy cards here.",
+			"description": "<b>On Reveal:</b> Remove the text from all unrevealed enemy characters here.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Alioth-a298f3b4da918ce0cc8ff82e4fd60652dc6318f0822be30f157b0b92951671dd.webp",
 			"cost": 6
 		},
@@ -134,7 +134,7 @@
 			"url": "/cards/Annihilus/",
 			"name": "Annihilus",
 			"description": "<b>On Reveal:</b> Your cards with Power below 0 switch sides. Destroy\nthose that can't.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Annihilus-02e060189f75db2a871d0b102b0e7e43a6b6a69a42b34255ecdc8c78c6f2ad26.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Annihilus-8dcd89ea76730b6808d55dc225acc7a6911b232092294d563af3ac3e456e2c2a.webp",
 			"cost": 5
 		},
 		{
@@ -934,7 +934,7 @@
 			"variantKey": null,
 			"url": "/cards/Gwenpool/",
 			"name": "Gwenpool",
-			"description": "<b>On Reveal:</b> Pick a random card in your hand 3 times. Give +2 Power each time.",
+			"description": "<b>On Reveal:</b> Pick a random character in your hand 3 times. Give +2 Power each time.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Gwenpool-fb25b642553ae3dfcff82a48b1e9895c7217caa569da87354fc70f1711253238.webp",
 			"cost": 4
 		},
@@ -1025,7 +1025,7 @@
 			"url": "/cards/HighEvolutionary/",
 			"name": "High Evolutionary",
 			"description": "At the start of the game, unlock the potential of your cards with no abilities.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HighEvolutionary-72179678e2cfd498c2e76b366aab1f63a846f14425f685e38c1daf1f43e7c161.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HighEvolutionary-77d5191eef28779b9eb47a8421a40e9ac7809f57536302d83c7bc3a25ff9a791.webp",
 			"cost": 4
 		},
 		{
@@ -1376,7 +1376,7 @@
 			"url": "/cards/Lizard/",
 			"name": "Lizard",
 			"description": "<b>Ongoing:</b> -4 Power if your opponent has 4 cards here.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lizard-da342541b6133341451b75207d2c89039a03785e38ebf32c721f78019933af70.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Lizard-2d75b34569bda09d2453a866d1f56772b00efb4cb8f329ce078112aba326458e.webp",
 			"cost": 2
 		},
 		{
@@ -2312,7 +2312,7 @@
 			"url": "/cards/Skaar/",
 			"name": "Skaar",
 			"description": "Costs 2 less for each of your cards that has 10 or more Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Skaar-5d7a02dcb2f0c5ab2e033e11d7fed9ae6afa82daa70dc704db229831617e8ff3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Skaar-d676689cc66ac2f56deb66b5deb9c4e641a98ade7d3181511738c3127744d5a4.webp",
 			"cost": 6
 		},
 		{
@@ -2735,7 +2735,7 @@
 			"url": "/cards/WerewolfByNight/",
 			"name": "Werewolf By Night",
 			"description": "After you play an <b>On Reveal</b> card at another location, move there and\ngain +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-2afd7a876774a586841d8673fc3ca7e070a6d74171857ffe516da485e4a3e7a0.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WerewolfByNight-a7ec8048137e3cfc44c1c3b228b2befc999964ec339574d62d3ce21aa5c77dd4.webp",
 			"cost": 3
 		},
 		{
@@ -2744,8 +2744,8 @@
 			"url": "/cards/WhiteQueen/",
 			"name": "White Queen",
 			"description": "<b>On Reveal:</b> Copy the card that costs the most from your opponent's hand into your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteQueen-52b671586cc3224ca71229108a7995417b547fa93a19b2a1acd8debe2a76d117.webp",
-			"cost": 4
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/WhiteQueen-6848ec8048705f3aba7112f61b837acf67ffe6cf95d03ef30bad10050b6027c4.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "WhiteTiger",
