@@ -25,8 +25,8 @@
 			"variantKey": null,
 			"url": "/cards/AdamWarlock/",
 			"name": "Adam Warlock",
-			"description": "After each turn, draw a card if you're winning here.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-7b85387da0eb3dc57fcb8fabc7001050d0e638d9c3b055a2a86c68027e19415b.webp",
+			"description": "After each turn, draw a card if you're winning here. Otherwise, +1 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-fa63bb11093eee19a459db1999aeb890cdf609bd9e8c844be095635721341d57.webp",
 			"cost": 5
 		},
 		{
@@ -656,7 +656,7 @@
 			"url": "/cards/Doom2099/",
 			"name": "Doctor Doom 2099",
 			"description": "After each turn, add a DoomBot 2099 to a random location if you played <i>(exactly)</i> 1 card.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Doom2099-6b78a55ddd899d4f773cf20ae0adb514697285bf27f564d9a3b03dad95e51fa3.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Doom2099-725d69f52182c4756c78bbdb4c3b2f71a6648c4dadb6c27e842af72cd89a0f00.webp",
 			"cost": 4
 		},
 		{
@@ -2150,7 +2150,7 @@
 			"url": "/cards/Scorpion/",
 			"name": "Scorpion",
 			"description": "<b>On Reveal:</b> Afflict cards in your opponent's hand with -1 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-216e46417c131747e78e07861eca3edfad7279921ce4537c1e8036a458e363ec.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scorpion-ffd44256a047c57e14c9cb9c004b392e194af15cb4681d9fc665737d478148e1.webp",
 			"cost": 2
 		},
 		{
@@ -2204,7 +2204,7 @@
 			"url": "/cards/Sera/",
 			"name": "Sera",
 			"description": "<b>Ongoing:</b> Cards in your hand cost 1 less. <i>(minimum 1)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sera-15c7cea08bc7497610a89030d1080f3ca14338b4ef276a4099dd0a4ce2ef2571.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sera-24dd0d8e85c580742ae1a459b0bd82813e7b67c5ddabdd8c7e0762c0a297a40f.webp",
 			"cost": 5
 		},
 		{
@@ -2437,8 +2437,8 @@
 			"variantKey": null,
 			"url": "/cards/Surtur/",
 			"name": "Surtur",
-			"description": "After you play a card with 10 or more Power, this gains +3 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Surtur-759696ec225e62dd8c712c6d117f37d8257485d2f0ad989288c08c7279a4b50f.webp",
+			"description": "After you play a card with 10 or more Power, this gains +2 Power.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Surtur-43e5be71df0af2779ba2269684e7ac99440b1d4940b27ab47c63cdf0599fd1c3.webp",
 			"cost": 3
 		},
 		{
@@ -2447,7 +2447,7 @@
 			"url": "/cards/Sunspot/",
 			"name": "Sunspot",
 			"description": "After each turn, gain +1 Power for each unspent Energy.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sunspot-77f0d4731d0e3954e951fe9133e093509d8c4aba74abe99f05fd065952e48f47.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sunspot-b23b390ab2e541eb67f1ec5f8fe03fa9cda6b3cc943862d8edaa70fb4d19974d.webp",
 			"cost": 1
 		},
 		{
@@ -2771,7 +2771,7 @@
 			"url": "/cards/Wiccan/",
 			"name": "Wiccan",
 			"description": "<b>On Reveal:</b> If you've spent all your Energy this game, +2 Max Energy.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wiccan-5b461f8d179d844c9b3deb4f574b93a8b720713041bd5279e2da76c8aed8fc16.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Wiccan-422417e376980b4633a9f607c66e0f15d88e3eed56f57d72e078dfa954f4ff3c.webp",
 			"cost": 4
 		},
 		{
