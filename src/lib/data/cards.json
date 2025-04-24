@@ -25,7 +25,7 @@
 			"variantKey": null,
 			"url": "/cards/AdamWarlock/",
 			"name": "Adam Warlock",
-			"description": "After each turn, draw a card if you're winning here. Otherwise, +1 Power.",
+			"description": "<b>End of Turn:</b> Draw a card if you're winning here. Otherwise, +1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/AdamWarlock-fa63bb11093eee19a459db1999aeb890cdf609bd9e8c844be095635721341d57.webp",
 			"cost": 5
 		},
@@ -223,7 +223,7 @@
 			"variantKey": null,
 			"url": "/cards/Attuma/",
 			"name": "Attuma",
-			"description": "After each turn, destroy one of your cards here with less Power.",
+			"description": "<b>End of Turn:</b> Destroy one of your cards here with less Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Attuma-90970fbe4443753a92df03d6b9e196b7780d065f694dd8f5b470d0d55c593fbb.webp",
 			"cost": 4
 		},
@@ -700,7 +700,7 @@
 			"variantKey": null,
 			"url": "/cards/Doom2099/",
 			"name": "Doctor Doom 2099",
-			"description": "After each turn, add a DoomBot 2099 to a random location if you played <i>(exactly)</i> 1 card.",
+			"description": "<b>End of Turn:</b> Add a DoomBot 2099 to a random location if you played <i>(exactly)</i> 1 card.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Doom2099-725d69f52182c4756c78bbdb4c3b2f71a6648c4dadb6c27e842af72cd89a0f00.webp",
 			"cost": 4
 		},
@@ -1024,7 +1024,7 @@
 			"variantKey": null,
 			"url": "/cards/Havok/",
 			"name": "Havok",
-			"description": "After each turn, you lose 1 Max Energy and this gains +4 Power.",
+			"description": "<b>End of Turn:</b> You lose 1 Max Energy and this gains +4 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Havok-167906e1e6eebfbd006695f5f8a350365ad538477470c0c47ae3f0990c1dea71.webp",
 			"cost": 2
 		},
@@ -1186,7 +1186,7 @@
 			"variantKey": null,
 			"url": "/cards/HydraBob/",
 			"name": "Hydra Bob",
-			"description": "After each turn, this moves if a player Snapped.",
+			"description": "<b>End of Turn:</b> This moves if\na player Snapped.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HydraBob-33ec6627743450a7c619ddb20a79bb077dec864a8902d0a9b4ed2a34bec538e4.webp",
 			"cost": 1
 		},
@@ -1591,7 +1591,7 @@
 			"variantKey": null,
 			"url": "/cards/Makkari/",
 			"name": "Makkari",
-			"description": "After the turn, runs from your hand to a random location. <i>(if possible)</i>",
+			"description": "<b>End of Turn:</b> Runs from your hand to a random location. <i>(if possible)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Makkari-36c47524d357d0e7c6c31717f3f6a27f42d4bc97a28310605f37d8870b8d81c3.webp",
 			"cost": 3
 		},
@@ -1645,7 +1645,7 @@
 			"variantKey": null,
 			"url": "/cards/MarvelBoy/",
 			"name": "Marvel Boy",
-			"description": "After each turn, give 3 of your 1-Cost cards +1 Power.",
+			"description": "<b>End of Turn:</b> Give 3 of your\n1-Cost cards +1 Power.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/MarvelBoy-dbb81f811172c63aa88d37382c208a180a01eb4e197680170da36afa3e4ffe4c.webp",
 			"cost": 3
 		},
@@ -2131,7 +2131,7 @@
 			"variantKey": null,
 			"url": "/cards/RedHulk/",
 			"name": "Red Hulk",
-			"description": "When your opponent ends a turn with unspent Energy, +4 Power.\n<i>(if in hand or in play)</i>",
+			"description": "<b>End of Turn:</b> If your opponent has unspent Energy, +3 Power.\n<i>(if in hand or in play)</i>",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/RedHulk-388bea7245a9a686527841f5d0ca752d49ebdbfe0b0c9d8504eaa6378e65cae4.webp",
 			"cost": 6
 		},
@@ -2617,7 +2617,7 @@
 			"variantKey": null,
 			"url": "/cards/Sunspot/",
 			"name": "Sunspot",
-			"description": "After each turn, gain +1 Power for each unspent Energy.",
+			"description": "<b>End of Turn:</b> Gain +1 Power for each unspent Energy.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sunspot-b23b390ab2e541eb67f1ec5f8fe03fa9cda6b3cc943862d8edaa70fb4d19974d.webp",
 			"cost": 1
 		},
@@ -2752,7 +2752,7 @@
 			"variantKey": null,
 			"url": "/cards/Thena/",
 			"name": "Thena",
-			"description": "After each turn, +3 Power if you played <i>(exactly)</i> 2 cards.",
+			"description": "<b>End of Turn:</b> +3 Power if you played <i>(exactly)</i> 2 cards.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Thena-2702288c77bf1fcb7b267e2de6c9141ec3378727061eeb9bf4ec623ce2044e07.webp",
 			"cost": 2
 		},
