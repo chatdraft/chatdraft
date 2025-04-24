@@ -131,7 +131,9 @@ export const prisma = new PrismaClient().$extends({
 								}
 							},
 							authorization: {
-								create: {}
+								create: {
+									cubeDraft: true
+								}
 							}
 						},
 						include: {
