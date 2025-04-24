@@ -279,7 +279,7 @@
 			"name": "Black Cat",
 			"description": "<b>End of Turn:</b> Discard this from your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/BlackCat-ad673083d3e567133c1654d235920a0fb2911ef5a657432c2d1fbc048c802a29.webp",
-			"cost": 4
+			"cost": 2
 		},
 		{
 			"cardDefKey": "BlackKnight",
@@ -800,8 +800,8 @@
 			"url": "/cards/Galacta/",
 			"name": "Galacta",
 			"description": "Each turn, the first card you play at another location reveals\nwith +3 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galacta-2181e5bd73b71233698bb4311f70d4824da340f76b5a865e04cc919909742aa8.webp",
-			"cost": 6
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Galacta-8b9c06ddc3ebbc2d148f0fba044aab5e3ee98ed8e7f09211fd2219da1921eb02.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "Galactus",
@@ -845,7 +845,7 @@
 			"url": "/cards/GhostRider/",
 			"name": "Ghost Rider",
 			"description": "<b>On Reveal:</b> Bring back one of your discarded cards to this location.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostRider-35f8ded279bd7cc959acf1e19ed10594205bc2e18e66e02cbc7773eebd495a7b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/GhostRider-73528cfe848af9adfbae9519ee5976093fdc4c17d692c7a58d2959342735b0c3.webp",
 			"cost": 4
 		},
 		{
@@ -1159,7 +1159,7 @@
 			"variantKey": null,
 			"url": "/cards/IronPatriot/",
 			"name": "Iron Patriot",
-			"description": "<b>On Reveal:</b> Add a random 4, 5, or\n6-Cost card to your hand. If you\u2019re winning here after next turn, give it -4 Cost.",
+			"description": "<b>On Reveal:</b> Add a random 4, 5, or\n6-Cost card to your hand. If you\u2019re winning here after next turn, give it -3 Cost.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/IronPatriot-e55b842dc5ed7fd3f80738277338f2bce6013f4b5dc28ec501e5d7084ac84652.webp",
 			"cost": 2
 		},
@@ -1907,7 +1907,7 @@
 			"url": "/cards/Pixie/",
 			"name": "Pixie",
 			"description": "<b>On Reveal:</b> Shuffle the base Costs of all cards in your deck that started there.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Pixie-df319bb05ecfbe1a31272cd19f9515d734d35dc88a615dba0182ca5d174920c5.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Pixie-947bf4828e24196f215c051d850093e0f1403db8e1a69ab61623496d512bb051.webp",
 			"cost": 2
 		},
 		{
@@ -2114,8 +2114,8 @@
 			"url": "/cards/Sauron/",
 			"name": "Sauron",
 			"description": "<b>On Reveal:</b> Remove the abilities from all <b>Ongoing</b> cards in your\nhand and deck.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-34f8d465c1810e2a55fd0b51471ad12e4516df648e6a4b2ec8f6180217ccf141.webp",
-			"cost": 3
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Sauron-76a6ef5e22f1e829e56d2f582af4a1d54dc554d3a92ad4b9825a5fe2a60cbc46.webp",
+			"cost": 2
 		},
 		{
 			"cardDefKey": "ScarletSpider",
