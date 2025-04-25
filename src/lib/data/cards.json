@@ -449,8 +449,8 @@
 			"url": "/cards/CaptainCarter/",
 			"name": "Captain Carter",
 			"description": "<b>Ongoing:</b> Add this card's Power to your back-row cards here.\n<i>(can't add to itself)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainCarter-8624b6e3b4b4163ecea9bf78abe39e2187827337b35e778626710d19bb4695ef.webp",
-			"cost": 4
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/CaptainCarter-8c83a5ee407f1998e756c94bb3af258f903172d31da8f2a9a9de65928c94cbb9.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "CaptainMarvel",
@@ -1205,7 +1205,7 @@
 			"url": "/cards/InfinityUltron/",
 			"name": "Infinity Ultron",
 			"description": "<b>On Reveal:</b> Add 2 of Ultron's Stones to your hand.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/InfinityUltron-9b78a79d05030df35f212a0139881efc5a262f527d23af8ac6a7758213788972.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/InfinityUltron-2e6d4de019582b2626b8b1f1802f190ae414be6a012a3b435e7562235e3201b0.webp",
 			"cost": 5
 		},
 		{
@@ -2024,7 +2024,7 @@
 			"url": "/cards/Phastos/",
 			"name": "Phastos",
 			"description": "<b>On Reveal:</b> Give each card in your deck -1 Cost or +2 Power.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Phastos-4927b1ac49c8b005958ede37eb3b04bc003acd4a8655e529472b4573a03895d0.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Phastos-0f2bde5c0ba96fd7a7c16446c939b2ce69e68f647ef6257e525067c7691b8dd8.webp",
 			"cost": 3
 		},
 		{
@@ -2167,8 +2167,8 @@
 			"variantKey": null,
 			"url": "/cards/Rhino/",
 			"name": "Rhino",
-			"description": "<b>On Reveal:</b> Ruin this location. (remove its ability)",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rhino-70951c4d0aa24e7f42bf48c85b25cebda69b3a9cf04e764ba3765d7edc2630a1.webp",
+			"description": "<b>On Reveal:</b> Add a Rock to your side of this location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Rhino-b28b534f8d32a0fa9dce611037185433f90247eb462a3088a8d73acd65b6b90e.webp",
 			"cost": 3
 		},
 		{
@@ -2240,7 +2240,7 @@
 			"url": "/cards/SamWilson/",
 			"name": "Sam Wilson Captain America",
 			"description": "<b>Game Start:</b> Add Cap's Shield to a random location.\n<b>Ongoing:</b> You can move Cap's Shield.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SamWilson-3cfb599921002833f0f78267cdf08183abcb0bca362399d2d5329343940a2407.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/SamWilson-7654e563d1bb6e1e606bc2653e8ad9a8227b14a1d4d5d51c4ed7305db7917140.webp",
 			"cost": 2
 		},
 		{
@@ -2312,7 +2312,7 @@
 			"url": "/cards/Scream/",
 			"name": "Scream",
 			"description": "When an enemy card moves, steal 2 Power from it. <i>(once per turn)</i>",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scream-e2496f8ddc8fed97aaf92529e66c4f3ff80581ea0f88e1a5ee564cf2c3b5e70b.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Scream-3f1f54e61c9c787a5c882e19d8a362afe90a7b372699b7511355b48bfed859df.webp",
 			"cost": 2
 		},
 		{
@@ -2780,7 +2780,7 @@
 			"url": "/cards/Toxin/",
 			"name": "Toxin",
 			"description": "<b>On Reveal:</b> Return your other cards here to your hand. +2 Power\nfor each returned.",
-			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Toxin-4a6ca624dd58114a8ceea593778dc28bc34f37ee57fa3bbc6dfe09b4215ec8bc.webp",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Toxin-5d3531b592820b7ef295b8777ebfd1096c3760cbc51b0fffebea43315c6ec1f3.webp",
 			"cost": 2
 		},
 		{
