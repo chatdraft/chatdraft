@@ -7,7 +7,7 @@ import * as crypto from 'node:crypto';
 
 export const GET: RequestHandler = async (request) => {
 	const redirectUri = request.url.searchParams.get('redirect') || '/';
-	const stateToken = crypto.randomBytes(24).toString('base64');
+	const stateToken = crypto.randomBytes(24).toString('base64url');
 	const expiresOn = new Date(DatetimeNowUtc() + 2 * minutes_to_ms);
 
 	PushLoginRequest(stateToken, { redirectUri: redirectUri, expiresOn: expiresOn });
