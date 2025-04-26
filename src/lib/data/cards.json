@@ -2064,6 +2064,15 @@
 			"cost": 5
 		},
 		{
+			"cardDefKey": "ProximaMidnight",
+			"variantKey": null,
+			"url": "/cards/ProximaMidnight/",
+			"name": "Proxima Midnight",
+			"description": "When this is discarded, jumps to your lowest-Power location. <i>(that isn't full)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ProximaMidnight-769641d962013b9c6927f89f2d4fc556db9558a68d845459b89155dc8d3e1357.webp",
+			"cost": 4
+		},
+		{
 			"cardDefKey": "Psylocke",
 			"variantKey": null,
 			"url": "/cards/Psylocke/",
