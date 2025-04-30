@@ -255,6 +255,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey": "Batroc",
+			"variantKey": null,
+			"url": "/cards/Batroc/",
+			"name": "Batroc the Leaper",
+			"description": "When a card moves, follow it to gain +2 Power. <i>(once per turn)</i>",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Batroc-8087840be5337c04d566c20d817b52335801e4aa63f94085f18036a836505ba1.webp",
+			"cost": 1
+		},
+		{
 			"cardDefKey": "Beast",
 			"variantKey": null,
 			"url": "/cards/Beast/",
@@ -820,6 +829,15 @@
 			"description": "<b>On Reveal:</b> Return your 1-Cost cards to your hand.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Falcon-2a19c80b1b51c9dc067e33b65ac015a6609820ef2bc204a6070f34ce9ecc6740.webp",
 			"cost": 2
+		},
+		{
+			"cardDefKey": "FanFei",
+			"variantKey": null,
+			"url": "/cards/FanFei/",
+			"name": "Fan Fei",
+			"description": "<b>Activate:</b> Move your other cards here to the right.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/FanFei-9b710e1dddf8feba8f2adf3de741809ae0ac1aa4c0164091776217e23ea9659b.webp",
+			"cost": 4
 		},
 		{
 			"cardDefKey": "FenrisWolf",
@@ -2791,6 +2809,15 @@
 			"description": "After ANY card is played here, this card switches sides.",
 			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Titania-1ae64730a3d0dfdcceaa3ef35be52304a5dee626b79a1e846f5601a796a30242.webp",
 			"cost": 1
+		},
+		{
+			"cardDefKey": "Topaz",
+			"variantKey": null,
+			"url": "/cards/Topaz/",
+			"name": "Topaz",
+			"description": "After you play a card here, move it to the middle location.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/Topaz-49acdd931c96149a13d0d35e479a5239650939ac0a1a2f998deca54cad73d872.webp",
+			"cost": 3
 		},
 		{
 			"cardDefKey": "ToxieDoxie",
