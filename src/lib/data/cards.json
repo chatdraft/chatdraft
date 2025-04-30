@@ -1191,6 +1191,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey": "HydraStomper",
+			"variantKey": null,
+			"url": "/cards/HydraStomper/",
+			"name": "Hydra Stomper",
+			"description": "<b>Ongoing:</b> +1 Power for each time one of your cards moved this game.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/HydraStomper-48fdcf6f4e43027a32afc4ca4a6ce0639987800f20bb4c4c09f60e033064a8aa.webp",
+			"cost": 3
+		},
+		{
 			"cardDefKey": "Iceman",
 			"variantKey": null,
 			"url": "/cards/Iceman/",
