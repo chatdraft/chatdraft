@@ -2784,6 +2784,15 @@
 			"cost": 1
 		},
 		{
+			"cardDefKey": "ToxieDoxie",
+			"variantKey": null,
+			"url": "/cards/ToxieDoxie/",
+			"name": "Toxie Doxie",
+			"description": "<b>On Reveal:</b> Give 2 cards in your\nhand +2 Power. You can't play\nthem next turn.",
+			"displayImageUrl": "https://game-assets.snap.fan/card_variant_images/ToxieDoxie-1ceef07937e50dec6b6fdcd7e56d640c5bd23809167ded29db926f782ba06f96.webp",
+			"cost": 2
+		},
+		{
 			"cardDefKey": "Toxin",
 			"variantKey": null,
 			"url": "/cards/Toxin/",
