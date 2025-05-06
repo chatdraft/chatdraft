@@ -11,7 +11,7 @@
 	import { DatetimeNowUtc } from '$lib/datetime';
 	import SnapDeck from '$lib/components/SnapDeck.svelte';
 	import { clipboard, CodeBlock } from '@skeletonlabs/skeleton';
-	import { CalculateExcludedCards, GetDeckCode } from '$lib/snap/cards';
+	import { CalculateExcludedCards, type CardDb, type Card, GetDeckCode } from '$lib/snap/cards';
 	import { page } from '$app/stores';
 	import { seconds_to_ms } from '$lib/constants';
 	import { getToastStore } from '@skeletonlabs/skeleton';
@@ -28,6 +28,7 @@
 	import CardPool from '$lib/components/CardPool.svelte';
 
 	export let data: PageData;
+	let cardDb: CardDb;
 	let now = DatetimeNowUtc();
 
 	let ws: WebSocket | null = null;
@@ -37,14 +38,7 @@
 
 	let editing: boolean = false;
 
-	let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined =
-		data.lobby.featuredCardDefKey == data.cardDb.currentSeasonPassCardDefId
-			? 'seasonpass'
-			: data.lobby.featuredCardDefKey == data.cardDb.currentSpotlightCardDefId
-			? 'spotlight'
-			: data.lobby.featuredCardDefKey != ''
-			? 'custom'
-			: undefined;
+	let featuredCardSelect: 'seasonpass' | 'spotlight' | 'custom' | undefined;
 	let featuredCardMode: FeaturedCardMode = data.lobby.featuredCardMode;
 	let customFeaturedCardDefKey: string = data.lobby.featuredCardDefKey;
 
@@ -95,18 +89,34 @@
 
 	let cardsToRemove: string[] = data.lobby.removedCards;
 
-	let excludedCards = ExcludedCards();
+	let excludedCards: Card[];
+
+	let cardTotal = 0;
 
 	function ExcludedCards() {
-		return CalculateExcludedCards(
-			data.cardDb,
-			data.lobby.draftPool.map((card) => card.cardDefKey),
-			data.lobby.removedCards
-		);
+		if (cardDb)
+			return CalculateExcludedCards(
+				cardDb,
+				data.lobby.draftPool.map((card) => card.cardDefKey),
+				data.lobby.removedCards
+			);
+		else return [];
 	}
 
 	onMount(async () => {
 		ws = await establishWebSocket(handleMessage);
+		cardDb = await (await fetch('/api/v1/cards')).json();
+		excludedCards = ExcludedCards();
+		featuredCardSelect =
+			data.lobby.featuredCardDefKey == cardDb.currentSeasonPassCardDefId
+				? 'seasonpass'
+				: data.lobby.featuredCardDefKey == cardDb.currentSpotlightCardDefId
+				? 'spotlight'
+				: data.lobby.featuredCardDefKey != ''
+				? 'custom'
+				: undefined;
+
+		cardTotal = cardDb.all.length;
 	});
 
 	onDestroy(() => {
@@ -265,7 +275,7 @@
 				</div>
 				<div class="pt-4 w-1/2">
 					<FeaturedCardOptions
-						cardPool={data.cardDb}
+						cardPool={cardDb}
 						bind:featuredCardSelect
 						bind:featuredCardMode
 						bind:customFeaturedCardDefKey
@@ -286,7 +296,7 @@
 
 					<CardsSelector
 						placeholder="Search for a Card to Remove"
-						cards={data.cardDb.all}
+						cards={cardDb.all}
 						bind:selectedCards={cardsToRemove}
 					/>
 
@@ -351,7 +361,7 @@
 						excludedCards = ExcludedCards();
 					};
 				}}
-				cardTotal={data.cardDb.all.length}
+				{cardTotal}
 				canReady={data.canEditLobby ||
 					!data.creatorInLobby ||
 					data.creatorInLobby.status == PlayerStatus.ready}
