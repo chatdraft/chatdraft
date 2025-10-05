@@ -3,7 +3,13 @@
 	import { twitch_login_uri, twitch_bot_uri } from '$lib/api/twitch/client';
 	import { env } from '$env/dynamic/public';
 	import '../../app.postcss';
-	import { Drawer, Toast, getDrawerStore, initializeStores } from '@skeletonlabs/skeleton';
+	import {
+		Drawer,
+		Toast,
+		getDrawerStore,
+		getToastStore,
+		initializeStores
+	} from '@skeletonlabs/skeleton';
 
 	initializeStores();
 	const drawerStore = getDrawerStore();
@@ -24,8 +30,16 @@
 
 	let timeoutTimer: NodeJS.Timeout;
 
+	const toastStore = getToastStore();
+
 	onMount(() => {
 		StartIdleTimer();
+		toastStore.trigger({
+			message:
+				'Notice: ChatDraft will be unavailable after December 31, 2025. Please contact oro or jjrolk on Discord with any questions.',
+			autohide: false,
+			background: 'variant-filled-error'
+		});
 	});
 
 	async function StartIdleTimer() {
